@@ -1,0 +1,62 @@
+<%= form_with(model: hunter, local: true) do |form| %>
+  <% if hunter.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(hunter.errors.count, "error") %> prohibited this hunter from being saved:</h2>
+
+      <ul>
+      <% hunter.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= form.label :name %>
+    <%= form.text_field :name %>
+  </div>
+
+  <div class="field">
+    <%= form.label :harm %>
+    <%= form.number_field :harm %>
+  </div>
+
+  <div class="field">
+    <%= form.label :luck %>
+    <%= form.number_field :luck %>
+  </div>
+
+  <div class="field">
+    <%= form.label :experience %>
+    <%= form.number_field :experience %>
+  </div>
+
+  <div class="field">
+    <%= form.label :charm %>
+    <%= form.number_field :charm %>
+  </div>
+
+  <div class="field">
+    <%= form.label :cool %>
+    <%= form.number_field :cool %>
+  </div>
+
+  <div class="field">
+    <%= form.label :sharp %>
+    <%= form.number_field :sharp %>
+  </div>
+
+  <div class="field">
+    <%= form.label :tough %>
+    <%= form.number_field :tough %>
+  </div>
+
+  <div class="field">
+    <%= form.label :weird %>
+    <%= form.number_field :weird %>
+  </div>
+
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+<% end %>

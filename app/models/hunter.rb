@@ -1,0 +1,2 @@
+class Hunter < ApplicationRecord
+end

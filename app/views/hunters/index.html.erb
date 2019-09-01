@@ -1,0 +1,43 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Hunters</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Harm</th>
+      <th>Luck</th>
+      <th>Experience</th>
+      <th>Charm</th>
+      <th>Cool</th>
+      <th>Sharp</th>
+      <th>Tough</th>
+      <th>Weird</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @hunters.each do |hunter| %>
+      <tr>
+        <td><%= hunter.name %></td>
+        <td><%= hunter.harm %></td>
+        <td><%= hunter.luck %></td>
+        <td><%= hunter.experience %></td>
+        <td><%= hunter.charm %></td>
+        <td><%= hunter.cool %></td>
+        <td><%= hunter.sharp %></td>
+        <td><%= hunter.tough %></td>
+        <td><%= hunter.weird %></td>
+        <td><%= link_to 'Show', hunter %></td>
+        <td><%= link_to 'Edit', edit_hunter_path(hunter) %></td>
+        <td><%= link_to 'Destroy', hunter, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Hunter', new_hunter_path %>
