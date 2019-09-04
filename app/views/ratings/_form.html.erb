@@ -1,0 +1,47 @@
+<%= form_with(model: rating, local: true) do |form| %>
+  <% if rating.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(rating.errors.count, "error") %> prohibited this rating from being saved:</h2>
+
+      <ul>
+      <% rating.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= form.label :playbook_id %>
+    <%= form.text_field :playbook_id %>
+  </div>
+
+  <div class="field">
+    <%= form.label :charm %>
+    <%= form.number_field :charm %>
+  </div>
+
+  <div class="field">
+    <%= form.label :cool %>
+    <%= form.number_field :cool %>
+  </div>
+
+  <div class="field">
+    <%= form.label :sharp %>
+    <%= form.number_field :sharp %>
+  </div>
+
+  <div class="field">
+    <%= form.label :tough %>
+    <%= form.number_field :tough %>
+  </div>
+
+  <div class="field">
+    <%= form.label :weird %>
+    <%= form.number_field :weird %>
+  </div>
+
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+<% end %>
