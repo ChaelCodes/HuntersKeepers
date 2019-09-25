@@ -1,0 +1,34 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Playbook:</strong>
+  <%= link_to @rating.playbook.name, @rating.playbook %>
+</p>
+
+<p>
+  <strong>Charm:</strong>
+  <%= @rating.charm %>
+</p>
+
+<p>
+  <strong>Cool:</strong>
+  <%= @rating.cool %>
+</p>
+
+<p>
+  <strong>Sharp:</strong>
+  <%= @rating.sharp %>
+</p>
+
+<p>
+  <strong>Tough:</strong>
+  <%= @rating.tough %>
+</p>
+
+<p>
+  <strong>Weird:</strong>
+  <%= @rating.weird %>
+</p>
+
+<%= link_to 'Edit', edit_rating_path(@rating) %> |
+<%= link_to 'Back', ratings_path %>

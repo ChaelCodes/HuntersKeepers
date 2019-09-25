@@ -1,0 +1,17 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  playbook: one
+  charm: 1
+  cool: 1
+  sharp: 1
+  tough: 1
+  weird: 1
+
+two:
+  playbook: two
+  charm: 1
+  cool: 1
+  sharp: 1
+  tough: 1
+  weird: 1

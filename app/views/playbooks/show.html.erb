@@ -1,0 +1,23 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Name:</strong>
+  <%= @playbook.name %>
+</p>
+
+<p>
+  <strong>Description:</strong>
+  <%= @playbook.description %>
+</p>
+
+<p>
+  <strong>Ratings Options</strong>
+  <ul>
+    <% @playbook.ratings.each do |rating| %>
+      <li><%= "Charm #{sprintf('%+d', rating.charm)}, Cool #{sprintf('%+d', rating.cool)}, Sharp #{sprintf('%+d', rating.sharp)}, Tough #{sprintf('%+d', rating.tough)}, Weird #{sprintf('%+d', rating.weird)}" %></li>
+    <% end %>
+  </ul>
+</p>
+
+<%= link_to 'Edit', edit_playbook_path(@playbook) %> |
+<%= link_to 'Back', playbooks_path %>
