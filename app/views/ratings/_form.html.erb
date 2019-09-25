@@ -12,8 +12,8 @@
   <% end %>
 
   <div class="field">
-    <%= form.label :playbook_id %>
-    <%= form.text_field :playbook_id %>
+    <%= form.label :playbook %>
+    <%= form.collection_select :playbook_id, Playbook.all, :id, :name %>
   </div>
 
   <div class="field">
