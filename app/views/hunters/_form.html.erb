@@ -17,6 +17,11 @@
   </div>
 
   <div class="field">
+    <%= form.label :playbook %>
+    <%= form.collection_select :playbook_id, Playbook.all, :id, :name %>
+  </div>
+
+  <div class="field">
     <%= form.label :harm %>
     <%= form.number_field :harm %>
   </div>
