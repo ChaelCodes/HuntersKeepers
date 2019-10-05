@@ -20,6 +20,9 @@
 /public/assets
 .byebug_history
 
+# Ignore Generated Files
+/coverage
+
 # Ignore master key for decrypting credentials and more.
 /config/master.key
 
