@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_09_24_234305) do
+ActiveRecord::Schema.define(version: 2019_10_06_145633) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -29,6 +29,19 @@ ActiveRecord::Schema.define(version: 2019_09_24_234305) do
     t.datetime "updated_at", null: false
     t.bigint "playbook_id"
     t.index ["playbook_id"], name: "index_hunters_on_playbook_id"
+  end
+
+  create_table "moves", force: :cascade do |t|
+    t.string "name"
+    t.integer "rating"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.string "moves"
+    t.string "six_and_under"
+    t.string "seven_to_nine"
+    t.string "ten_plus"
+    t.string "twelve_plus"
+    t.string "type"
   end
 
   create_table "playbooks", force: :cascade do |t|

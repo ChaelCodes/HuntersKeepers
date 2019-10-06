@@ -1,0 +1,53 @@
+<%= form_with(model: move.becomes(Move), local: true) do |form| %>
+  <% form.object = move.becomes(move.class) %>
+  <% if move.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(move.errors.count, "error") %> prohibited this move from being saved:</h2>
+
+      <ul>
+      <% move.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= form.label :type %>
+    <%= form.select(:type, Move::MOVE_TYPES) %>
+  </div>    
+
+  <div class="field">
+    <%= form.label :name %>
+    <%= form.text_field :name %>
+  </div>
+
+  <div class="field">
+    <%= form.label :rating %>
+    <%= form.select(:rating, Move.ratings.keys) %>
+  </div>
+
+  <div class="field">
+    <%= form.label :six_and_under %>
+    <%= form.text_area :six_and_under %>
+  </div>
+
+  <div class="field">
+    <%= form.label :seven_to_nine %>
+    <%= form.text_area :seven_to_nine %>
+  </div>
+
+  <div class="field">
+    <%= form.label :ten_plus %>
+    <%= form.text_area :ten_plus %>
+  </div>
+
+  <div class="field">
+    <%= form.label :twelve_plus %>
+    <%= form.text_area :twelve_plus %>
+  </div>
+
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+<% end %>

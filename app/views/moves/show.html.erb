@@ -1,0 +1,34 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Name:</strong>
+  <%= @move.name %>
+</p>
+
+<p>
+  <strong>Rating:</strong>
+  <%= @move.rating %>
+</p>
+
+<p>
+  <strong>On a failed roll:</strong>
+  <%= @move.six_and_under %>
+</p>
+
+<p>
+  <strong>On a mixed success:</strong>
+  <%= @move.seven_to_nine %>
+</p>
+
+<p>
+  <strong>On a 10+:</strong>
+  <%= @move.ten_plus %>
+</p>
+
+<p>
+  <strong>Advanced Move, on a 12+:</strong>
+  <%= @move.twelve_plus %>
+</p>
+
+<%= link_to 'Edit', edit_move_path(@move) %> |
+<%= link_to 'Back', moves_path %>
