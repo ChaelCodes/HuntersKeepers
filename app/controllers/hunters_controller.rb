@@ -14,7 +14,7 @@ class HuntersController < ApplicationController
 
   # GET /hunters/new
   def new
-    @hunter = Hunter.new
+    @hunter = Hunter.new(experience: 0, harm: 0, luck: 7)
   end
 
   # GET /hunters/1/edit
@@ -69,6 +69,6 @@ class HuntersController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def hunter_params
-      params.require(:hunter).permit(:name, :harm, :luck, :experience, :charm, :cool, :sharp, :tough, :weird)
+      params.require(:hunter).permit(:name, :playbook_id, :harm, :luck, :experience, :charm, :cool, :sharp, :tough, :weird)
     end
 end

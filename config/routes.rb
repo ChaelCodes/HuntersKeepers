@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  resources :moves
   resources :ratings
   resources :playbooks
   resources :hunters
