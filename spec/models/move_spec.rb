@@ -11,7 +11,7 @@ RSpec.describe Move, type: :model do
     it { is_expected.to eq hunter.cool + 1 }
   end
 
-  describe '#roll_resoluts' do
+  describe '#roll_results' do
     subject { move.roll_results(hunter) }
     let(:hunter) { create :hunter, cool: 1 }
     before { allow_any_instance_of(Random).to receive(:rand).and_return(roll_result) }

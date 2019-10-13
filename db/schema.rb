@@ -36,7 +36,6 @@ ActiveRecord::Schema.define(version: 2019_10_06_145633) do
     t.integer "rating"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.string "moves"
     t.string "six_and_under"
     t.string "seven_to_nine"
     t.string "ten_plus"

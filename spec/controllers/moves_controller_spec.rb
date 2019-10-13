@@ -29,11 +29,17 @@ RSpec.describe MovesController, type: :controller do
   # Move. As you add validations to Move, be sure to
   # adjust the attributes here as well.
   let(:valid_attributes) {
-    skip("Add a hash of attributes valid for your model")
+    {
+      type: 'Moves::Basic',
+      name: 'Act Under Pressure',
+      rating: 'cool'
+    }
   }
 
   let(:invalid_attributes) {
-    skip("Add a hash of attributes invalid for your model")
+    {
+      type: '',
+    }
   }
 
   # This should return the minimal set of values that should be in the session
@@ -82,7 +88,7 @@ RSpec.describe MovesController, type: :controller do
 
       it "redirects to the created move" do
         post :create, params: {move: valid_attributes}, session: valid_session
-        expect(response).to redirect_to(Move.last)
+        expect(response).to redirect_to(move_url(Move.last))
       end
     end
 
@@ -110,7 +116,7 @@ RSpec.describe MovesController, type: :controller do
       it "redirects to the move" do
         move = Move.create! valid_attributes
         put :update, params: {id: move.to_param, move: valid_attributes}, session: valid_session
-        expect(response).to redirect_to(move)
+        expect(response).to redirect_to(move_url(move))
       end
     end
 
