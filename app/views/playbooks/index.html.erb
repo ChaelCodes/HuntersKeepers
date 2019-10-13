@@ -14,9 +14,8 @@
   <tbody>
     <% @playbooks.each do |playbook| %>
       <tr>
-        <td><%= playbook.name %></td>
-        <td><%= playbook.description %></td>
-        <td><%= link_to 'Show', playbook %></td>
+        <td><%= link_to playbook.name, playbook %></td>
+        <td><%= playbook.description&.slice(0, 100) %></td>
         <td><%= link_to 'Edit', edit_playbook_path(playbook) %></td>
         <td><%= link_to 'Destroy', playbook, method: :delete, data: { confirm: 'Are you sure?' } %></td>
       </tr>
