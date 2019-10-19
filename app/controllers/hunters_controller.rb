@@ -1,5 +1,8 @@
+# frozen_string_literal: true
+
+# Restful Hunters Controller
 class HuntersController < ApplicationController
-  before_action :set_hunter, only: [:show, :edit, :update, :destroy]
+  before_action :set_hunter, only: %i[show edit update destroy]
 
   # GET /hunters
   # GET /hunters.json
@@ -9,8 +12,7 @@ class HuntersController < ApplicationController
 
   # GET /hunters/1
   # GET /hunters/1.json
-  def show
-  end
+  def show() end
 
   # GET /hunters/new
   def new
@@ -18,8 +20,7 @@ class HuntersController < ApplicationController
   end
 
   # GET /hunters/1/edit
-  def edit
-  end
+  def edit() end
 
   # POST /hunters
   # POST /hunters.json
@@ -62,13 +63,15 @@ class HuntersController < ApplicationController
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_hunter
-      @hunter = Hunter.find(params[:id])
-    end
 
-    # Never trust parameters from the scary internet, only allow the white list through.
-    def hunter_params
-      params.require(:hunter).permit(:name, :playbook_id, :harm, :luck, :experience, :charm, :cool, :sharp, :tough, :weird)
-    end
+  # Use callbacks to share common setup or constraints between actions.
+  def set_hunter
+    @hunter = Hunter.find(params[:id])
+  end
+
+  # Never trust parameters from the scary internet, only allow the white list through.
+  def hunter_params
+    params.require(:hunter)
+          .permit(:name, :playbook_id, :harm, :luck, :experience, :charm, :cool, :sharp, :tough, :weird)
+  end
 end

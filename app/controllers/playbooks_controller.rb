@@ -1,5 +1,8 @@
+# frozen_string_literal: true
+
+# Restful controller for Playbooks
 class PlaybooksController < ApplicationController
-  before_action :set_playbook, only: [:show, :edit, :update, :destroy]
+  before_action :set_playbook, only: %i[show edit update destroy]
 
   # GET /playbooks
   # GET /playbooks.json
@@ -9,8 +12,7 @@ class PlaybooksController < ApplicationController
 
   # GET /playbooks/1
   # GET /playbooks/1.json
-  def show
-  end
+  def show() end
 
   # GET /playbooks/new
   def new
@@ -18,8 +20,7 @@ class PlaybooksController < ApplicationController
   end
 
   # GET /playbooks/1/edit
-  def edit
-  end
+  def edit() end
 
   # POST /playbooks
   # POST /playbooks.json
@@ -62,13 +63,14 @@ class PlaybooksController < ApplicationController
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_playbook
-      @playbook = Playbook.find(params[:id])
-    end
 
-    # Never trust parameters from the scary internet, only allow the white list through.
-    def playbook_params
-      params.require(:playbook).permit(:name, :description)
-    end
+  # Use callbacks to share common setup or constraints between actions.
+  def set_playbook
+    @playbook = Playbook.find(params[:id])
+  end
+
+  # Never trust parameters from the scary internet, only allow the white list through.
+  def playbook_params
+    params.require(:playbook).permit(:name, :description)
+  end
 end
