@@ -1,4 +1,4 @@
-require: rubocop-performance
+# require: rubocop-performance
 
 Metrics/LineLength:
   Description: 'Limit lines to 120 characters.'
