@@ -1,5 +1,8 @@
+# frozen_string_literal: true
+
+# Restful controller for Moves
 class MovesController < ApplicationController
-  before_action :set_move, only: [:show, :edit, :update, :destroy]
+  before_action :set_move, only: %i[show edit update destroy]
 
   # GET /moves
   # GET /moves.json
@@ -9,8 +12,7 @@ class MovesController < ApplicationController
 
   # GET /moves/1
   # GET /moves/1.json
-  def show
-  end
+  def show() end
 
   # GET /moves/new
   def new
@@ -18,8 +20,7 @@ class MovesController < ApplicationController
   end
 
   # GET /moves/1/edit
-  def edit
-  end
+  def edit() end
 
   # POST /moves
   # POST /moves.json
@@ -62,13 +63,14 @@ class MovesController < ApplicationController
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_move
-      @move = Move.find(params[:id])
-    end
 
-    # Never trust parameters from the scary internet, only allow the white list through.
-    def move_params
-      params.require(:move).permit(:type, :name, :rating, :six_and_under, :seven_to_nine, :ten_plus, :twelve_plus)
-    end
+  # Use callbacks to share common setup or constraints between actions.
+  def set_move
+    @move = Move.find(params[:id])
+  end
+
+  # Never trust parameters from the scary internet, only allow the white list through.
+  def move_params
+    params.require(:move).permit(:type, :name, :rating, :six_and_under, :seven_to_nine, :ten_plus, :twelve_plus)
+  end
 end

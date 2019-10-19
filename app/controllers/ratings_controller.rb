@@ -1,5 +1,8 @@
+# frozen_string_literal: true
+
+# Restful controller for Ratings
 class RatingsController < ApplicationController
-  before_action :set_rating, only: [:show, :edit, :update, :destroy]
+  before_action :set_rating, only: %i[show edit update destroy]
 
   # GET /ratings
   # GET /ratings.json
@@ -9,8 +12,7 @@ class RatingsController < ApplicationController
 
   # GET /ratings/1
   # GET /ratings/1.json
-  def show
-  end
+  def show() end
 
   # GET /ratings/new
   def new
@@ -18,8 +20,7 @@ class RatingsController < ApplicationController
   end
 
   # GET /ratings/1/edit
-  def edit
-  end
+  def edit() end
 
   # POST /ratings
   # POST /ratings.json
@@ -62,13 +63,14 @@ class RatingsController < ApplicationController
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_rating
-      @rating = Rating.find(params[:id])
-    end
 
-    # Never trust parameters from the scary internet, only allow the white list through.
-    def rating_params
-      params.require(:rating).permit(:playbook_id, :charm, :cool, :sharp, :tough, :weird)
-    end
+  # Use callbacks to share common setup or constraints between actions.
+  def set_rating
+    @rating = Rating.find(params[:id])
+  end
+
+  # Never trust parameters from the scary internet, only allow the white list through.
+  def rating_params
+    params.require(:rating).permit(:playbook_id, :charm, :cool, :sharp, :tough, :weird)
+  end
 end

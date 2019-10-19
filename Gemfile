@@ -38,6 +38,10 @@ group :development, :test do
   gem 'simplecov'
   gem 'factory_bot', '~> 5.1'
   gem 'factory_bot_rails', '~> 5.1'
+  gem 'rubocop', require: false
+  gem 'rubocop-performance'
+  gem 'rubocop-rails'
+  gem 'rubocop-rspec'
 end
 
 group :development do
