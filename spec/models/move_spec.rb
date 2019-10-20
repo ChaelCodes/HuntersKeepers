@@ -1,7 +1,9 @@
+# frozen_string_literal: true
+
 require 'rails_helper'
 
 RSpec.describe Move, type: :model do
-  let(:move) { create :move  }
+  let(:move) { create :move }
 
   describe '#roll' do
     subject { move.roll(hunter) }
@@ -20,7 +22,8 @@ RSpec.describe Move, type: :model do
       let(:roll_result) { 5 }
 
       it {
-        is_expected.to eq "Your total 6 resulted in #{move.six_and_under}" }
+        is_expected.to eq "Your total 6 resulted in #{move.six_and_under}"
+      }
     end
 
     context 'roll is 7' do
