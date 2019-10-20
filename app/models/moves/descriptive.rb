@@ -1,9 +1,14 @@
-class Moves::Descriptive < Move
-  def roll_results(hunter)
-    raise NotImplementedError
-  end
+# frozen_string_literal: true
 
-  def rollable?
-    false
+module Moves
+  # used for Playbook moves that are purely test-based
+  class Descriptive < Move
+    def roll_results(_hunter)
+      raise NotImplementedError
+    end
+
+    def rollable?
+      false
+    end
   end
 end
