@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_10_20_130919) do
+ActiveRecord::Schema.define(version: 2019_10_20_135103) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -29,6 +29,14 @@ ActiveRecord::Schema.define(version: 2019_10_20_130919) do
     t.datetime "updated_at", null: false
     t.bigint "playbook_id"
     t.index ["playbook_id"], name: "index_hunters_on_playbook_id"
+  end
+
+  create_table "hunters_moves", force: :cascade do |t|
+    t.string "hunters_moves"
+    t.bigint "hunter_id"
+    t.bigint "move_id"
+    t.index ["hunter_id"], name: "index_hunters_moves_on_hunter_id"
+    t.index ["move_id"], name: "index_hunters_moves_on_move_id"
   end
 
   create_table "moves", force: :cascade do |t|
@@ -66,6 +74,8 @@ ActiveRecord::Schema.define(version: 2019_10_20_130919) do
   end
 
   add_foreign_key "hunters", "playbooks"
+  add_foreign_key "hunters_moves", "hunters"
+  add_foreign_key "hunters_moves", "moves"
   add_foreign_key "moves", "playbooks"
   add_foreign_key "ratings", "playbooks"
 end
