@@ -71,6 +71,6 @@ class MovesController < ApplicationController
 
   # Never trust parameters from the scary internet, only allow the white list through.
   def move_params
-    params.require(:move).permit(:type, :name, :rating, :six_and_under, :seven_to_nine, :ten_plus, :twelve_plus)
+    params.require(:move).permit(:playbook_id, :type, :name, :description, :rating, :six_and_under, :seven_to_nine, :ten_plus, :twelve_plus)
   end
 end

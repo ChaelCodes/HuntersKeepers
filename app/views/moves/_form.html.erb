@@ -15,11 +15,21 @@
   <div class="field">
     <%= form.label :type %>
     <%= form.select(:type, Move::MOVE_TYPES) %>
-  </div>    
+  </div>
+
+  <div class="field">
+    <%= form.label :playbook %>
+    <%= form.collection_select(:playbook_id, Playbook.all, :id, :name) %>
+  </div>
 
   <div class="field">
     <%= form.label :name %>
     <%= form.text_field :name %>
+  </div>
+
+  <div class="field">
+    <%= form.label :description %>
+    <%= form.text_field :description %>
   </div>
 
   <div class="field">

@@ -3,5 +3,6 @@
 # The class or playbook that the hunter has
 # provides unique abilities to the Hunter
 class Playbook < ApplicationRecord
+  has_many :moves
   has_many :ratings
 end

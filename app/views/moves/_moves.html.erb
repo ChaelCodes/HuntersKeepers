@@ -1,0 +1,10 @@
+<% moves.each do |move| %>
+  <ul>
+    <li><%= move.name %>: <%= move.description %>
+      <% if move.rollable? && hunter %>
+        <%= link_to 'Roll', hunter_path(hunter), data: { confirm: "#{move.roll_results(hunter)}" } %>
+      <% else %>
+        <%= [move.ten_plus, move.seven_to_nine, move.six_and_under].join(' ') %>
+      <% end %></li>
+  </ul>
+<% end %>
