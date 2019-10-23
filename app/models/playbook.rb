@@ -4,5 +4,5 @@
 # provides unique abilities to the Hunter
 class Playbook < ApplicationRecord
   has_many :moves
-  has_many :ratings
+  has_many :ratings, dependent: :destroy
 end
