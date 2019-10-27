@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_10_06_145633) do
+ActiveRecord::Schema.define(version: 2019_10_20_135103) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -31,6 +31,14 @@ ActiveRecord::Schema.define(version: 2019_10_06_145633) do
     t.index ["playbook_id"], name: "index_hunters_on_playbook_id"
   end
 
+  create_table "hunters_moves", force: :cascade do |t|
+    t.string "hunters_moves"
+    t.bigint "hunter_id"
+    t.bigint "move_id"
+    t.index ["hunter_id"], name: "index_hunters_moves_on_hunter_id"
+    t.index ["move_id"], name: "index_hunters_moves_on_move_id"
+  end
+
   create_table "moves", force: :cascade do |t|
     t.string "name"
     t.integer "rating"
@@ -41,6 +49,9 @@ ActiveRecord::Schema.define(version: 2019_10_06_145633) do
     t.string "ten_plus"
     t.string "twelve_plus"
     t.string "type"
+    t.bigint "playbook_id"
+    t.string "description"
+    t.index ["playbook_id"], name: "index_moves_on_playbook_id"
   end
 
   create_table "playbooks", force: :cascade do |t|
@@ -63,5 +74,8 @@ ActiveRecord::Schema.define(version: 2019_10_06_145633) do
   end
 
   add_foreign_key "hunters", "playbooks"
+  add_foreign_key "hunters_moves", "hunters"
+  add_foreign_key "hunters_moves", "moves"
+  add_foreign_key "moves", "playbooks"
   add_foreign_key "ratings", "playbooks"
 end

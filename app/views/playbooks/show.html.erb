@@ -1,22 +1,27 @@
 <p id="notice"><%= notice %></p>
 
 <p>
-  <strong>Name:</strong>
+  <h4>Name:</h4>
   <%= @playbook.name %>
 </p>
 
 <p>
-  <strong>Description:</strong>
+  <h4>Description:</h4>
   <%= @playbook.description %>
 </p>
 
 <p>
-  <strong>Ratings Options</strong>
+  <h4>Ratings Options</h4>
   <ul>
     <% @playbook.ratings.each do |rating| %>
       <li><%= "Charm #{sprintf('%+d', rating.charm)}, Cool #{sprintf('%+d', rating.cool)}, Sharp #{sprintf('%+d', rating.sharp)}, Tough #{sprintf('%+d', rating.tough)}, Weird #{sprintf('%+d', rating.weird)}" %></li>
     <% end %>
   </ul>
+</p>
+
+<p>
+  <h4>Moves</h4>
+  <%= render "moves/moves", moves: @playbook.moves, hunter: nil %>
 </p>
 
 <%= link_to 'Edit', edit_playbook_path(@playbook) %> |

@@ -45,11 +45,10 @@
   <%= @hunter.weird %>
 </p>
 
-<% @hunter.moves.each do |move| %>
-  <ul>
-    <li><%= move.name %> <%= link_to 'Roll', hunter_path(@hunter), data: { confirm: "#{move.roll_results(@hunter)}" } %></li>
-  </ul>
-<% end %>
+<p>
+  <h4>Moves</h4>
+  <%= render "moves/moves", moves: @hunter.hunter_moves, hunter: @hunter %>
+</p>
 
 <%= link_to 'Edit', edit_hunter_path(@hunter) %> |
 <%= link_to 'Back', hunters_path %>

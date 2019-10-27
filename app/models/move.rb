@@ -2,11 +2,17 @@
 
 # Actions that the hunters can take
 class Move < ApplicationRecord
-  MOVE_TYPES = %w[Moves::Basic].freeze
+  MOVE_TYPES = %w[Moves::Basic Moves::Rollable Moves::Descriptive].freeze
+
+  belongs_to :playbook, optional: true
 
   validates :type, inclusion: { in: MOVE_TYPES }
 
   enum rating: { charm: 0, cool: 1, sharp: 2, tough: 3, weird: 4 }
+
+  def rollable?
+    true
+  end
 
   def roll(hunter)
     Random.new.rand(2..12) + hunter.send(rating)

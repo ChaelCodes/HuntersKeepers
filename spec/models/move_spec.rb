@@ -44,4 +44,10 @@ RSpec.describe Move, type: :model do
       it { is_expected.to eq "Your total 11 resulted in #{move.ten_plus}" }
     end
   end
+
+  describe '#rollable?' do
+    subject { move.rollable? }
+
+    it { is_expected.to be_truthy }
+  end
 end

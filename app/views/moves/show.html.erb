@@ -1,8 +1,20 @@
 <p id="notice"><%= notice %></p>
 
+<% if @move.playbook %>
+  <p>
+    <strong>Playbook:</strong>
+    <%= link_to @move.playbook.name, @move.playbook %>
+  </p>
+<% end %>
+
 <p>
   <strong>Name:</strong>
   <%= @move.name %>
+</p>
+
+<p>
+  <strong>Description:</strong>
+  <%= @move.description %>
 </p>
 
 <p>
