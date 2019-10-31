@@ -1,0 +1,2 @@
+module ImprovementsHelper
+end

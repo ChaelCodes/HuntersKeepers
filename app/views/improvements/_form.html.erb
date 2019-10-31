@@ -1,0 +1,48 @@
+<%= form_with(model: improvement.becomes(Improvement), local: true, local: true) do |form| %>
+  <% form.object = improvement.becomes(improvement.class) %>
+  <% if improvement.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(improvement.errors.count, "error") %> prohibited this improvement from being saved:</h2>
+
+      <ul>
+      <% improvement.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= form.label :playbook %>
+    <%= form.collection_select :playbook_id, Playbook.all, :id, :name %>
+  </div>
+
+  <div class="field">
+    <%= form.label :description %>
+    <%= form.text_field :description %>
+  </div>
+
+  <div class="field">
+    <%= form.label :type %>
+    <%= form.select(:type, Improvement::IMPROVEMENT_TYPES) %>
+  </div>
+
+  <div class="field">
+    <%= form.label :move_id %>
+    <%= form.number_field :move_id %>
+  </div>
+
+  <div class="field">
+    <%= form.label :rating %>
+    <%= form.select(:rating, Improvement.ratings.keys) %>
+  </div>
+
+  <div class="field">
+    <%= form.label :stat_limit %>
+    <%= form.number_field :stat_limit %>
+  </div>
+
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+<% end %>

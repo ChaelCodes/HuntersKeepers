@@ -1,0 +1,29 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Hunters Improvements</h1>
+
+<table>
+  <thead>
+    <tr>Hunter</tr>
+    <tr>Improvement</tr>
+    <tr>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @hunters_improvements.each do |hunters_improvement| %>
+      <tr>
+        <td><%= link_to hunters_improvement.hunter.name, hunters_improvement.hunter %></td>
+        <td><%= hunters_improvement.improvement.description %></td>
+        <td><%= link_to 'Show', hunter_hunters_improvement_path(hunter_id: hunters_improvement.hunter_id, id: hunters_improvement.id) %></td>
+        <td><%= link_to 'Edit', edit_hunter_hunters_improvement_path(hunter_id: hunters_improvement.hunter_id, id: hunters_improvement.id) %></td>
+        <td><%= link_to 'Destroy', hunter_hunters_improvement_path(hunter_id: hunters_improvement.hunter_id, id: hunters_improvement.id), method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Hunters Improvement', new_hunter_hunters_improvement_path(hunter_id: @hunter.id) %>

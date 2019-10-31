@@ -1,0 +1,22 @@
+<%= form_with(model: [hunters_improvement.hunter, hunters_improvement], local: true) do |form| %>
+  <% if hunters_improvement.errors.any? %>
+    <div class="bp3-callout bp3-intent-danger">
+      <h4 class="bp3-heading"><%= pluralize(hunters_improvement.errors.count, "error") %> prohibited this hunters_improvement from being saved:</h4>
+
+      <ul>
+      <% hunters_improvement.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= form.label :improvement %>
+    <%= form.collection_select(:improvement_id, @improvements, :id, :description) %>
+  </div>
+
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+<% end %>
