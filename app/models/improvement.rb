@@ -7,7 +7,7 @@ class Improvement < ApplicationRecord
   end
 
   def valid_hunter?(hunter)
-    hunter.valid?
+    hunter.present?
   end
 
   def hunter_errors(hunter)

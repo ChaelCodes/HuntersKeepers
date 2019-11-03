@@ -7,7 +7,7 @@ FactoryBot.define do
   factory :rating_boost, class: Improvements::RatingBoost do
     description { "Get +1 Charm, max +3" }
     type { "Improvements::RatingBoost" }
-    rating { 0 }
+    rating { 0 } # Charm
     stat_limit { 3 }
   end
 end
