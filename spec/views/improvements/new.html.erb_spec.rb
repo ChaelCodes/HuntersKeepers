@@ -14,8 +14,6 @@ RSpec.describe "improvements/new", type: :view do
 
       assert_select "select[name=?]", "improvement[type]"
 
-      assert_select "input[name=?]", "improvement[move_id]"
-
       assert_select "select[name=?]", "improvement[rating]"
 
       assert_select "input[name=?]", "improvement[stat_limit]"

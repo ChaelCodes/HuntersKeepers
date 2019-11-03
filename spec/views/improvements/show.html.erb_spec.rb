@@ -9,7 +9,6 @@ RSpec.describe "improvements/show", type: :view do
     render
     expect(rendered).to match(/#{@improvement.description}/)
     expect(rendered).to match(/#{@improvement.type}/)
-    expect(rendered).to match(/#{@improvement.move_id}/)
     expect(rendered).to match(/#{@improvement.rating}/)
     expect(rendered).to match(/#{@improvement.stat_limit}/)
   end

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_10_27_155905) do
+ActiveRecord::Schema.define(version: 2019_10_27_135117) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -35,6 +35,9 @@ ActiveRecord::Schema.define(version: 2019_10_27_155905) do
     t.string "hunters_improvements"
     t.integer "hunter_id"
     t.integer "improvement_id"
+    t.string "improvable_type"
+    t.bigint "improvable_id"
+    t.index ["improvable_type", "improvable_id"], name: "index_hunters_improvements_on_improvable_type_and_improvable_id"
   end
 
   create_table "hunters_moves", force: :cascade do |t|
@@ -48,12 +51,11 @@ ActiveRecord::Schema.define(version: 2019_10_27_155905) do
   create_table "improvements", force: :cascade do |t|
     t.string "description"
     t.string "type"
-    t.integer "move_id"
     t.integer "rating"
     t.integer "stat_limit"
+    t.bigint "playbook_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.bigint "playbook_id"
     t.index ["playbook_id"], name: "index_improvements_on_playbook_id"
   end
 
@@ -65,6 +67,8 @@ ActiveRecord::Schema.define(version: 2019_10_27_155905) do
     t.string "ten_plus"
     t.string "twelve_plus"
     t.string "type"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
     t.bigint "playbook_id"
     t.string "description"
     t.index ["playbook_id"], name: "index_moves_on_playbook_id"

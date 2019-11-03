@@ -6,7 +6,6 @@
   <thead>
     <tr>
       <th>Description</th>
-      <th>Move</th>
       <th>Rating</th>
       <th>Stat limit</th>
       <th colspan="3"></th>
@@ -17,7 +16,6 @@
     <% @improvements.each do |improvement| %>
       <tr>
         <td><%= link_to improvement.description, improvement_path(improvement) %></td>
-        <td><%= improvement.move_id %></td>
         <td><%= improvement.rating %></td>
         <td><%= improvement.stat_limit %></td>
         <td><%= link_to 'Edit', edit_improvement_path(improvement) %></td>

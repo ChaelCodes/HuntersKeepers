@@ -4,6 +4,7 @@ class CreateHuntersImprovements < ActiveRecord::Migration[5.2]
       t.string :hunters_improvements
       t.integer :hunter_id
       t.integer :improvement_id
+      t.references :improvable, polymorphic: true
     end
   end
 end

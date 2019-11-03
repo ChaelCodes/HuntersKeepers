@@ -28,11 +28,6 @@
   </div>
 
   <div class="field">
-    <%= form.label :move_id %>
-    <%= form.number_field :move_id %>
-  </div>
-
-  <div class="field">
     <%= form.label :rating %>
     <%= form.select(:rating, Improvement.ratings.keys) %>
   </div>

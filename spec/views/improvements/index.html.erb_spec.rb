@@ -11,9 +11,6 @@ RSpec.describe "improvements/index", type: :view do
     improvements.pluck(:description).each do |description|
       assert_select "tr>td", text: description
     end
-    improvements.pluck(:move_id).each do |move_id|
-      assert_select "tr>td", text: move_id.to_s
-    end
     improvements.pluck(:rating).each do |rating|
       assert_select "tr>td", text: rating
     end
