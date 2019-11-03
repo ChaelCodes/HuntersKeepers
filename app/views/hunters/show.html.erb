@@ -1,4 +1,9 @@
-<p id="notice"><%= notice %></p>
+<% if notice %>
+  <div id="notice" class="bp3-callout bp3-intent-success">
+    <h4 class="bp3-heading">Success</h4>
+    <%= notice %>
+  </div>
+<% end %>
 
 <p>
   <strong>Name:</strong>
