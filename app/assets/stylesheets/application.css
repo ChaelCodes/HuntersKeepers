@@ -13,5 +13,3 @@
  *= require_tree .
  *= require_self
  */
-@import '@blueprintjs/core/lib/css/blueprint';
-@import '@blueprintjs/icons/lib/css/blueprint-icons';

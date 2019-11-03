@@ -19,3 +19,7 @@ require("@blueprintjs/core")
 var componentRequireContext = require.context("components", true);
 var ReactRailsUJS = require("react_ujs");
 ReactRailsUJS.useContext(componentRequireContext);
+
+// Import CSS
+import '@blueprintjs/core/lib/css/blueprint'
+import '@blueprintjs/icons/lib/css/blueprint-icons'
