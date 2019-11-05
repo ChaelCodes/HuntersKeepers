@@ -1,6 +1,8 @@
+# frozen_string_literal: true
+
 require 'rails_helper'
 
-RSpec.describe "hunters_improvements/show", type: :view do
+RSpec.describe 'hunters_improvements/show', type: :view do
   let(:hunters_improvement) { create(:hunters_improvement) }
 
   before(:each) do
@@ -8,7 +10,7 @@ RSpec.describe "hunters_improvements/show", type: :view do
     @hunters_improvement = assign(:hunters_improvement, hunters_improvement)
   end
 
-  it "renders attributes in <p>" do
+  it 'renders attributes in <p>' do
     render
   end
 end

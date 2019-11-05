@@ -1,3 +1,7 @@
+# frozen_string_literal: true
+
+# Improvements taken by the Hunter
+# One is unlocked every 5 Experience
 class HuntersImprovement < ApplicationRecord
   belongs_to :hunter
   belongs_to :improvement
@@ -15,9 +19,7 @@ class HuntersImprovement < ApplicationRecord
   end
 
   def validate_hunter
-    unless improvement.valid_hunter?(hunter)
-      add_errors_from_improvement
-    end
+    add_errors_from_improvement unless improvement.valid_hunter?(hunter)
   end
 
   def add_errors_from_improvement

@@ -1,5 +1,7 @@
+# frozen_string_literal: true
+
 class ImprovementsController < ApplicationController
-  before_action :set_improvement, only: [:show, :edit, :update, :destroy]
+  before_action :set_improvement, only: %i[show edit update destroy]
 
   # GET /improvements
   # GET /improvements.json
@@ -9,8 +11,7 @@ class ImprovementsController < ApplicationController
 
   # GET /improvements/1
   # GET /improvements/1.json
-  def show
-  end
+  def show; end
 
   # GET /improvements/new
   def new
@@ -18,8 +19,7 @@ class ImprovementsController < ApplicationController
   end
 
   # GET /improvements/1/edit
-  def edit
-  end
+  def edit; end
 
   # POST /improvements
   # POST /improvements.json
@@ -62,13 +62,14 @@ class ImprovementsController < ApplicationController
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_improvement
-      @improvement = Improvement.find(params[:id])
-    end
 
-    # Never trust parameters from the scary internet, only allow the white list through.
-    def improvement_params
-      params.require(:improvement).permit(:description, :type, :playbook_id, :rating, :stat_limit)
-    end
+  # Use callbacks to share common setup or constraints between actions.
+  def set_improvement
+    @improvement = Improvement.find(params[:id])
+  end
+
+  # Never trust parameters from the scary internet, only allow the white list through.
+  def improvement_params
+    params.require(:improvement).permit(:description, :type, :playbook_id, :rating, :stat_limit)
+  end
 end

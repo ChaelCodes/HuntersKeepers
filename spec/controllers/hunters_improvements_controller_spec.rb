@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require 'rails_helper'
 
 RSpec.describe HuntersImprovementsController, type: :controller do
@@ -8,12 +10,12 @@ RSpec.describe HuntersImprovementsController, type: :controller do
   # This should return the minimal set of attributes required to create a valid
   # HuntersImprovement. As you add validations to HuntersImprovement, be sure to
   # adjust the attributes here as well.
-  let(:valid_attributes) {
+  let(:valid_attributes) do
     {
       hunter_id: hunter.id,
       improvement_id: improvement.id
     }
-  }
+  end
 
   let(:invalid_attributes) do
     hunters_improvement
@@ -47,7 +49,7 @@ RSpec.describe HuntersImprovementsController, type: :controller do
     end
   end
 
-  describe "GET #new" do
+  describe 'GET #new' do
     subject { get :new, params: { hunter_id: hunter.id }, session: valid_session }
 
     it 'returns a success response' do
@@ -90,7 +92,7 @@ RSpec.describe HuntersImprovementsController, type: :controller do
       end
     end
 
-    context "with invalid params" do
+    context 'with invalid params' do
       let(:attributes) { invalid_attributes }
 
       context 'html format' do
@@ -118,16 +120,17 @@ RSpec.describe HuntersImprovementsController, type: :controller do
 
   describe 'PUT #update' do
     subject { put :update, params: { hunter_id: hunter.id, id: hunters_improvement.id, hunters_improvement: attributes }, session: valid_session, format: format_type }
+    subject { put :update, params: { hunter_id: hunter.id, id: hunters_improvement.id, hunters_improvement: attributes }, session: valid_session }
     let(:different_improvement) { create(:improvement) }
 
-    context "with valid params" do
-      let(:attributes) {
+    context 'with valid params' do
+      let(:attributes) do
         {
           id: hunters_improvement.id,
           hunter_id: hunter.id,
           improvement_id: different_improvement.id
         }
-      }
+      end
 
       context 'html format' do
         let(:format_type) { :html }

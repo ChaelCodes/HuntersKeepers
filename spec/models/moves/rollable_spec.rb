@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require 'rails_helper'
 
 RSpec.describe Moves::Rollable, type: :model do
@@ -20,7 +22,8 @@ RSpec.describe Moves::Rollable, type: :model do
       let(:roll_result) { 5 }
 
       it {
-        is_expected.to eq "Your total 6 resulted in #{rollable.six_and_under}" }
+        is_expected.to eq "Your total 6 resulted in #{rollable.six_and_under}"
+      }
     end
 
     context 'roll is 7' do
@@ -40,5 +43,5 @@ RSpec.describe Moves::Rollable, type: :model do
 
       it { is_expected.to eq "Your total 11 resulted in #{rollable.ten_plus}" }
     end
-  end  
+  end
 end

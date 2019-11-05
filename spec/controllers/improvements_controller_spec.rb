@@ -1,7 +1,10 @@
+# frozen_string_literal: true
+
 require 'rails_helper'
 
 RSpec.describe ImprovementsController, type: :controller do
   let(:improvement) { create :improvement }
+
   # This should return the minimal set of attributes required to create a valid
   # Improvement. As you add validations to Improvement, be sure to
   # adjust the attributes here as well.
@@ -188,5 +191,4 @@ RSpec.describe ImprovementsController, type: :controller do
       it { is_expected.to be_successful }
     end
   end
-
 end

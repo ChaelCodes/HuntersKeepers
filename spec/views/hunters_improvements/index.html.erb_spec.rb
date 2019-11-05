@@ -1,6 +1,8 @@
+# frozen_string_literal: true
+
 require 'rails_helper'
 
-RSpec.describe "hunters_improvements/index", type: :view do
+RSpec.describe 'hunters_improvements/index', type: :view do
   let(:hunter) { create :hunter }
 
   before(:each) do
@@ -9,7 +11,7 @@ RSpec.describe "hunters_improvements/index", type: :view do
     assign(:hunter, hunter)
   end
 
-  it "renders a list of hunters_improvements" do
+  it 'renders a list of hunters_improvements' do
     render
   end
 end
