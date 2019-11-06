@@ -1,5 +1,6 @@
 # frozen_string_literal: true
 
+# Controller for HuntersImprovements
 class HuntersImprovementsController < ApplicationController
   before_action :set_hunters_improvement, only: %i[show edit update destroy]
   before_action :set_hunter
@@ -18,7 +19,7 @@ class HuntersImprovementsController < ApplicationController
   # GET /hunters_improvements/new
   def new
     @hunters_improvement = HuntersImprovement.new(hunter: @hunter)
-   end
+  end
 
   # GET /hunters_improvements/1/edit
   def edit; end
@@ -31,8 +32,15 @@ class HuntersImprovementsController < ApplicationController
 
     respond_to do |format|
       if @hunters_improvement.save
-        format.html { redirect_to hunter_hunters_improvement_url(hunter_id: @hunter.id, id: @hunters_improvement.id), notice: 'Hunters improvement was successfully created.' }
-        format.json { render :show, status: :created, location: hunter_hunters_improvement_url(hunter_id: @hunter.id, id: @hunters_improvement.id) }
+        format.html do
+          redirect_to hunter_hunters_improvement_url(hunter_id: @hunter.id, id: @hunters_improvement.id),
+                      notice: 'Hunters improvement was successfully created.'
+        end
+        format.json do
+          render :show,
+                 status: :created,
+                 location: hunter_hunters_improvement_url(hunter_id: @hunter.id, id: @hunters_improvement.id)
+        end
       else
         format.html { render :new }
         format.json { render json: @hunters_improvement.errors, status: :unprocessable_entity }
@@ -45,8 +53,15 @@ class HuntersImprovementsController < ApplicationController
   def update
     respond_to do |format|
       if @hunters_improvement.update(hunters_improvement_params)
-        format.html { redirect_to hunter_hunters_improvement_url(hunter_id: @hunter.id, id: @hunters_improvement.id), notice: 'Hunters improvement was successfully updated.' }
-        format.json { render :show, status: :ok, location: hunter_hunters_improvement_url(hunter_id: @hunter.id, id: @hunters_improvement.id) }
+        format.html do
+          redirect_to hunter_hunters_improvement_url(hunter_id: @hunter.id, id: @hunters_improvement.id),
+                      notice: 'Hunters improvement was successfully updated.'
+        end
+        format.json do
+          render :show,
+                 status: :ok,
+                 location: hunter_hunters_improvement_url(hunter_id: @hunter.id, id: @hunters_improvement.id)
+        end
       else
         format.html { render :edit }
         format.json { render json: @hunters_improvement.errors, status: :unprocessable_entity }
@@ -59,7 +74,9 @@ class HuntersImprovementsController < ApplicationController
   def destroy
     @hunters_improvement.destroy
     respond_to do |format|
-      format.html { redirect_to hunter_hunters_improvements_url, notice: 'Hunters improvement was successfully destroyed.' }
+      format.html do
+        redirect_to hunter_hunters_improvements_url, notice: 'Hunters improvement was successfully destroyed.'
+      end
       format.json { head :no_content }
     end
   end

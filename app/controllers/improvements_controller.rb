@@ -1,5 +1,6 @@
 # frozen_string_literal: true
 
+# Controller for Improvements
 class ImprovementsController < ApplicationController
   before_action :set_improvement, only: %i[show edit update destroy]
 
