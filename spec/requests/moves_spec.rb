@@ -3,6 +3,11 @@
 require 'rails_helper'
 
 RSpec.describe 'Moves', type: :request do
+
+  before(:each) do
+    sign_in create(:user)
+  end
+
   describe 'GET /moves' do
     it 'works! (now write some real specs)' do
       get moves_path
