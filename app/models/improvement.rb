@@ -8,6 +8,9 @@ class Improvement < ApplicationRecord
 
   enum rating: { charm: 0, cool: 1, sharp: 2, tough: 3, weird: 4 }
 
+  validates :description, presence: true
+  validates :type, inclusion: { in: IMPROVEMENT_TYPES }, allow_blank: true
+
   def apply(hunter); end
 
   def valid_hunter?(hunter)

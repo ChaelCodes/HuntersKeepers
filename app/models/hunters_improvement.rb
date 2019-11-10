@@ -8,6 +8,7 @@ class HuntersImprovement < ApplicationRecord
 
   after_create :apply_improvement
   validate :validate_hunter, on: :create
+  validates :improvement_id, uniqueness: { scope: :hunter_id }
 
   def apply_improvement
     if improvement.valid_hunter? hunter
