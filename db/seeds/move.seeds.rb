@@ -20,7 +20,7 @@ do it).',
 they do what you want right now,
 they also become your ally for the
 rest of the mystery (or, if you do
-enough for them, permanently).'
+enough for them, permanently).',
 },
  {
    name: 'Act Under Pressure',
@@ -46,13 +46,13 @@ to trouble or danger.',
 to their roll.',
    twelve_plus: 'On a 12+ your help
 lets them act as if they just rolled a 12,
-regardless of what they actually got.'
- },
- {
-   name: 'Investigate a Mystery',
-   rating: 'sharp',
-   six_and_under: "Failure. Keeper's choice.",
-   seven_to_nine: 'You can ask the
+regardless of what they actually got.',
+},
+{
+  name: 'Investigate a Mystery',
+  rating: 'sharp',
+  six_and_under: "Failure. Keeper's choice.",
+  seven_to_nine: 'You can ask the
 Keeper one of the following questions:
 • What happened here?
 • What sort of creature is it?
@@ -246,8 +246,243 @@ with.
 • Observe another place or time.
 • Heal 1-harm from an injury, or
 cure a disease, or neutralize a
-poison.'
- }].each do |move|
+poison.',
+},
+{
+  name: 'Alt: Empath',
+  rating:'weird',
+  six_and_under: 'Your brain is overwhelmed with emotion.',
+  seven_to_nine: 'You gain a hazy impression of their current emotional
+state and intentions.',
+  ten_plus: 'You gain a clear
+impression of their current
+emotional state and intentions.
+Take +1 forward when acting on
+this knowledge.',
+  twelve_plus: 'You get an impression
+(as for 10 or more), and
+you may ask one follow-up question that the Keeper will answer
+honestly.',
+},
+{
+  name: 'Alt: Illuminated',
+  rating: 'weird',
+  six_and_under: 'The Secret Masters’
+reply is terrible, garbled, or
+somehow dangerously wrong.',
+  seven_to_nine: 'The Secret Masters need
+you to complete a task for them.
+Once it is done, they reveal a key
+fact, clue, or technique that will
+help you.',
+  ten_plus: 'The Secret
+Masters reveal a key fact, clue, or
+technique that will help you.',
+  twelve_plus: 'The Secret
+Masters reveal a key fact, clue,
+or technique that will help you.
+You may ask one follow-up question that the Keeper will answer
+honestly.',
+},
+{
+  name: 'Alt: No Limits',
+  rating: 'weird',
+  six_and_under: 'Something goes
+horribly wrong.',
+  seven_to_nine: 'You do it but choose
+one consequence: suffer 1-harm,
+take –1 forward, or you need to
+rest right now',
+  ten_plus: 'Your body obeys
+your will, to the limits of physical possibility (see below), for a
+moment.',
+  twelve_plus: 'You can continue
+acting at your body’s limits for 30
+seconds.',
+},
+{
+  name: 'Alt: Past Lives',
+  rating: 'weird',
+  six_and_under: 'A past life takes over
+for a while.',
+  seven_to_nine: 'A past life has a little
+experience with this. Ask the
+Keeper one of the questions below
+• What did a past life discover about
+___________?
+• How did a past life deal with
+__________?
+• What important hidden secret can
+a past life show me the way to?
+• What did a past life learn too late
+to help them?
+• What does a past life advise me to
+do now?',
+  ten_plus: 'A past life has
+something useful to offer. Ask the
+Keeper two of the questions below.
+• What did a past life discover about
+___________?
+• How did a past life deal with
+__________?
+• What important hidden secret can
+a past life show me the way to?
+• What did a past life learn too late
+to help them?
+• What does a past life advise me to
+do now?',
+  twelve_plus: 'A past life knows
+exactly what you were after. Ask
+the Keeper one of the questions
+below, and one free-form question.
+Gain +1 ongoing while acting on
+the answers.
+• What did a past life discover about
+___________?
+• How did a past life deal with
+__________?
+• What important hidden secret can
+a past life show me the way to?
+• What did a past life learn too late
+to help them?
+• What does a past life advise me to
+do now?',
+},
+{
+  name: 'Alt: Sentive',
+  rating: 'weird',
+  six_and_under: 'Your brain makes
+contact with something dangerous.',
+  seven_to_nine: 'You gain a hazy impression about something important.',
+  ten_plus: 'You gain a definite impression (a vision, tangible
+aura, overheard thought, etc) about
+something important.',
+  twelve_plus: 'You get an
+impression as for 10 or more, plus
+you may ask one follow-up question that the Keeper will answer
+honestly.',
+},
+{
+  name: 'Alt: Trust Your Gut',
+  rating: 'weird',
+  six_and_under: 'Your instincts lead you
+into danger',
+  seven_to_nine: 'The Keeper will tell you
+a general direction to go. Take +1
+forward as you explore that.',
+  ten_plus: 'The Keeper will
+tell where you should go. Wherever that is, it will be important.
+You get +1 ongoing on the way to
+this place.',
+  twelve_plus: 'In addition to the
+usual 10+ result, the Keeper will
+tell you about one important thing
+you should investigate further.',
+},
+{
+  name: 'Alt: Telekinesis',
+  rating: 'weird',
+  six_and_under: 'Something goes
+horribly wrong.',
+  seven_to_nine: 'You move it but it hurts.
+Choose one option and mark
+2-harm.
+• Something is held fast.
+• Something is hurt (2-harm smash).
+• Something catches fire.
+• You can fling something bigger
+than a person.
+• You keep it basically under your
+control.
+• You suffer 1 less harm.',
+  ten_plus: 'You move it.
+Choose two options and mark
+1-harm.
+• Something is held fast.
+• Something is hurt (2-harm smash).
+• Something catches fire.
+• You can fling something bigger
+than a person.
+• You keep it basically under your
+control.
+• You suffer 1 less harm.',
+  twelve_plus: 'Choose three
+options. You may also choose from
+the advanced options:
+Normal Options:
+• Something is held fast.
+• Something is hurt (2-harm smash).
+• Something catches fire.
+• You can fling something bigger
+than a person.
+• You keep it basically under your
+control.
+• You suffer 1 less harm.
+Advanced Options:
+• Something explodes (3-harm
+close fire area messy)
+• Something implodes (3-harm
+close crush)
+• Lots of stuff is flying under your
+control.
+• You have perfect and precise
+control over exactly what
+happens.',
+},
+{
+  name: 'Alt: Weird Science',
+  rating: 'weird',
+  six_and_under: 'Something goes
+horribly wrong. You are still able to
+create your device, but the Keeper
+picks three requirements.
+• It needs a rare and/or weird material.
+• It won’t be very reliable.
+• It requires huge amounts of power
+or fuel.
+• It will take a long time to get it
+working.
+• It won’t work exactly as you
+intended.
+• You’ll need help (beyond the
+hunters on your team) to finish it.',
+  seven_to_nine: 'you pick one requirement and the Keeper picks a
+second one.
+It needs a rare and/or weird material.
+• It won’t be very reliable.
+• It requires huge amounts of power
+or fuel.
+• It will take a long time to get it
+working.
+• It won’t work exactly as you
+intended.
+• You’ll need help (beyond the
+hunters on your team) to finish it.',
+  ten_plus: 'You pick two
+requirements.
+• It needs a rare and/or weird material.
+• It won’t be very reliable.
+• It requires huge amounts of power
+or fuel.
+• It will take a long time to get it
+working.
+• It won’t work exactly as you
+intended.
+• You’ll need help (beyond the
+hunters on your team) to finish it.',
+  twelve_plus: 'On a 12 or more, you gain +1
+ongoing when operating the device.
+• It needs a rare and/or weird material.
+• It won’t be very reliable.
+• It requires huge amounts of power
+or fuel.
+• It will take a long time to get it
+working.
+• It won’t work exactly as you
+intended.
+• You’ll need help (beyond the
+hunters on your team) to finish it.',
+}].each do |move|
   Moves::Basic.find_or_create_by(move)
 end
 
