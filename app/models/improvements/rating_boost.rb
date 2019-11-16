@@ -20,7 +20,7 @@ module Improvements
     end
 
     def hunter_errors(hunter)
-      return unless under_max_limit?(hunter)
+      return if valid_hunter?(hunter)
 
       errors = []
       errors << "#{rating} rating would exceed max for improvement."

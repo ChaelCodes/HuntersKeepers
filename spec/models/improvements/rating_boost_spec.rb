@@ -43,4 +43,16 @@ RSpec.describe Improvements::RatingBoost, type: :model do
 
     it { expect { subject }.to change(hunter.reload, :charm).by(1) }
   end
+
+  describe '#hunter_errors' do
+    subject { rating_boost.hunter_errors(hunter) }
+
+    context 'invalid hunter' do
+      let(:hunter) { create :hunter, charm: 3 }
+
+      it 'returns clear error message' do
+        is_expected.to include 'charm rating would exceed max for improvement.'
+      end
+    end
+  end
 end

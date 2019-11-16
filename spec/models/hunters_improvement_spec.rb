@@ -3,10 +3,12 @@
 require 'rails_helper'
 
 RSpec.describe HuntersImprovement, type: :model do
-  let(:hunter) { create :hunter }
-  let(:improvement) { create :improvement }
+  let(:hunters_improvement) { create :hunters_improvement }
 
   describe '#create' do
+    let(:hunter) { create :hunter }
+    let(:improvement) { create :improvement }
+
     subject do
       hunter.improvements << improvement
       hunter.save
@@ -56,6 +58,44 @@ RSpec.describe HuntersImprovement, type: :model do
         expect(subject).not_to be_valid
         expect(hunter.improvements.count).to eq 1
       end
+    end
+  end
+
+  describe '#apply_improvement' do
+    subject { hunters_improvement.apply_improvement }
+
+    let(:improvement) { create(:rating_boost, rating: :charm, stat_limit: 3) }
+    let(:hunters_improvement) { build(:hunters_improvement, improvement: improvement, hunter: hunter) }
+
+    context 'valid hunter' do
+      let(:hunter) { create(:hunter, charm: -1) }
+
+      it 'boosts the stat of the hunter' do
+        expect { subject }.to change(hunters_improvement.hunter.reload, :charm).by(1)
+      end
+    end
+
+    context 'invalid hunter' do
+      let(:hunter) { create(:hunter, charm: 3) }
+
+      it 'adds the errors to the hunter_improvement' do
+        expect { subject }.to raise_error(ActiveRecord::RecordInvalid)
+        expect(hunters_improvement).not_to be_valid
+        expect(hunters_improvement.errors.full_messages).to include('Hunter')
+      end
+    end
+  end
+
+  describe '#add_errors_from_improvement' do
+    subject { hunters_improvement.add_errors_from_improvement }
+
+    let(:hunter) { create(:hunter, charm: 3) }
+    let(:improvement) { create(:rating_boost, rating: :charm, stat_limit: 3) }
+    let(:hunters_improvement) { build(:hunters_improvement, improvement: improvement, hunter: hunter) }
+
+    it 'adds the errors to the hunter improvement' do
+      subject
+      expect(hunters_improvement.errors.full_messages).to include('Hunter charm rating would exceed max for improvement.')
     end
   end
 end
