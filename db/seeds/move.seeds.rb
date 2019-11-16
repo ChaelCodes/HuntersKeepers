@@ -251,12 +251,10 @@ poison.'
   Moves::Basic.find_or_create_by(move)
 end
 
-# ,
-# {
-#  name: '',
-#  rating:
-#  six_and_under:
-#   seven_to_nine:
-#   ten_plus:
-#   twelve_plus:
-# }
+######
+# Playbook Moves
+######
+
+######
+# Chosen
+######
