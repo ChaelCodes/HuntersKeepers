@@ -4,6 +4,7 @@
   <thead>
     <tr>
       <th>Name</th>
+      <th>Playbook</th>
       <th>Harm</th>
       <th>Luck</th>
       <th>Experience</th>
@@ -20,6 +21,7 @@
     <% @hunters.each do |hunter| %>
       <tr>
         <td><%= hunter.name %></td>
+        <td><%= link_to_playbook(hunter) %></td>
         <td><%= hunter.harm %></td>
         <td><%= hunter.luck %></td>
         <td><%= hunter.experience %></td>
