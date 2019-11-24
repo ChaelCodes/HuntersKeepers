@@ -10,7 +10,8 @@ RSpec.describe ImprovementsController, type: :controller do
   # adjust the attributes here as well.
   let(:valid_attributes) do
     {
-      description: 'Gain an Ally'
+      description: 'Gain an Ally',
+      playbook_id: create(:playbook).id
     }
   end
 
@@ -86,7 +87,7 @@ RSpec.describe ImprovementsController, type: :controller do
         end
 
         context 'with a rating boost improvement' do
-          let(:attributes) { { description: 'Get +1 Tough, max +3', type: 'Improvements::RatingBoost' } }
+          let(:attributes) { { description: 'Get +1 Tough, max +3', type: 'Improvements::RatingBoost', playbook_id: create(:playbook).id } }
 
           it 'redirects to created improvement' do
             subject
