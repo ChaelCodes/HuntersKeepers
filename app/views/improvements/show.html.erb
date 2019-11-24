@@ -1,0 +1,24 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Description:</strong>
+  <%= @improvement.description %>
+</p>
+
+<p>
+  <strong>Type:</strong>
+  <%= @improvement.type %>
+</p>
+
+<p>
+  <strong>Rating:</strong>
+  <%= @improvement.rating %>
+</p>
+
+<p>
+  <strong>Stat limit:</strong>
+  <%= @improvement.stat_limit %>
+</p>
+
+<%= link_to 'Edit', edit_improvement_path(@improvement) %> |
+<%= link_to 'Back', improvements_path %>

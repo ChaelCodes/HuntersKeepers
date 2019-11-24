@@ -48,5 +48,7 @@
   <%= render "moves/moves", moves: @hunter.hunter_moves, hunter: @hunter %>
 </p>
 
+<%= link_to 'Take an Improvement', new_hunter_hunters_improvement_path(hunter_id: @hunter.id) %>
+<br />
 <%= link_to 'Edit', edit_hunter_path(@hunter) %> |
 <%= link_to 'Back', hunters_path %>

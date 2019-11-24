@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 [{
   name: 'Manipulate Someone',
   rating: 'charm',
@@ -20,37 +22,37 @@ they also become your ally for the
 rest of the mystery (or, if you do
 enough for them, permanently).'
 },
-{
-  name: 'Act Under Pressure',
-  rating: 'cool',
-  six_and_under: "Failure. Keeper's choice.",
-  seven_to_nine: 'On a 7-9 the Keeper is going to give
+ {
+   name: 'Act Under Pressure',
+   rating: 'cool',
+   six_and_under: "Failure. Keeper's choice.",
+   seven_to_nine: 'On a 7-9 the Keeper is going to give
 you a worse outcome, hard choice, or
 price to pay.',
-  ten_plus: 'On a 10+ you do what you set out to.',
-  twelve_plus: 'On a 12+ you may
+   ten_plus: 'On a 10+ you do what you set out to.',
+   twelve_plus: 'On a 12+ you may
 choose to either do what you wanted
 and something extra, or to do what you
-wanted to absolute perfection.',
-},
-{
-  name: 'Help Out',
-  rating: 'cool',
-  six_and_under: "Failure. Keeper's choice.",
-  seven_to_nine: 'On a 7-9 your help grants them +1 to
+wanted to absolute perfection.'
+ },
+ {
+   name: 'Help Out',
+   rating: 'cool',
+   six_and_under: "Failure. Keeper's choice.",
+   seven_to_nine: 'On a 7-9 your help grants them +1 to
 their roll, but you also expose yourself
 to trouble or danger.',
-  ten_plus: 'On a 10+ your help grants them +1
+   ten_plus: 'On a 10+ your help grants them +1
 to their roll.',
-  twelve_plus: 'On a 12+ your help
+   twelve_plus: 'On a 12+ your help
 lets them act as if they just rolled a 12,
 regardless of what they actually got.'
-},
-{
-  name: 'Investigate a Mystery',
-  rating: 'sharp',
-  six_and_under: "Failure. Keeper's choice.",
-  seven_to_nine: 'You can ask the
+ },
+ {
+   name: 'Investigate a Mystery',
+   rating: 'sharp',
+   six_and_under: "Failure. Keeper's choice.",
+   seven_to_nine: 'You can ask the
 Keeper one of the following questions:
 • What happened here?
 • What sort of creature is it?
@@ -59,7 +61,7 @@ Keeper one of the following questions:
 • Where did it go?
 • What was it going to do?
 • What is being concealed here?',
-  ten_plus: 'You can ask the
+   ten_plus: 'You can ask the
 Keeper two of the following questions:
 • What happened here?
 • What sort of creature is it?
@@ -68,15 +70,15 @@ Keeper two of the following questions:
 • Where did it go?
 • What was it going to do?
 • What is being concealed here?',
-  twelve_plus: 'On a 12+, you may ask the
+   twelve_plus: 'On a 12+, you may ask the
 Keeper any two questions you want about the
-mystery, not just the listed ones.',
-},
-{
-  name: 'Read a Bad Situation',
-  rating: 'sharp',
-  six_and_under: "Failure. Keeper's choice.",
-  seven_to_nine: 'Ask the
+mystery, not just the listed ones.'
+ },
+ {
+   name: 'Read a Bad Situation',
+   rating: 'sharp',
+   six_and_under: "Failure. Keeper's choice.",
+   seven_to_nine: 'Ask the
 Keeper one of the following questions:
 • What’s my best way in?
 • What’s my best way out?
@@ -88,7 +90,7 @@ noticed?
 victims?
 If you act on the answers, you get +1
 ongoing while the information is relevant.',
-  ten_plus: 'Ask the
+   ten_plus: 'Ask the
 Keeper any three of the following questions:
 • What’s my best way in?
 • What’s my best way out?
@@ -100,21 +102,21 @@ noticed?
 victims?
 If you act on the answers, you get +1
 ongoing while the information is relevant.',
-  twelve_plus: 'You may ask the keeper any three any question you want about
+   twelve_plus: 'You may ask the keeper any three any question you want about
 the situation, not just the listed ones. If you act on the answers, you get +1
-ongoing while the information is relevant.',
-},
-{
-  name: 'Kick some Ass',
-  rating: 'tough',
-  six_and_under: "Failure. You take a beating.",
-  seven_to_nine: 'You and whatever you’re
+ongoing while the information is relevant.'
+ },
+ {
+   name: 'Kick some Ass',
+   rating: 'tough',
+   six_and_under: 'Failure. You take a beating.',
+   seven_to_nine: 'You and whatever you’re
 fighting inflict harm on each other. The
 amount of harm is based on the established dangers in the game. That usually
 means you inflict the harm rating of
 your weapon and your enemy inflicts
 their attack’s harm rating on you.',
-  ten_plus: 'You and whatever you’re
+   ten_plus: 'You and whatever you’re
 fighting inflict harm on each other. The
 amount of harm is based on the established dangers in the game. That usually
 means you inflict the harm rating of
@@ -129,7 +131,7 @@ harm).
 • You suffer less harm (-1 harm).
 • You force them where you want
 them.',
-  twelve_plus: 'You and whatever you’re
+   twelve_plus: 'You and whatever you’re
 fighting inflict harm on each other. The
 amount of harm is based on the established dangers in the game. That usually
 means you inflict the harm rating of
@@ -143,17 +145,17 @@ fight get +1 forward.
 • Your attack inflicts double the
 normal harm.
 • Your attack drives the enemy away
-in a rout.',
-},
-{
-  name: 'Protect Someone',
-  rating: 'tough',
-  six_and_under: "Failure. You fail to preotect them,
+in a rout.'
+ },
+ {
+   name: 'Protect Someone',
+   rating: 'tough',
+   six_and_under: "Failure. You fail to preotect them,
    and you expose yourself to danger.",
-  seven_to_nine: 'You protect them okay, but
+   seven_to_nine: 'You protect them okay, but
 you’ll suffer some or all of the harm they
 were going to get. ',
-  ten_plus: 'You protect them okay, but
+   ten_plus: 'You protect them okay, but
 you’ll suffer some or all of the harm they
 were going to get. Choose an extra:
 • You suffer little harm (-1 harm).
@@ -161,17 +163,17 @@ were going to get. Choose an extra:
 focused on you.
 • You inflict harm on the enemy.
 • You hold the enemy back.',
-  twelve_plus: 'Both you and
+   twelve_plus: 'Both you and
 the character you are protecting are
 unharmed and out of danger. If you
 were protecting a bystander, they also
-become your ally.',
-},
-{
-  name: 'Use Magic',
-  rating: 'weird',
-  six_and_under: "Failure. Keeper's choice. It is always bad.",
-  seven_to_nine: 'It works imperfectly: choose
+become your ally.'
+ },
+ {
+   name: 'Use Magic',
+   rating: 'weird',
+   six_and_under: "Failure. Keeper's choice. It is always bad.",
+   seven_to_nine: 'It works imperfectly: choose
 your effect and a glitch. The Keeper will
 decide what effect the glitch has.
 Effects:
@@ -201,7 +203,7 @@ Glitches:
 • The magic draws immediate,
 unwelcome attention.
 • It has a problematic side effect.',
-  ten_plus: 'The magic works without
+   ten_plus: 'The magic works without
 issues: choose your effect.
 • Inflict harm (1-harm ignorearmour magic obvious).
 • Enchant a weapon. It gets +1 harm
@@ -222,7 +224,7 @@ with.
 • Heal 1-harm from an injury, or
 cure a disease, or neutralize a
 poison.',
-  twelve_plus: 'The Keeper
+   twelve_plus: 'The Keeper
 will offer you some added benefit.
 The magic works without
 issues: choose your effect.
@@ -244,8 +246,8 @@ with.
 • Observe another place or time.
 • Heal 1-harm from an injury, or
 cure a disease, or neutralize a
-poison.',
-}].each do |move|
+poison.'
+ }].each do |move|
   Moves::Basic.find_or_create_by(move)
 end
 
