@@ -81,7 +81,7 @@ RSpec.describe HuntersImprovement, type: :model do
       it 'adds the errors to the hunter_improvement' do
         expect { subject }.to raise_error(ActiveRecord::RecordInvalid)
         expect(hunters_improvement).not_to be_valid
-        expect(hunters_improvement.errors.full_messages).to include('Hunter')
+        expect(hunters_improvement.errors.full_messages).to include(/Hunter/)
       end
     end
   end

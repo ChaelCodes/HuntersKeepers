@@ -25,6 +25,11 @@ RSpec.describe ImprovementsController, type: :controller do
   # ImprovementsController. Be sure to keep this updated too.
   let(:valid_session) { {} }
 
+  before(:each) do
+    @request.env['devise.mapping'] = Devise.mappings[:user]
+    sign_in create(:user)
+  end
+
   describe 'GET #index' do
     subject { get :index, params: {}, session: valid_session }
 

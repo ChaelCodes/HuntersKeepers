@@ -30,6 +30,11 @@ RSpec.describe HuntersImprovementsController, type: :controller do
   # HuntersImprovementsController. Be sure to keep this updated too.
   let(:valid_session) { {} }
 
+  before(:each) do
+    @request.env['devise.mapping'] = Devise.mappings[:user]
+    sign_in create(:user)
+  end
+
   describe 'GET #index' do
     subject { get :index, params: { hunter_id: hunter.id }, session: valid_session }
 
@@ -120,7 +125,6 @@ RSpec.describe HuntersImprovementsController, type: :controller do
 
   describe 'PUT #update' do
     subject { put :update, params: { hunter_id: hunter.id, id: hunters_improvement.id, hunters_improvement: attributes }, session: valid_session, format: format_type }
-    subject { put :update, params: { hunter_id: hunter.id, id: hunters_improvement.id, hunters_improvement: attributes }, session: valid_session }
     let(:different_improvement) { create(:improvement) }
 
     context 'with valid params' do
