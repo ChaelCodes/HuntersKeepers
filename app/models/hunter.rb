@@ -17,4 +17,8 @@ class Hunter < ApplicationRecord
     Move.where(id: moves.select(:id))
         .or(Move.where(type: 'Moves::Basic'))
   end
+
+  def available_improvements
+    playbook.improvements.where.not(id: improvements.select(:id))
+  end
 end

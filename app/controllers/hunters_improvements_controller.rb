@@ -93,7 +93,8 @@ class HuntersImprovementsController < ApplicationController
   end
 
   def set_improvements
-    @improvements = @hunter ? @hunter.playbook.improvements : Improvement.all
+    return @improvements = Improvement.all unless @hunter
+    @improvements = @hunter.available_improvements
   end
 
   # Never trust parameters from the scary internet, only allow the white list through.
