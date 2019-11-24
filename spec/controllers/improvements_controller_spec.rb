@@ -84,6 +84,16 @@ RSpec.describe ImprovementsController, type: :controller do
           subject
           expect(response).to redirect_to(Improvement.last)
         end
+
+        context 'with a rating boost improvement' do
+          let(:attributes) { { description: 'Get +1 Tough, max +3', type: 'Improvements::RatingBoost' } }
+
+          it 'redirects to created improvement' do
+            subject
+            expect(Improvement.last.class).to eq Improvements::RatingBoost
+            expect(response).to redirect_to(improvement_url(Improvement.last))
+          end
+        end
       end
 
       context 'json format' do

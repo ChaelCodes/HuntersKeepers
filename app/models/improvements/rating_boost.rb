@@ -1,7 +1,5 @@
 # frozen_string_literal: true
 
-# frozen_string_literal: true.
-
 module Improvements
   # This is for Improvements like "Get +1 Weird, max +3"
   class RatingBoost < Improvement

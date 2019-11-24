@@ -29,7 +29,7 @@ class ImprovementsController < ApplicationController
 
     respond_to do |format|
       if @improvement.save
-        format.html { redirect_to @improvement, notice: 'Improvement was successfully created.' }
+        format.html { redirect_to improvement_url(@improvement), notice: 'Improvement was successfully created.' }
         format.json { render :show, status: :created, location: @improvement }
       else
         format.html { render :new }
