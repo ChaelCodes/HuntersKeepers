@@ -6,6 +6,8 @@
 class Improvement < ApplicationRecord
   IMPROVEMENT_TYPES = %w[Improvement Improvements::RatingBoost].freeze
 
+  belongs_to :playbook
+
   enum rating: { charm: 0, cool: 1, sharp: 2, tough: 3, weird: 4 }
 
   validates :description, presence: true

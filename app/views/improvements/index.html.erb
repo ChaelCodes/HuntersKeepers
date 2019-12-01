@@ -5,6 +5,7 @@
 <table>
   <thead>
     <tr>
+      <th>Playbook</th>
       <th>Description</th>
       <th>Rating</th>
       <th>Stat limit</th>
@@ -15,6 +16,7 @@
   <tbody>
     <% @improvements.each do |improvement| %>
       <tr>
+        <td><%= link_to_playbook(improvement) %>
         <td><%= link_to improvement.description, improvement_path(improvement) %></td>
         <td><%= improvement.rating %></td>
         <td><%= improvement.stat_limit %></td>

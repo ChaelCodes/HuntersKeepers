@@ -10,7 +10,8 @@ RSpec.describe ImprovementsController, type: :controller do
   # adjust the attributes here as well.
   let(:valid_attributes) do
     {
-      description: 'Gain an Ally'
+      description: 'Gain an Ally',
+      playbook_id: create(:playbook).id
     }
   end
 
@@ -83,6 +84,16 @@ RSpec.describe ImprovementsController, type: :controller do
         it 'redirects to the created improvement' do
           subject
           expect(response).to redirect_to(Improvement.last)
+        end
+
+        context 'with a rating boost improvement' do
+          let(:attributes) { { description: 'Get +1 Tough, max +3', type: 'Improvements::RatingBoost', playbook_id: create(:playbook).id } }
+
+          it 'redirects to created improvement' do
+            subject
+            expect(Improvement.last.class).to eq Improvements::RatingBoost
+            expect(response).to redirect_to(improvement_url(Improvement.last))
+          end
         end
       end
 
