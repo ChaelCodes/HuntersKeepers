@@ -13,14 +13,17 @@ class Improvement < ApplicationRecord
   validates :description, presence: true
   validates :type, inclusion: { in: IMPROVEMENT_TYPES }, allow_blank: true
 
-  def apply(hunter); end
-
-  def valid_hunter?(hunter)
-    hunter.present?
+  def apply(hunters_improvement)
+    return false if add_errors(hunters_improvement)
+    true
   end
 
-  def hunter_errors(_hunter)
-    # Add any validation errors in an array
-    []
+  def hunter_playbook_matches?(hunter)
+    hunter.playbook == playbook
+  end
+
+  def add_errors(hunters_improvement)
+    hunter = hunters_improvement.hunter
+    hunters_improvement.errors.add(:hunter, "does not match improvement playbook: #{playbook.name}") unless hunter_playbook_matches?(hunter)
   end
 end
