@@ -14,4 +14,11 @@ FactoryBot.define do
     rating { 0 } # Charm
     stat_limit { 3 }
   end
+
+  factory :playbook_move, class: Improvements::PlaybookMove do
+    playbook
+    description { 'Take another Chosen move' }
+    type { 'Improvements::PlaybookMove' }
+  end
+
 end

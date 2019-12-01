@@ -4,7 +4,7 @@
 # These are the options the Hunter can choose
 # from when upgrading their character.
 class Improvement < ApplicationRecord
-  IMPROVEMENT_TYPES = %w[Improvement Improvements::RatingBoost].freeze
+  IMPROVEMENT_TYPES = %w[Improvement Improvements::RatingBoost Improvements::PlaybookMove].freeze
 
   belongs_to :playbook
 
