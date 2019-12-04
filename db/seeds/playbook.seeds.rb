@@ -107,7 +107,7 @@ I’ll kill them all. That’s all I have left.',
     something about it whether you like it or not. You’ve got 
     to pay for what you’ve done, sweetheart, whatever it is I 
     might feel about you. Yes, I’ll have some bad nights, but 
-    I’ll still have myself',
+    I’ll still have myself.',
 },
 {
   id: 14,
@@ -127,7 +127,7 @@ I’ll kill them all. That’s all I have left.',
   name: 'The Searcher',
   description: 'There’s still so much to be discovered and 
   explained, even now. Perhaps only one event in a thousand is 
-  true weirdness — but I’ll investigate them all to find it',
+  true weirdness — but I’ll investigate them all to find it.',
 }].each do |playbook|
   Playbook.find_or_create_by(playbook)
 end
