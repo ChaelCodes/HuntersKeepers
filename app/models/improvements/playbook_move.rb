@@ -20,7 +20,7 @@ module Improvements
     end
 
     def move_matches_playbook?(move)
-      move? && move.playbook == playbook
+      move?(move) && move.playbook == playbook
     end
 
     def not_a_move?(move)
