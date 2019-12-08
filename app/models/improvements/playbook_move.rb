@@ -14,20 +14,21 @@ module Improvements
       hunter = hunters_improvement.hunter
       move = hunters_improvement.improvable
       hunters_improvement.errors.add(:hunter, "already has move with id #{move.id}") if hunter_has_move?(hunter, move)
-      if is_not_a_move?(move)
-        hunters_improvement.errors.add(:improvable, "is not a subclass of Move.")
-      elsif !move_matches_playbook?(move)
-        hunters_improvement.errors.add(:improvable, "is not from playbook #{playbook.name}")
-      end
-      return hunters_improvement.errors.present?
+      hunters_improvement.errors.add(:improvable, 'is not a subclass of Move.') if not_a_move?(move)
+      hunters_improvement.errors.add(:improvable, "is not from playbook #{playbook.name}") unless move_matches_playbook?(move)
+      hunters_improvement.errors.present?
     end
 
     def move_matches_playbook?(move)
-      move.playbook == playbook
+      move? && move.playbook == playbook
     end
 
-    def is_not_a_move?(move)
-      !(move.class <= Move)
+    def not_a_move?(move)
+      !move?(move)
+    end
+
+    def move?(move)
+      move.class <= Move
     end
 
     def hunter_has_move?(hunter, move)

@@ -62,8 +62,8 @@ RSpec.describe Improvements::PlaybookMove, type: :model do
     end
   end
 
-  describe '#is_not_a_move?' do
-    subject { playbook_move.is_not_a_move?(move) }
+  describe '#not_a_move?' do
+    subject { playbook_move.not_a_move?(move) }
 
     context 'Moves::Base' do
       let(:move) { create(:move) }

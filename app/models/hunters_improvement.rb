@@ -12,9 +12,7 @@ class HuntersImprovement < ApplicationRecord
   validates :improvement_id, uniqueness: { scope: :hunter_id }
 
   def apply_improvement
-    unless improvement.apply self
-      raise ActiveRecord::RecordInvalid
-    end
+    raise ActiveRecord::RecordInvalid unless improvement.apply self
     hunter.gain_experience(-5)
   end
 

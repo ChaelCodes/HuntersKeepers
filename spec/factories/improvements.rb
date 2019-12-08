@@ -20,5 +20,4 @@ FactoryBot.define do
     description { 'Take another Chosen move' }
     type { 'Improvements::PlaybookMove' }
   end
-
 end

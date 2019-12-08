@@ -17,7 +17,7 @@ module Improvements
       super
       hunter = hunters_improvement.hunter
       hunters_improvement.errors.add(:hunter, "#{rating} rating would exceed max for improvement.") unless under_max_limit? hunter
-      return hunters_improvement.errors.present?
+      hunters_improvement.errors.present?
     end
   end
 end
