@@ -18,7 +18,11 @@ class HuntersImprovementsController < ApplicationController
 
   # GET /hunters_improvements/new
   def new
-    @hunters_improvement = HuntersImprovement.new(hunter: @hunter)
+    if params[:improvement_id]
+      @hunters_improvement = HuntersImprovement.new(hunter: @hunter, improvement: Improvement.find(params[:improvement_id]))
+    else
+      @hunters_improvement = HuntersImprovement.new(hunter: @hunter)
+    end
   end
 
   # GET /hunters_improvements/1/edit

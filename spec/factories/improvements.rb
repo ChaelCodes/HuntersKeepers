@@ -20,4 +20,11 @@ FactoryBot.define do
     description { 'Take another Chosen move' }
     type { 'Improvements::PlaybookMove' }
   end
+
+
+  factory :another_move, class: Improvements::AnotherMove do
+    playbook
+    description { 'Take a move from another Playbook' }
+    type { 'Improvements::AnotherMove' }
+  end
 end

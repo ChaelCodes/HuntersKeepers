@@ -8,6 +8,7 @@ class MovesController < ApplicationController
   # GET /moves.json
   def index
     @moves = params[:basic] ? Moves::Basic.all : Move.all
+    @moves = @moves.where(playbook_id: params[:playbook_id]) if params[:playbook_id]
   end
 
   # GET /moves/1

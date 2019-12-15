@@ -12,7 +12,9 @@ class HuntersController < ApplicationController
 
   # GET /hunters/1
   # GET /hunters/1.json
-  def show() end
+  def show
+    @available_improvements = params[:available_improvements]
+  end
 
   # GET /hunters/new
   def new
