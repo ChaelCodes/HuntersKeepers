@@ -3,6 +3,7 @@
 # The character appearing in the mystery
 class Hunter < ApplicationRecord
   belongs_to :playbook
+  has_and_belongs_to_many :gears
   has_and_belongs_to_many :moves
   has_many :hunters_improvements
   validates_associated :hunters_improvements,
