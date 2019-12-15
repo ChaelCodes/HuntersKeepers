@@ -1,5 +1,8 @@
+# frozen_string_literal: true
+
+# This is the controller for Gear.
 class GearsController < ApplicationController
-  before_action :set_gear, only: [:show, :edit, :update, :destroy]
+  before_action :set_gear, only: %i[show edit update destroy]
 
   # GET /gears
   # GET /gears.json
@@ -9,8 +12,7 @@ class GearsController < ApplicationController
 
   # GET /gears/1
   # GET /gears/1.json
-  def show
-  end
+  def show; end
 
   # GET /gears/new
   def new
@@ -18,8 +20,7 @@ class GearsController < ApplicationController
   end
 
   # GET /gears/1/edit
-  def edit
-  end
+  def edit; end
 
   # POST /gears
   # POST /gears.json
@@ -62,13 +63,14 @@ class GearsController < ApplicationController
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_gear
-      @gear = Gear.find(params[:id])
-    end
 
-    # Never trust parameters from the scary internet, only allow the white list through.
-    def gear_params
-      params.require(:gear).permit(:name, :description, :harm, :armor, :playbook_id, :tag_list)
-    end
+  # Use callbacks to share common setup or constraints between actions.
+  def set_gear
+    @gear = Gear.find(params[:id])
+  end
+
+  # Never trust parameters from the scary internet, only allow the white list through.
+  def gear_params
+    params.require(:gear).permit(:name, :description, :harm, :armor, :playbook_id, :tag_list)
+  end
 end
