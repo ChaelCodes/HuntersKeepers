@@ -6,6 +6,7 @@
     <%= csp_meta_tag %>
 
     <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
   </head>
 
   <body>
@@ -18,15 +19,13 @@
       <%= link_to "Login", new_user_session_path, :class => 'navbar-link'  %>
     <% end %>
     <% if notice %>
-      <div id="notice" class="bp3-callout bp3-intent-success">
-        <h4 class="bp3-heading">Success</h4>
-       <%= notice %>
+      <div id="notice">
+        <%= notice %>
       </div>
     <% end %>
     <% if alert %>
-      <p class="alert alert-danger"><%= alert %></p>
+      <div id="alert"><%= alert %></div>
     <% end %>
     <%= yield %>
-    <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
   </body>
 </html>
