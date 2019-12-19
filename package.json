@@ -9,7 +9,8 @@
     "turbolinks": "^5.2.0",
     "vue": "^2.6.11",
     "vue-loader": "^15.8.3",
-    "vue-template-compiler": "^2.6.11"
+    "vue-template-compiler": "^2.6.11",
+    "vue-turbolinks": "^2.0.4"
   },
   "version": "0.1.0",
   "devDependencies": {
