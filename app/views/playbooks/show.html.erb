@@ -22,5 +22,10 @@
   <%= render "moves/moves", moves: @playbook.moves, hunter: nil %>
 </p>
 
+<p>
+  <h4>Gear</h4>
+  <%= render "gears/gears", gears: @playbook.gears %>
+</p>
+
 <%= link_to 'Edit', edit_playbook_path(@playbook) %> |
 <%= link_to 'Back', playbooks_path %>

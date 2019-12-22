@@ -5,4 +5,8 @@ module PlaybooksHelper
   def link_to_playbook(obj)
     obj.playbook ? link_to(obj.playbook.name, obj.playbook) : ''
   end
+
+  def select_playbook(form)
+    form.collection_select :playbook_id, Playbook.all, :id, :name
+  end
 end
