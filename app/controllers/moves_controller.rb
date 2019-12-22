@@ -7,11 +7,7 @@ class MovesController < ApplicationController
   # GET /moves
   # GET /moves.json
   def index
-    if params[:basic]
-      @moves = Moves::Basic.all
-    else
-      @moves = Move.all
-    end
+    @moves = params[:basic] ? Moves::Basic.all : Move.all
   end
 
   # GET /moves/1

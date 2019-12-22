@@ -13,6 +13,7 @@ class HuntersImprovement < ApplicationRecord
   def apply_improvement
     if improvement.valid_hunter? hunter
       improvement.apply hunter
+      hunter.gain_experience(-5)
     else
       add_errors_from_improvement
       raise ActiveRecord::RecordInvalid

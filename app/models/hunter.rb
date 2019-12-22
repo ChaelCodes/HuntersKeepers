@@ -14,12 +14,12 @@ class Hunter < ApplicationRecord
   validates :harm, numericality: { less_than_or_equal_to: 7, greater_than_or_equal_to: 0 }
   validates :luck, numericality: { less_than_or_equal_to: 7, greater_than_or_equal_to: 0 }
 
-  def hunter_moves
-    Move.where(id: moves.select(:id))
-        .or(Move.where(type: 'Moves::Basic'))
-  end
-
   def available_improvements
     playbook.improvements.where.not(id: improvements.select(:id))
+  end
+
+  def gain_experience(exp)
+    self.experience += exp
+    save
   end
 end

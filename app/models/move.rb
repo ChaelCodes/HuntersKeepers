@@ -22,6 +22,7 @@ class Move < ApplicationRecord
     result = roll(hunter)
     outcome = case result
               when 0..6
+                hunter.gain_experience(1)
                 six_and_under
               when 7..9
                 seven_to_nine

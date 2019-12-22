@@ -23,4 +23,14 @@ RSpec.describe Hunter, type: :model do
       end
     end
   end
+
+  describe '#gain_experience' do
+    subject { hunter.gain_experience(exp) }
+
+    let(:exp) { 1 }
+    it 'increases the hunter experience' do
+      expect { subject }.to change(hunter.reload, :experience).by(1)
+      expect(hunter.reload.experience).to eq 1
+    end
+  end
 end
