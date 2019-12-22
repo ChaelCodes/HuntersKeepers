@@ -7,12 +7,19 @@ class MovesController < ApplicationController
   # GET /moves
   # GET /moves.json
   def index
-    @moves = Move.all
+    if params[:basic]
+      @moves = Moves::Basic.all
+    else
+      @moves = Move.all
+    end
   end
 
   # GET /moves/1
   # GET /moves/1.json
-  def show() end
+  def show
+    hunter = Hunter.find_by(id: params[:hunter_id])
+    @results = @move.roll_results(hunter) if hunter
+  end
 
   # GET /moves/new
   def new

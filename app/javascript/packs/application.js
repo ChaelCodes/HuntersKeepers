@@ -18,13 +18,14 @@ import Buefy from 'buefy'
 import 'buefy/dist/buefy.css'
 
 // Components
-import App from '../app.vue'
+import App from '../components/app.vue'
+import HunterRatings from '../components/hunter_ratings.vue'
 
 Vue.use(Buefy, TurbolinksAdapter)
 
 document.addEventListener('turbolinks:load', () => {
   const app = new Vue({
     el: '#vue-app',
-    components: { App }
+    components: { App, HunterRatings }
   })
 })

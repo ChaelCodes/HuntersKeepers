@@ -2,6 +2,7 @@
 
 json.extract! move, :id,
               :name,
+              :description,
               :rating,
               :six_and_under,
               :seven_to_nine,
