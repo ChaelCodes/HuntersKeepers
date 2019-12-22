@@ -1,52 +1,31 @@
-<p>
-  <strong>Name:</strong>
-  <%= @hunter.name %>
-</p>
+<div class="columns">
+  <div class="column">
+    <h1><%= @hunter.name %>, <%= @hunter.playbook.name %></h1>
+    <p><i><%= @hunter.playbook.description %></i></p>
+    <hunter-ratings hunter_id=<%= "#{@hunter.id}" %>></hunter-ratings>
 
-<p>
-  <strong>Harm:</strong>
-  <%= @hunter.harm %>
-</p>
+    <p>
+      <strong>Harm:</strong>
+      <%= @hunter.harm %>
+    </p>
 
-<p>
-  <strong>Luck:</strong>
-  <%= @hunter.luck %>
-</p>
+    <p>
+      <strong>Luck:</strong>
+      <%= @hunter.luck %>
+    </p>
 
-<p>
-  <strong>Experience:</strong>
-  <%= @hunter.experience %>
-</p>
-
-<p>
-  <strong>Charm:</strong>
-  <%= @hunter.charm %>
-</p>
-
-<p>
-  <strong>Cool:</strong>
-  <%= @hunter.cool %>
-</p>
-
-<p>
-  <strong>Sharp:</strong>
-  <%= @hunter.sharp %>
-</p>
-
-<p>
-  <strong>Tough:</strong>
-  <%= @hunter.tough %>
-</p>
-
-<p>
-  <strong>Weird:</strong>
-  <%= @hunter.weird %>
-</p>
-
-<p>
-  <h4>Moves</h4>
-  <%= render "moves/moves", moves: @hunter.hunter_moves, hunter: @hunter %>
-</p>
+    <p>
+      <strong>Experience:</strong>
+      <%= @hunter.experience %>
+    </p>
+  </div>
+  <div class="column">
+    <p>
+      <h4>Moves</h4>
+      <%= render "moves/moves", moves: @hunter.hunter_moves, hunter: @hunter %>
+    </p>
+  </div>
+</div>
 
 <%= link_to 'Take an Improvement', new_hunter_hunters_improvement_path(hunter_id: @hunter.id) %>
 <br />

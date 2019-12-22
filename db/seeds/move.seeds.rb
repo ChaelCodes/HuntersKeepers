@@ -2,6 +2,9 @@
 
 [{
   name: 'Manipulate Someone',
+  description: 'Once you have given them a reason, tell
+them what you want them to do and roll
++Charm',
   rating: 'charm',
   six_and_under: "Failure. Keeper's choice.",
   seven_to_nine: 'On a 7-9, they’ll do it, but only if
@@ -24,6 +27,8 @@ enough for them, permanently).',
 },
  {
    name: 'Act Under Pressure',
+   description: 'When you act under pressure, roll
++Cool.',
    rating: 'cool',
    six_and_under: "Failure. Keeper's choice.",
    seven_to_nine: 'On a 7-9 the Keeper is going to give
@@ -37,6 +42,8 @@ wanted to absolute perfection.'
  },
  {
    name: 'Help Out',
+   description: 'When you help another hunter, roll
++Cool.',
    rating: 'cool',
    six_and_under: "Failure. Keeper's choice.",
    seven_to_nine: 'On a 7-9 your help grants them +1 to
@@ -50,6 +57,17 @@ regardless of what they actually got.',
 },
 {
   name: 'Investigate a Mystery',
+  description: 'When you investigate a mystery, roll
++Sharp. On a 10+ hold 2, and on a 7-9
+hold 1. One hold can be spent to ask the
+Keeper one of the following questions:
+• What happened here?
+• What sort of creature is it?
+• What can it do?
+• What can hurt it?
+• Where did it go?
+• What was it going to do?
+• What is being concealed here?',
   rating: 'sharp',
   six_and_under: "Failure. Keeper's choice.",
   seven_to_nine: 'You can ask the
@@ -76,6 +94,8 @@ mystery, not just the listed ones.'
  },
  {
    name: 'Read a Bad Situation',
+   description: 'When you look around and read a bad
+situation, roll +Sharp.',
    rating: 'sharp',
    six_and_under: "Failure. Keeper's choice.",
    seven_to_nine: 'Ask the
@@ -108,6 +128,8 @@ ongoing while the information is relevant.'
  },
  {
    name: 'Kick some Ass',
+   description: 'When you get into a fight and kick some
+ass, roll +Tough.',
    rating: 'tough',
    six_and_under: 'Failure. You take a beating.',
    seven_to_nine: 'You and whatever you’re
@@ -149,6 +171,8 @@ in a rout.'
  },
  {
    name: 'Protect Someone',
+   description: 'When you prevent harm to another
+character, roll +Tough',
    rating: 'tough',
    six_and_under: "Failure. You fail to preotect them,
    and you expose yourself to danger.",
@@ -171,6 +195,9 @@ become your ally.'
  },
  {
    name: 'Use Magic',
+   description: 'When you use magic, say what you’re
+trying to achieve and how you do the
+spell, then roll +Weird.',
    rating: 'weird',
    six_and_under: "Failure. Keeper's choice. It is always bad.",
    seven_to_nine: 'It works imperfectly: choose
