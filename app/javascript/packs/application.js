@@ -8,20 +8,23 @@ require("turbolinks").start()
 require("@rails/activestorage").start()
 require("channels")
 
+// Rails comes with Turbolinks to make page loads faster
+// But it can break with Vue, this plugin stops that
 import TurbolinksAdapter from 'vue-turbolinks'
+// Our Javascript Framework!
 import Vue from 'vue/dist/vue.esm'
+// Buefy is a UI Component Library
+import Buefy from 'buefy'
+import 'buefy/dist/buefy.css'
+
+// Components
 import App from '../app.vue'
 
-Vue.use(TurbolinksAdapter)
+Vue.use(Buefy, TurbolinksAdapter)
 
 document.addEventListener('turbolinks:load', () => {
   const app = new Vue({
-    el: '#hello',
-    data: () => {
-      return {
-        message: "Can you say hello?"
-      }
-    },
+    el: '#vue-app',
     components: { App }
   })
 })
