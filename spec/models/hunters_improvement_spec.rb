@@ -73,6 +73,10 @@ RSpec.describe HuntersImprovement, type: :model do
       it 'boosts the stat of the hunter' do
         expect { subject }.to change(hunters_improvement.hunter.reload, :charm).by(1)
       end
+
+      it 'costs 5 experience to take an improvement' do
+        expect { subject }.to change(hunter, :experience).by(-5)
+      end
     end
 
     context 'invalid hunter' do

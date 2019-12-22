@@ -10,5 +10,6 @@ FactoryBot.define do
     sharp { 1 }
     tough { 1 }
     weird { -1 }
+    experience { 0 }
   end
 end

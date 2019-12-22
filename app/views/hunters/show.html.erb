@@ -17,17 +17,18 @@
     <p>
       <strong>Experience:</strong>
       <%= @hunter.experience %>
+      <span v-if="<%= @hunter.experience %> >= 5">
+        <%= link_to 'Take an Improvement', new_hunter_hunters_improvement_path(hunter_id: @hunter.id) %>
+      </span>
     </p>
   </div>
   <div class="column">
     <p>
       <h4>Moves</h4>
-      <%= render "moves/moves", moves: @hunter.hunter_moves, hunter: @hunter %>
+      <%= render "moves/moves", moves: @hunter.moves, hunter: @hunter %>
     </p>
   </div>
 </div>
-
-<%= link_to 'Take an Improvement', new_hunter_hunters_improvement_path(hunter_id: @hunter.id) %>
 <br />
 <%= link_to 'Edit', edit_hunter_path(@hunter) %> |
 <%= link_to 'Back', hunters_path %>
