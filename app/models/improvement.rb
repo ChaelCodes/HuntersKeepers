@@ -30,7 +30,7 @@ class Improvement < ApplicationRecord
     hunters_improvement.errors.add(:hunter, "does not match improvement playbook: #{playbook.name}")
   end
 
-  def improvable_options(hunter)
+  def improvable_options(_hunter)
     []
   end
 end
