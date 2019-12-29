@@ -103,6 +103,6 @@ class HuntersImprovementsController < ApplicationController
 
   # Never trust parameters from the scary internet, only allow the white list through.
   def hunters_improvement_params
-    params.require(:hunters_improvement).permit(:hunter_id, :improvement_id)
+    params.require(:hunters_improvement).permit(:hunter_id, :improvement_id, :improvable_id, :improvable_type)
   end
 end

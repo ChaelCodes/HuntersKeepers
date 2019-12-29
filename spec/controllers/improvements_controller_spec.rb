@@ -42,11 +42,39 @@ RSpec.describe ImprovementsController, type: :controller do
   end
 
   describe 'GET #show' do
-    subject { get :show, params: { id: improvement.to_param }, session: valid_session }
+    subject { get :show, params: params, session: valid_session, format: format_type }
 
-    it 'returns a success response' do
-      subject
-      expect(response).to be_successful
+    context 'html format' do
+      let(:format_type) { :html }
+      let(:params) { { id: improvement.to_param } }
+      it 'returns a success response' do
+        subject
+        expect(response).to be_successful
+      end
+    end
+
+    context 'json format' do
+      let(:format_type) { :json }
+
+      context 'when a hunter is passed' do
+        let(:hunter) { create :hunter }
+        let(:params) { { id: improvement.id, hunter_id: hunter.id } }
+        render_views
+
+        context 'when improvable_options are available' do
+          let!(:move) { create_list :move, 3 }
+          before do
+            allow_any_instance_of(Improvement).to receive(:improvable_options)
+            .and_return(Move.all)
+          end
+
+          it 'includes improvable options' do
+            subject
+            resp = JSON.parse(response.body)
+            expect(resp['improvable_options'].first['id']).to eq Move.first.id
+          end
+        end
+      end
     end
   end
 

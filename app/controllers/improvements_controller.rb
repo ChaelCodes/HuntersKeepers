@@ -12,7 +12,10 @@ class ImprovementsController < ApplicationController
 
   # GET /improvements/1
   # GET /improvements/1.json
-  def show; end
+  def show
+    hunter = Hunter.find_by(id: params[:hunter_id]) if params[:hunter_id]
+    @improvable_options = @improvement.improvable_options(hunter) if hunter
+  end
 
   # GET /improvements/new
   def new
