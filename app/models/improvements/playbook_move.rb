@@ -11,9 +11,18 @@ module Improvements
 
     def add_errors(hunters_improvement)
       super(hunters_improvement)
-      hunter = hunters_improvement.hunter
+      validate_hunter hunters_improvement
+      validate_improvable hunters_improvement
+      hunters_improvement.errors.present?
+    end
+
+    def validate_hunter(hunters_improvement)
+      return unless hunter_has_move?(hunters_improvement.hunter, hunters_improvement.improvable)
+      hunters_improvement.errors.add(:hunter, "already has move with id #{hunters_improvement.improvable.id}")
+    end
+
+    def validate_improvable(hunters_improvement)
       move = hunters_improvement.improvable
-      hunters_improvement.errors.add(:hunter, "already has move with id #{move.id}") if hunter_has_move?(hunter, move)
       hunters_improvement.errors.add(:improvable, 'is not a subclass of Move.') if not_a_move?(move)
       hunters_improvement.errors.add(:improvable, "is not from playbook #{playbook.name}") unless move_matches_playbook?(move)
       hunters_improvement.errors.present?
