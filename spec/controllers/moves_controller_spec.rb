@@ -31,14 +31,30 @@ RSpec.describe MovesController, type: :controller do
   end
 
   describe 'GET #index' do
+    subject { get :index, params: params, session: valid_session, format: format_type }
+
+    let(:format_type) { :html }
+    let(:params) { {} }
     it 'returns a success response' do
       Move.create! valid_attributes
-      get :index, params: {}, session: valid_session
+      subject
       expect(response).to be_successful
     end
 
-    it 'filters for moves associated with playbook' do
-      expect(false).to be_truthy
+    context 'when playbook_id is supplied' do
+      render_views
+      let(:playbook) { create :playbook }
+      let(:params) { { playbook_id: playbook.id } }
+      let!(:move) { create(:move, playbook: playbook) }
+      let!(:another_pb_move) { create :move }
+      let(:format_type) { :json }
+
+      it 'filters for moves associated with playbook' do
+        subject
+        resp = JSON.parse(response.body)
+        expect(resp.dig(0, 'id')).to eq(move.id)
+        expect(resp.count).to eq 1
+      end
     end
   end
 
