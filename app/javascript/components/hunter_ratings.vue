@@ -1,6 +1,6 @@
 <template>
   <section id="hunter-ratings">
-    <b-collapse v-for="(rating_attrs, rating) in ratings" class="card" :open.sync="rating_attrs.isOpen">
+    <b-collapse v-for="(rating_attrs, rating) in ratings" class="card" :open.sync="rating_attrs.isOpen" :key="rating">
       <div slot="trigger" slot-scope="props" class="card-header" role="button">
         <p class="card-header-title">{{rating.toUpperCase() + ': ' + rating_attrs.value}}</p>
         <div class="card-header-title" v-for="move in rating_attrs.moves.slice(0, 3)">

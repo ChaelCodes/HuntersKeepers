@@ -2,6 +2,21 @@
 
 FactoryBot.define do
   factory :move do
+    type { Moves::Descriptive }
+    playbook
+    name { 'I’m Here For A Reason' }
+    description do
+      'There’s something you are
+destined to do. Work out the details with the Keeper,
+based on your fate. You cannot die until it comes
+to pass. If you die in play, then you must spend a
+Luck point. You will then, somehow, recover or be
+returned to life. Once your task is done (or you use
+up all your Luck), all bets are off.'
+    end
+  end
+
+  factory :moves_basic, class: Moves::Basic do
     type { Moves::Basic }
     name { 'Act Under Pressure' }
     rating { 1 } # Cool

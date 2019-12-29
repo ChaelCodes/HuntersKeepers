@@ -4,7 +4,8 @@
 # These are the options the Hunter can choose
 # from when upgrading their character.
 class Improvement < ApplicationRecord
-  IMPROVEMENT_TYPES = %w[Improvement Improvements::RatingBoost].freeze
+  IMPROVEMENT_TYPES = %w[Improvement Improvements::RatingBoost
+                         Improvements::PlaybookMove Improvements::AnotherMove].freeze
 
   belongs_to :playbook
 
@@ -13,14 +14,23 @@ class Improvement < ApplicationRecord
   validates :description, presence: true
   validates :type, inclusion: { in: IMPROVEMENT_TYPES }, allow_blank: true
 
-  def apply(hunter); end
+  def apply(hunters_improvement)
+    return false if add_errors(hunters_improvement)
 
-  def valid_hunter?(hunter)
-    hunter.present?
+    true
   end
 
-  def hunter_errors(_hunter)
-    # Add any validation errors in an array
+  def hunter_playbook_matches?(hunter)
+    hunter.playbook == playbook
+  end
+
+  def add_errors(hunters_improvement)
+    hunter = hunters_improvement.hunter
+    return if hunter_playbook_matches?(hunter)
+    hunters_improvement.errors.add(:hunter, "does not match improvement playbook: #{playbook.name}")
+  end
+
+  def improvable_options(_hunter)
     []
   end
 end

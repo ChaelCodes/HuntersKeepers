@@ -19,6 +19,7 @@ class HuntersImprovementsController < ApplicationController
   # GET /hunters_improvements/new
   def new
     @hunters_improvement = HuntersImprovement.new(hunter: @hunter)
+    @hunters_improvement.improvement = Improvement.find(params[:improvement_id]) if params[:improvement_id]
   end
 
   # GET /hunters_improvements/1/edit
@@ -99,6 +100,6 @@ class HuntersImprovementsController < ApplicationController
 
   # Never trust parameters from the scary internet, only allow the white list through.
   def hunters_improvement_params
-    params.require(:hunters_improvement).permit(:hunter_id, :improvement_id)
+    params.require(:hunters_improvement).permit(:hunter_id, :improvement_id, :improvable_id, :improvable_type)
   end
 end

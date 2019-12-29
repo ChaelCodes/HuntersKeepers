@@ -2,7 +2,10 @@
 
 FactoryBot.define do
   factory :hunters_improvement do
-    hunter
-    improvement
+    transient do
+      playbook { FactoryBot.create(:playbook) }
+    end
+    hunter { FactoryBot.create(:hunter, playbook: playbook) }
+    improvement { FactoryBot.create(:improvement, playbook: playbook) }
   end
 end

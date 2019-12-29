@@ -7,7 +7,7 @@ RSpec.describe HuntersImprovement, type: :model do
 
   describe '#create' do
     let(:hunter) { create :hunter }
-    let(:improvement) { create :improvement }
+    let(:improvement) { create :improvement, playbook: hunter.playbook }
 
     subject do
       hunter.improvements << improvement
@@ -21,7 +21,7 @@ RSpec.describe HuntersImprovement, type: :model do
 
     context 'hunter hits max from improvement' do
       let(:improvement) { create(:rating_boost, rating: 0, stat_limit: 3) }
-      let(:hunter) { create :hunter, charm: 2 }
+      let(:hunter) { create :hunter, charm: 2, playbook: improvement.playbook }
 
       it 'hunter improvement is still valid' do
         expect { subject }.to change(hunter, :charm).from(2).to(3)
@@ -32,20 +32,17 @@ RSpec.describe HuntersImprovement, type: :model do
     end
 
     context 'hunter does not pass improvement validations' do
-      let(:errors) { ['Rating would exceed max for improvement.'] }
-
-      before do
-        allow(improvement).to receive(:valid_hunter?).and_return(false)
-        allow(improvement).to receive(:hunter_errors).and_return(errors)
-      end
+      let(:improvement) { create(:rating_boost, rating: 0, stat_limit: 3) }
+      let(:error) { 'Hunter charm rating would exceed max for improvement.' }
+      let(:hunter) { create :hunter, charm: 3, playbook: improvement.playbook }
 
       it 'shows errors' do
         expect { subject }.to raise_error(ActiveRecord::RecordInvalid)
         hunters_improvement = hunter.hunters_improvements.last
         expect(hunters_improvement).not_to be_valid
-        expect(hunters_improvement.errors.full_messages).to include("Hunter #{errors.first}")
+        expect(hunters_improvement.errors.full_messages).to include error
         expect(hunter).not_to be_valid
-        expect(hunter.errors.full_messages.to_sentence).to include(errors.first)
+        expect(hunter.errors.full_messages.to_sentence).to include error
       end
     end
 
@@ -64,7 +61,7 @@ RSpec.describe HuntersImprovement, type: :model do
   describe '#apply_improvement' do
     subject { hunters_improvement.apply_improvement }
 
-    let(:improvement) { create(:rating_boost, rating: :charm, stat_limit: 3) }
+    let(:improvement) { create(:rating_boost, rating: :charm, stat_limit: 3, playbook: hunter.playbook) }
     let(:hunters_improvement) { build(:hunters_improvement, improvement: improvement, hunter: hunter) }
 
     context 'valid hunter' do
@@ -87,19 +84,6 @@ RSpec.describe HuntersImprovement, type: :model do
         expect(hunters_improvement).not_to be_valid
         expect(hunters_improvement.errors.full_messages).to include(/Hunter/)
       end
-    end
-  end
-
-  describe '#add_errors_from_improvement' do
-    subject { hunters_improvement.add_errors_from_improvement }
-
-    let(:hunter) { create(:hunter, charm: 3) }
-    let(:improvement) { create(:rating_boost, rating: :charm, stat_limit: 3) }
-    let(:hunters_improvement) { build(:hunters_improvement, improvement: improvement, hunter: hunter) }
-
-    it 'adds the errors to the hunter improvement' do
-      subject
-      expect(hunters_improvement.errors.full_messages).to include('Hunter charm rating would exceed max for improvement.')
     end
   end
 end

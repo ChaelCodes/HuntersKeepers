@@ -598,4 +598,141 @@ after :playbook do
    }].each do |move|
     Move.find_or_create_by(move)
   end
+
+  ######
+  # Initiate
+  ######
+  initiate = Playbook.find 6
+  [{
+    name: 'Get Help from your Sect',
+    type: 'Moves::Rollable',
+    playbook_id: initiate.id,
+    description: 'When you are in good standing with your Sect, at
+      the beginning of each mystery, roll +Charm. On
+      a 10+ they provide some useful info or help in the
+      field. On a 7-9 you get a mission associated with the
+      mystery, and if you do it you’ll get some info or help
+      too. On a miss, they ask you to do something bad.
+      If you fail a mission or refuse an order, you’ll be in
+      trouble with the Sect until you atone.',
+    rating: :charm,
+    six_and_under: 'On a miss, they ask you to do something bad.
+      If you fail a mission or refuse an order, you’ll be in
+      trouble with the Sect until you atone.',
+    seven_to_nine: 'On a 7-9 you get a mission associated with the
+      mystery, and if you do it you’ll get some info or help
+      too.',
+    ten_plus: 'On
+      a 10+ they provide some useful info or help in the
+      field.'
+  },
+  {
+    name: 'Ancient Fighting Arts',
+    type: 'Moves::Descriptive',
+    playbook_id: initiate.id,
+    description: 'When using an old-fashioned hand weapon, you inflict +1 harm and get +1
+whenever you roll protect someone.'
+  },
+  {
+    name: 'Mystic',
+    type: 'Moves::Descriptive',
+    playbook_id: initiate.id,
+    description: 'Every time you successfully use magic, take
++1 forward.'
+  },
+  {
+    name: 'Fortunes',
+    type: 'Moves::Rollable',
+    playbook_id: initiate.id,
+    description: 'The Sect has ancient prophecies or divination techniques to predict the future. Once per
+      mystery, you may use them. If you look at what the
+      future holds, roll +Weird. On a 10+ hold 3, and on
+      a 7-9 hold 1. On a miss, you get bad information and
+      the Keeper decides how that affects you. Spend your
+      hold to:
+      • have a useful object ready.
+      • be somewhere you are needed, just in time.
+      • take +1 forward, or give +1 forward to another
+      hunter.
+      • retroactively warn someone about an attack, so
+      that it doesn’t happen.',
+    rating: :weird,
+    six_and_under: 'On a miss, you get bad information and
+      the Keeper decides how that affects you.',
+    seven_to_nine: 'Spend your 1
+      hold to:
+      • have a useful object ready.
+      • be somewhere you are needed, just in time.
+      • take +1 forward, or give +1 forward to another
+      hunter.
+      • retroactively warn someone about an attack, so
+      that it doesn’t happen.',
+    ten_plus: 'Spend your 3
+      hold to:
+      • have a useful object ready.
+      • be somewhere you are needed, just in time.
+      • take +1 forward, or give +1 forward to another
+      hunter.
+      • retroactively warn someone about an attack, so
+      that it doesn’t happen.'
+  },
+  {
+    name: 'Sacred Oath',
+    type: 'Moves::Descriptive',
+    playbook_id: initiate.id,
+    description: ' You may bind yourself to a single goal,
+forsaking something during your quest (e.g. speech,
+all sustenance but bread and water, alcohol, lying,
+sex, etc). Get the Keeper’s agreement on this—it
+should match the goal in importance and difficulty.
+While you keep your oath and work towards your
+goal, mark experience at the end of every session
+and get +1 on any rolls that directly help achieve the
+goal. If you break the oath, take -1 ongoing until you
+have atoned.'
+  },
+  {
+    name: 'Mentor',
+    type: 'Moves::Rollable',
+    playbook_id: initiate.id,
+    description: 'You have a mentor in the Sect: name
+      them. When you contact your mentor for info, roll
+      +Sharp. On a 10+, you get an answer to your question, no problem. On a 7-9 you choose: they’re either
+      busy and can’t help, or they answer the question but
+      you owe a favour. On a miss, your question causes
+      trouble.',
+    rating: :sharp,
+    six_and_under: 'On a miss, your question causes
+      trouble.',
+    seven_to_nine: 'On a 7-9 you choose: they’re either
+      busy and can’t help, or they answer the question but
+      you owe a favour.',
+    ten_plus: 'On a 10+, you get an answer to your question, no problem.'
+  },
+  {
+    name: 'Apprentice',
+    type: 'Moves::Descriptive',
+    playbook_id: initiate.id,
+    description: 'You have an apprentice: name them.
+      Your job is to teach them the Sect’s ways. They count
+      as an ally: subordinate (motivation: to follow your
+      instructions to the letter).'
+  },
+  {
+    name: 'Helping Hand',
+    type: 'Moves::Descriptive',
+    playbook_id: initiate.id,
+    description: 'When you successfully help out
+      another hunter, they get +2 instead of the usual +1.'
+  },
+  {
+    name: 'That Old Black Magic',
+    type: 'Moves::Descriptive',
+    playbook_id: initiate.id,
+    description: 'When you use magic, you
+      can ask a question from the investigate a mystery
+      move as your effect.'
+  }].each do |move|
+    Move.find_or_create_by(move)
+  end
 end
