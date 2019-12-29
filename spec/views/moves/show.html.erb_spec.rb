@@ -3,7 +3,7 @@
 require 'rails_helper'
 
 RSpec.describe 'moves/show', type: :view do
-  let(:move) { create :move }
+  let(:move) { create :move, rating: :cool }
 
   before(:each) do
     @move = assign(:move, move)

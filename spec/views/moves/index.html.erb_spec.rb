@@ -4,7 +4,7 @@ require 'rails_helper'
 
 RSpec.describe 'moves/index', type: :view do
   before(:each) do
-    assign(:moves, create_list(:move, 2))
+    assign(:moves, create_list(:move, 2, name: 'Act Under Pressure', rating: :cool))
   end
 
   it 'renders a list of moves' do

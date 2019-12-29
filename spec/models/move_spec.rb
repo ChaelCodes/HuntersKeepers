@@ -3,7 +3,7 @@
 require 'rails_helper'
 
 RSpec.describe Move, type: :model do
-  let(:move) { create :move }
+  let(:move) { create :moves_basic }
 
   describe '#roll' do
     subject { move.roll(hunter) }
