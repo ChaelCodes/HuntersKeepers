@@ -14,10 +14,19 @@ class Hunter < ApplicationRecord
   validates :harm, numericality: { less_than_or_equal_to: 7, greater_than_or_equal_to: 0 }
   validates :luck, numericality: { less_than_or_equal_to: 7, greater_than_or_equal_to: 0 }
 
+  # List all improvements that are available
+  # based on the hunter's playbook, and excludes
+  # improvements the hunter has already taken
+  #
+  # @return [ActiveRecord::Collection]
   def available_improvements
     playbook.improvements.where.not(id: improvements.select(:id))
   end
 
+  # Add a negative or positive amount of experience
+  # to the hunter.
+  #
+  # @param exp [Numeric] the amount of experience to give the player
   def gain_experience(exp)
     self.experience += exp
     save
