@@ -15,7 +15,8 @@ class HuntersController < ApplicationController
   # GET /hunters/1.json
   #
   # @param :id [Integer] An id in the Hunter table, selects the hunter to return
-  # @param :available_improvements [Boolean] Toggles whether or not to include a list of improvements available to the hunter
+  # @param :available_improvements [Boolean] Toggles whether or not to include a list of improvements available to
+  #   the hunter
   # @see Hunter#available_improvements
   def show
     @available_improvements = params[:available_improvements]
