@@ -6,5 +6,20 @@ This is a Rails App that facilitates Monster of the Week Mysteries. [Monster of 
 
 We're building this app to practice and hone our development skills. One goal of this application is to implement a state of the art, free development environment to work in, and see what codebase results from that. Contributions (of all sorts) are welcome!
 
+This app is live-coded every Sunday at 9am EST over at [https://twitch.tv/ChaelCodes](https://twitch.tv/ChaelCodes)
+
 ## Installation
 Start by ensuring your development environment is ready for Rails. [GoRails has a great set of guides for every operating system.](https://gorails.com/setup)
+
+## Toolset/Stack
+
+Tool | Usage | Notes
+--- | --- | ---
+Postgres | Database | -
+Rails | Web app Framework | Not just an API!
+Vue | Front-end framework | Add some styling
+Buefy | UI Component Library | Based on Bulma
+RDoc | Documentation tool | [View at rubydoc.info](https://rubydoc.info/github/ChaelCodes/HuntersKeepers/Hunter)
+Code Climate | Code Quality Solution | [![Maintainability](https://api.codeclimate.com/v1/badges/67450702dbf049c335b0/maintainability)](https://codeclimate.com/github/ChaelCodes/HuntersKeepers/maintainability)
+CodeShip | Continuous Testing | [![Codeship Status for ChaelCodes/HuntersKeepers](https://app.codeship.com/projects/c9216880-c9a8-0137-f66b-76a25f9e8127/status?branch=master)](https://app.codeship.com/projects/367780)
+Heroku | Hosting | [Visit the App](https://hunters-keepers.herokuapp.com/hunters)
