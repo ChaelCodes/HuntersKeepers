@@ -8,7 +8,7 @@ class HuntersController < ApplicationController
   # GET /hunters.json
   # List all hunters
   def index
-    @hunters = Hunter.all
+    @hunters = policy_scope(Hunter)
   end
 
   # GET /hunters/1
@@ -41,7 +41,7 @@ class HuntersController < ApplicationController
   # @see HuntersController#hunter_params See hunter_params for accepted parameters
   def create
     @hunter = Hunter.new(hunter_params)
-
+    @hunter.user = current_user
     respond_to do |format|
       if @hunter.save
         format.html { redirect_to @hunter, notice: 'Hunter was successfully created.' }
@@ -86,7 +86,8 @@ class HuntersController < ApplicationController
 
   # Use callbacks to share common setup or constraints between actions.
   def set_hunter
-    @hunter = Hunter.find(params[:id])
+    @hunter = policy_scope(Hunter).find(params[:id])
+    authorize @hunter
   end
 
   # [Private Method] Specify acceptable params for the Hunter object

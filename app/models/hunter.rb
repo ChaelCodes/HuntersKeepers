@@ -5,6 +5,7 @@ class Hunter < ApplicationRecord
   MAX_LUCK = 7
 
   belongs_to :playbook
+  belongs_to :user
   has_many :gears, through: :hunters_gears
   has_many :hunters_moves
   has_many :moves, through: :hunters_moves
