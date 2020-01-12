@@ -53,4 +53,21 @@ RSpec.describe Hunter, type: :model do
       expect(hunter.reload.experience).to eq 1
     end
   end
+
+  describe '#advanced?' do
+    subject { hunter.advanced?(move) }
+    let(:move) { create(:move) }
+
+    context 'with advanced move' do
+      let!(:hunter_move) { create(:hunters_move, hunter: hunter, move: move, advanced: true) }
+
+      it { be_truthy }
+    end
+
+    context 'with not advanced move' do
+      let!(:hunter_move) { create(:hunters_move, hunter: hunter, move: move) }
+
+      it { be_falsey }
+    end
+  end
 end
