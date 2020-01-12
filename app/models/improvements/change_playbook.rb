@@ -1,10 +1,13 @@
+# frozen_string_literal: true
+
 module Improvements
   # This improvement changes the hunters playbook
   class ChangePlaybook < Improvement
     def apply(hunters_improvement)
       return false if add_errors(hunters_improvement)
 
-      hunters_improvement.hunter
+      hunters_improvement
+        .hunter
         .update(playbook: hunters_improvement.improvable)
     end
 
