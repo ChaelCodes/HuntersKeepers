@@ -5,7 +5,8 @@
 # from when upgrading their character.
 class Improvement < ApplicationRecord
   IMPROVEMENT_TYPES = %w[Improvement Improvements::RatingBoost
-                         Improvements::PlaybookMove Improvements::AnotherMove].freeze
+                         Improvements::PlaybookMove Improvements::AnotherMove
+                         Improvements::ChangePlaybook].freeze
 
   belongs_to :playbook
 
