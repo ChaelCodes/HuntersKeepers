@@ -11,12 +11,13 @@ class Improvement < ApplicationRecord
 
   enum rating: { charm: 0, cool: 1, sharp: 2, tough: 3, weird: 4 }
 
+  scope :not_advanced, -> { where(advanced: [nil, false]) }
+
   validates :description, presence: true
   validates :type, inclusion: { in: IMPROVEMENT_TYPES }, allow_blank: true
 
   def apply(hunters_improvement)
     return false if add_errors(hunters_improvement)
-
     true
   end
 
