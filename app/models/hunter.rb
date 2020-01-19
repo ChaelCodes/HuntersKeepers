@@ -20,7 +20,9 @@ class Hunter < ApplicationRecord
   #
   # @return [ActiveRecord::Collection]
   def available_improvements
-    playbook.improvements.where.not(id: improvements.select(:id))
+    availables = playbook.improvements.where.not(id: improvements.select(:id))
+    availables = availables.not_advanced unless hunters_improvements.count >= 5
+    availables
   end
 
   # Add a negative or positive amount of experience

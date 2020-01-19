@@ -27,4 +27,10 @@ FactoryBot.define do
     description { 'Take a move from another Playbook' }
     type { 'Improvements::AnotherMove' }
   end
+
+  factory :change_playbook, class: Improvements::ChangePlaybook do
+    playbook
+    description { 'Change this hunter to a new type.' }
+    type { Improvements::ChangePlaybook }
+  end
 end

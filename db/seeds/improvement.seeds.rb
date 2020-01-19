@@ -64,6 +64,17 @@ after :playbook do
   {
     description: 'Gain an Ally',
     playbook: chosen
+  },
+  {
+    description: 'Retire this Hunter to safety.',
+    playbook: chosen,
+    advanced: true
+  },
+  {
+    description: 'Change this Hunter to a new type.',
+    playbook: chosen,
+    type: 'Improvements::ChangePlaybook',
+    advanced: true
   }].each do |improvement|
     Improvement.find_or_create_by(improvement)
   end

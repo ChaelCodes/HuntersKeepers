@@ -9,7 +9,7 @@ RSpec.describe Hunter, type: :model do
     context 'improvement outside playbook' do
       let!(:improvement) { create :improvement, playbook: create(:playbook) }
 
-      it { is_expected.not_to include(:improvement) }
+      it { is_expected.not_to include(improvement) }
     end
 
     context 'improvement matches hunter playbook' do
@@ -19,7 +19,27 @@ RSpec.describe Hunter, type: :model do
       context 'hunter already has improvement' do
         let!(:hunters_improvement) { create(:hunters_improvement, hunter: hunter, improvement: improvement) }
 
-        it { is_expected.not_to include(:improvement) }
+        it { is_expected.not_to include(improvement) }
+      end
+    end
+
+    context 'for advanced improvements' do
+      let!(:advanced_improvement) { create(:improvement, advanced: true, playbook: hunter.playbook) }
+      let!(:improvement) { create :improvement, playbook: hunter.playbook }
+
+      context 'hunter has no improvements' do
+        it { is_expected.not_to include(advanced_improvement) }
+      end
+
+      context 'hunter has 5 improvements' do
+        let!(:hunters_improvements) do
+          create_list(:hunters_improvement,
+                      5,
+                      hunter: hunter,
+                      playbook: hunter.playbook)
+        end
+
+        it { is_expected.to include(advanced_improvement) }
       end
     end
   end
