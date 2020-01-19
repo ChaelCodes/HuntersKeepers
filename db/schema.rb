@@ -62,6 +62,7 @@ ActiveRecord::Schema.define(version: 2020_01_12_144727) do
     t.string "hunters_moves"
     t.bigint "hunter_id"
     t.bigint "move_id"
+    t.boolean "advanced"
     t.index ["hunter_id"], name: "index_hunters_moves_on_hunter_id"
     t.index ["move_id"], name: "index_hunters_moves_on_move_id"
   end

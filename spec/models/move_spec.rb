@@ -43,6 +43,19 @@ RSpec.describe Move, type: :model do
 
       it { is_expected.to eq "Your total 11 resulted in #{move.ten_plus}" }
     end
+
+    context 'roll is 12' do
+      let(:roll_result) { 12 }
+
+      it { eq "Your total 13 resulted in #{move.ten_plus}" }
+
+      context 'hunter has advanced move' do
+        it 'returns advanced result' do
+          expect(hunter).to receive(:advanced?).and_return(true)
+          is_expected.to eq "Your total 13 resulted in #{move.twelve_plus}"
+        end
+      end
+    end
   end
 
   describe '#rollable?' do

@@ -29,8 +29,7 @@ class Move < ApplicationRecord
               when 10..11
                 ten_plus
               else
-                # TODO: Add advanced Moves logic
-                ten_plus
+                hunter.advanced?(self) ? twelve_plus : ten_plus
               end
     "Your total #{result} resulted in #{outcome}"
   end
