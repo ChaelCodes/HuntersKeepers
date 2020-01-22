@@ -60,5 +60,5 @@
    tough: -1,
    weird: 0
  }].each do |hunter|
-  Hunter.find_or_create_by(hunter)
+  Hunter.find_or_create_by(name: hunter[:name]).update(hunter)
 end

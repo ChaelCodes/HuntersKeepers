@@ -113,7 +113,7 @@ I’ll kill them all. That’s all I have left.',
   explained, even now. Perhaps only one event in a thousand is
   true weirdness — but I’ll investigate them all to find it.',
 }].each do |playbook|
-  Playbook.find_or_create_by(playbook)
+  Playbook.find_or_initialize_by(name: playbook[:name]).update(playbook)
 end
 
 # used by other seedfiles to associate data with playbooks
