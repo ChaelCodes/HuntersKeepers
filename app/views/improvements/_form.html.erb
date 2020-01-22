@@ -1,4 +1,4 @@
-<%= form_with(model: improvement.becomes(Improvement), local: true, local: true) do |form| %>
+<%= form_with(model: improvement.becomes(Improvement), local: true) do |form| %>
   <% form.object = improvement.becomes(improvement.class) %>
   <% if improvement.errors.any? %>
     <div id="error_explanation">
