@@ -10,7 +10,7 @@
   sharp: 1,
   tough: 1,
   weird: -1,
-  playbook_id: 1
+  playbook: @chosen
 },
  {
    name: 'Dean Winchester',
@@ -22,7 +22,7 @@
    sharp: 1,
    tough: 2,
    weird: -1,
-   playbook_id: 12
+   playbook_id: @wronged
  },
  {
    name: 'Sam Winchester',
@@ -34,14 +34,14 @@
    sharp: -1,
    tough: -1,
    weird: 2,
-   playbook_id: 11
+   playbook_id: @spooky
  },
  {
    name: 'Fox Mulder',
    harm: 0,
    luck: 7,
    experience: 0,
-   playbook_id: 9,
+   playbook: @searcher,
    charm: -1,
    cool: 2,
    sharp: 1,
@@ -53,7 +53,7 @@
    harm: 0,
    luck: 7,
    experience: 0,
-   playbook_id: 9,
+   playbook: @professional,
    charm: 1,
    cool: 2,
    sharp: 1,
