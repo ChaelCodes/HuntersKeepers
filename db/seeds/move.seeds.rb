@@ -522,7 +522,6 @@ after :playbook do
   ######
   # Chosen
   ######
-  chosen = Playbook.find 1
   [{
     name: "Destiny's Plaything",
     rating: :weird,
@@ -532,7 +531,7 @@ after :playbook do
     ten_plus: "On a 10+, the Keeper will
   reveal a useful detail about the coming mystery.",
     type: 'Moves::Rollable',
-    playbook_id: chosen.id,
+    playbook_id: @chosen.id,
     description: 'At the beginning of each
   mystery, roll +Weird to see what is revealed about
   your immediate future.'
@@ -540,7 +539,7 @@ after :playbook do
    {
      name: 'I’m Here For A Reason',
      type: 'Moves::Descriptive',
-     playbook_id: chosen.id,
+     playbook_id: @chosen.id,
      description: 'There’s something you are
   destined to do. Work out the details with the Keeper,
   based on your fate. You cannot die until it comes
@@ -560,21 +559,21 @@ after :playbook do
      ten_plus: 'On 10+ everyone stops to watch and listen until you
   finish your opening speech.',
      type: 'Moves::Rollable',
-     playbook_id: chosen.id,
+     playbook_id: @chosen.id,
      description: 'When you make a showy
   entrance into a dangerous situation, roll +Cool.'
    },
    {
      name: 'Devastating',
      type: 'Moves::Descriptive',
-     playbook_id: chosen.id,
+     playbook_id: @chosen.id,
      description: 'When you inflict harm, you may
   inflict +1 harm.'
    },
    {
      name: 'Dutiful',
      type: 'Moves::Descriptive',
-     playbook_id: chosen.id,
+     playbook_id: @chosen.id,
      description: 'When your fate rears its ugly head, and
   you act in accordance with any of your fate tags
   (either heroic or doom) then mark experience. If it’s
@@ -583,14 +582,14 @@ after :playbook do
    {
      name: 'Invincible',
      type: 'Moves::Descriptive',
-     playbook_id: chosen.id,
+     playbook_id: @chosen.id,
      description: 'You always count as having 2-armour.
   This doesn’t stack with other protection.'
    },
    {
      name: 'Resilience',
      type: 'Moves::Descriptive',
-     playbook_id: chosen.id,
+     playbook_id: @chosen.id,
      description: 'You heal faster than normal people. Any
   time your harm gets healed, heal an extra point.
   Additionally, your wounds count as 1-harm less for
@@ -602,11 +601,10 @@ after :playbook do
   ######
   # Initiate
   ######
-  initiate = Playbook.find 6
   [{
     name: 'Get Help from your Sect',
     type: 'Moves::Rollable',
-    playbook_id: initiate.id,
+    playbook_id: @initiate.id,
     description: 'When you are in good standing with your Sect, at
       the beginning of each mystery, roll +Charm. On
       a 10+ they provide some useful info or help in the
@@ -629,21 +627,21 @@ after :playbook do
   {
     name: 'Ancient Fighting Arts',
     type: 'Moves::Descriptive',
-    playbook_id: initiate.id,
+    playbook_id: @initiate.id,
     description: 'When using an old-fashioned hand weapon, you inflict +1 harm and get +1
 whenever you roll protect someone.'
   },
   {
     name: 'Mystic',
     type: 'Moves::Descriptive',
-    playbook_id: initiate.id,
+    playbook_id: @initiate.id,
     description: 'Every time you successfully use magic, take
 +1 forward.'
   },
   {
     name: 'Fortunes',
     type: 'Moves::Rollable',
-    playbook_id: initiate.id,
+    playbook_id: @initiate.id,
     description: 'The Sect has ancient prophecies or divination techniques to predict the future. Once per
       mystery, you may use them. If you look at what the
       future holds, roll +Weird. On a 10+ hold 3, and on
@@ -679,7 +677,7 @@ whenever you roll protect someone.'
   {
     name: 'Sacred Oath',
     type: 'Moves::Descriptive',
-    playbook_id: initiate.id,
+    playbook_id: @initiate.id,
     description: ' You may bind yourself to a single goal,
 forsaking something during your quest (e.g. speech,
 all sustenance but bread and water, alcohol, lying,
@@ -694,7 +692,7 @@ have atoned.'
   {
     name: 'Mentor',
     type: 'Moves::Rollable',
-    playbook_id: initiate.id,
+    playbook_id: @initiate.id,
     description: 'You have a mentor in the Sect: name
       them. When you contact your mentor for info, roll
       +Sharp. On a 10+, you get an answer to your question, no problem. On a 7-9 you choose: they’re either
@@ -712,7 +710,7 @@ have atoned.'
   {
     name: 'Apprentice',
     type: 'Moves::Descriptive',
-    playbook_id: initiate.id,
+    playbook_id: @initiate.id,
     description: 'You have an apprentice: name them.
       Your job is to teach them the Sect’s ways. They count
       as an ally: subordinate (motivation: to follow your
@@ -721,14 +719,14 @@ have atoned.'
   {
     name: 'Helping Hand',
     type: 'Moves::Descriptive',
-    playbook_id: initiate.id,
+    playbook_id: @initiate.id,
     description: 'When you successfully help out
       another hunter, they get +2 instead of the usual +1.'
   },
   {
     name: 'That Old Black Magic',
     type: 'Moves::Descriptive',
-    playbook_id: initiate.id,
+    playbook_id: @initiate.id,
     description: 'When you use magic, you
       can ask a question from the investigate a mystery
       move as your effect.'
