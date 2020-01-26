@@ -65,6 +65,13 @@ after :playbook do
     playbook: @chosen
   },
   {
+    description: 'Get +1 to any rating, max +3.',
+    playbook: @chosen,
+    type: 'Improvements::RatingBoost',
+    stat_limit: 3,
+    advanced: true
+  },
+  {
     description: 'Retire this Hunter to safety.',
     playbook: @chosen,
     advanced: true

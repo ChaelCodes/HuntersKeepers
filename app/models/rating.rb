@@ -4,4 +4,6 @@
 # determines their capability to do something
 class Rating < ApplicationRecord
   belongs_to :playbook
+
+  LIST = %i[charm cool sharp tough weird]
 end

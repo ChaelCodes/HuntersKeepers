@@ -8,12 +8,12 @@ module Improvements
 
       hunters_improvement
         .hunter
-        .update(playbook: hunters_improvement.improvable)
+        .update(playbook: new_playbook(hunters_improvement))
     end
 
     def add_errors(hunters_improvement)
       super(hunters_improvement)
-      hunters_improvement.errors.add(:improvable, 'is not a Playbook.') unless playbook?(hunters_improvement.improvable)
+      hunters_improvement.errors.add(:improvable, 'is not a Playbook.') unless playbook?(new_playbook(hunters_improvement))
       hunters_improvement.errors.present?
     end
 
@@ -23,6 +23,14 @@ module Improvements
 
     def improvable_options(_hunter)
       Playbook.where.not(id: playbook_id)
+    end
+
+    def new_playbook(hunters_improvement)
+      begin
+        Playbook.find(hunters_improvement.improveable&.dig('id'))
+      rescue ActiveRecord::RecordNotFound => e
+        hunters_improvement.errors.add(:improveable, e.message)
+      end
     end
   end
 end

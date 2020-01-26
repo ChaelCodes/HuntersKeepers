@@ -4,7 +4,7 @@ require 'rails_helper'
 
 RSpec.describe Improvements::PlaybookMove, type: :model do
   let(:playbook_move) { create(:playbook_move) }
-  let(:hunters_improvement) { build :hunters_improvement, improvement: playbook_move, hunter: hunter, improvable: move }
+  let(:hunters_improvement) { build :hunters_improvement, improvement: playbook_move, hunter: hunter, improveable: { "id": move.id } }
   let(:hunter) { create :hunter, playbook: playbook_move.playbook  }
   let(:move) { create :moves_rollable, playbook: playbook_move.playbook }
 

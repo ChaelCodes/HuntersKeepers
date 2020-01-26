@@ -4,7 +4,12 @@ require 'rails_helper'
 
 RSpec.describe Improvements::AnotherMove, type: :model do
   let(:another_move) { create(:another_move) }
-  let(:hunters_improvement) { build :hunters_improvement, improvement: another_move, hunter: hunter, improvable: move }
+  let(:hunters_improvement) {
+    build :hunters_improvement,
+          hunter: hunter,
+          improvement: another_move,
+          improveable: {'id': move.id, 'name': move.name, 'description': move.description }
+  }
   let(:hunter) { create :hunter, playbook: another_move.playbook  }
   let(:move) { create :moves_rollable, playbook: create(:playbook) }
 
@@ -96,6 +101,15 @@ RSpec.describe Improvements::AnotherMove, type: :model do
     context 'hunter does not have move' do
       it { is_expected.to be_falsey }
     end
+  end
+
+  describe '#move' do
+    subject { another_move.move(hunters_improvement) }
+
+    let(:move) { create :move }
+    let(:hunters_improvement) { build :hunters_improvement, improvement: another_move, hunter: hunter, improveable: { "id": move.id, "name": move.name, "description": move.description } }
+
+    it { is_expected.to eq Move.find move.id }
   end
 
   describe '#add_errors' do

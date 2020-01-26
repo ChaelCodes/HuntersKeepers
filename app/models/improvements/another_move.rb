@@ -6,7 +6,7 @@ module Improvements
     def apply(hunters_improvement)
       return false if add_errors(hunters_improvement)
 
-      hunters_improvement.hunter.moves << hunters_improvement.improvable
+      hunters_improvement.hunter.moves << move(hunters_improvement)
     end
 
     def add_errors(hunters_improvement)
@@ -17,15 +17,23 @@ module Improvements
     end
 
     def validate_hunter(hunters_improvement)
-      return unless hunter_has_move?(hunters_improvement.hunter, hunters_improvement.improvable)
-      hunters_improvement.errors.add(:hunter, "already has move with id #{hunters_improvement.improvable.id}")
+      return unless hunter_has_move?(hunters_improvement.hunter, move(hunters_improvement))
+      hunters_improvement.errors.add(:hunter, "already has move with id #{move(hunters_improvement).id}")
     end
 
     def validate_improvable(hunters_improvement)
-      move = hunters_improvement.improvable
+      move = move(hunters_improvement)
       hunters_improvement.errors.add(:improvable, 'is not a subclass of Move.') if not_a_move?(move)
       hunters_improvement.errors.add(:improvable, "is from the hunter's playbook #{playbook.name}") if move_matches_playbook?(move)
       hunters_improvement.errors.present?
+    end
+
+    def move(hunters_improvement)
+      begin
+        Move.find(hunters_improvement.improveable&.dig('id'))
+      rescue ActiveRecord::RecordNotFound => e
+        hunters_improvement.errors.add(:improveable, e.message)
+      end
     end
 
     def move_matches_playbook?(move)
