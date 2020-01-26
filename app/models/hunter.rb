@@ -40,6 +40,6 @@ class Hunter < ApplicationRecord
   #
   # @param move [Move] the move to check
   def advanced?(move)
-    hunters_moves.find_by(move: move).advanced
+    hunters_moves.find_by(move: move)&.advanced
   end
 end
