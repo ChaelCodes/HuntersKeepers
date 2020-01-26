@@ -1,2 +1,12 @@
+<p>
+  <strong>Hunter:</strong>
+  <%= link_to(@hunters_improvement.hunter.name, @hunters_improvement.hunter) %>
+</p>
+
+<p>
+  <strong>Improvement:</strong>
+  <%= link_to(@hunters_improvement.improvement.description, improvement_path(@hunters_improvement.improvement)) %>
+</p>
+
 <%= link_to 'Edit', edit_hunter_hunters_improvement_path(hunter_id: @hunters_improvement.hunter_id, id: @hunters_improvement.id) %> |
 <%= link_to 'Back', hunter_hunters_improvements_path(hunter_id: @hunters_improvement.hunter_id) %>

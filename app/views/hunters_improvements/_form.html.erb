@@ -11,11 +11,6 @@
     </div>
   <% end %>
 
-<!--   <div class="field">
-    <%= form.label :improvement %>
-    <%= form.collection_select(:improvement_id, @improvements, :id, :description) %>
-  </div> -->
-
   <hunters-improvement-form hunter_id="<%= hunters_improvement.hunter.id %>" :improvements="<%= @improvements.to_json %>"></hunters-improvement-form>
 
   <div class="actions">
