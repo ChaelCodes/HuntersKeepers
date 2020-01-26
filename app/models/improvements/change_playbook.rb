@@ -22,7 +22,7 @@ module Improvements
     end
 
     def improvable_options(_hunter)
-      Playbook.where.not(id: playbook_id)
+      Playbook.where.not(id: playbook_id).select(:id, :name, :description)
     end
 
     def new_playbook(hunters_improvement)

@@ -53,7 +53,9 @@ module Improvements
     end
 
     def improvable_options(hunter)
-      Move.where.not(id: hunter.moves.select(:id)).where.not(playbook_id: playbook_id)
+      Move.where.not(id: hunter.moves.select(:id))
+          .where.not(playbook_id: playbook_id)
+          .select(:id, :name, :description)
     end
   end
 end
