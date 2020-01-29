@@ -1,3 +1,6 @@
+# frozen_string_literal: true
+
+# Default access to all objects in the application.
 class ApplicationPolicy
   attr_reader :user, :record
 
@@ -34,6 +37,7 @@ class ApplicationPolicy
     false
   end
 
+  # Default access scope for querying records.
   class Scope
     attr_reader :user, :scope
 

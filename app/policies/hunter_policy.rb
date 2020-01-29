@@ -1,5 +1,8 @@
+# frozen_string_literal: true
+
+# This controls access to Hunters
 class HunterPolicy < ApplicationPolicy
-  def update? 
+  def update?
     @record.user == @user
   end
 
