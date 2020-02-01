@@ -5,5 +5,5 @@
 class Rating < ApplicationRecord
   belongs_to :playbook
 
-  LIST = %i[charm cool sharp tough weird]
+  LIST = %i[charm cool sharp tough weird].freeze
 end

@@ -29,11 +29,9 @@ module Improvements
     end
 
     def move(hunters_improvement)
-      begin
-        Move.find(hunters_improvement.improveable&.dig('id'))
-      rescue ActiveRecord::RecordNotFound => e
-        hunters_improvement.errors.add(:improveable, e.message)
-      end
+      Move.find(hunters_improvement.improveable&.dig('id'))
+    rescue ActiveRecord::RecordNotFound => e
+      hunters_improvement.errors.add(:improveable, e.message)
     end
 
     def move_matches_playbook?(move)

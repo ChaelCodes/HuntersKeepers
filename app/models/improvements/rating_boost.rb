@@ -16,8 +16,11 @@ module Improvements
 
     def add_errors(hunters_improvement)
       super
-      hunter = hunters_improvement.hunter
-      hunters_improvement.errors.add(:hunter, "#{configured_rating(hunters_improvement)} rating would exceed max for improvement.") unless under_max_limit? hunters_improvement
+      unless under_max_limit? hunters_improvement
+        hunters_improvement
+          .errors
+          .add(:hunter, "#{configured_rating(hunters_improvement)} rating would exceed max for improvement.")
+      end
       hunters_improvement.errors.present?
     end
 
