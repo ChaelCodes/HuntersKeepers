@@ -3,3 +3,7 @@ plugins:
   rubocop:
     enabled: true
     channel: rubocop-0-67
+  stylelint:
+    enabled: true
+  eslint:
+    enabled: true
