@@ -30,7 +30,6 @@ export default {
       if (!this.selectedOption) {
         return '';
       }
-      console.log(this.selectedOption);
       let option = JSON.parse(this.selectedOption);
       return option.description;
     },
@@ -60,10 +59,12 @@ export default {
         });
     },
     stringifyValue(option) {
-      if (option.id) {
-        return JSON.stringify(option);
-      } else {
-        return JSON.stringify({ 'improvable': option });
+      if (option) {
+        if (option.id) {
+          return JSON.stringify(option);
+        } else {
+          return JSON.stringify({ 'improvable': option });
+        }
       }
     },
   },
