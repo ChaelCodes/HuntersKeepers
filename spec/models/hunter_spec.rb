@@ -61,13 +61,13 @@ RSpec.describe Hunter, type: :model do
     context 'with advanced move' do
       let!(:hunter_move) { create(:hunters_move, hunter: hunter, move: move, advanced: true) }
 
-      it { be_truthy }
+      it { is_expected.to be_truthy }
     end
 
     context 'with not advanced move' do
       let!(:hunter_move) { create(:hunters_move, hunter: hunter, move: move) }
 
-      it { be_falsey }
+      it { is_expected.to be_falsey }
     end
   end
 end
