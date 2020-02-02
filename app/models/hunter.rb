@@ -2,6 +2,8 @@
 
 # The character appearing in the mystery
 class Hunter < ApplicationRecord
+  MAX_LUCK = 7
+
   belongs_to :playbook
   has_many :gears, through: :hunters_gears
   has_many :hunters_moves
@@ -13,7 +15,7 @@ class Hunter < ApplicationRecord
                                 }
   has_many :improvements, through: :hunters_improvements
   validates :harm, numericality: { less_than_or_equal_to: 7, greater_than_or_equal_to: 0 }
-  validates :luck, numericality: { less_than_or_equal_to: 7, greater_than_or_equal_to: 0 }
+  validates :luck, numericality: { less_than_or_equal_to: MAX_LUCK, greater_than_or_equal_to: 0 }
 
   # List all improvements that are available
   # based on the hunter's playbook, and excludes

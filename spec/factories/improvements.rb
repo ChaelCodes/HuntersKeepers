@@ -31,6 +31,12 @@ FactoryBot.define do
   factory :change_playbook, class: Improvements::ChangePlaybook do
     playbook
     description { 'Change this hunter to a new type.' }
-    type { Improvements::ChangePlaybook }
+    type { 'Improvements::ChangePlaybook' }
+  end
+
+  factory :gain_luck, class: Improvements::GainLuck do
+    playbook
+    description { 'Get back one used Luck point.'}
+    type { 'Improvements::GainLuck' }
   end
 end

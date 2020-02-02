@@ -72,6 +72,12 @@ after :playbook do
     advanced: true
   },
   {
+    description: 'Get back one used Luck point.',
+    playbook: @chosen,
+    type: 'Improvements::GainLuck',
+    advanced: true
+  },
+  {
     description: 'Retire this Hunter to safety.',
     playbook: @chosen,
     advanced: true
