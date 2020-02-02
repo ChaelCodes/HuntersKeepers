@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_01_26_141817) do
+ActiveRecord::Schema.define(version: 2020_02_02_151306) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -53,10 +53,7 @@ ActiveRecord::Schema.define(version: 2020_01_26_141817) do
     t.string "hunters_improvements"
     t.integer "hunter_id"
     t.integer "improvement_id"
-    t.string "improvable_type"
-    t.bigint "improvable_id"
-    t.jsonb "improveable"
-    t.index ["improvable_type", "improvable_id"], name: "index_hunters_improvements_on_improvable_type_and_improvable_id"
+    t.jsonb "improvable"
   end
 
   create_table "hunters_moves", force: :cascade do |t|

@@ -30,9 +30,9 @@ module Improvements
     end
 
     def new_playbook(hunters_improvement)
-      Playbook.find(hunters_improvement.improveable&.dig('id'))
+      Playbook.find(hunters_improvement.improvable&.dig('id'))
     rescue ActiveRecord::RecordNotFound => e
-      hunters_improvement.errors.add(:improveable, e.message)
+      hunters_improvement.errors.add(:improvable, e.message)
     end
   end
 end

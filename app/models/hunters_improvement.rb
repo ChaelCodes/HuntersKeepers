@@ -5,7 +5,6 @@
 class HuntersImprovement < ApplicationRecord
   belongs_to :hunter
   belongs_to :improvement
-  belongs_to :improvable, polymorphic: true, optional: true
 
   after_create :apply_improvement
   validate :validate_hunter, on: :create

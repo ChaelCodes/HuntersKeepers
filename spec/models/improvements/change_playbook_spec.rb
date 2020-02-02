@@ -8,7 +8,7 @@ RSpec.describe Improvements::ChangePlaybook, type: :model do
     build :hunters_improvement,
           improvement: change_playbook,
           hunter: hunter,
-          improveable: {"id": playbook.id }
+          improvable: {"id": playbook.id }
   end
 
   describe '#apply' do
@@ -17,7 +17,7 @@ RSpec.describe Improvements::ChangePlaybook, type: :model do
       build :hunters_improvement,
              improvement: change_playbook,
              hunter: hunter,
-             improveable: {"id": playbook.id }
+             improvable: {"id": playbook.id }
            end
     let(:hunter) { create :hunter, playbook: change_playbook.playbook }
     let(:playbook) { create :playbook }

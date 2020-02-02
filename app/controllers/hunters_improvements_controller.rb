@@ -30,7 +30,7 @@ class HuntersImprovementsController < ApplicationController
   def create
     @hunters_improvement = HuntersImprovement.new(hunters_improvement_params)
     @hunters_improvement.hunter = @hunter
-    update_improveable_option
+    update_improvable_option
 
     respond_to do |format|
       if @hunters_improvement.save
@@ -54,7 +54,7 @@ class HuntersImprovementsController < ApplicationController
   # PATCH/PUT /hunters_improvements/1.json
   def update
     respond_to do |format|
-      update_improveable_option
+      update_improvable_option
       if @hunters_improvement.update(hunters_improvement_params)
         format.html do
           redirect_to hunter_hunters_improvement_url(hunter_id: @hunter.id, id: @hunters_improvement.id),
@@ -100,15 +100,15 @@ class HuntersImprovementsController < ApplicationController
     @improvements = @hunter.available_improvements
   end
 
-  def update_improveable_option
-    return unless @hunters_improvement.improveable
-    raw = JSON.parse(@hunters_improvement.improveable)
-    @hunters_improvement.improveable = raw
+  def update_improvable_option
+    return unless @hunters_improvement.improvable
+    raw = JSON.parse(@hunters_improvement.improvable)
+    @hunters_improvement.improvable = raw
   end
 
   # Never trust parameters from the scary internet, only allow the white list through.
   def hunters_improvement_params
     params.require(:hunters_improvement)
-          .permit(:hunter_id, :improvement_id, :improvable_id, :improvable_type, :improveable)
+          .permit(:hunter_id, :improvement_id, :improvable)
   end
 end

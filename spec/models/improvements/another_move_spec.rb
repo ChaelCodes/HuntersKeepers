@@ -8,7 +8,7 @@ RSpec.describe Improvements::AnotherMove, type: :model do
     build :hunters_improvement,
           hunter: hunter,
           improvement: another_move,
-          improveable: {'id': move.id, 'name': move.name, 'description': move.description }
+          improvable: {'id': move.id, 'name': move.name, 'description': move.description }
   }
   let(:hunter) { create :hunter, playbook: another_move.playbook  }
   let(:move) { create :moves_rollable, playbook: create(:playbook) }
@@ -85,7 +85,7 @@ RSpec.describe Improvements::AnotherMove, type: :model do
     subject { another_move.move(hunters_improvement) }
 
     let(:move) { create :move }
-    let(:hunters_improvement) { build :hunters_improvement, improvement: another_move, hunter: hunter, improveable: { "id": move.id, "name": move.name, "description": move.description } }
+    let(:hunters_improvement) { build :hunters_improvement, improvement: another_move, hunter: hunter, improvable: { "id": move.id, "name": move.name, "description": move.description } }
 
     it { is_expected.to eq Move.find move.id }
   end
@@ -104,7 +104,7 @@ RSpec.describe Improvements::AnotherMove, type: :model do
       let(:move) { create(:playbook) }
       it 'adds errors to the hunters improvement' do
         subject
-        expect(hunters_improvement.errors.full_messages).to include 'Improvable is not a subclass of Move.'
+        expect(hunters_improvement.errors.full_messages).to include "Improvable Couldn't find Move with 'id'=#{move.id}"
       end
     end
   end

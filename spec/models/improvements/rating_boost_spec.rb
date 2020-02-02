@@ -16,7 +16,7 @@ RSpec.describe Improvements::RatingBoost, type: :model do
 
       context 'configured rating boost' do
         let(:rating_boost) { create :rating_boost, rating: nil }
-        let(:hunters_improvement) { build(:hunters_improvement, hunter: hunter, improvement: rating_boost, improveable: { improveable: 'cool' }) }
+        let(:hunters_improvement) { build(:hunters_improvement, hunter: hunter, improvement: rating_boost, improvable: { improvable: 'cool' }) }
 
         it { expect { subject }.to change(hunter, :cool).by(1) }
         it "sets the hunter's cool to 1" do
@@ -90,7 +90,7 @@ RSpec.describe Improvements::RatingBoost, type: :model do
 
     context 'rating configured on hunters improvement' do
       let(:rating_boost) { create :rating_boost, rating: nil }
-      let(:hunters_improvement) { create(:hunters_improvement, hunter: hunter, improvement: rating_boost, improveable: { improveable: 'cool' }) }
+      let(:hunters_improvement) { create(:hunters_improvement, hunter: hunter, improvement: rating_boost, improvable: { improvable: 'cool' }) }
 
       it { is_expected.to eq 'cool' }
     end

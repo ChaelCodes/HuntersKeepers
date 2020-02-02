@@ -11,7 +11,7 @@
       </b-select>
     </b-field>
     <b-field v-if="this.options.length > 0" label="Options" v-bind:message="optionDescription">
-      <b-select v-model="selectedOption" placeholder="Select Option" name="hunters_improvement[improveable]">
+      <b-select v-model="selectedOption" placeholder="Select Option" name="hunters_improvement[improvable]">
         <option
           v-for="option in options"
           :value="stringifyValue(option)"
@@ -63,7 +63,7 @@ export default {
       if (option.id) {
         return JSON.stringify(option);
       } else {
-        return JSON.stringify({ 'improveable': option });
+        return JSON.stringify({ 'improvable': option });
       }
     },
   },

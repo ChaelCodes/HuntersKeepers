@@ -29,7 +29,7 @@ module Improvements
     end
 
     def configured_rating(hunters_improvement)
-      rating || hunters_improvement.improveable&.dig('improveable')
+      rating || hunters_improvement.improvable&.dig('improvable')
     end
   end
 end
