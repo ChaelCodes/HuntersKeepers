@@ -62,28 +62,6 @@ RSpec.describe Improvements::PlaybookMove, type: :model do
     end
   end
 
-  describe '#not_a_move?' do
-    subject { playbook_move.not_a_move?(move) }
-
-    context 'Moves::Base' do
-      let(:move) { create(:move) }
-
-      it { is_expected.to be_falsey }
-    end
-
-    context 'Moves::Descriptive' do
-      let(:move) { create :moves_descriptive }
-
-      it { is_expected.to be_falsey }
-    end
-
-    context 'Playbook' do
-      let(:move) { create :playbook }
-
-      it { is_expected.to be_truthy }
-    end
-  end
-
   describe '#hunter_has_move?' do
     subject { playbook_move.hunter_has_move?(hunter, move) }
 
@@ -112,7 +90,7 @@ RSpec.describe Improvements::PlaybookMove, type: :model do
       let(:move) { create(:playbook) }
       it 'adds errors to the hunters improvement' do
         subject
-        expect(hunters_improvement.errors.full_messages).to include 'Improvable is not a subclass of Move.'
+        expect(hunters_improvement.errors.full_messages).to include "Improvable Couldn't find Move with 'id'=#{move.id}"
       end
     end
   end

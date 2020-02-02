@@ -23,20 +23,12 @@ module Improvements
 
     def validate_improvable(hunters_improvement)
       move = move(hunters_improvement)
-      hunters_improvement.errors.add(:improvable, 'is not a subclass of Move.') if not_a_move?(move)
+      return unless move
       hunters_improvement.errors.add(:improvable, "is not from playbook #{playbook.name}") unless move_matches_playbook?(move)
     end
 
     def move_matches_playbook?(move)
-      move?(move) && move.playbook == playbook
-    end
-
-    def not_a_move?(move)
-      !move?(move)
-    end
-
-    def move?(move)
-      move.class <= Move
+      move.playbook == playbook
     end
 
     def hunter_has_move?(hunter, move)
@@ -46,7 +38,8 @@ module Improvements
     def move(hunters_improvement)
       Move.find(hunters_improvement.improveable&.dig('id'))
     rescue ActiveRecord::RecordNotFound => e
-      hunters_improvement.errors.add(:improveable, e.message)
+      hunters_improvement.errors.add(:improvable, e.message)
+      false
     end
 
     def improvable_options(hunter)
