@@ -44,7 +44,7 @@ class HuntersController < ApplicationController
     @hunter.user = current_user
     respond_to do |format|
       if @hunter.save
-        format.html { redirect_to @hunter, notice: 'Hunter was successfully created.' }
+        format.html { redirect_to hunter_path(@hunter), notice: 'Hunter was successfully created.' }
         format.json { render :show, status: :created, location: @hunter }
       else
         format.html { render :new }
@@ -61,7 +61,7 @@ class HuntersController < ApplicationController
   def update
     respond_to do |format|
       if @hunter.update(hunter_params)
-        format.html { redirect_to @hunter, notice: 'Hunter was successfully updated.' }
+        format.html { redirect_to hunter_path(@hunter), notice: 'Hunter was successfully updated.' }
         format.json { render :show, status: :ok, location: @hunter }
       else
         format.html { render :edit }
