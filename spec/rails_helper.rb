@@ -12,6 +12,7 @@ require 'devise'
 # Add coverage report to RSPEC
 require 'simplecov'
 SimpleCov.start
+require "pundit/rspec"
 
 # Add Factories
 require 'support/factory_bot'
