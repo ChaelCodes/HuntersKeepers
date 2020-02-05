@@ -18,6 +18,8 @@ Tool | Usage | Notes
 --- | --- | ---
 Postgres | Database | -
 Rails | Web app Framework | Not just an API!
+Webpacker | Webpack Integration for Rails | [View Webpack Docs](https://github.com/rails/webpacker)
+Yarn | JS Package Management | [View Yarn Docs](https://yarnpkg.com/)
 Vue | Front-end framework | Add some reactivity
 Buefy | UI Component Library | Based on Bulma
 RDoc | Documentation tool | [View at rubydoc.info](https://rubydoc.info/github/ChaelCodes/HuntersKeepers/Hunter)
