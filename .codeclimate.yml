@@ -1,9 +1,11 @@
 version: "2"
 plugins:
+  brakeman:
+    enabled: true
+  eslint:
+    enabled: true
   rubocop:
     enabled: true
     channel: rubocop-0-67
   stylelint:
-    enabled: true
-  eslint:
     enabled: true
