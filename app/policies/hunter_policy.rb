@@ -3,11 +3,11 @@
 # This controls access to Hunters
 class HunterPolicy < ApplicationPolicy
   def update?
-    @record.user == @user
+    @record.user == @user || @user.admin?
   end
 
   def destroy?
-    @record.user == @user
+    @record.user == @user || @user.admin?
   end
 
   class Scope < Scope
