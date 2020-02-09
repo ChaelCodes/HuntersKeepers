@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_02_02_151306) do
+ActiveRecord::Schema.define(version: 2020_02_09_183512) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -50,14 +50,12 @@ ActiveRecord::Schema.define(version: 2020_02_02_151306) do
   end
 
   create_table "hunters_improvements", force: :cascade do |t|
-    t.string "hunters_improvements"
     t.integer "hunter_id"
     t.integer "improvement_id"
     t.jsonb "improvable"
   end
 
   create_table "hunters_moves", force: :cascade do |t|
-    t.string "hunters_moves"
     t.bigint "hunter_id"
     t.bigint "move_id"
     t.boolean "advanced"
