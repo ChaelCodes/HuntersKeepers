@@ -110,6 +110,20 @@ RSpec.describe HuntersImprovementsController, type: :controller do
           expect(HuntersImprovement.last.improvable['id']).to eq 25
         end
       end
+
+      context 'with json improvable array' do
+        let(:attributes) { { hunter_id: hunter.id, improvement_id: valid_improvement.id, improvable: ['{"id":25,"name":"Ancient Fighting Arts","description":"When using an old-fashioned hand weapon, you inflict +1 harm and get +1\nwhenever you roll protect someone."}', '{"id":25,"name":"Ancient Fighting Arts","description":"When using an old-fashioned hand weapon, you inflict +1 harm and get +1\nwhenever you roll protect someone."}'] } }
+        let(:format_type) { :html }
+
+        it 'creates a new HuntersImprovement' do
+          expect { subject }.to change(HuntersImprovement, :count).by(1)
+        end
+
+        it 'has a well-formatted json improvable' do
+          subject
+          expect(HuntersImprovement.last.improvable[0]['id']).to eq 25
+        end
+      end
     end
 
     context 'with invalid params' do
