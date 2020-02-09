@@ -4,7 +4,7 @@
 # These are the options the Hunter can choose
 # from when upgrading their character.
 class Improvement < ApplicationRecord
-  OPTIONS_COUNT = 1.freeze
+  OPTIONS_COUNT = 1
   IMPROVEMENT_TYPES = %w[Improvement Improvements::RatingBoost
                          Improvements::PlaybookMove Improvements::AnotherMove
                          Improvements::ChangePlaybook Improvements::GainLuck

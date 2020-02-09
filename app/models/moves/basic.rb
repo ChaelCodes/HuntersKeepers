@@ -1,6 +1,7 @@
 # frozen_string_literal: true
 
 module Moves
+  # This  class represents the basic moves that all Hunters have
   class Basic < Move
     def roll_results(hunter) # rubocop:disable Metrics/MethodLength
       result = roll(hunter)
