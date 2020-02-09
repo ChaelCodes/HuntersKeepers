@@ -27,10 +27,8 @@ class Move < ApplicationRecord
                 six_and_under
               when 7..9
                 seven_to_nine
-              when 10..11
+              when (10..)
                 ten_plus
-              else
-                hunter.advanced?(self) ? twelve_plus : ten_plus
               end
     "Your total #{result} resulted in #{outcome}"
   end

@@ -3,7 +3,7 @@
 require 'rails_helper'
 
 RSpec.describe Move, type: :model do
-  let(:move) { create :moves_basic }
+  let(:move) { create :moves_basic, rating: :cool }
 
   describe '#roll' do
     subject { move.roll(hunter) }
@@ -54,6 +54,12 @@ RSpec.describe Move, type: :model do
           expect(hunter).to receive(:advanced?).and_return(true)
           is_expected.to eq "Your total 13 resulted in #{move.twelve_plus}"
         end
+      end
+
+      context 'move is not basic' do
+        let(:move) { create :moves_rollable, rating: :cool }
+
+        it { eq "Your total 13 resulted in #{move.ten_plus}" }
       end
     end
   end
