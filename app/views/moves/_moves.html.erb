@@ -1,6 +1,6 @@
 <% moves.each do |move| %>
   <ul>
-    <li><%= move.name %>: <%= move.description %>
+    <li><strong><%= move.name %>:</strong><%= move.description %>
       <% if move.rollable? && hunter %>
         <%= link_to 'Roll', hunter_path(hunter), data: { confirm: "#{move.roll_results(hunter)}" } %>
       <% else %>

@@ -5,8 +5,7 @@ module Improvements
   class AnotherMove < Improvement
     def apply(hunters_improvement)
       return false if add_errors(hunters_improvement)
-
-      hunters_improvement.hunter.moves << hunters_improvement.improvable
+      hunters_improvement.hunter.moves << move(hunters_improvement)
     end
 
     def add_errors(hunters_improvement)
@@ -17,27 +16,25 @@ module Improvements
     end
 
     def validate_hunter(hunters_improvement)
-      return unless hunter_has_move?(hunters_improvement.hunter, hunters_improvement.improvable)
-      hunters_improvement.errors.add(:hunter, "already has move with id #{hunters_improvement.improvable.id}")
+      return unless hunter_has_move?(hunters_improvement.hunter, move(hunters_improvement))
+      hunters_improvement.errors.add(:hunter, "already has move with id #{move(hunters_improvement).id}")
     end
 
     def validate_improvable(hunters_improvement)
-      move = hunters_improvement.improvable
-      hunters_improvement.errors.add(:improvable, 'is not a subclass of Move.') if not_a_move?(move)
+      move = move(hunters_improvement)
+      return unless move
       hunters_improvement.errors.add(:improvable, "is from the hunter's playbook #{playbook.name}") if move_matches_playbook?(move)
-      hunters_improvement.errors.present?
+    end
+
+    def move(hunters_improvement)
+      Move.find(hunters_improvement.improvable&.dig('id'))
+    rescue ActiveRecord::RecordNotFound => e
+      hunters_improvement.errors.add(:improvable, e.message)
+      false
     end
 
     def move_matches_playbook?(move)
-      move?(move) && move.playbook == playbook
-    end
-
-    def not_a_move?(move)
-      !move?(move)
-    end
-
-    def move?(move)
-      move.class <= Move
+      move.playbook == playbook
     end
 
     def hunter_has_move?(hunter, move)
@@ -45,7 +42,9 @@ module Improvements
     end
 
     def improvable_options(hunter)
-      Move.where.not(id: hunter.moves.select(:id)).where.not(playbook_id: playbook_id)
+      Move.where.not(id: hunter.moves.select(:id))
+          .where.not(playbook_id: playbook_id)
+          .select(:id, :name, :description)
     end
   end
 end
