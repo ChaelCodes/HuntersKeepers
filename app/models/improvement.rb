@@ -6,7 +6,8 @@
 class Improvement < ApplicationRecord
   IMPROVEMENT_TYPES = %w[Improvement Improvements::RatingBoost
                          Improvements::PlaybookMove Improvements::AnotherMove
-                         Improvements::ChangePlaybook Improvements::GainLuck].freeze
+                         Improvements::ChangePlaybook Improvements::GainLuck
+                         Improvements::AdvancedMove].freeze
 
   belongs_to :playbook
 

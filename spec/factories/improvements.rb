@@ -21,6 +21,11 @@ FactoryBot.define do
     type { 'Improvements::PlaybookMove' }
   end
 
+  factory :advanced_move, class: Improvements::AdvancedMove do
+    playbook
+    description { 'Mark two of the basic moves as advanced.' }
+    type { 'Improvements::AdvancedMove' }
+  end
 
   factory :another_move, class: Improvements::AnotherMove do
     playbook
