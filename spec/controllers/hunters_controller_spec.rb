@@ -35,7 +35,7 @@ RSpec.describe HuntersController, type: :controller do
 
   before(:each) do
     @request.env["devise.mapping"] = Devise.mappings[:user]
-    sign_in create(:user)
+    sign_in create(:user, :admin)
   end
 
   describe 'GET #index' do

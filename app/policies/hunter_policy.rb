@@ -2,6 +2,10 @@
 
 # This controls access to Hunters
 class HunterPolicy < ApplicationPolicy
+  def create?
+    true
+  end
+
   def update?
     @record.user == @user || @user.admin?
   end

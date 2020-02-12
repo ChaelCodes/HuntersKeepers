@@ -16,7 +16,7 @@ RSpec.describe HunterPolicy, type: :policy do
   end
 
   permissions :create? do
-    it { expect(subject).to permit(user, Hunter) }
+    it { expect(subject).to permit(user, hunter) }
   end
 
   permissions :update? do
@@ -29,6 +29,11 @@ RSpec.describe HunterPolicy, type: :policy do
   end
 
   permissions :destroy? do
-    pending "add some examples to (or delete) #{__FILE__}"
+    it { expect(subject).not_to permit(user, hunter) }
+    it { expect(subject).to permit(admin, hunter) }
+    context "user belongs to hunter" do
+      let(:hunter) { create :hunter, user: user }
+      it { expect(subject).to permit(user, hunter) }
+    end
   end
 end
