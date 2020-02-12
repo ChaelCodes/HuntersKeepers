@@ -1,8 +1,13 @@
 FactoryBot.define do
   factory :user do
     
-    email {'lala@example.com'}
+    sequence :email do |i|
+      "lala_#{i}@example.com"
+    end
     password {'123456'}
+    trait :admin do
+      admin {true}
+    end
 
   end
 end
