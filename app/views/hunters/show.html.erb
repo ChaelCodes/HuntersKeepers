@@ -25,7 +25,13 @@
   <div class="column">
     <p>
       <h4>Moves</h4>
-      <%= render "moves/moves", moves: @hunter.moves, hunter: @hunter %>
+      <%= render "moves/moves", moves: @hunter.moves.not_basic, hunter: @hunter %>
+    </p>
+  </div>
+  <div class="column">
+    <p>
+      <h4>Gear</h4>
+      <%= render "gears/gears", gears: @hunter.gears %>
     </p>
   </div>
 </div>

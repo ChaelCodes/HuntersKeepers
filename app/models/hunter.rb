@@ -6,7 +6,7 @@ class Hunter < ApplicationRecord
 
   belongs_to :playbook
   belongs_to :user
-  has_many :gears, through: :hunters_gears
+  has_and_belongs_to_many :gears, join_table: :hunters_gears
   has_many :hunters_moves
   has_many :moves, through: :hunters_moves
   has_many :hunters_improvements

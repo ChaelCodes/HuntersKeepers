@@ -1,6 +1,13 @@
 <h1>Editing Hunter</h1>
 
-<%= render 'form', hunter: @hunter %>
-
-<%= link_to 'Show', @hunter %> |
-<%= link_to 'Back', hunters_path %>
+<div class="columns">
+  <div class="column">
+    <%= render 'form', hunter: @hunter %>
+    <%= link_to 'Show', @hunter %> |
+    <%= link_to 'Back', hunters_path %>
+  </div>
+  <div class="column">
+    <hunter-moves hunter_id=<%= "#{@hunter.id}" %>></hunter-moves>
+    <!-- <hunter-gear hunter_id=<%= "#{@hunter.id}" %>></hunter-gear> -->
+  </div>
+</div>
