@@ -9,6 +9,7 @@ class Hunter < ApplicationRecord
   has_and_belongs_to_many :gears, join_table: :hunters_gears
   has_many :hunters_moves
   has_many :moves, through: :hunters_moves
+  accepts_nested_attributes_for :moves
   has_many :hunters_improvements
   validates_associated :hunters_improvements,
                        message: lambda { |_class_obj, obj|

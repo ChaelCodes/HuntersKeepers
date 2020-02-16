@@ -41,26 +41,44 @@ RSpec.describe MovesController, type: :controller do
       expect(response).to be_successful
     end
 
-    context 'when playbook_id is supplied' do
-      render_views
-      let(:playbook) { create :playbook }
-      let(:params) { { playbook_id: playbook.id } }
-      let!(:move) { create(:move, playbook: playbook) }
-      let!(:another_pb_move) { create :move }
+    context 'json format' do
       let(:format_type) { :json }
+      render_views
 
-      it 'filters for moves associated with playbook' do
-        subject
-        resp = JSON.parse(response.body)
-        expect(resp.dig(0, 'id')).to eq(move.id)
-        expect(resp.count).to eq 1
+      context 'when playbook_id is supplied' do
+        let(:playbook) { create :playbook }
+        let(:params) { { playbook_id: playbook.id } }
+        let!(:move) { create(:move, playbook: playbook) }
+        let!(:another_pb_move) { create :move }
+
+        it 'filters for moves associated with playbook' do
+          subject
+          resp = JSON.parse(response.body)
+          expect(resp.dig(0, 'id')).to eq(move.id)
+          expect(resp.count).to eq 1
+        end
       end
-    end
 
-    context 'for a hunter' do
-      let(:params) { { hunter_id: hunter.id} }
-      let(:hunter) { create :hunter }
-      it 'display if the hunter has the move' do
+      context 'for a hunter' do
+        let(:params) { { hunter_id: hunter.id} }
+        let(:hunter) { create :hunter }
+        let!(:move) { create :move }
+
+        it 'does not include has_move' do
+          subject
+          resp = JSON.parse(response.body)
+          expect(resp.dig(0, 'has_move')).to eq false
+        end
+
+        context 'hunter has the move' do
+          before { hunter.moves << move }
+
+          it 'display if the hunter has the move' do
+            subject
+            resp = JSON.parse(response.body)
+            expect(resp.dig(0, 'has_move')).to eq true
+          end
+        end
       end
     end
   end
