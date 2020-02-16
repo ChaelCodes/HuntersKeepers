@@ -5,7 +5,6 @@ module Improvements
   class PlaybookMove < Improvement
     def apply(hunters_improvement)
       return false if add_errors(hunters_improvement)
-
       hunters_improvement.hunter.moves << move(hunters_improvement)
     end
 

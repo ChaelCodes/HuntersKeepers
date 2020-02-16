@@ -78,16 +78,34 @@ after :playbook do
     advanced: true
   },
   {
-    description: 'Retire this Hunter to safety.',
-    playbook: @chosen,
-    advanced: true
-  },
-  {
     description: 'Change this Hunter to a new type.',
     playbook: @chosen,
     type: 'Improvements::ChangePlaybook',
     advanced: true
-  }].each do |improvement|
+  },
+  {
+    description: 'Create a second  hunter to play as well as this one.',
+    playbook: @chosen,
+    advanced: true
+  },
+  {
+    description: 'Mark two of the basic moves as advanced',
+    playbook: @chosen,
+    type: 'Improvements::AdvancedMove',
+    advanced: true
+  },
+  {
+    description: 'Mark another two of the basic moves as advanced',
+    playbook: @chosen,
+    type: 'Improvements::AdvancedMove',
+    advanced: true
+  },
+  {
+    description: 'Retire this Hunter to safety.',
+    playbook: @chosen,
+    advanced: true
+  },
+].each do |improvement|
     Improvement.find_or_create_by(improvement)
   end
 end

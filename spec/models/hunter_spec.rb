@@ -68,6 +68,7 @@ RSpec.describe Hunter, type: :model do
       let!(:hunter_move) { create(:hunters_move, hunter: hunter, move: move) }
 
       it { is_expected.to be_falsey }
+      it { is_expected.to eq false }
     end
   end
 end

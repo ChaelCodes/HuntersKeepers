@@ -102,13 +102,19 @@ class HuntersImprovementsController < ApplicationController
 
   def update_improvable_option
     return unless @hunters_improvement.improvable
-    raw = JSON.parse(@hunters_improvement.improvable)
+    raw = if Array.try_convert(@hunters_improvement.improvable)
+            @hunters_improvement.improvable.map do |option|
+              JSON.parse(option)
+            end
+          else
+            JSON.parse(@hunters_improvement.improvable)
+          end
     @hunters_improvement.improvable = raw
   end
 
   # Never trust parameters from the scary internet, only allow the white list through.
   def hunters_improvement_params
     params.require(:hunters_improvement)
-          .permit(:hunter_id, :improvement_id, :improvable)
+          .permit(:hunter_id, :improvement_id, :improvable, improvable: [])
   end
 end
