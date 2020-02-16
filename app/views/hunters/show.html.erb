@@ -6,7 +6,7 @@
 
     <p>
       <strong>Harm:</strong>
-      <%= @hunter.harm %>
+      <%= @hunter.harm %> <%= @hunter.unstable? ? 'UNSTABLE' : '' %>
     </p>
 
     <p>

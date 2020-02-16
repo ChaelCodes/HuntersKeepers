@@ -30,7 +30,6 @@ class MovesController < ApplicationController
   # POST /moves.json
   def create
     @move = Move.new(move_params)
-
     respond_to do |format|
       if @move.save
         format.html { redirect_to move_path(@move), notice: 'Move was successfully created.' }
