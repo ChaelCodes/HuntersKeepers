@@ -60,6 +60,7 @@ class HuntersController < ApplicationController
   # @see HuntersController#hunter_params See hunter_params for accepted parameters
   def update
     respond_to do |format|
+      @hunter.user ||= current_user
       if @hunter.update(hunter_params)
         format.html { redirect_to hunter_path(@hunter), notice: 'Hunter was successfully updated.' }
         format.json { render :show, status: :ok, location: @hunter }
