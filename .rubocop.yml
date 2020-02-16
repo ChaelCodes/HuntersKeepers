@@ -1,11 +1,10 @@
-# require: rubocop-performance
+require:
+  - rubocop-performance
+  - rubocop-rails
+  - rubocop-rspec
 AllCops:
   Excludes:
     - db/schema.rb
 
 Layout/EmptyLineAfterGuardClause:
   Enabled: false
-
-Metrics/LineLength:
-  Description: 'Limit lines to 120 characters.'
-  Max: 120
