@@ -7,6 +7,12 @@ class Move < ApplicationRecord
   belongs_to :playbook, optional: true
   has_many :hunters_moves
 
+  scope :not_basic, -> { where.not(type: 'Moves::Basic') }
+  scope :with_hunter_moves, (lambda do |hunter_id|
+    includes(:hunters_moves)
+      .where(hunters_moves: { hunter_id: [hunter_id, nil] })
+  end)
+
   validates :type, inclusion: { in: MOVE_TYPES }
 
   enum rating: { charm: 0, cool: 1, sharp: 2, tough: 3, weird: 4 }
