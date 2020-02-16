@@ -56,6 +56,13 @@ RSpec.describe MovesController, type: :controller do
         expect(resp.count).to eq 1
       end
     end
+
+    context 'for a hunter' do
+      let(:params) { { hunter_id: hunter.id} }
+      let(:hunter) { create :hunter }
+      it 'display if the hunter has the move' do
+      end
+    end
   end
 
   describe 'GET #show' do

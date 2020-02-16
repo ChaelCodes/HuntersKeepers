@@ -5,6 +5,39 @@ require 'rails_helper'
 RSpec.describe Move, type: :model do
   let(:move) { create :moves_basic, rating: :cool }
 
+  describe '.with_hunter_moves' do
+    subject { Move.with_hunter_moves(hunter.id) }
+    let(:hunter) { create :hunter }
+    let(:hunters_move) { HuntersMove.first }
+    before { move }
+
+    context 'with hunter move' do
+      before { hunter.moves << move }
+
+      it 'includes hunter moves' do
+        expect(subject.pluck(:'hunters_moves.id', :'moves.id'))
+          .to include [hunters_move.id, move.id]
+      end
+    end
+
+    context 'without hunter move' do
+      it 'includes unclaimed moves' do
+        expect(subject.pluck(:'hunters_moves.id', :'moves.id'))
+          .to include [nil, move.id]
+      end
+    end
+
+    context 'unrelated hunter move' do
+      let(:unrelated_hunter) { create :hunter }
+      before { unrelated_hunter.moves << move }
+
+      it 'does not include other hunters hunters_moves' do
+        expect(subject.pluck(:'hunters_moves.id', :'moves.id'))
+          .not_to include [hunters_move.id, move.id]
+      end
+    end
+  end
+
   describe '#roll' do
     subject { move.roll(hunter) }
     let(:hunter) { create :hunter }
