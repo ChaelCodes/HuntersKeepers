@@ -45,4 +45,9 @@ class Hunter < ApplicationRecord
   def advanced?(move)
     !!(hunters_moves.find_by(move: move)&.advanced)
   end
+
+  # Check whether the hunter has lost enough health to fall unstable
+  def unstable?
+    harm > 3
+  end
 end

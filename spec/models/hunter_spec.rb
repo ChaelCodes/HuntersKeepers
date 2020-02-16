@@ -71,4 +71,20 @@ RSpec.describe Hunter, type: :model do
       it { is_expected.to eq false }
     end
   end
+
+  describe '#unstable?' do
+    subject { hunter.unstable? }
+
+    context 'hunter has more than 3 harm' do
+      let(:hunter) { create :hunter, harm: 4 }
+
+      it { is_expected.to be_truthy }
+    end
+
+    context 'hunter has less than 3 harm' do
+      let(:hunter) { create :hunter, harm: 3 }
+
+      it { is_expected.to be_falsey }
+    end
+  end
 end
