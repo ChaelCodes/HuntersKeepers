@@ -20,8 +20,8 @@ Postgres | Database | -
 Rails | Web app Framework | Not just an API!
 Webpacker | Webpack Integration for Rails | [View Webpack Docs](https://github.com/rails/webpacker)
 Yarn | JS Package Management | [View Yarn Docs](https://yarnpkg.com/)
-Vue | Front-end framework | Add some reactivity
-Buefy | UI Component Library | Based on Bulma
+[Vue](https://vuejs.org/) | Front-end framework | Add some reactivity
+[Buefy](https://buefy.org/) | UI Component Library | Based on [Bulma](https://bulma.io/)
 RDoc | Documentation tool | [View at rubydoc.info](https://rubydoc.info/github/ChaelCodes/HuntersKeepers/Hunter)
 Inch | Tracks Documentation Coverage | [![Inline docs](http://inch-ci.org/github/ChaelCodes/HuntersKeepers.svg?branch=master)](http://inch-ci.org/github/ChaelCodes/HuntersKeepers)
 Code Climate | Code Quality Solution | [![Maintainability](https://api.codeclimate.com/v1/badges/67450702dbf049c335b0/maintainability)](https://codeclimate.com/github/ChaelCodes/HuntersKeepers/maintainability)
