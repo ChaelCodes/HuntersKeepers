@@ -2,8 +2,10 @@
   <div>
     <ul>
       <li v-for="move in moves">
-        <input type="checkbox" :id="move.id" :value="move" :checked="move.has_move" v-model="checkedMoves">
-        <strong>{{move.name}}:</strong> {{move.description}}
+        <b-checkbox :id="move.id" :native-value="move" :checked="move.has_move" v-model="checkedMoves">
+          <strong>{{move.name}}</strong>
+        </b-checkbox>
+        <p>{{move.description}}</p>
       </li>
     </ul>
     <b-button @click="submitMoves">Submit Moves</b-button>
