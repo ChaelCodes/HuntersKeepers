@@ -6,6 +6,6 @@ plugins:
     enabled: true
   rubocop:
     enabled: true
-    channel: rubocop-0-67
+    channel: rubocop-0-72
   stylelint:
     enabled: true
