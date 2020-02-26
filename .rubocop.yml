@@ -3,7 +3,7 @@ require:
   - rubocop-rails
   - rubocop-rspec
 AllCops:
-  Excludes:
+  Exclude:
     - db/schema.rb
 
 Layout/EmptyLineAfterGuardClause:
