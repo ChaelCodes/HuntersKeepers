@@ -7,6 +7,8 @@ module PlaybooksHelper
   end
 
   def select_playbook(form)
-    form.collection_select :playbook_id, Playbook.all, :id, :name
+    tag.div class: 'select' do
+      form.collection_select :playbook_id, Playbook.all, :id, :name
+    end
   end
 end

@@ -1,0 +1,10 @@
+<% if errors.any? %>
+  <b-message type="is-danger">
+    <h2><%= pluralize(errors.count, "error") %> prohibited this from being saved:</h2>
+    <ul>
+      <% errors.full_messages.each do |error| %>
+        <li><%= error %></li>
+      <% end %>
+    </ul>
+  </b-message>
+<% end %>
