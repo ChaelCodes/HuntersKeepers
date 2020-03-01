@@ -1,47 +1,49 @@
 <%= form_with(model: gear, local: true) do |form| %>
-  <% if gear.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(gear.errors.count, "error") %> prohibited this gear from being saved:</h2>
-
-      <ul>
-      <% gear.errors.full_messages.each do |message| %>
-        <li><%= message %></li>
-      <% end %>
-      </ul>
-    </div>
-  <% end %>
+  <%= render 'layouts/errors', errors: gear.errors %>
 
   <div class="field">
     <%= form.label :playbook_id %>
-    <%= select_playbook(form) %>
+    <div class="control">
+      <%= select_playbook(form) %>
+    </div>
   </div>
 
   <div class="field">
     <%= form.label :name %>
-    <%= form.text_field :name %>
+    <div class="control">
+      <%= form.text_field :name, class: 'input' %>
+    </div>
   </div>
 
   <div class="field">
     <%= form.label :description %>
-    <%= form.text_field :description %>
+    <div class="control">
+      <%= form.text_field :description, class: 'input' %>
+    </div>
   </div>
 
   <div class="field">
     <%= form.label :harm %>
-    <%= form.number_field :harm %>
+    <div class="control">
+      <%= form.number_field :harm, class: 'input' %>
+    </div>
   </div>
 
   <div class="field">
     <%= form.label :armor %>
-    <%= form.number_field :armor %>
+    <div class="control">
+      <%= form.number_field :armor, class: 'input' %>
+    </div>
   </div>
 
   <div>
     <%= form.label :tag_list %>
-    <%= form.text_field :tag_list %>
+    <div class="control">
+      <%= form.text_field :tag_list, class: 'input' %>
+    </div>
   </div>
-
+  <br />
   <div class="actions">
-    <%= form.submit %>
+    <%= form.submit class: 'button is-primary' %>
   </div>
 <% end %>
