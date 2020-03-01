@@ -22,12 +22,13 @@ import 'buefy/dist/buefy.css'
 import HuntersImprovementForm from '../components/hunters_improvement_form.vue'
 import HunterRatings from '../components/hunter_ratings.vue'
 import HunterMoves from '../components/hunter_moves.vue'
+import HunterGear from '../components/hunter_gear.vue'
 
 Vue.use(Buefy, TurbolinksAdapter)
 
 document.addEventListener('turbolinks:load', () => {
   const app = new Vue({
     el: '#vue-app',
-    components: { HuntersImprovementForm, HunterMoves, HunterRatings },
+    components: { HunterGear, HunterMoves, HuntersImprovementForm, HunterRatings },
   }).default
 })

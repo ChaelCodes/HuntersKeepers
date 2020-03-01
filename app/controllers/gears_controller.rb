@@ -7,6 +7,7 @@ class GearsController < ApplicationController
   # GET /gears
   # GET /gears.json
   def index
+    @hunter = Hunter.find(params[:hunter_id]) if params[:hunter_id]
     @gears = Gear.all
   end
 

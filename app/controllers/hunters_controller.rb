@@ -108,6 +108,8 @@ class HuntersController < ApplicationController
   # @return [ActionController::Parameters]
   def hunter_params
     params.require(:hunter)
-          .permit(:name, :playbook_id, :harm, :luck, :experience, :charm, :cool, :sharp, :tough, :weird, move_ids: [])
+          .permit(:name, :playbook_id, :harm, :luck, :experience,
+                  :charm, :cool, :sharp, :tough, :weird,
+                  gear_ids: [], move_ids: [])
   end
 end
