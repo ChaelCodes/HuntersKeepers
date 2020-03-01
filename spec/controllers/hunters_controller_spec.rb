@@ -12,7 +12,12 @@ RSpec.describe HuntersController, type: :controller do
         name: 'Ruudii',
         playbook_id: create(:playbook).id,
         harm: 0,
-        luck: 0
+        luck: 0,
+        charm: 1,
+        cool: 1,
+        sharp: 0,
+        tough: -1,
+        weird: 0
       }
     }
   end

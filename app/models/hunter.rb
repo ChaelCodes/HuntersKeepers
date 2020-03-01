@@ -18,6 +18,7 @@ class Hunter < ApplicationRecord
   has_many :improvements, through: :hunters_improvements
   validates :harm, numericality: { less_than_or_equal_to: 7, greater_than_or_equal_to: 0 }
   validates :luck, numericality: { less_than_or_equal_to: MAX_LUCK, greater_than_or_equal_to: 0 }
+  validates_presence_of :charm, :cool, :sharp, :tough, :weird
 
   # List all improvements that are available
   # based on the hunter's playbook, and excludes

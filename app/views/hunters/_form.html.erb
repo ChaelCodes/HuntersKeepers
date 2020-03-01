@@ -1,68 +1,79 @@
 <%= form_with(model: hunter, local: true) do |form| %>
-  <% if hunter.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(hunter.errors.count, "error") %> prohibited this hunter from being saved:</h2>
+  <%= render 'layouts/errors', errors: hunter.errors %>
 
-      <ul>
-      <% hunter.errors.full_messages.each do |message| %>
-        <li><%= message %></li>
-      <% end %>
-      </ul>
-    </div>
-  <% end %>
   <section>
     <div class="field">
       <%= form.label :name %>
-      <%= form.text_field :name %>
+      <div class="control">
+        <%= form.text_field :name, class: 'input' %>
+      </div>
     </div>
 
     <div class="field">
       <%= form.label :playbook %>
-      <%= select_playbook(form) %>
+      <div class="control">
+        <%= select_playbook(form) %>
+      </div>
     </div>
 
     <div class="field">
       <%= form.label :harm %>
-      <%= form.number_field :harm %>
+      <div class="control">
+        <%= form.number_field :harm, class: 'input' %>
+      </div>
     </div>
 
     <div class="field">
       <%= form.label :luck %>
-      <%= form.number_field :luck %>
+      <div class="control">
+        <%= form.number_field :luck, class: 'input' %>
+      </div>
     </div>
 
     <div class="field">
       <%= form.label :experience %>
-      <%= form.number_field :experience %>
+      <div class="control">
+        <%= form.number_field :experience, class: 'input' %>
+      </div>
     </div>
 
     <div class="field">
       <%= form.label :charm %>
-      <%= form.number_field :charm %>
+      <div class="control">
+        <%= form.number_field :charm, class: 'input' %>
+      </div>
     </div>
 
     <div class="field">
       <%= form.label :cool %>
-      <%= form.number_field :cool %>
+      <div class="control">
+        <%= form.number_field :cool, class: 'input' %>
+      </div>
     </div>
 
     <div class="field">
       <%= form.label :sharp %>
-      <%= form.number_field :sharp %>
+      <div class="control">
+        <%= form.number_field :sharp, class: 'input' %>
+      </div>
     </div>
 
     <div class="field">
       <%= form.label :tough %>
-      <%= form.number_field :tough %>
+      <div class="control">
+        <%= form.number_field :tough, class: 'input' %>
+      </div>
     </div>
 
     <div class="field">
       <%= form.label :weird %>
-      <%= form.number_field :weird %>
+      <div class="control">
+        <%= form.number_field :weird, class: 'input' %>
+      </div>
     </div>
   </section>
 
   <div class="actions">
-    <%= form.submit %>
+    <%= form.submit class: 'button is-primary' %>
   </div>
 <% end %>
