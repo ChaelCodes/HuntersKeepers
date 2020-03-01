@@ -46,7 +46,10 @@ class ImprovementsController < ApplicationController
   def update
     respond_to do |format|
       if @improvement.update(improvement_params)
-        format.html { redirect_to improvement_url(@improvement), notice: 'Improvement was successfully updated.' }
+        format.html do
+          redirect_to improvement_url(@improvement),
+                      notice: 'Improvement was successfully updated.'
+        end
         format.json { render :show, status: :ok, location: @improvement }
       else
         format.html { render :edit }
@@ -74,6 +77,8 @@ class ImprovementsController < ApplicationController
 
   # Never trust parameters from the scary internet, only allow the white list through.
   def improvement_params
-    params.require(:improvement).permit(:advanced, :description, :type, :playbook_id, :rating, :stat_limit)
+    params.require(:improvement)
+      .permit(:advanced, :description, :type, :playbook_id, :rating,
+              :stat_limit)
   end
 end
