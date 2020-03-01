@@ -101,7 +101,7 @@ class HuntersImprovementsController < ApplicationController
   end
 
   def update_improvable_option
-    return unless @hunters_improvement.improvable
+    return if @hunters_improvement.improvable.blank?
     raw = if Array.try_convert(@hunters_improvement.improvable)
             @hunters_improvement.improvable.map do |option|
               JSON.parse(option)
