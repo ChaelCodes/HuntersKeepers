@@ -45,12 +45,20 @@ class Hunter < ApplicationRecord
     save
   end
 
+  # Returns the Hunters Move otherwise known as the object
+  # that represents the relationship between the hunter and the move.
+  #
+  # @param move_id [Move_id] the if of the move
+  def hunters_move_for(move_id:)
+    hunters_moves.find_by(move_id: move_id)
+  end
+
   # Check whether a move has been advanced by an improvement
   # for this hunter
   #
   # @param move [Move] the move to check
   def advanced?(move)
-    !!(hunters_moves.find_by(move: move)&.advanced)
+    !!(hunters_move_for(move_id: move.id)&.advanced)
   end
 
   # Check whether the hunter has lost enough health to fall unstable
