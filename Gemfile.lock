@@ -215,8 +215,6 @@ GEM
     ruby-progressbar (1.10.1)
     ruby_dep (1.5.0)
     rubyzip (1.3.0)
-    sassc (2.2.1)
-      ffi (~> 1.9)
     seedbank (0.5.0)
       rake (>= 10.0)
     selenium-webdriver (3.142.3)
@@ -293,7 +291,6 @@ DEPENDENCIES
   rubocop-performance
   rubocop-rails
   rubocop-rspec
-  sassc
   seedbank
   selenium-webdriver
   simplecov
