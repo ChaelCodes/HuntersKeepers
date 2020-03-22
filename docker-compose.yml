@@ -1,0 +1,42 @@
+version: '3'
+services:
+  db:
+    image: postgres
+    environment:
+      POSTGRES_DB: hunterskeepers_development
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: password
+      DB_HOST: db
+    ports:
+      - '5432:5432'
+  hk_rails:
+    build:
+      context: .
+      dockerfile: rails.Dockerfile
+    command: "bundle exec rake db:migrate db:seed"
+    image: hk_rails
+    environment:
+      WEBPACKER_DEV_SERVER_HOST: 0.0.0.0
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: password
+      DB_HOST: db
+    depends_on:
+      - db
+  web:
+    build: .
+    command: bash -c "rm -f tmp/pids/server.pid && bundle exec rails s -p 3000 -b '0.0.0.0'"
+    ports:
+      - "3000:3000"
+    environment:
+      - WEBPACKER_DEV_SERVER_HOST=0.0.0.0
+    depends_on:
+      - hk_rails
+  webpacker:
+    build: .
+    environment:
+      - NODE_ENV=development
+      - RAILS_ENV=development
+      - WEBPACKER_DEV_SERVER_HOST=0.0.0.0
+    command: ./bin/webpack-dev-server
+    ports:
+      - '3035:3035'
