@@ -1,5 +1,14 @@
 # frozen_string_literal: true
 
+# == Schema Information
+#
+# Table name: hunters_improvements
+#
+#  id             :bigint           not null, primary key
+#  hunter_id      :integer
+#  improvement_id :integer
+#  improvable     :jsonb
+#
 require 'rails_helper'
 
 RSpec.describe HuntersImprovement, type: :model do

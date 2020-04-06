@@ -1,5 +1,24 @@
 # frozen_string_literal: true
 
+# == Schema Information
+#
+# Table name: hunters
+#
+#  id          :bigint           not null, primary key
+#  name        :string
+#  harm        :integer
+#  luck        :integer
+#  experience  :integer
+#  charm       :integer
+#  cool        :integer
+#  sharp       :integer
+#  tough       :integer
+#  weird       :integer
+#  created_at  :datetime         not null
+#  updated_at  :datetime         not null
+#  playbook_id :bigint
+#  user_id     :bigint
+#
 FactoryBot.define do
   factory :hunter do
     playbook

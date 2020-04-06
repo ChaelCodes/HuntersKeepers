@@ -1,3 +1,22 @@
+# == Schema Information
+#
+# Table name: hunters
+#
+#  id          :bigint           not null, primary key
+#  name        :string
+#  harm        :integer
+#  luck        :integer
+#  experience  :integer
+#  charm       :integer
+#  cool        :integer
+#  sharp       :integer
+#  tough       :integer
+#  weird       :integer
+#  created_at  :datetime         not null
+#  updated_at  :datetime         not null
+#  playbook_id :bigint
+#  user_id     :bigint
+#
 require 'rails_helper'
 
 RSpec.describe Hunter, type: :model do
