@@ -60,6 +60,9 @@ GEM
       activerecord (>= 5.0, < 6.1)
     addressable (2.6.0)
       public_suffix (>= 2.0.2, < 4.0)
+    annotate (3.1.1)
+      activerecord (>= 3.2, < 7.0)
+      rake (>= 10.4, < 14.0)
     ast (2.4.0)
     bcrypt (3.1.13)
     bindex (0.8.1)
@@ -272,6 +275,7 @@ PLATFORMS
 
 DEPENDENCIES
   acts-as-taggable-on (~> 6.0)
+  annotate (~> 3.1)
   bootsnap (>= 1.4.2)
   byebug
   capybara (>= 2.15)
