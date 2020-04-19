@@ -19,7 +19,7 @@
         <td><%= link_to_playbook(improvement) %>
         <td><%= link_to improvement.description, improvement_path(improvement) %></td>
         <td><%= improvement.rating %></td>
-        <td><%= improvement.stat_limit %></td>
+        <td><%= improvement.stat_limit&.positive? ? improvement.stat_limit : '' %></td>
         <td><%= link_to 'Edit', edit_improvement_path(improvement) %></td>
         <td><%= link_to 'Destroy', improvement_path(improvement), method: :delete, data: { confirm: 'Are you sure?' } %></td>
       </tr>
