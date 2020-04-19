@@ -1,6 +1,8 @@
 # frozen_string_literal: true
 
-after :playbook do
+after :playbook, 'development:user' do
+  @user = User.find_by email: 'test@example.com'
+
   [
     {
       name: 'Buffy',
@@ -12,7 +14,8 @@ after :playbook do
       sharp: 1,
       tough: 1,
       weird: -1,
-      playbook: @chosen
+      playbook: @chosen,
+      user: @user
     },
     {
       name: 'Dean Winchester',
@@ -24,7 +27,8 @@ after :playbook do
       sharp: 1,
       tough: 2,
       weird: -1,
-      playbook_id: @wronged
+      playbook: @wronged,
+      user: @user
     },
     {
       name: 'Sam Winchester',
@@ -36,7 +40,8 @@ after :playbook do
       sharp: -1,
       tough: -1,
       weird: 2,
-      playbook_id: @spooky
+      playbook: @spooky,
+      user: @user
     },
     {
       name: 'Fox Mulder',
@@ -48,7 +53,8 @@ after :playbook do
       cool: 2,
       sharp: 1,
       tough: 1,
-      weird: 0
+      weird: 0,
+      user: @user
     },
     {
       name: 'Dana Scully',
@@ -60,7 +66,8 @@ after :playbook do
       cool: 2,
       sharp: 1,
       tough: -1,
-      weird: 0
+      weird: 0,
+      user: @user
     }
   ].each do |hunter|
     Hunter.find_or_create_by(name: hunter[:name]).update(hunter)
