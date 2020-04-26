@@ -104,12 +104,16 @@ class HuntersController < ApplicationController
   # @param sharp [Integer] the modifier for the Hunter's sharp rating
   # @param tough [Integer] the modifier for the Hunter's tough rating
   # @param weird [Integer] the modifier for the Hunter's weird rating
+  # @param gear_attributes [Hash] pass a Gear object's attributes
+  # @param gear_ids [Integer[]] Supply Gear ids to be associated with the hunter
+  # @param move_ids [Integer[]] Supply Move ids to be associated with the hunter
   # @!visibility public
   # @return [ActionController::Parameters]
   def hunter_params
     params.require(:hunter)
           .permit(:name, :playbook_id, :harm, :luck, :experience,
                   :charm, :cool, :sharp, :tough, :weird,
+                  gears_attributes: %i[name armor],
                   gear_ids: [], move_ids: [])
   end
 end

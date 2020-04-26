@@ -7,5 +7,6 @@
       <% else %>
         <%= [move.ten_plus, move.seven_to_nine, move.six_and_under].join(' ') %>
       <% end %></li>
+      <hunter-use-move hunter_id=<%= hunter.id %> move_id=<%= move.id %> />
   <% end %>
 </ul>
