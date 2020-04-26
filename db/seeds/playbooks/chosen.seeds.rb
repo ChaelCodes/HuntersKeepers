@@ -80,7 +80,7 @@ after :playbook do
   Additionally, your wounds count as 1-harm less for
   the purpose of the Keeper’s harm moves.'
    }].each do |move|
-    Move.find_or_create_by(move)
+    Move.find_or_create_by!(move)
   end
 
   #####
@@ -198,6 +198,6 @@ after :playbook do
       advanced: true
     }
   ].each do |improvement|
-    Improvement.find_or_create_by(improvement)
+    Improvement.find_or_create_by!(improvement)
   end
 end
