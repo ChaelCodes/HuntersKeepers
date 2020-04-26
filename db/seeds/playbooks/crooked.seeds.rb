@@ -91,7 +91,7 @@ after :playbook do
      ten_plus: 'On a 10 or more, you get it
       and they didn’t notice you taking it.'
    }].each do |move|
-    Move.find_or_create_by(move)
+    Move.find_or_create_by!(move)
   end
 
   #####
@@ -190,7 +190,7 @@ after :playbook do
       other problems later, of course.'
     }
   ].each do |move|
-    Move.find_or_create_by(move)
+    Move.find_or_create_by!(move)
   end
 
   #####
@@ -268,7 +268,7 @@ after :playbook do
       advanced: true
     }
   ].each do |improvement|
-    Improvement.find_or_create_by(playbook: @crooked, **improvement)
+    Improvement.find_or_create_by!(playbook: @crooked, **improvement)
   end
 
   #####
@@ -321,10 +321,10 @@ after :playbook do
       tag_list: %w[close far area]
     }
   ].each do |gear_attrs|
-    gear = Gear.find_or_create_by(
+    gear = Gear.find_or_create_by!(
       name: gear_attrs[:name],
       playbook: @crooked
     )
-    gear.update(gear_attrs)
+    gear.update!(gear_attrs)
   end
 end
