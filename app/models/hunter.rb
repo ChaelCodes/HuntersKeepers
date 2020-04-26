@@ -34,15 +34,20 @@ class Hunter < ApplicationRecord
   accepts_nested_attributes_for :moves
 
   has_many :hunters_improvements
+  has_many :improvements, through: :hunters_improvements
   validates_associated :hunters_improvements,
                        message: lambda { |_class_obj, obj|
                                   obj[:value]&.map { |h_improv| h_improv.errors.full_messages.to_sentence }&.join(', ')
                                 }
-  has_many :improvements, through: :hunters_improvements
 
   validates :harm, numericality: { less_than_or_equal_to: 7, greater_than_or_equal_to: 0 }
   validates :luck, numericality: { less_than_or_equal_to: MAX_LUCK, greater_than_or_equal_to: 0 }
   validates :charm, :cool, :sharp, :tough, :weird, presence: true
+
+  scope :with_move, lambda { |move|
+    joins(:hunters_moves)
+      .where(hunters_moves: { move: move })
+  }
 
   # List all improvements that are available
   # based on the hunter's playbook, and excludes

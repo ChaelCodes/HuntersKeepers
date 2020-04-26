@@ -42,3 +42,14 @@
 
 <%= link_to 'Edit', edit_move_path(@move) %> |
 <%= link_to 'Back', moves_path %>
+
+<table class="table">
+  <tr>
+    <th>Hunter</th>
+  </tr>
+  <% Hunter.where(user: current_user).with_move(@move).each do |hunter| %>
+  <tr>
+    <td><%= link_to_hunter(hunter) %></td>
+  </tr>
+  <% end %>
+</table>
