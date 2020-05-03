@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 after :playbook do
-  @chosen = Playbook.find_by name: 'The Chosen'
+  @chosen = Playbook.find_by! name: 'The Chosen'
 
   ######
   # Moves
