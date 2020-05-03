@@ -8,7 +8,8 @@ RSpec.describe 'db:seed' do
 
   before { Rails.application.load_tasks }
 
-  it 'create 5 hunters' do
-    expect { subject.invoke }.not_to raise_error
+  it 'runs all default seedfiles without error' do
+    expect { subject.execute }.not_to raise_error
+    subject.reenable
   end
 end
