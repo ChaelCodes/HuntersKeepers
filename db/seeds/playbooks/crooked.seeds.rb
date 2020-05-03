@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 after :playbook do
-  @crooked = Playbook.find_by name: 'The Crooked'
+  @crooked = Playbook.find_by! name: 'The Crooked'
 
   #####
   # Background Moves
