@@ -652,6 +652,6 @@ have atoned.'
       can ask a question from the investigate a mystery
       move as your effect.'
    }].each do |move|
-    Move.find_or_create_by(move)
+    Move.find_or_create_by!(move)
   end
 end

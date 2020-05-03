@@ -3,8 +3,8 @@
 [
   {
     email: 'test@example.com',
-    password: 'password'
+    password: SecureRandom.base64(12)
   }
 ].each do |user|
-  User.find_or_create_by(email: user[:email]).update(user)
+  User.find_or_initialize_by(email: user[:email]).update!(user)
 end

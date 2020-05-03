@@ -116,7 +116,7 @@ after :playbook do
     ]
   }.each do |_playbook, ratings|
     ratings.each do |rating|
-      Rating.find_or_create_by(rating)
+      Rating.find_or_create_by!(rating)
     end
   end
 end
