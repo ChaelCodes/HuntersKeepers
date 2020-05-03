@@ -2,7 +2,6 @@
 
 after :playbook, 'development:user' do
   @user = User.find_by email: 'test@example.com'
-
   [
     {
       name: 'Buffy',
@@ -70,6 +69,6 @@ after :playbook, 'development:user' do
       user: @user
     }
   ].each do |hunter|
-    Hunter.find_or_create_by(name: hunter[:name]).update(hunter)
+    Hunter.find_or_initialize_by(name: hunter[:name]).update!(hunter)
   end
 end
