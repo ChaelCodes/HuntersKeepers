@@ -5,6 +5,7 @@
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
 
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
     <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
     <%= stylesheet_pack_tag 'application' %>
   </head>
@@ -36,9 +37,7 @@
           <%= alert %>
         </b-message>
       <% end %>
-      <section>
-        <%= yield %>
-      </section>
+      <%= yield %>
     </div>
   </body>
 </html>
