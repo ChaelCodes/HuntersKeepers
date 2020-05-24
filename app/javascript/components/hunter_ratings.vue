@@ -75,12 +75,20 @@ export default {
       fetch(`/moves/${move.id}.json?hunter_id=${this.hunter_id}`)
         .then(response => response.json())
         .then(move_resp => {
-          this.$buefy.dialog.alert({
+          move_resp["rating"];
+          this.$buefy.dialog.confirm({
             title: move.name,
             message: move_resp["results"],
-            confirmText: "Ok"
+            confirmText: "Ok",
+            cancelText: "Use Luck",
+            onCancel: this.useLuck(move)
           });
         });
+    },
+    useLuck(move) {
+      // query for move result - move
+      // remove one luck - hunter
+      // display modal
     }
   },
   mounted: function() {

@@ -42,17 +42,23 @@ class Move < ApplicationRecord
     Random.new.rand(2..12) + hunter.send(rating)
   end
 
-  def roll_results(hunter) # rubocop:disable Metrics/MethodLength
-    result = roll(hunter)
-    outcome = case result
-              when 0..6
-                hunter.gain_experience(1)
-                six_and_under
-              when 7..9
-                seven_to_nine
-              when (10..)
-                ten_plus
-              end
-    "Your total #{result} resulted in #{outcome}"
+  def roll_results(hunter)
+    roll = roll(hunter)
+    outcome = outcome(roll, hunter)
+    hunter.gain_experience(1) if roll <= 6
+    RollResult.new(roll, "Your total #{roll} resulted in #{outcome}")
   end
+
+  def outcome(roll, _hunter)
+    case roll
+    when 0..6
+      six_and_under
+    when 7..9
+      seven_to_nine
+    when (10..)
+      ten_plus
+    end
+  end
+
+  RollResult = Struct.new :roll, :result
 end

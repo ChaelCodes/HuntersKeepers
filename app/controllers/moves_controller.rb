@@ -18,7 +18,9 @@ class MovesController < ApplicationController
   def show
     hunter = Hunter.find_by(id: params[:hunter_id])
     return unless hunter && @move.rollable?
-    @results = @move.roll_results(hunter)
+    roll_results = @move.roll_results(hunter)
+    @results = roll_results.result
+    @roll = roll_results.roll
   end
 
   # GET /moves/new
