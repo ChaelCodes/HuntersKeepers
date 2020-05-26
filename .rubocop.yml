@@ -11,3 +11,4 @@ Layout/EmptyLineAfterGuardClause:
 
 Rails/RequestReferer:
   EnforcedStyle: referrer
+  
