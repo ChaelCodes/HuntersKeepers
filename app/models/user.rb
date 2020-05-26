@@ -14,7 +14,6 @@
 #  updated_at             :datetime         not null
 #  admin                  :boolean
 #
-# Represent the user and interface with Devise to log into the application.
 class User < ApplicationRecord
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable

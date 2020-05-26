@@ -14,8 +14,6 @@
 #  created_at  :datetime         not null
 #  updated_at  :datetime         not null
 #
-# The ratings/attributes that the Hunter has
-# determines their capability to do something
 class Rating < ApplicationRecord
   belongs_to :playbook
 

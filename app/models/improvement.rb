@@ -14,9 +14,6 @@
 #  updated_at  :datetime         not null
 #  advanced    :boolean
 #
-# Improvements are associated with Playbooks
-# These are the options the Hunter can choose
-# from when upgrading their character.
 class Improvement < ApplicationRecord
   OPTIONS_COUNT = 1
   IMPROVEMENT_TYPES = %w[Improvement Improvements::RatingBoost

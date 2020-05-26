@@ -9,8 +9,6 @@
 #  improvement_id :integer
 #  improvable     :jsonb
 #
-# Improvements taken by the Hunter
-# One is unlocked every 5 Experience
 class HuntersImprovement < ApplicationRecord
   belongs_to :hunter
   belongs_to :improvement

@@ -1,6 +1,7 @@
 # frozen_string_literal: true
 
 # Add Playbooks
+
 [{
   name: 'The Chosen',
   description: 'Your birth was prophesied. You are the Chosen

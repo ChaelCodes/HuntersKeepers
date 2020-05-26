@@ -37,3 +37,7 @@ yarn-debug.log*
 # Ignore Compiled yardoc
 /.yardoc
 /doc
+
+# Ignore VSCode debugger config
+/.vscode
+/bin/rspec

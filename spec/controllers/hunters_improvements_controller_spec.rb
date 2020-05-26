@@ -30,7 +30,7 @@ RSpec.describe HuntersImprovementsController, type: :controller do
   # HuntersImprovementsController. Be sure to keep this updated too.
   let(:valid_session) { {} }
 
-  before(:each) do
+  before do
     @request.env['devise.mapping'] = Devise.mappings[:user]
     sign_in create(:user)
   end
@@ -65,6 +65,7 @@ RSpec.describe HuntersImprovementsController, type: :controller do
 
   describe 'GET #edit' do
     subject { get :edit, params: { hunter_id: hunter.id, id: hunters_improvement.to_param }, session: valid_session }
+
     it 'returns a success response' do
       subject
       expect(response).to be_successful
@@ -146,7 +147,7 @@ RSpec.describe HuntersImprovementsController, type: :controller do
         it 'send errors in our json response' do
           subject
           resp = JSON.parse(response.body)
-          expect(resp['hunter']).to include 'does not match improvement playbook: '
+          expect(resp['hunter'].to_s).to include 'does not match improvement playbook: '
         end
       end
     end
@@ -154,6 +155,7 @@ RSpec.describe HuntersImprovementsController, type: :controller do
 
   describe 'PUT #update' do
     subject { put :update, params: { hunter_id: hunter.id, id: hunters_improvement.id, hunters_improvement: attributes }, session: valid_session, format: format_type }
+
     let(:different_improvement) { create(:improvement) }
 
     context 'with valid params' do

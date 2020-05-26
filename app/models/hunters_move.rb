@@ -9,7 +9,6 @@
 #  move_id   :bigint
 #  advanced  :boolean
 #
-# A many-to-many association record for hunters to moves
 class HuntersMove < ApplicationRecord
   belongs_to :hunter
   belongs_to :move

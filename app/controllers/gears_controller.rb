@@ -72,6 +72,6 @@ class GearsController < ApplicationController
 
   # Never trust parameters from the scary internet, only allow the white list through.
   def gear_params
-    params.require(:gear).permit(:name, :description, :harm, :armor, :playbook_id, :tag_list)
+    params.require(:gear).permit(:name, :description, :harm, :armor, :tag_list)
   end
 end

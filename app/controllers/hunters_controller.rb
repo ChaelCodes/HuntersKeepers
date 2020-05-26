@@ -20,6 +20,7 @@ class HuntersController < ApplicationController
   # @see Hunter#available_improvements
   def show
     @available_improvements = params[:available_improvements]
+    @available_gear = @hunter.playbook.gears
   end
 
   # GET /hunters/new
@@ -32,7 +33,8 @@ class HuntersController < ApplicationController
   # GET /hunters/1/edit
   #
   # @param id [Integer] id of the Hunter to be edited
-  def edit() end
+
+  def edit; end
 
   # POST /hunters
   # POST /hunters.json

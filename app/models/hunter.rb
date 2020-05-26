@@ -19,7 +19,6 @@
 #  playbook_id :bigint
 #  user_id     :bigint
 #
-# The character appearing in the mystery
 class Hunter < ApplicationRecord
   MAX_LUCK = 7
 
