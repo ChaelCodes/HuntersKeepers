@@ -45,11 +45,11 @@ after :playbook do
       { playbook: @initiate, charm: 0, cool: 0, sharp: 0, tough: 1, weird: 2 }
     ],
     monstruous: [
-      { playbook: @monstruous, charm: -1, cool: -1, sharp: 0, tough: 2, weird: 3 },
-      { playbook: @monstruous, charm: -1, cool: 1, sharp: 1, tough: 0, weird: 3 },
-      { playbook: @monstruous, charm: 2, cool: 0, sharp: -1, tough: -1, weird: 3 },
-      { playbook: @monstruous, charm: -2, cool: 2, sharp: 0, tough: 0, weird: 3 },
-      { playbook: @monstruous, charm: 0, cool: -1, sharp: 2, tough: -1, weird: 3 }
+      { playbook: @monstrous, charm: -1, cool: -1, sharp: 0, tough: 2, weird: 3 },
+      { playbook: @monstrous, charm: -1, cool: 1, sharp: 1, tough: 0, weird: 3 },
+      { playbook: @monstrous, charm: 2, cool: 0, sharp: -1, tough: -1, weird: 3 },
+      { playbook: @monstrous, charm: -2, cool: 2, sharp: 0, tough: 0, weird: 3 },
+      { playbook: @monstrous, charm: 0, cool: -1, sharp: 2, tough: -1, weird: 3 }
     ],
     mundane: [
       { playbook: @mundane, charm: 2, cool: 1, sharp: 0, tough: 1, weird: -1 },
