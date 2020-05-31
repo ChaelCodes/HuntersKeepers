@@ -8,7 +8,11 @@ Rails.application.routes.draw do
     resources :hunters_improvements
   end
   resources :improvements
-  resources :moves
+  resources :moves do
+    member do
+      get 'roll'
+    end
+  end
   resources :ratings
   resources :playbooks
 

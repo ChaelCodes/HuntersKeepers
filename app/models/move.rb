@@ -49,6 +49,13 @@ class Move < ApplicationRecord
     RollResult.new(roll, "Your total #{roll} resulted in #{outcome}")
   end
 
+  def lucky_roll(hunter, lose_experience)
+    roll = 12 + hunter.send(rating)
+    outcome = outcome(roll, hunter)
+    hunter.gain_experience(-1) if lose_experience
+    RollResult.new(roll, "Your total #{roll} resulted in #{outcome}")
+  end
+
   def outcome(roll, _hunter)
     case roll
     when 0..6

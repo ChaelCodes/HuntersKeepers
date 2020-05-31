@@ -2,7 +2,7 @@
 
 # Restful controller for Moves
 class MovesController < ApplicationController
-  before_action :set_move, only: %i[show edit update destroy]
+  before_action :set_move, only: %i[roll show edit update destroy]
 
   # GET /moves
   # GET /moves.json
@@ -15,10 +15,19 @@ class MovesController < ApplicationController
 
   # GET /moves/1
   # GET /moves/1.json
-  def show
+  def show; end
+
+  # GET /moves/1/roll
+  # GET /moves/1/roll.json
+  def roll
     hunter = Hunter.find_by(id: params[:hunter_id])
+    # TODO: raise complaint id unrollable
     return unless hunter && @move.rollable?
-    roll_results = @move.roll_results(hunter)
+    roll_results = if params[:lucky]
+                     @move.lucky_roll(hunter, params[:lose_experience])
+                   else
+                     @move.roll_results(hunter)
+                   end
     @results = roll_results.result
     @roll = roll_results.roll
   end
