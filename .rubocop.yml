@@ -8,3 +8,7 @@ AllCops:
 
 Layout/EmptyLineAfterGuardClause:
   Enabled: false
+
+Rails/RequestReferer:
+  EnforcedStyle: referrer
+  
