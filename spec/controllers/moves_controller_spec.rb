@@ -100,7 +100,20 @@ RSpec.describe MovesController, type: :controller do
         subject
         expect(response).to be_successful
       end
+    end
+  end
 
+  describe 'GET #roll' do
+    subject { get :roll, params: params, session: valid_session, format: format_type }
+
+    let(:move) { create :move }
+    let(:params) { { id: move.to_param } }
+    let(:body) { JSON.parse(response.body) }
+
+    context 'in json format' do
+      let(:format_type) { :json }
+
+      render_views
       context 'when hunter is passed' do
         let(:params) { { id: move.to_param, hunter_id: hunter.id } }
         let(:hunter) { create :hunter }
@@ -108,6 +121,7 @@ RSpec.describe MovesController, type: :controller do
         it 'includes results' do
           subject
           expect(body[:results]).to be_nil
+          # TODO: error on unrollable move
         end
 
         context 'with a rollable move' do
@@ -116,6 +130,34 @@ RSpec.describe MovesController, type: :controller do
           it 'returns the results of rolling the move' do
             subject
             expect(body['results']).to match(/Your total \d+ resulted in/)
+          end
+
+          context 'lucky roll' do
+            let(:params) do
+              { id: move.to_param, hunter_id: hunter.id, lucky: true }
+            end
+
+            let(:hunter) { create :hunter, sharp: 1 }
+            let(:move) { create :moves_rollable, rating: :sharp }
+
+            it 'always rolls a 12' do
+              subject
+              expect(body['roll']).to eq 13
+              expect(body['results']).to eq 'Your total 13 resulted in ten plus result'
+            end
+
+            context 'experience is lost' do
+              let(:params) do
+                { id: move.to_param, hunter_id: hunter.id, lucky: true, lose_experience: true }
+              end
+
+              it 'hunter loses the experience from failure' do
+                subject
+                expect(hunter.reload.experience).to eq -1
+                expect(body['roll']).to eq 13
+                expect(body['results']).to eq 'Your total 13 resulted in ten plus result'
+              end
+            end
           end
         end
 
@@ -171,14 +213,16 @@ RSpec.describe MovesController, type: :controller do
   describe 'PUT #update' do
     context 'with valid params' do
       let(:new_attributes) do
-        skip('Add a hash of attributes valid for your model')
+        {
+          name: 'New Move Name'
+        }
       end
 
       it 'updates the requested move' do
         move = Move.create! valid_attributes
         put :update, params: { id: move.to_param, move: new_attributes }, session: valid_session
         move.reload
-        skip('Add assertions for updated state')
+        expect(move.reload.name).to eq 'New Move Name'
       end
 
       it 'redirects to the move' do

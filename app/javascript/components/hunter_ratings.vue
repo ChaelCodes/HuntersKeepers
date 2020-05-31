@@ -9,12 +9,12 @@
       <div slot="trigger" slot-scope="props" class="card-header" role="button">
         <p class="card-header-title">{{rating.toUpperCase() + ': ' + rating_attrs.value}}</p>
         <div class="card-header-title" v-for="move in rating_attrs.moves.slice(0, 3)">
-          <b-button
+          <hunter-roll-move
             v-show="!rating_attrs.isOpen"
-            @click.stop="roll(move)"
-            size="is-small"
-            type="is-primary"
-          >{{move.name}}</b-button>
+            :hunter_id="hunter_id"
+            :move_id="move.id"
+            :buttonText="move.name"
+          />
         </div>
         <a class="card-header-icon">
           <b-icon :icon="rating_attrs.isOpen ? 'menu-down' : 'menu-up'"></b-icon>
@@ -25,7 +25,7 @@
           <div v-for="move in rating_attrs.moves">
             <div class="level">
               {{move.name}}
-              <b-button @click="roll(move)" type="is-primary">Roll</b-button>
+              <hunter-roll-move :hunter_id="hunter_id" :move_id="move.id" />
             </div>
             <p>{{move.description}}</p>
             <br />
@@ -37,7 +37,10 @@
 </template>
 
 <script>
+import HunterRollMove from "./hunter_roll_move.vue";
+
 export default {
+  components: { HunterRollMove },
   data: function() {
     return {
       ratings: {
@@ -66,8 +69,7 @@ export default {
           moves: [],
           value: 0
         }
-      },
-      isSharpOpen: false
+      }
     };
   },
   methods: {
@@ -75,7 +77,6 @@ export default {
       fetch(`/moves/${move.id}.json?hunter_id=${this.hunter_id}`)
         .then(response => response.json())
         .then(move_resp => {
-          move_resp["rating"];
           this.$buefy.dialog.confirm({
             title: move.name,
             message: move_resp["results"],
@@ -107,6 +108,7 @@ export default {
         });
       });
   },
+  name: "HunterRatings",
   props: ["hunter_id"]
 };
 </script>
