@@ -9,14 +9,17 @@ class MovesController < ApplicationController
   def index
     @moves = params[:basic] ? Moves::Basic.all : Move.all
     @moves = Move.with_hunter_moves(params[:hunter_id]) if params[:hunter_id]
-    @moves = @moves.where(playbook_id: params[:playbook_id]) if params[:playbook_id]
+    if params[:playbook_id]
+      @moves = @moves.where(playbook_id: params[:playbook_id])
+    end
   end
 
   # GET /moves/1
   # GET /moves/1.json
   def show
     hunter = Hunter.find_by(id: params[:hunter_id])
-    @results = @move.roll_results(hunter) if hunter
+    return unless hunter && @move.rollable?
+    @results = @move.roll_results(hunter)
   end
 
   # GET /moves/new

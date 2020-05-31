@@ -13,7 +13,7 @@
     <% @hunters_improvements.each do |hunters_improvement| %>
       <tr>
         <td><%= link_to hunters_improvement.hunter.name, hunters_improvement.hunter %></td>
-        <td><%= hunters_improvement.improvement.description %></td>
+        <td><%= hunters_improvement.improvement&.description %></td>
         <td><%= link_to 'Show', hunter_hunters_improvement_path(hunter_id: hunters_improvement.hunter_id, id: hunters_improvement.id) %></td>
         <td><%= link_to 'Edit', edit_hunter_hunters_improvement_path(hunter_id: hunters_improvement.hunter_id, id: hunters_improvement.id) %></td>
         <td><%= link_to 'Destroy', hunter_hunters_improvement_path(hunter_id: hunters_improvement.hunter_id, id: hunters_improvement.id), method: :delete, data: { confirm: 'Are you sure?' } %></td>
