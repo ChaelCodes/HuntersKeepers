@@ -1,5 +1,7 @@
 # frozen_string_literal: true
 
+# Represent the user and interface with Devise to log into the application.
+
 # == Schema Information
 #
 # Table name: users

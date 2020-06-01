@@ -100,15 +100,6 @@ ActiveRecord::Schema.define(version: 20_200_526_205_042) do
     t.index ['playbook_id'], name: 'index_playbook_gears_on_playbook_id'
   end
 
-  create_table 'playbookgears', force: :cascade do |t|
-    t.bigint 'gear_id', null: false
-    t.bigint 'playbook_id', null: false
-    t.datetime 'created_at', precision: 6, null: false
-    t.datetime 'updated_at', precision: 6, null: false
-    t.index ['gear_id'], name: 'index_playbookgears_on_gear_id'
-    t.index ['playbook_id'], name: 'index_playbookgears_on_playbook_id'
-  end
-
   create_table 'playbooks', force: :cascade do |t|
     t.string 'name'
     t.string 'description'
@@ -178,8 +169,6 @@ ActiveRecord::Schema.define(version: 20_200_526_205_042) do
   add_foreign_key 'moves', 'playbooks'
   add_foreign_key 'playbook_gears', 'gears'
   add_foreign_key 'playbook_gears', 'playbooks'
-  add_foreign_key 'playbookgears', 'gears'
-  add_foreign_key 'playbookgears', 'playbooks'
   add_foreign_key 'ratings', 'playbooks'
   add_foreign_key 'taggings', 'tags'
 end

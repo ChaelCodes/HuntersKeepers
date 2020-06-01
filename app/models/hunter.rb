@@ -1,5 +1,6 @@
 # frozen_string_literal: true
 
+# The character appearing in the mystery
 # == Schema Information
 #
 # Table name: hunters

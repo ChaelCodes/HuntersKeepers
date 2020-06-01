@@ -1,5 +1,6 @@
 # frozen_string_literal: true
 
+# Actions that the hunters can take
 # == Schema Information
 #
 # Table name: moves

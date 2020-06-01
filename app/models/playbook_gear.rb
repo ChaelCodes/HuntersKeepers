@@ -1,5 +1,6 @@
 # frozen_string_literal: true
 
+# A many-to-many association record for Playbooks to Gear
 # == Schema Information
 #
 # Table name: playbook_gears

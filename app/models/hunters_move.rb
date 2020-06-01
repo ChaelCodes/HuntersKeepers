@@ -1,5 +1,6 @@
 # frozen_string_literal: true
 
+# A many-to-many association record for hunters to moves
 # == Schema Information
 #
 # Table name: hunters_moves

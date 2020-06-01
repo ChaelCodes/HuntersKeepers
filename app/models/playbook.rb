@@ -1,15 +1,16 @@
 # frozen_string_literal: true
 
+# The class or playbook that the hunter has
+# provides unique abilities to the Hunter
 # == Schema Information
 #
 # Table name: playbooks
 #
-#  id             :bigint           not null, primary key
-#  name           :string
-#  available_gear :int
-#  description    :string
-#  created_at     :datetime         not null
-#  updated_at     :datetime         not null
+#  id          :bigint           not null, primary key
+#  name        :string
+#  description :string
+#  created_at  :datetime         not null
+#  updated_at  :datetime         not null
 #
 class Playbook < ApplicationRecord
   has_many :improvements

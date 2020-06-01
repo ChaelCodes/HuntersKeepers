@@ -30,7 +30,7 @@ RSpec.describe HuntersImprovementsController, type: :controller do
   # HuntersImprovementsController. Be sure to keep this updated too.
   let(:valid_session) { {} }
 
-  before do
+  before(:each) do
     @request.env['devise.mapping'] = Devise.mappings[:user]
     sign_in create(:user)
   end
