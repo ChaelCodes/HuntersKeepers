@@ -8,5 +8,10 @@
   <%= link_to(@hunters_improvement.improvement.description, improvement_path(@hunters_improvement.improvement)) %>
 </p>
 
+<p>
+  <strong>Improved:</strong>
+  <%= @hunters_improvement.improvable %>
+</p>
+
 <%= link_to 'Edit', edit_hunter_hunters_improvement_path(hunter_id: @hunters_improvement.hunter_id, id: @hunters_improvement.id) %> |
 <%= link_to 'Back', hunter_hunters_improvements_path(hunter_id: @hunters_improvement.hunter_id) %>

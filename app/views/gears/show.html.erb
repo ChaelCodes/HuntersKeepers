@@ -15,14 +15,23 @@
   <%= @gear.description %>
 </p>
 
-<p>
-  <strong>Harm:</strong>
-  <%= @gear.harm %>
-</p>
+<% unless @gear.harm.nil? %>
+  <p>
+    <strong>Harm:</strong>
+    <%= @gear.harm %>
+  </p>
+<% end %>
+
+<% unless @gear.armor.nil? %>
+  <p>
+    <strong>Armor:</strong>
+    <%= @gear.armor %>
+  </p>
+<% end %>
 
 <p>
-  <strong>Armor:</strong>
-  <%= @gear.armor %>
+  <strong>Tags:</strong>
+  <%= @gear.tag_list %>
 </p>
 
 <%= link_to 'Edit', edit_gear_path(@gear) %> |
