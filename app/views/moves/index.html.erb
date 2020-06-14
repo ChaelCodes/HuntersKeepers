@@ -6,7 +6,7 @@
       <th>Playbook</th>
       <th>Name</th>
       <th>Rating</th>
-      <th colspan="3"></th>
+      <th colspan="2"></th>
     </tr>
   </thead>
 
@@ -14,9 +14,8 @@
     <% @moves.each do |move| %>
       <tr>
         <td><%= link_to_playbook(move) %></td>
-        <td><%= move.name %></td>
+        <td><%= link_to_move(move) %></td>
         <td><%= move.rating %></td>
-        <td><%= link_to 'Show', move_path(move) %></td>
         <td><%= link_to 'Edit', edit_move_path(move) %></td>
         <td><%= link_to 'Destroy', move_path(move), method: :delete, data: { confirm: 'Are you sure?' } %></td>
       </tr>
