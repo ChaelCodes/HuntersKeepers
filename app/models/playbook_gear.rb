@@ -10,8 +10,8 @@
 #  gear_id     :bigint           not null
 #  created_at  :datetime         not null
 #  updated_at  :datetime         not null
+#  category    :string
 #
-# Through table model for Playbook <=> Gear
 class PlaybookGear < ApplicationRecord
   belongs_to :playbook
   belongs_to :gear

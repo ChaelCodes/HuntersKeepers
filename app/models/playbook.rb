@@ -21,4 +21,5 @@ class Playbook < ApplicationRecord
 
   validates :name, presence: true
   validates :description, presence: true
+  acts_as_taggable_on :categories
 end

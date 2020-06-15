@@ -7,7 +7,6 @@ RSpec.describe GearsController, type: :controller do
   # adjust the attributes here as well.
   let(:valid_attributes) {
     {
-      playbook_id: create(:playbook).id,
       name: 'Gear'
     }
   }

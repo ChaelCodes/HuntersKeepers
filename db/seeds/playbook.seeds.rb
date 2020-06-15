@@ -14,7 +14,8 @@ on you. Only you.'
    description: 'Yeah, I’ve been around the block. A bit of this, a
 bit of that. When I came across the secret underworld of monsters
 and magic… well… it wasn’t so different from the underworld I
-already knew. It was easy to find an angle, just like before.'
+already knew. It was easy to find an angle, just like before.',
+   categories: 'transport'
  },
  {
    name: 'The Divine',
@@ -36,7 +37,8 @@ see the patterns, and most people don’t even
 look that hard. But me, I can never stop looking
 deeper. I can never stop seeing the truth. I spot
 the patterns. That’s how I found the monsters,
-and that’s how I help kill them.'
+and that’s how I help kill them.',
+   categories: 'normal, hidden'
  },
  {
    name: 'The Initiate',
@@ -44,7 +46,8 @@ and that’s how I help kill them.'
 bulwark against Darkness. We know the Evils
 of the world, and we stand against them so that
 the mass of humanity need not fear. We are the
-Flame that cleanses the Shadows.'
+Flame that cleanses the Shadows.',
+   categories: 'old-fashioned, modern'
  },
  {
    name: 'The Monstrous',
@@ -60,7 +63,8 @@ other monsters. Sometimes I can even believe it.'
 people with crazy powers who can fight back on
 even terms? Yeah, me neither. But, hell, I ended
 up in this monster-hunting team so I gotta do
-what I can, right?'
+what I can, right?',
+   categories: 'transport'
  },
  {
    name: 'The Professional',
@@ -68,7 +72,8 @@ what I can, right?'
 to hunt down monsters. Still, that’s the job I took
 on when I joined this outfit. It pays well, and the
 benefits are good. Like they say “You don’t have
-to be crazy to work here, but it sure helps!”'
+to be crazy to work here, but it sure helps!”',
+   categories: 'serious, normal, transport'
  },
  {
    name: 'The Spell-Slinger',
@@ -86,7 +91,8 @@ tell you any more. You get too close, you’ll get hurt.'
    description: 'They took my loved ones. Back then I wasn’t
 strong enough to fight, but I studied, trained, and
 now I’m ready to cleanse the world of their taint.
-I’ll kill them all. That’s all I have left.'
+I’ll kill them all. That’s all I have left.',
+   categories: 'signature, practical, transport'
  },
  {
    name: 'The Gumshoe',
@@ -114,7 +120,12 @@ I’ll kill them all. That’s all I have left.'
   explained, even now. Perhaps only one event in a thousand is
   true weirdness — but I’ll investigate them all to find it.'
  }].each do |playbook|
-  Playbook.find_or_initialize_by(name: playbook[:name]).update!(playbook)
+  pb = Playbook.find_or_initialize_by(name: playbook[:name])
+  if playbook.key?(:categories)
+    categories = playbook.delete(:categories)
+    pb.category_list = categories
+  end
+  pb.update(playbook)
 end
 
 # used by other seedfiles to associate data with playbooks
@@ -135,3 +146,4 @@ end
 @pararomantic = Playbook.find_by name: 'The Pararomantic'
 @searcher = Playbook.find_by name: 'The Searcher'
 @initiate = Playbook.find_by name: 'The Initiate'
+@playbooks = Playbook.all

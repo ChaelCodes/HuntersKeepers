@@ -25,5 +25,5 @@ class Gear < ApplicationRecord
   has_many :playbooks, through: :playbook_gears
 
   validates :name, presence: true
-  acts_as_taggable_on :tags, :keywords
+  acts_as_taggable_on :tags
 end
