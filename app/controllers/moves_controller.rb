@@ -86,7 +86,8 @@ class MovesController < ApplicationController
     @move = Move.find(params[:id])
   end
 
-  # Never trust parameters from the scary internet, only allow the white list through.
+  # Never trust parameters from the scary internet,
+  # only permit the allow list through.
   def move_params
     params.require(:move).permit(:playbook_id,
                                  :type,

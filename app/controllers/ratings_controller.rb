@@ -69,7 +69,8 @@ class RatingsController < ApplicationController
     @rating = Rating.find(params[:id])
   end
 
-  # Never trust parameters from the scary internet, only allow the white list through.
+  # Never trust parameters from the scary internet,
+  # only permit the allow list through.
   def rating_params
     params.require(:rating).permit(:playbook_id, :charm, :cool, :sharp, :tough, :weird)
   end

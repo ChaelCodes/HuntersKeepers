@@ -70,7 +70,8 @@ class GearsController < ApplicationController
     @gear = Gear.find(params[:id])
   end
 
-  # Never trust parameters from the scary internet, only allow the white list through.
+  # Never trust parameters from the scary internet,
+  # only permit the allow list through.
   def gear_params
     params.require(:gear).permit(:name, :description, :harm, :armor, :playbook_id, :tag_list)
   end

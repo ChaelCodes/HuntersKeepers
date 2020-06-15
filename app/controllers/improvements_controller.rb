@@ -75,7 +75,8 @@ class ImprovementsController < ApplicationController
     @improvement = Improvement.find(params[:id])
   end
 
-  # Never trust parameters from the scary internet, only allow the white list through.
+  # Never trust parameters from the scary internet,
+  # only permit the allow list through.
   def improvement_params
     params.require(:improvement)
           .permit(:advanced, :description, :type, :playbook_id, :rating,
