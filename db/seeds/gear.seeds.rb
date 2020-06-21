@@ -144,9 +144,8 @@ after :playbook do
       categories.each do |name, gear_list|
         if playbook.category_list.include?(name.to_s) && gear_list.include?(gear.name)
           category_name = name.to_s
-        end
-        unless category_name.nil?
           PlaybookGear.find_or_initialize_by(gear: gear, playbook: playbook).update!(category: category_name)
+
         end
       end
     end
