@@ -37,10 +37,11 @@ RSpec.describe HuntersController, type: :controller do
   # in order to pass any filters (e.g. authentication) defined in
   # HuntersController. Be sure to keep this updated too.
   let(:valid_session) { {} }
+  let(:user) { create :user }
 
-  before(:each) do
-    @request.env["devise.mapping"] = Devise.mappings[:user]
-    sign_in create(:user, :admin)
+  before do
+    @request.env['devise.mapping'] = Devise.mappings[:user]
+    sign_in user
   end
 
   describe 'GET #index' do
@@ -67,6 +68,7 @@ RSpec.describe HuntersController, type: :controller do
     subject { get :show, params: { id: hunter.id }, session: valid_session }
 
     let(:hunter) { create :hunter }
+
     it 'returns a success response' do
       subject
       expect(response).to be_successful
@@ -80,20 +82,35 @@ RSpec.describe HuntersController, type: :controller do
       subject
       expect(response).to be_successful
     end
+
+    context 'banned user' do
+      let(:user) { create(:user, :banned) }
+
+      it 'does not display new' do
+        subject
+        expect(response).to redirect_to(new_user_session_path)
+      end
+    end
   end
 
   describe 'GET #edit' do
     subject { get :edit, params: { id: hunter.to_param }, session: valid_session }
 
     let(:hunter) { create :hunter }
-    it 'returns a success response' do
-      subject
-      expect(response).to be_successful
+
+    context 'with admin user' do
+      let(:user) { create :user, :admin }
+
+      it 'returns a success response' do
+        subject
+        expect(response).to be_successful
+      end
     end
   end
 
   describe 'POST #create' do
     subject { post :create, params: attributes, session: valid_session }
+
     context 'with valid params' do
       let(:attributes) { valid_attributes }
 
@@ -118,31 +135,37 @@ RSpec.describe HuntersController, type: :controller do
   end
 
   describe 'PUT #update' do
-    subject { put :update, params: attributes.merge({ id: hunter.to_param}), session: valid_session
-         }
-
-    let!(:hunter) { create :hunter }
-    context 'with valid params' do
-      let(:attributes) { valid_attributes }
-
-      it 'updates the requested hunter' do
-        subject
-        hunter.reload
-        expect(hunter.name).to eq 'Ruudii'
-      end
-
-      it 'redirects to the hunter' do
-        subject
-        expect(response).to redirect_to(hunter)
-      end
+    subject do
+      put :update, params: attributes.merge(id: hunter.to_param), session: valid_session
     end
 
-    context 'with invalid params' do
-      let(:attributes) { invalid_attributes }
+    let!(:hunter) { create :hunter }
 
-      it "returns a success response (i.e. to display the 'edit' template)" do
-        subject
-        expect(response).to be_successful
+    context 'with admin user' do
+      let(:user) { create :user, :admin }
+
+      context 'with valid params' do
+        let(:attributes) { valid_attributes }
+
+        it 'updates the requested hunter' do
+          subject
+          hunter.reload
+          expect(hunter.name).to eq 'Ruudii'
+        end
+
+        it 'redirects to the hunter' do
+          subject
+          expect(response).to redirect_to(hunter)
+        end
+      end
+
+      context 'with invalid params' do
+        let(:attributes) { invalid_attributes }
+
+        it "returns a success response (i.e. to display the 'edit' template)" do
+          subject
+          expect(response).to be_successful
+        end
       end
     end
   end
@@ -151,13 +174,23 @@ RSpec.describe HuntersController, type: :controller do
     subject { delete :destroy, params: { id: hunter.to_param }, session: valid_session }
 
     let!(:hunter) { create :hunter }
-    it 'destroys the requested hunter' do
-      expect { subject }.to change(Hunter, :count).by(-1)
+
+    it 'redirects user to sign in' do
+      subject
+      expect(response).to redirect_to(root_path)
     end
 
-    it 'redirects to the hunters list' do
-      subject
-      expect(response).to redirect_to(hunters_url)
+    context 'with admin user' do
+      let(:user) { create :user, :admin }
+
+      it 'destroys the requested hunter' do
+        expect { subject }.to change(Hunter, :count).by(-1)
+      end
+
+      it 'redirects to the hunters list' do
+        subject
+        expect(response).to redirect_to(hunters_url)
+      end
     end
   end
 end

@@ -20,8 +20,18 @@ FactoryBot.define do
       "lala_#{i}@example.com"
     end
     password { '12345678' }
+    confirmed_at { Time.zone.now }
+
     trait :admin do
       admin { true }
+    end
+
+    trait :banned do
+      banned_at { Time.zone.now }
+    end
+
+    trait :unconfirmed do
+      confirmed_at { nil }
     end
   end
 end
