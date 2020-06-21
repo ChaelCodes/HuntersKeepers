@@ -18,6 +18,21 @@
 class User < ApplicationRecord
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
-  devise :database_authenticatable, :registerable,
-         :recoverable, :rememberable, :validatable
+  devise :database_authenticatable,
+         :registerable, :recoverable, :rememberable,
+         :validatable
+  validates :email, uniqueness: true
+
+  def ban!
+    raise 'User has already been Banned' if banned?
+    update!(banned_at: Time.zone.now)
+  end
+
+  def banned?
+    banned_at.present?
+  end
+
+  def active_for_authentication?
+    super && !banned?
+  end
 end
