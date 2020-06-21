@@ -69,7 +69,8 @@ class PlaybooksController < ApplicationController
     @playbook = Playbook.find(params[:id])
   end
 
-  # Never trust parameters from the scary internet, only allow the white list through.
+  # Never trust parameters from the scary internet,
+  # only permit the allow list through.
   def playbook_params
     params.require(:playbook).permit(:name, :description)
   end

@@ -112,7 +112,8 @@ class HuntersImprovementsController < ApplicationController
     @hunters_improvement.improvable = raw
   end
 
-  # Never trust parameters from the scary internet, only allow the white list through.
+  # Never trust parameters from the scary internet,
+  # only permit the allow list through.
   def hunters_improvement_params
     params.require(:hunters_improvement)
           .permit(:hunter_id, :improvement_id, :improvable, improvable: [])
