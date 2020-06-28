@@ -17,4 +17,5 @@ class Playbook < ApplicationRecord
   has_many :gears
   has_many :moves
   has_many :ratings, dependent: :destroy
+  validates :name, presence: true
 end
