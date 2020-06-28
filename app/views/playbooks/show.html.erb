@@ -18,5 +18,17 @@
   <div class="column">
     <h4 class="subtitle">Gear</h4>
     <%= render "gears/gears", gears: @playbook.gears %>
+    <h4 class="subtitle" style="margin-top:1rem; margin-bottom:.5rem">Improvements</h4>
+    <ul>
+      <% @playbook.improvements.not_advanced.each do |improvement| %>
+        <li><%= link_to_improvement(improvement) %></li>
+      <% end %>
+    </ul>
+    <h4 class="subtitle" style="margin-top:1rem; margin-bottom:.5rem">Advanced Improvements</h4>
+    <ul>
+      <% @playbook.improvements.advanced.each do |improvement| %>
+        <li><%= link_to_improvement(improvement) %></li>
+      <% end %>
+    </ul>
   </div>
 </div>

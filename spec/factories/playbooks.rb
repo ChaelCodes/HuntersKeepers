@@ -12,5 +12,6 @@
 #
 FactoryBot.define do
   factory :playbook do
+    name { 'The Nameless' }
   end
 end

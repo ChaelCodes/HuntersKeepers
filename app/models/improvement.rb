@@ -28,6 +28,7 @@ class Improvement < ApplicationRecord
 
   enum rating: { charm: 0, cool: 1, sharp: 2, tough: 3, weird: 4 }
 
+  scope :advanced, -> { where(advanced: true) }
   scope :not_advanced, -> { where(advanced: [nil, false]) }
 
   validates :description, presence: true
