@@ -18,6 +18,8 @@
 #  description   :string
 #
 module Moves
+  # This class is use for rollable moves that are not basic moves
   class Rollable < Move
+    include ::Rollable
   end
 end
