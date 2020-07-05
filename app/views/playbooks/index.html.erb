@@ -13,7 +13,7 @@
     <% @playbooks.each do |playbook| %>
       <tr>
         <td><%= link_to playbook.name, playbook %></td>
-        <td><%= playbook.description&.slice(0, 100) %></td>
+        <td><%= playbook.description.truncate(100, separator: ' ') %></td>
         <td>
           <% if policy(playbook).edit? %>
             <%= link_to 'Edit', edit_playbook_path(playbook) %>
