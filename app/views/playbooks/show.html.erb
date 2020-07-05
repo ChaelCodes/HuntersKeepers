@@ -1,31 +1,34 @@
-<p>
-  <h4>Name:</h4>
-  <%= @playbook.name %>
-</p>
-
-<p>
-  <h4>Description:</h4>
-  <%= @playbook.description %>
-</p>
-
-<p>
-  <h4>Ratings Options</h4>
-  <ul>
-    <% @playbook.ratings.each do |rating| %>
-      <li><%= "Charm #{sprintf('%+d', rating.charm)}, Cool #{sprintf('%+d', rating.cool)}, Sharp #{sprintf('%+d', rating.sharp)}, Tough #{sprintf('%+d', rating.tough)}, Weird #{sprintf('%+d', rating.weird)}" %></li>
-    <% end %>
-  </ul>
-</p>
-
-<p>
-  <h4>Moves</h4>
-  <%= render "moves/moves", moves: @playbook.moves, hunter: nil %>
-</p>
-
-<p>
-  <h4>Gear</h4>
-  <%= render "gears/gears", gears: @playbook.gears %>
-</p>
-
-<%= link_to 'Edit', edit_playbook_path(@playbook) %> |
-<%= link_to 'Back', playbooks_path %>
+<div class="columns">
+  <div class="column">
+    <h1 class="title"><%= @playbook.name %></h1>
+    <p class="is-italic"><%= @playbook.description %></p>
+    <h4 class="subtitle" style="margin-top:1rem; margin-bottom:.5rem">Ratings Options</h4>
+    <ul>
+      <% @playbook.ratings.each do |rating| %>
+        <li><%= display_rating(rating) %></li>
+      <% end %>
+    </ul>
+    <%= link_to 'Edit', edit_playbook_path(@playbook) %> |
+    <%= link_to 'Back', playbooks_path %>
+  </div>
+  <div class="column">
+    <h4 class="subtitle">Moves</h4>
+    <%= render "moves/moves", moves: @playbook.moves, hunter: nil %>
+  </div>
+  <div class="column">
+    <h4 class="subtitle">Gear</h4>
+    <%= render "gears/gears", gears: @playbook.gears %>
+    <h4 class="subtitle" style="margin-top:1rem; margin-bottom:.5rem">Improvements</h4>
+    <ul>
+      <% @playbook.improvements.not_advanced.each do |improvement| %>
+        <li><%= link_to_improvement(improvement) %></li>
+      <% end %>
+    </ul>
+    <h4 class="subtitle" style="margin-top:1rem; margin-bottom:.5rem">Advanced Improvements</h4>
+    <ul>
+      <% @playbook.improvements.advanced.each do |improvement| %>
+        <li><%= link_to_improvement(improvement) %></li>
+      <% end %>
+    </ul>
+  </div>
+</div>
