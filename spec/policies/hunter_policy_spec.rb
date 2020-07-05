@@ -1,29 +1,38 @@
+# frozen_string_literal: true
+
 require 'rails_helper'
 
 RSpec.describe HunterPolicy, type: :policy do
-  let(:user) { create :user }
-  let(:admin) { create :user, :admin }
-
   subject { described_class }
 
-#  permissions ".scope" do
-#    pending "add some examples to (or delete) #{__FILE__}"
-#  end
+  let(:user) { build :user }
+  let(:admin) { build :user, :admin }
+  let(:logged_out_user) { nil }
+  let(:banned_user) { build :user, :banned }
 
-  let(:hunter) { create :hunter }
+  permissions '.scope' do
+  end
+
+  let(:hunter) { build :hunter }
+
   permissions :show? do
     it { expect(subject).to permit(user, hunter) }
   end
 
   permissions :create? do
     it { expect(subject).to permit(user, hunter) }
+    it { expect(subject).not_to permit(nil, hunter) }
+    it { expect(subject).not_to permit(banned_user, hunter) }
   end
 
   permissions :update? do
     it { expect(subject).not_to permit(user, hunter) }
     it { expect(subject).to permit(admin, hunter) }
-    context "user belongs to hunter" do
-      let(:hunter) { create :hunter, user: user }
+    it { expect(subject).not_to permit(nil, hunter) }
+
+    context 'when user belongs to hunter' do
+      let(:hunter) { build :hunter, user: user }
+
       it { expect(subject).to permit(user, hunter) }
     end
   end
@@ -31,8 +40,11 @@ RSpec.describe HunterPolicy, type: :policy do
   permissions :destroy? do
     it { expect(subject).not_to permit(user, hunter) }
     it { expect(subject).to permit(admin, hunter) }
-    context "user belongs to hunter" do
+    it { expect(subject).not_to permit(nil, hunter) }
+
+    context 'user belongs to hunter' do
       let(:hunter) { create :hunter, user: user }
+
       it { expect(subject).to permit(user, hunter) }
     end
   end

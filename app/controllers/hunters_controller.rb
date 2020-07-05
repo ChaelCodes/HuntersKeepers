@@ -3,7 +3,7 @@
 # Restful Hunters Controller
 class HuntersController < ApplicationController
   before_action :set_hunter, only: %i[show edit update destroy]
-  skip_before_action :authenticate_user!, only: %i[index show]
+  before_action :authenticate_user!, only: %i[new create edit update destroy]
   # GET /hunters
   # GET /hunters.json
   # List all hunters
