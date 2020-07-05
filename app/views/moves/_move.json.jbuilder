@@ -10,4 +10,5 @@ json.extract! move, :id,
               :twelve_plus,
               :created_at,
               :updated_at
+json.playbook_name move.playbook&.name || ''
 json.url move_url(move, format: :json)
