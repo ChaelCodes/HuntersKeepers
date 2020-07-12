@@ -20,6 +20,8 @@
 module Moves
   # This  class represents the basic moves that all Hunters have
   class Basic < Move
+    include ::Rollable
+
     def outcome(roll, hunter)
       case roll
       when 0..6

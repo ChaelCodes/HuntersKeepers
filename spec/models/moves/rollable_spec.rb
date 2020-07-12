@@ -20,7 +20,13 @@
 require 'rails_helper'
 
 RSpec.describe Moves::Rollable, type: :model do
-  let(:rollable) { create(:moves_rollable) }
+  let(:rollable) { build(:moves_rollable) }
+
+  describe 'factory is valid' do
+    it { expect(rollable).to be_valid }
+
+    it { expect(rollable).to be_rollable }
+  end
 
   describe '#roll' do
     subject { rollable.roll(hunter) }
@@ -33,36 +39,42 @@ RSpec.describe Moves::Rollable, type: :model do
   end
 
   describe '#roll_results' do
-    subject { rollable.roll_results(hunter) }
+    subject { rollable.roll_results(hunter).result }
 
     let(:hunter) { create :hunter, weird: 1 }
 
     before { allow_any_instance_of(Random).to receive(:rand).and_return(roll_result) }
 
-    context 'roll is 5' do
+    context 'when roll is 5' do
       let(:roll_result) { 5 }
 
       it {
-        expect(subject.result).to eq "Your total 6 resulted in #{rollable.six_and_under}"
+        expect(subject).to eq "Your total 6 resulted in #{rollable.six_and_under}"
       }
     end
 
-    context 'roll is 7' do
+    context 'when roll is 7' do
       let(:roll_result) { 7 }
 
-      it { expect(subject.result).to eq "Your total 8 resulted in #{rollable.seven_to_nine}" }
+      it { expect(subject).to eq "Your total 8 resulted in #{rollable.seven_to_nine}" }
     end
 
-    context 'roll is 9' do
+    context 'when roll is 9' do
       let(:roll_result) { 9 }
 
-      it { expect(subject.result).to eq "Your total 10 resulted in #{rollable.ten_plus}" }
+      it { expect(subject).to eq "Your total 10 resulted in #{rollable.ten_plus}" }
     end
 
-    context 'roll is 11' do
+    context 'when roll is 11' do
       let(:roll_result) { 10 }
 
-      it { expect(subject.result).to eq "Your total 11 resulted in #{rollable.ten_plus}" }
+      it { expect(subject).to eq "Your total 11 resulted in #{rollable.ten_plus}" }
+    end
+
+    context 'when roll is 13' do
+      let(:roll_result) { 13 }
+
+      it { expect(subject).to eq "Your total 14 resulted in #{rollable.ten_plus}" }
     end
   end
 end
