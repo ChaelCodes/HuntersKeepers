@@ -9,6 +9,22 @@ AllCops:
 Layout/EmptyLineAfterGuardClause:
   Enabled: false
 
+Metrics/BlockLength:
+  Exclude: 
+    - 'spec/**/*'
+
 Rails/RequestReferer:
   EnforcedStyle: referrer
-  
+
+RSpec/HookArgument:
+  Enabled: false
+
+RSpec/LetSetup:
+  Enabled: false
+
+RSpec/MultipleExpectations:
+  Exclude:
+    - spec/views/**/*
+
+RSpec/NestedGroups:
+  Enabled: false
