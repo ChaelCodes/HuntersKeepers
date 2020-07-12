@@ -17,6 +17,7 @@ class HunterPolicy < ApplicationPolicy
     @record.user == @user || @user.admin?
   end
 
+  # When working with a list of records, this class can limit access
   class Scope < Scope
     attr_reader :user, :scope
 
