@@ -29,66 +29,86 @@ RSpec.describe HuntersImprovementsController, type: :controller do
   # in order to pass any filters (e.g. authentication) defined in
   # HuntersImprovementsController. Be sure to keep this updated too.
   let(:valid_session) { {} }
+  let(:user) { create :user }
 
-  before(:each) do
-    @request.env['devise.mapping'] = Devise.mappings[:user]
-    sign_in create(:user)
+  before do
+    sign_in user
   end
 
   describe 'GET #index' do
-    subject { get :index, params: { hunter_id: hunter.id }, session: valid_session }
+    subject(:get_index) do
+      get :index, params: { hunter_id: hunter.id }, session: valid_session
+    end
 
     it 'returns a success response' do
       hunters_improvement
-      subject
+      get_index
       expect(response).to be_successful
     end
   end
 
   describe 'GET #show' do
-    subject { get :show, params: { hunter_id: hunter.id, id: hunters_improvement.id }, session: valid_session }
+    subject(:get_show) do
+      get :show, params: { hunter_id: hunter.id, id: hunters_improvement.id },
+                 session: valid_session
+    end
 
     it 'returns a success response' do
-      subject
+      get_show
       expect(response).to be_successful
     end
   end
 
   describe 'GET #new' do
-    subject { get :new, params: { hunter_id: hunter.id }, session: valid_session }
+    subject(:get_new) do
+      get :new, params: { hunter_id: hunter.id }, session: valid_session
+    end
 
     it 'returns a success response' do
-      subject
+      get_new
       expect(response).to be_successful
     end
   end
 
   describe 'GET #edit' do
-    subject { get :edit, params: { hunter_id: hunter.id, id: hunters_improvement.to_param }, session: valid_session }
+    subject(:get_edit) do
+      get :edit,
+          params: { hunter_id: hunter.id, id: hunters_improvement.to_param },
+          session: valid_session
+    end
 
     it 'returns a success response' do
-      subject
+      get_edit
       expect(response).to be_successful
     end
   end
 
   describe 'POST #create' do
-    subject { post :create, params: { hunter_id: hunter.id, hunters_improvement: attributes }, session: valid_session, format: format_type }
+    subject(:post_create) do
+      post :create,
+           params: { hunter_id: hunter.id, hunters_improvement: attributes },
+           session: valid_session,
+           format: format_type
+    end
 
     context 'with valid params' do
-      let(:valid_improvement) { create(:improvement, playbook: hunter.playbook) }
-      let(:attributes) { { hunter_id: hunter.id, improvement_id: valid_improvement.id } }
+      let(:valid_improvement) do
+        create(:improvement, playbook: hunter.playbook)
+      end
+      let(:attributes) do
+        { hunter_id: hunter.id, improvement_id: valid_improvement.id }
+      end
 
-      context 'html format' do
+      context 'when html format' do
         let(:format_type) { :html }
 
         it 'creates a new HuntersImprovement' do
-          expect { subject }.to change(HuntersImprovement, :count).by(1)
+          expect { post_create }.to change(HuntersImprovement, :count).by(1)
         end
 
         it 'redirects to the created hunters_improvement' do
-          subject
-          expect(response).to redirect_to(hunter_hunters_improvement_url(hunter_id: hunter.id, id: HuntersImprovement.last.id))
+          post_create
+          expect(response).to redirect_to([hunter, HuntersImprovement.last])
         end
       end
 
@@ -99,29 +119,40 @@ RSpec.describe HuntersImprovementsController, type: :controller do
       end
 
       context 'with json improvable' do
-        let(:attributes) { { hunter_id: hunter.id, improvement_id: valid_improvement.id, improvable: '{"id":25,"name":"Ancient Fighting Arts","description":"When using an old-fashioned hand weapon, you inflict +1 harm and get +1\nwhenever you roll protect someone."}' } }
+        let(:attributes) do
+          {
+            hunter_id: hunter.id,
+            improvement_id: valid_improvement.id,
+            improvable: '{"id":25,"name":"Ancient Arts","description":"desc"}'
+          }
+        end
         let(:format_type) { :html }
 
         it 'creates a new HuntersImprovement' do
-          expect { subject }.to change(HuntersImprovement, :count).by(1)
+          expect { post_create }.to change(HuntersImprovement, :count).by(1)
         end
 
         it 'has a well-formatted json improvable' do
-          subject
+          post_create
           expect(HuntersImprovement.last.improvable['id']).to eq 25
         end
       end
 
       context 'with json improvable array' do
-        let(:attributes) { { hunter_id: hunter.id, improvement_id: valid_improvement.id, improvable: ['{"id":25,"name":"Ancient Fighting Arts","description":"When using an old-fashioned hand weapon, you inflict +1 harm and get +1\nwhenever you roll protect someone."}', '{"id":25,"name":"Ancient Fighting Arts","description":"When using an old-fashioned hand weapon, you inflict +1 harm and get +1\nwhenever you roll protect someone."}'] } }
+        let(:attributes) do
+          {
+            hunter_id: hunter.id, improvement_id: valid_improvement.id,
+            improvable: ['{"id":25,"name":"Ancient Arts","description":"desc"}']
+          }
+        end
         let(:format_type) { :html }
 
         it 'creates a new HuntersImprovement' do
-          expect { subject }.to change(HuntersImprovement, :count).by(1)
+          expect { post_create }.to change(HuntersImprovement, :count).by(1)
         end
 
         it 'has a well-formatted json improvable' do
-          subject
+          post_create
           expect(HuntersImprovement.last.improvable[0]['id']).to eq 25
         end
       end
@@ -130,22 +161,22 @@ RSpec.describe HuntersImprovementsController, type: :controller do
     context 'with invalid params' do
       let(:attributes) { invalid_attributes }
 
-      context 'html format' do
+      context 'when html format' do
         let(:format_type) { :html }
 
         it "returns a success response (i.e. to display the 'new' template)" do
-          subject
+          post_create
           expect(response).to be_successful
         end
       end
 
-      context 'json format' do
+      context 'when json format' do
         let(:format_type) { :json }
 
         it { is_expected.to have_http_status(:unprocessable_entity) }
 
         it 'send errors in our json response' do
-          subject
+          post_create
           resp = JSON.parse(response.body)
           expect(resp['hunter'])
             .to include 'does not match improvement playbook: The Nameless'
@@ -155,7 +186,15 @@ RSpec.describe HuntersImprovementsController, type: :controller do
   end
 
   describe 'PUT #update' do
-    subject { put :update, params: { hunter_id: hunter.id, id: hunters_improvement.id, hunters_improvement: attributes }, session: valid_session, format: format_type }
+    subject(:put_update) do
+      put :update,
+          params: {
+            hunter_id: hunter.id,
+            id: hunters_improvement.id,
+            hunters_improvement: attributes
+          },
+          session: valid_session, format: format_type
+    end
 
     let(:different_improvement) { create(:improvement) }
 
@@ -168,22 +207,22 @@ RSpec.describe HuntersImprovementsController, type: :controller do
         }
       end
 
-      context 'html format' do
+      context 'when html format' do
         let(:format_type) { :html }
 
         it 'updates the requested hunters_improvement' do
-          subject
+          put_update
           hunters_improvement.reload
           expect(hunters_improvement.improvement).to eq different_improvement
         end
 
         it 'redirects to the hunters_improvement' do
-          subject
-          expect(response).to redirect_to(hunter_hunters_improvement_url(hunter_id: hunter.id, id: hunters_improvement.id))
+          put_update
+          expect(response).to redirect_to([hunter, hunters_improvement])
         end
       end
 
-      context 'json format' do
+      context 'when json format' do
         let(:format_type) { :json }
 
         it { is_expected.to have_http_status(:ok) }
@@ -193,22 +232,22 @@ RSpec.describe HuntersImprovementsController, type: :controller do
     context 'with invalid params' do
       let(:attributes) { { improvement_id: nil } }
 
-      context 'html format' do
+      context 'when html format' do
         let(:format_type) { :html }
 
         it "returns a success response (i.e. to display the 'edit' template)" do
-          subject
+          put_update
           expect(response).to be_successful
         end
       end
 
-      context 'json format' do
+      context 'when json format' do
         let(:format_type) { :json }
 
         it { is_expected.to have_http_status(:unprocessable_entity) }
 
         it 'send errors in our json response' do
-          subject
+          put_update
           resp = JSON.parse(response.body)
           expect(resp['improvement']).to include 'must exist'
         end
@@ -217,26 +256,27 @@ RSpec.describe HuntersImprovementsController, type: :controller do
   end
 
   describe 'DELETE #destroy' do
-    subject { delete :destroy, params: { hunter_id: hunter.id, id: hunters_improvement.id }, session: valid_session, format: format_type }
+    subject(:delete_destroy) do
+      delete :destroy,
+             params: { hunter_id: hunter.id, id: hunters_improvement.id },
+             session: valid_session, format: format_type
+    end
 
-    context 'with html format' do
+    context 'when html format' do
       let(:format_type) { :html }
 
       it 'destroys the requested hunters_improvement' do
         hunters_improvement
-        expect do
-          subject
-        end.to change(HuntersImprovement, :count).by(-1)
+        expect { delete_destroy }.to change(HuntersImprovement, :count).by(-1)
       end
 
       it 'redirects to the hunters_improvements list' do
-        hunters_improvement
-        subject
+        delete_destroy
         expect(response).to redirect_to(hunter_hunters_improvements_url)
       end
     end
 
-    context 'with json format' do
+    context 'when json format' do
       let(:format_type) { :json }
 
       it { is_expected.to be_successful }

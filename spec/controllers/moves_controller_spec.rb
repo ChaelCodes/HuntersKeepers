@@ -24,25 +24,31 @@ RSpec.describe MovesController, type: :controller do
   # in order to pass any filters (e.g. authentication) defined in
   # MovesController. Be sure to keep this updated too.
   let(:valid_session) { {} }
+  let(:user) { create :user }
+  let(:body) { JSON.parse(response.body) }
 
   before do
-    @request.env['devise.mapping'] = Devise.mappings[:user]
-    sign_in create(:user)
+    sign_in user
   end
 
   describe 'GET #index' do
-    subject { get :index, params: params, session: valid_session, format: format_type }
+    subject(:get_index) do
+      get :index,
+          params: params,
+          session: valid_session,
+          format: format_type
+    end
 
     let(:format_type) { :html }
     let(:params) { {} }
 
     it 'returns a success response' do
       Move.create! valid_attributes
-      subject
+      get_index
       expect(response).to be_successful
     end
 
-    context 'json format' do
+    context 'with json format' do
       let(:format_type) { :json }
 
       render_views
@@ -54,31 +60,27 @@ RSpec.describe MovesController, type: :controller do
         let!(:another_pb_move) { create :move }
 
         it 'filters for moves associated with playbook' do
-          subject
-          resp = JSON.parse(response.body)
-          expect(resp.dig(0, 'id')).to eq(move.id)
-          expect(resp.count).to eq 1
+          get_index
+          expect(body).to all(include('id' => move.id))
         end
       end
 
-      context 'for a hunter' do
+      context 'with a hunter' do
         let(:params) { { hunter_id: hunter.id } }
         let(:hunter) { create :hunter }
         let!(:move) { create :move }
 
         it 'does not include has_move' do
-          subject
-          resp = JSON.parse(response.body)
-          expect(resp.dig(0, 'has_move')).to eq false
+          get_index
+          expect(body.dig(0, 'has_move')).to eq false
         end
 
-        context 'hunter has the move' do
+        context 'when hunter has the move' do
           before { hunter.moves << move }
 
           it 'display if the hunter has the move' do
-            subject
-            resp = JSON.parse(response.body)
-            expect(resp.dig(0, 'has_move')).to eq true
+            get_index
+            expect(body.dig(0, 'has_move')).to eq true
           end
         end
       end
@@ -86,31 +88,34 @@ RSpec.describe MovesController, type: :controller do
   end
 
   describe 'GET #show' do
-    subject {  get :show, params: params, session: valid_session, format: format_type }
+    subject(:get_show) do
+      get :show, params: params, session: valid_session, format: format_type
+    end
 
     let(:move) { create :move }
     let(:params) { { id: move.to_param } }
-    let(:body) { JSON.parse(response.body) }
 
-    context 'in json format' do
+    context 'when json format' do
       let(:format_type) { :json }
 
       render_views
       it 'returns a success response' do
-        subject
+        get_show
         expect(response).to be_successful
       end
     end
   end
 
   describe 'GET #roll' do
-    subject { get :roll, params: params, session: valid_session, format: format_type }
+    subject(:get_roll) do
+      get :roll, params: params, session: valid_session, format: format_type
+    end
 
     let(:move) { create :move }
     let(:params) { { id: move.to_param } }
-    let(:body) { JSON.parse(response.body) }
+    let(:body) { super().with_indifferent_access }
 
-    context 'in json format' do
+    context 'when json format' do
       let(:format_type) { :json }
 
       render_views
@@ -119,7 +124,7 @@ RSpec.describe MovesController, type: :controller do
         let(:hunter) { create :hunter }
 
         it 'includes results' do
-          subject
+          get_roll
           expect(body[:results]).to be_nil
           # TODO: error on unrollable move
         end
@@ -128,11 +133,11 @@ RSpec.describe MovesController, type: :controller do
           let(:move) { create :moves_rollable }
 
           it 'returns the results of rolling the move' do
-            subject
-            expect(body['results']).to match(/Your total \d+ resulted in/)
+            get_roll
+            expect(body[:results]).to match(/Your total \d+ resulted in/)
           end
 
-          context 'lucky roll' do
+          context 'when lucky roll' do
             let(:params) do
               { id: move.to_param, hunter_id: hunter.id, lucky: true }
             end
@@ -141,21 +146,34 @@ RSpec.describe MovesController, type: :controller do
             let(:move) { create :moves_rollable, rating: :sharp }
 
             it 'always rolls a 12' do
-              subject
-              expect(body['roll']).to eq 13
-              expect(body['results']).to eq 'Your total 13 resulted in ten plus result'
+              get_roll
+              expect(body).to include(
+                roll: 13,
+                results: 'Your total 13 resulted in ten plus result'
+              )
             end
 
-            context 'experience is lost' do
+            context 'when experience is lost' do
               let(:params) do
-                { id: move.to_param, hunter_id: hunter.id, lucky: true, lose_experience: true }
+                {
+                  id: move.to_param,
+                  hunter_id: hunter.id,
+                  lucky: true,
+                  lose_experience: true
+                }
               end
 
               it 'hunter loses the experience from failure' do
-                subject
-                expect(hunter.reload.experience).to eq -1
-                expect(body['roll']).to eq 13
-                expect(body['results']).to eq 'Your total 13 resulted in ten plus result'
+                get_roll
+                expect(hunter.reload.experience).to eq(-1)
+              end
+
+              it 'hunter gets the best result' do
+                get_roll
+                expect(body).to include(
+                  roll: 13,
+                  results: 'Your total 13 resulted in ten plus result'
+                )
               end
             end
           end
@@ -165,8 +183,8 @@ RSpec.describe MovesController, type: :controller do
           let(:move) { create :moves_basic }
 
           it 'returns the results of rolling the move' do
-            subject
-            expect(body['results']).to match(/Your total \d+ resulted in/)
+            get_roll
+            expect(body[:results]).to match(/Your total \d+ resulted in/)
           end
         end
       end
@@ -189,28 +207,42 @@ RSpec.describe MovesController, type: :controller do
   end
 
   describe 'POST #create' do
+    subject(:post_create) do
+      post :create, params: { move: attributes }, session: valid_session
+    end
+
     context 'with valid params' do
+      let(:attributes) { valid_attributes }
+
       it 'creates a new Move' do
-        expect do
-          post :create, params: { move: valid_attributes }, session: valid_session
-        end.to change(Move, :count).by(1)
+        expect { post_create }.to change(Move, :count).by(1)
       end
 
       it 'redirects to the created move' do
-        post :create, params: { move: valid_attributes }, session: valid_session
+        post_create
         expect(response).to redirect_to(move_url(Move.last))
       end
     end
 
     context 'with invalid params' do
+      let(:attributes) { invalid_attributes }
+
       it "returns a success response (i.e. to display the 'new' template)" do
-        post :create, params: { move: invalid_attributes }, session: valid_session
+        post_create
         expect(response).to be_successful
       end
     end
   end
 
   describe 'PUT #update' do
+    subject(:put_update) do
+      put :update,
+          params: { id: move.to_param, move: new_attributes },
+          session: valid_session
+    end
+
+    let!(:move) { create :move }
+
     context 'with valid params' do
       let(:new_attributes) do
         {
@@ -219,39 +251,39 @@ RSpec.describe MovesController, type: :controller do
       end
 
       it 'updates the requested move' do
-        move = Move.create! valid_attributes
-        put :update, params: { id: move.to_param, move: new_attributes }, session: valid_session
-        move.reload
+        put_update
         expect(move.reload.name).to eq 'New Move Name'
       end
 
       it 'redirects to the move' do
-        move = Move.create! valid_attributes
-        put :update, params: { id: move.to_param, move: valid_attributes }, session: valid_session
+        put_update
         expect(response).to redirect_to(move_url(move))
       end
     end
 
     context 'with invalid params' do
+      let(:new_attributes) { invalid_attributes }
+
       it "returns a success response (i.e. to display the 'edit' template)" do
-        move = Move.create! valid_attributes
-        put :update, params: { id: move.to_param, move: invalid_attributes }, session: valid_session
+        put_update
         expect(response).to be_successful
       end
     end
   end
 
   describe 'DELETE #destroy' do
+    subject(:delete_destroy) do
+      delete :destroy, params: { id: move.to_param }, session: valid_session
+    end
+
+    let!(:move) { create :move }
+
     it 'destroys the requested move' do
-      move = Move.create! valid_attributes
-      expect do
-        delete :destroy, params: { id: move.to_param }, session: valid_session
-      end.to change(Move, :count).by(-1)
+      expect { delete_destroy }.to change(Move, :count).by(-1)
     end
 
     it 'redirects to the moves list' do
-      move = Move.create! valid_attributes
-      delete :destroy, params: { id: move.to_param }, session: valid_session
+      delete_destroy
       expect(response).to redirect_to(moves_url)
     end
   end

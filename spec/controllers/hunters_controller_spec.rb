@@ -40,61 +40,68 @@ RSpec.describe HuntersController, type: :controller do
   let(:user) { create :user }
 
   before do
-    @request.env['devise.mapping'] = Devise.mappings[:user]
     sign_in user
   end
 
   describe 'GET #index' do
-    subject { get :index, params: {}, session: valid_session }
+    subject(:get_index) { get :index, params: {}, session: valid_session }
 
-    context 'at least one hunter exists' do
+    context 'when at least one hunter exists' do
       let!(:hunter) { create :hunter }
 
       it 'returns a success response' do
-        subject
+        get_index
         expect(response).to be_successful
       end
     end
 
-    context 'no hunters exist' do
+    context 'without hunters' do
       it 'returns a success response' do
-        subject
+        get_index
         expect(response).to be_successful
       end
     end
   end
 
   describe 'GET #show' do
-    subject { get :show, params: { id: hunter.id }, session: valid_session }
+    subject(:get_show) do
+      get :show,
+          params: { id: hunter.id },
+          session: valid_session
+    end
 
     let(:hunter) { create :hunter }
 
     it 'returns a success response' do
-      subject
+      get_show
       expect(response).to be_successful
     end
   end
 
   describe 'GET #new' do
-    subject { get :new, params: {}, session: valid_session }
+    subject(:get_new) { get :new, params: {}, session: valid_session }
 
     it 'returns a success response' do
-      subject
+      get_new
       expect(response).to be_successful
     end
 
-    context 'banned user' do
+    context 'when user is banned' do
       let(:user) { create(:user, :banned) }
 
       it 'does not display new' do
-        subject
+        get_new
         expect(response).to redirect_to(new_user_session_path)
       end
     end
   end
 
   describe 'GET #edit' do
-    subject { get :edit, params: { id: hunter.to_param }, session: valid_session }
+    subject(:get_edit) do
+      get :edit,
+          params: { id: hunter.to_param },
+          session: valid_session
+    end
 
     let(:hunter) { create :hunter }
 
@@ -102,24 +109,28 @@ RSpec.describe HuntersController, type: :controller do
       let(:user) { create :user, :admin }
 
       it 'returns a success response' do
-        subject
+        get_edit
         expect(response).to be_successful
       end
     end
   end
 
   describe 'POST #create' do
-    subject { post :create, params: attributes, session: valid_session }
+    subject(:post_create) do
+      post :create,
+           params: attributes,
+           session: valid_session
+    end
 
     context 'with valid params' do
       let(:attributes) { valid_attributes }
 
       it 'creates a new Hunter' do
-        expect { subject }.to change(Hunter, :count).by(1)
+        expect { post_create }.to change(Hunter, :count).by(1)
       end
 
       it 'redirects to the created hunter' do
-        subject
+        post_create
         expect(response).to redirect_to(Hunter.last)
       end
     end
@@ -128,15 +139,17 @@ RSpec.describe HuntersController, type: :controller do
       let(:attributes) { invalid_attributes }
 
       it "returns a success response (i.e. to display the 'new' template)" do
-        subject
+        post_create
         expect(response).to be_successful
       end
     end
   end
 
   describe 'PUT #update' do
-    subject do
-      put :update, params: attributes.merge(id: hunter.to_param), session: valid_session
+    subject(:put_update) do
+      put :update,
+          params: attributes.merge(id: hunter.to_param),
+          session: valid_session
     end
 
     let!(:hunter) { create :hunter }
@@ -148,13 +161,13 @@ RSpec.describe HuntersController, type: :controller do
         let(:attributes) { valid_attributes }
 
         it 'updates the requested hunter' do
-          subject
+          put_update
           hunter.reload
           expect(hunter.name).to eq 'Ruudii'
         end
 
         it 'redirects to the hunter' do
-          subject
+          put_update
           expect(response).to redirect_to(hunter)
         end
       end
@@ -163,7 +176,7 @@ RSpec.describe HuntersController, type: :controller do
         let(:attributes) { invalid_attributes }
 
         it "returns a success response (i.e. to display the 'edit' template)" do
-          subject
+          put_update
           expect(response).to be_successful
         end
       end
@@ -171,24 +184,34 @@ RSpec.describe HuntersController, type: :controller do
   end
 
   describe 'DELETE #destroy' do
-    subject { delete :destroy, params: { id: hunter.to_param }, session: valid_session }
+    subject(:delete_destroy) do
+      delete :destroy, params: { id: hunter.to_param }, session: valid_session
+    end
 
     let!(:hunter) { create :hunter }
 
     it 'redirects user to sign in' do
-      subject
+      delete_destroy
       expect(response).to redirect_to(root_path)
+    end
+
+    context 'when user has created hunter' do
+      let!(:hunter) { create :hunter, user: user }
+
+      it 'destroys the requested hunter' do
+        expect { delete_destroy }.to change(Hunter, :count).by(-1)
+      end
     end
 
     context 'with admin user' do
       let(:user) { create :user, :admin }
 
       it 'destroys the requested hunter' do
-        expect { subject }.to change(Hunter, :count).by(-1)
+        expect { delete_destroy }.to change(Hunter, :count).by(-1)
       end
 
       it 'redirects to the hunters list' do
-        subject
+        delete_destroy
         expect(response).to redirect_to(hunters_url)
       end
     end

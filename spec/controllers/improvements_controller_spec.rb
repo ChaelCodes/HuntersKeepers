@@ -25,53 +25,54 @@ RSpec.describe ImprovementsController, type: :controller do
   # in order to pass any filters (e.g. authentication) defined in
   # ImprovementsController. Be sure to keep this updated too.
   let(:valid_session) { {} }
+  let(:user) { create :user }
 
   before(:each) do
-    @request.env['devise.mapping'] = Devise.mappings[:user]
-    sign_in create(:user)
+    sign_in user
   end
 
   describe 'GET #index' do
-    subject { get :index, params: {}, session: valid_session }
+    subject(:get_index) { get :index, params: {}, session: valid_session }
 
     it 'returns a success response' do
       improvement
-      subject
+      get_index
       expect(response).to be_successful
     end
   end
 
   describe 'GET #show' do
-    subject { get :show, params: params, session: valid_session, format: format_type }
+    subject(:get_show) do
+      get :show, params: params, session: valid_session, format: format_type
+    end
 
-    context 'html format' do
+    context 'when html format' do
       let(:format_type) { :html }
       let(:params) { { id: improvement.to_param } }
+
       it 'returns a success response' do
-        subject
+        get_show
         expect(response).to be_successful
       end
     end
 
-    context 'json format' do
+    context 'when json format' do
       let(:format_type) { :json }
 
       context 'when a hunter is passed' do
         let(:hunter) { create :hunter }
         let(:params) { { id: improvement.id, hunter_id: hunter.id } }
+
         render_views
 
         context 'when improvable_options are available' do
-          let!(:move) { create_list :move, 3 }
-          before do
-            allow_any_instance_of(Improvement).to receive(:improvable_options)
-            .and_return(Move.all)
-          end
+          let!(:move) { create :move, playbook: hunter.playbook }
+          let(:improvement) { create :playbook_move, playbook: hunter.playbook }
 
           it 'includes improvable options' do
-            subject
+            get_show
             resp = JSON.parse(response.body)
-            expect(resp['improvable_options'].first['id']).to eq Move.first.id
+            expect(resp['improvable_options'].first['id']).to eq move.id
           end
         end
       end
@@ -79,53 +80,67 @@ RSpec.describe ImprovementsController, type: :controller do
   end
 
   describe 'GET #new' do
-    subject { get :new, params: {}, session: valid_session }
+    subject(:get_new) { get :new, params: {}, session: valid_session }
 
     it 'returns a success response' do
-      subject
+      get_new
       expect(response).to be_successful
     end
   end
 
   describe 'GET #edit' do
-    subject { get :edit, params: { id: improvement.to_param }, session: valid_session }
+    subject(:get_edit) do
+      get :edit,
+          params: { id: improvement.to_param },
+          session: valid_session
+    end
 
     it 'returns a success response' do
-      subject
+      get_edit
       expect(response).to be_successful
     end
   end
 
   describe 'POST #create' do
-    subject { post :create, params: { improvement: attributes }, session: valid_session, format: format_type }
+    subject(:post_create) do
+      post :create,
+           params: { improvement: attributes },
+           session: valid_session,
+           format: format_type
+    end
 
     context 'with valid params' do
       let(:attributes) { valid_attributes }
 
-      context 'html format' do
+      context 'when html format' do
         let(:format_type) { :html }
 
         it 'creates a new Improvement' do
-          expect { subject }.to change(Improvement, :count).by(1)
+          expect { post_create }.to change(Improvement, :count).by(1)
         end
 
         it 'redirects to the created improvement' do
-          subject
+          post_create
           expect(response).to redirect_to(Improvement.last)
         end
 
         context 'with a rating boost improvement' do
-          let(:attributes) { { description: 'Get +1 Tough, max +3', type: 'Improvements::RatingBoost', playbook_id: create(:playbook).id } }
+          let(:attributes) do
+            {
+              description: 'Get +1 Tough, max +3',
+              type: 'Improvements::RatingBoost',
+              playbook_id: create(:playbook).id
+            }
+          end
 
           it 'redirects to created improvement' do
-            subject
-            expect(Improvement.last.class).to eq Improvements::RatingBoost
+            post_create
             expect(response).to redirect_to(improvement_url(Improvement.last))
           end
         end
       end
 
-      context 'json format' do
+      context 'when json format' do
         let(:format_type) { :json }
 
         it { is_expected.to have_http_status :created }
@@ -135,22 +150,22 @@ RSpec.describe ImprovementsController, type: :controller do
     context 'with invalid params' do
       let(:attributes) { invalid_attributes }
 
-      context 'html format' do
+      context 'when html format' do
         let(:format_type) { :html }
 
-        it "returns a success response (i.e. to display the 'new' template)" do
-          subject
+        it 'returns a success response (renders the new form)' do
+          post_create
           expect(response).to be_successful
         end
       end
 
-      context 'json format' do
+      context 'when json format' do
         let(:format_type) { :json }
 
         it { is_expected.to have_http_status :unprocessable_entity }
 
         it 'returns the errors' do
-          subject
+          post_create
           resp = JSON.parse(response.body)
           expect(resp['description']).to include "can't be blank"
         end
@@ -159,27 +174,32 @@ RSpec.describe ImprovementsController, type: :controller do
   end
 
   describe 'PUT #update' do
-    subject { put :update, params: { id: improvement.to_param, improvement: attributes }, session: valid_session, format: format_type }
+    subject(:put_update) do
+      put :update,
+          params: { id: improvement.to_param, improvement: attributes },
+          session: valid_session,
+          format: format_type
+    end
 
     context 'with valid params' do
-      let(:attributes) {{ description: 'Retire this hunter to safety' }}
+      let(:attributes) { { description: 'Retire this hunter to safety' } }
 
-      context 'html format' do
+      context 'when html format' do
         let(:format_type) { :html }
 
         it 'updates the requested improvement' do
-          subject
+          put_update
           improvement.reload
           expect(improvement.description).to eq 'Retire this hunter to safety'
         end
 
         it 'redirects to the improvement' do
-          subject
+          put_update
           expect(response).to redirect_to(improvement)
         end
       end
 
-      context 'json format' do
+      context 'when json format' do
         let(:format_type) { :json }
 
         it { is_expected.to have_http_status :ok }
@@ -189,22 +209,22 @@ RSpec.describe ImprovementsController, type: :controller do
     context 'with invalid params' do
       let(:attributes) { invalid_attributes }
 
-      context 'html format' do
+      context 'when html format' do
         let(:format_type) { :html }
 
         it "returns a success response (i.e. to display the 'edit' template)" do
-          subject
+          put_update
           expect(response).to be_successful
         end
       end
 
-      context 'json format' do
+      context 'when json format' do
         let(:format_type) { :json }
 
         it { is_expected.to have_http_status :unprocessable_entity }
 
         it 'shows the errors' do
-          subject
+          put_update
           resp = JSON.parse(response.body)
           expect(resp['description']).to include "can't be blank"
         end
@@ -213,23 +233,28 @@ RSpec.describe ImprovementsController, type: :controller do
   end
 
   describe 'DELETE #destroy' do
-    subject { delete :destroy, params: { id: improvement.to_param }, session: valid_session, format: format_type }
+    subject(:delete_destroy) do
+      delete :destroy,
+             params: { id: improvement.to_param },
+             session: valid_session,
+             format: format_type
+    end
 
-    context 'html format' do
+    context 'when html format' do
       let(:format_type) { :html }
 
       it 'destroys the requested improvement' do
         improvement
-        expect { subject }.to change(Improvement, :count).by(-1)
+        expect { delete_destroy }.to change(Improvement, :count).by(-1)
       end
 
       it 'redirects to the improvements list' do
-        subject
+        delete_destroy
         expect(response).to redirect_to(improvements_url)
       end
     end
 
-    context 'json format' do
+    context 'when json format' do
       let(:format_type) { :json }
 
       it { is_expected.to be_successful }
