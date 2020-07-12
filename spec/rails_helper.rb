@@ -13,12 +13,13 @@ require 'spec_helper'
 # Add coverage report to RSPEC
 require 'simplecov'
 SimpleCov.start
-require "pundit/rspec"
 
 # Add auth helpers + devise
 require 'support/devise'
 # Add factories
 require 'support/factory_bot'
+# Add auth helpers + pundit
+require 'support/pundit'
 
 # Requires supporting ruby files with custom matchers and macros, etc, in
 # spec/support/ and its subdirectories. Files matching `spec/**/*_spec.rb` are
