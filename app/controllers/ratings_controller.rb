@@ -8,6 +8,8 @@ class RatingsController < ApplicationController
   # GET /ratings.json
   def index
     @ratings = Rating.all
+    return unless params[:playbook_id]
+    @ratings = @ratings.where(playbook_id: params[:playbook_id])
   end
 
   # GET /ratings/1
@@ -72,6 +74,7 @@ class RatingsController < ApplicationController
   # Never trust parameters from the scary internet,
   # only permit the allow list through.
   def rating_params
-    params.require(:rating).permit(:playbook_id, :charm, :cool, :sharp, :tough, :weird)
+    params.require(:rating)
+          .permit(:playbook_id, *Rating::LIST)
   end
 end

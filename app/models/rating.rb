@@ -17,7 +17,8 @@
 # The ratings/attributes that the Hunter has
 # determines their capability to do something
 class Rating < ApplicationRecord
-  belongs_to :playbook
-
   LIST = %i[charm cool sharp tough weird].freeze
+
+  belongs_to :playbook, dependent: :destroy
+  validates(*LIST, presence: true, numericality: true)
 end
