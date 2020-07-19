@@ -16,7 +16,13 @@ Metrics/BlockLength:
 Rails/RequestReferer:
   EnforcedStyle: referrer
 
+RSpec/ExampleLength:
+  Max: 10
+
 RSpec/HookArgument:
+  Enabled: false
+
+RSpec/ImplicitSubject:
   Enabled: false
 
 RSpec/LetSetup:
@@ -27,4 +33,7 @@ RSpec/MultipleExpectations:
     - spec/views/**/*
 
 RSpec/NestedGroups:
+  Enabled: false
+
+Style/DoubleNegation:
   Enabled: false
