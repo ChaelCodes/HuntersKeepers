@@ -1,5 +1,26 @@
 <h1>New Hunter</h1>
 
-<%= render 'form', hunter: @hunter %>
+<%= form_with(model: @hunter, local: true) do |form| %>
+  <%= render 'layouts/errors', errors: @hunter.errors %>
+
+  <section>
+    <div class="field">
+      <%= form.label :name %>
+      <div class="control">
+        <%= form.text_field :name, class: 'input' %>
+      </div>
+    </div>
+
+    <hunter-new-form :playbooks="<%= Playbook.all.to_json %>" />
+
+    <%= hidden_field(:hunter, :harm) %>
+    <%= hidden_field(:hunter, :luck) %>
+    <%= hidden_field(:hunter, :experience) %>
+  </section>
+
+  <div class="actions">
+    <%= form.submit class: 'button is-primary' %>
+  </div>
+<% end %>
 
 <%= link_to 'Back', hunters_path %>
