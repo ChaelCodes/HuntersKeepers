@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 # == Schema Information
 #
 # Table name: hunters
@@ -35,6 +37,7 @@ RSpec.describe Hunter, type: :model do
       let!(:improvement) { create(:improvement, playbook: hunter.playbook) }
 
       it { is_expected.to include(improvement) }
+
       context 'hunter already has improvement' do
         let!(:hunters_improvement) { create(:hunters_improvement, hunter: hunter, improvement: improvement) }
 
@@ -67,14 +70,41 @@ RSpec.describe Hunter, type: :model do
     subject { hunter.gain_experience(exp) }
 
     let(:exp) { 1 }
+
     it 'increases the hunter experience' do
       expect { subject }.to change(hunter.reload, :experience).by(1)
       expect(hunter.reload.experience).to eq 1
     end
   end
 
+  describe '#rating_id=' do
+    subject(:set_rating) { hunter.rating_id = rating.id }
+
+    let(:rating) { create :rating, playbook: hunter.playbook }
+
+    it 'sets the hunters stats to equal the rating' do
+      set_rating
+      expect(hunter).to have_attributes(
+        charm: rating.charm,
+        cool: rating.cool,
+        sharp: rating.sharp,
+        tough: rating.tough,
+        weird: rating.weird
+      )
+    end
+
+    context 'with missing rating' do
+      let(:rating) { build :rating, playbook: hunter.playbook }
+
+      it 'raises error' do
+        expect { set_rating }.to raise_error(ActiveRecord::RecordNotFound)
+      end
+    end
+  end
+
   describe '#advanced?' do
     subject { hunter.advanced?(move) }
+
     let(:move) { create(:move) }
 
     context 'with advanced move' do
