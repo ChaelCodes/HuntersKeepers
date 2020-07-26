@@ -14,6 +14,7 @@
 #  sharp       :integer
 #  tough       :integer
 #  weird       :integer
+#  retired     :boolean
 #  created_at  :datetime         not null
 #  updated_at  :datetime         not null
 #  playbook_id :bigint
