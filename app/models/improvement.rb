@@ -19,10 +19,14 @@
 # from when upgrading their character.
 class Improvement < ApplicationRecord
   OPTIONS_COUNT = 1
-  IMPROVEMENT_TYPES = %w[Improvement Improvements::RatingBoost
-                         Improvements::PlaybookMove Improvements::AnotherMove
-                         Improvements::ChangePlaybook Improvements::GainLuck
-                         Improvements::AdvancedMove].freeze
+  IMPROVEMENT_TYPES = %w[Improvement
+                         Improvements::AdvancedMove
+                         Improvements::AnotherMove
+                         Improvements::ChangePlaybook
+                         Improvements::GainLuck
+                         Improvements::PlaybookMove
+                         Improvements::RatingBoost
+                         Improvements::Retire].freeze
 
   belongs_to :playbook
 
