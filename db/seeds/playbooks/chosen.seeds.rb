@@ -193,8 +193,9 @@ after :playbook do
       advanced: true
     },
     {
-      description: 'Retire this Hunter to safety.',
+      description: 'Retire this hunter to safety.',
       playbook: @chosen,
+      type: 'Improvements::Retire',
       advanced: true
     }
   ].each do |improvement|
