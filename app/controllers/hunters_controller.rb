@@ -109,7 +109,7 @@ class HuntersController < ApplicationController
   def hunter_params
     params.require(:hunter)
           .permit(:name, :playbook_id, :harm, :luck, :experience,
-                  :charm, :cool, :sharp, :tough, :weird,
+                  :charm, :cool, :sharp, :tough, :weird, :rating_id,
                   gear_ids: [], move_ids: [])
   end
 end

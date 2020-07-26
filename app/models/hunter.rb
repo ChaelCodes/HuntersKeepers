@@ -74,9 +74,26 @@ class Hunter < ApplicationRecord
   # Returns the Hunters Move otherwise known as the object
   # that represents the relationship between the hunter and the move.
   #
-  # @param move_id [Move_id] the if of the move
+  # @param move_id [Move_id] the id of the move
   def hunters_move_for(move_id:)
     hunters_moves.find_by(move_id: move_id)
+  end
+
+  # Sets the Hunter's stats to those of the rating.
+  # Intended for use in creating the Hunter.
+  #
+  # @param rating [Rating] the hunter will assume these stats
+  def rating=(rating)
+    rate_attrs = rating.attributes.with_indifferent_access.slice(*Rating::LIST)
+    assign_attributes(rate_attrs)
+  end
+
+  # Sets the Hunter's stats to those of the rating.
+  # Intended for use in creating the Hunter.
+  #
+  # @param rating [Rating] the hunter will assume these stats
+  def rating_id=(rating_id)
+    self.rating = Rating.find rating_id
   end
 
   # Check whether a move has been advanced by an improvement
