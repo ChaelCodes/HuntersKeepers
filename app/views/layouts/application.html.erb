@@ -13,21 +13,7 @@
 
   <body>
     <div id="vue-app" class="container">
-      <b-navbar>
-        <template slot="end">
-          <b-navbar-item tag="div">
-            <div class="buttons">
-              <% if user_signed_in? %>
-                <%= link_to 'Edit profile', edit_user_registration_path, class: 'button is-primary' %>
-                <%= link_to 'Logout', destroy_user_session_path, method: :delete, class: 'button is-light' %>
-              <% else %>
-                <%= link_to 'Sign up', new_user_registration_path, class: 'button is-primary' %>
-                <%= link_to 'Login', new_user_session_path, class: 'button is-light'  %>
-              <% end %>
-            </div>
-          </b-navbar-item>
-        </template>
-      </b-navbar>
+      <%= render 'layouts/navbar' %>
       <% if notice %>
         <b-message type="is-success">
           <%= notice %>
