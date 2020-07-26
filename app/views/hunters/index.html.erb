@@ -30,13 +30,18 @@
         <td><%= hunter.sharp %></td>
         <td><%= hunter.tough %></td>
         <td><%= hunter.weird %></td>
-        <td><%= link_to 'Edit', edit_hunter_path(hunter) %></td>
-        <td><%= link_to 'Destroy', hunter, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td>
+          <% if policy(hunter).edit? %>
+            <%= link_to 'Edit', edit_hunter_path(hunter) %>
+          <% end %>
+        </td>
+        <td>
+        <% if policy(hunter).destroy? %>
+          <%= link_to 'Destroy', hunter, method: :delete, data: { confirm: 'Are you sure?' } %>
+        <% end %>
+        </td>
       </tr>
     <% end %>
   </tbody>
 </table>
-
-<br>
-
 <%= link_to 'New Hunter', new_hunter_path %>

@@ -7,7 +7,7 @@ class PlaybooksController < ApplicationController
   # GET /playbooks
   # GET /playbooks.json
   def index
-    @playbooks = Playbook.all
+    @playbooks = policy_scope(Playbook)
   end
 
   # GET /playbooks/1
@@ -67,6 +67,7 @@ class PlaybooksController < ApplicationController
   # Use callbacks to share common setup or constraints between actions.
   def set_playbook
     @playbook = Playbook.find(params[:id])
+    authorize @playbook
   end
 
   # Never trust parameters from the scary internet,

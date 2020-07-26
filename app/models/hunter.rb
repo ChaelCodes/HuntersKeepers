@@ -44,6 +44,13 @@ class Hunter < ApplicationRecord
   validates :luck, numericality: { less_than_or_equal_to: MAX_LUCK, greater_than_or_equal_to: 0 }
   validates :charm, :cool, :sharp, :tough, :weird, presence: true
 
+  # This is the Pundit Policy that governs Hunter access
+  #
+  # @see HunterPolicy
+  def self.policy_class
+    HunterPolicy
+  end
+
   # List all improvements that are available
   # based on the hunter's playbook, and excludes
   # improvements the hunter has already taken
