@@ -104,12 +104,14 @@ class HuntersController < ApplicationController
   # @param sharp [Integer] the modifier for the Hunter's sharp rating
   # @param tough [Integer] the modifier for the Hunter's tough rating
   # @param weird [Integer] the modifier for the Hunter's weird rating
+  # @param rating_id [Integer] the id of the Rating object to attach
+  # @param retired [boolean] whether or not the hunter has retired
   # @!visibility public
   # @return [ActionController::Parameters]
   def hunter_params
     params.require(:hunter)
           .permit(:name, :playbook_id, :harm, :luck, :experience,
                   :charm, :cool, :sharp, :tough, :weird, :rating_id,
-                  gear_ids: [], move_ids: [])
+                  :retired, gear_ids: [], move_ids: [])
   end
 end
