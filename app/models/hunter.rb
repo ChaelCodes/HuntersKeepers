@@ -54,12 +54,16 @@ class Hunter < ApplicationRecord
 
   # List all improvements that are available
   # based on the hunter's playbook, and excludes
-  # improvements the hunter has already taken
+  # improvements the hunter has already taken,
+  # and excludes advanced improvement if the
+  # hunter does not qualify
   #
   # @return [ActiveRecord::Collection]
   def available_improvements
     availables = playbook.improvements.where.not(id: improvements.select(:id))
-    availables = availables.not_advanced unless hunters_improvements.count >= 5
+    unless Improvement.advanced_eligible?(self)
+      availables = availables.not_advanced
+    end
     availables
   end
 

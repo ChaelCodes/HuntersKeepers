@@ -19,6 +19,10 @@ FactoryBot.define do
     playbook
     description { 'Gain an Ally' }
     type { nil }
+
+    trait :advanced do
+      advanced { true }
+    end
   end
 
   factory :rating_boost, class: Improvements::RatingBoost do
