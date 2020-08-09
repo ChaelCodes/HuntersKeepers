@@ -2,6 +2,7 @@
 
 Rails.application.routes.draw do
   root 'playbooks#index'
+  resources :havens
   resources :gears
   devise_for :users
   resources :hunters do
