@@ -18,8 +18,10 @@ require 'rails_helper'
 
 RSpec.describe Improvements::PlaybookMove, type: :model do
   let(:playbook_move) { create(:playbook_move) }
-  let(:hunters_improvement) { build :hunters_improvement, improvement: playbook_move, hunter: hunter, improvable: { "id": move.id } }
-  let(:hunter) { create :hunter, playbook: playbook_move.playbook  }
+  let(:hunters_improvement) do
+    build :hunters_improvement, improvement: playbook_move, hunter: hunter, improvable: { 'move': { "id": move.id } }
+  end
+  let(:hunter) { create :hunter, playbook: playbook_move.playbook }
   let(:move) { create :moves_rollable, playbook: playbook_move.playbook }
 
   describe '#apply' do
@@ -102,6 +104,7 @@ RSpec.describe Improvements::PlaybookMove, type: :model do
 
     context 'improvable is not a move' do
       let(:move) { create(:playbook) }
+
       it 'adds errors to the hunters improvement' do
         subject
         expect(hunters_improvement.errors.full_messages).to include "Improvable Couldn't find Move with 'id'=#{move.id}"

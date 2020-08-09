@@ -18,12 +18,12 @@
 # These are the options the Hunter can choose
 # from when upgrading their character.
 class Improvement < ApplicationRecord
-  OPTIONS_COUNT = 1
   IMPROVEMENT_TYPES = %w[Improvement
                          Improvements::AdvancedMove
                          Improvements::AnotherMove
                          Improvements::ChangePlaybook
                          Improvements::GainLuck
+                         Improvements::HavenMove
                          Improvements::PlaybookMove
                          Improvements::RatingBoost
                          Improvements::Retire].freeze
@@ -69,10 +69,6 @@ class Improvement < ApplicationRecord
   end
 
   def improvable_options(_hunter)
-    []
-  end
-
-  def options_count
-    Improvement::OPTIONS_COUNT
+    {}
   end
 end

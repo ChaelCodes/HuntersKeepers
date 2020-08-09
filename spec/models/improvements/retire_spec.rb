@@ -62,6 +62,6 @@ RSpec.describe Improvements::Retire, type: :model do
   describe '#improvable_options' do
     subject { retire.improvable_options(hunter) }
 
-    it { is_expected.to eq [] }
+    it { is_expected.to be_empty }
   end
 end

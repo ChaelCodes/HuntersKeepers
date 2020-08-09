@@ -2,4 +2,3 @@
 
 json.partial! 'improvements/improvement', improvement: @improvement
 json.improvable_options @improvable_options if @improvable_options
-json.options_count @improvement.options_count
