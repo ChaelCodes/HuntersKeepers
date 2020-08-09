@@ -7,12 +7,7 @@
       <th>Playbook</th>
       <th>Harm</th>
       <th>Luck</th>
-      <th>Experience</th>
-      <th>Charm</th>
-      <th>Cool</th>
-      <th>Sharp</th>
-      <th>Tough</th>
-      <th>Weird</th>
+      <th>Exp</th>
       <th colspan="2"></th>
     </tr>
   </thead>
@@ -22,14 +17,13 @@
       <tr>
         <td><%= link_to hunter.name, hunter %></td>
         <td><%= link_to_playbook(hunter) %></td>
-        <td><%= hunter.harm %></td>
-        <td><%= hunter.luck %></td>
-        <td><%= hunter.experience %></td>
-        <td><%= hunter.charm %></td>
-        <td><%= hunter.cool %></td>
-        <td><%= hunter.sharp %></td>
-        <td><%= hunter.tough %></td>
-        <td><%= hunter.weird %></td>
+        <% if hunter.retired? %>
+          <td colspan="3" class="has-text-centered">Retired</td>
+        <% else %>
+          <td class="has-text-centered"><%= hunter.harm %></td>
+          <td class="has-text-centered"><%= hunter.luck %></td>
+          <td class="has-text-centered"><%= hunter.experience %></td>
+        <% end %>
         <td>
           <% if policy(hunter).edit? %>
             <%= link_to 'Edit', edit_hunter_path(hunter) %>

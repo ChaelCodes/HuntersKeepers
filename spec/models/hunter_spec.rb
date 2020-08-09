@@ -51,15 +51,17 @@ RSpec.describe Hunter, type: :model do
 
       context 'hunter has no improvements' do
         it { is_expected.not_to include(advanced_improvement) }
+        it { is_expected.to include(improvement) }
       end
 
       context 'hunter has 5 improvements' do
-        let!(:hunters_improvements) do
-          create_list(:hunters_improvement,
+        let!(:improvements) do
+          create_list(:improvement,
                       5,
-                      hunter: hunter,
                       playbook: hunter.playbook)
         end
+
+        before { hunter.improvements << improvements }
 
         it { is_expected.to include(advanced_improvement) }
       end

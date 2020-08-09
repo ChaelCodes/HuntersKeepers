@@ -2,7 +2,7 @@
   <% moves.each do |move| %>
     <li><strong><%= link_to_move(move) %>:</strong> <%= move.description %>
       <div class="has-text-right">
-        <% if move.rollable? && hunter %>
+        <% if move.rollable? && hunter && !hunter.retired? %>
           <hunter-roll-move hunter_id=<%= hunter.id %> move_id=<%= move.id %> />
         <% end %>
       </div>

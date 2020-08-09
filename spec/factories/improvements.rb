@@ -19,6 +19,10 @@ FactoryBot.define do
     playbook
     description { 'Gain an Ally' }
     type { nil }
+
+    trait :advanced do
+      advanced { true }
+    end
   end
 
   factory :rating_boost, class: Improvements::RatingBoost do
@@ -55,7 +59,13 @@ FactoryBot.define do
 
   factory :gain_luck, class: Improvements::GainLuck do
     playbook
-    description { 'Get back one used Luck point.'}
+    description { 'Get back one used Luck point.' }
     type { 'Improvements::GainLuck' }
+  end
+
+  factory :retire, class: Improvements::Retire do
+    playbook
+    description { 'Retire the hunter to safety.' }
+    type { 'Improvements::Retire' }
   end
 end

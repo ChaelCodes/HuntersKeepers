@@ -19,10 +19,14 @@
 # from when upgrading their character.
 class Improvement < ApplicationRecord
   OPTIONS_COUNT = 1
-  IMPROVEMENT_TYPES = %w[Improvement Improvements::RatingBoost
-                         Improvements::PlaybookMove Improvements::AnotherMove
-                         Improvements::ChangePlaybook Improvements::GainLuck
-                         Improvements::AdvancedMove].freeze
+  IMPROVEMENT_TYPES = %w[Improvement
+                         Improvements::AdvancedMove
+                         Improvements::AnotherMove
+                         Improvements::ChangePlaybook
+                         Improvements::GainLuck
+                         Improvements::PlaybookMove
+                         Improvements::RatingBoost
+                         Improvements::Retire].freeze
 
   belongs_to :playbook
 
@@ -33,6 +37,13 @@ class Improvement < ApplicationRecord
 
   validates :description, presence: true
   validates :type, inclusion: { in: IMPROVEMENT_TYPES }, allow_blank: true
+
+  # Determines if a hunter is eligible for Advanced Improvements
+  #
+  # @param hunter [Hunter] check this hunter's eligiblity
+  def self.advanced_eligible?(hunter)
+    hunter.hunters_improvements.size >= 5
+  end
 
   def apply(hunters_improvement)
     return false if add_errors(hunters_improvement)
@@ -45,8 +56,16 @@ class Improvement < ApplicationRecord
 
   def add_errors(hunters_improvement)
     hunter = hunters_improvement.hunter
-    return if hunter_playbook_matches?(hunter)
-    hunters_improvement.errors.add(:hunter, "does not match improvement playbook: #{playbook.name}")
+    unless hunter_playbook_matches?(hunter)
+      hunters_improvement
+        .errors
+        .add(:hunter, "does not match improvement playbook: #{playbook.name}")
+    end
+
+    return if !advanced || Improvement.advanced_eligible?(hunter)
+    hunters_improvement
+      .errors
+      .add(:hunter, 'is not qualified for advanced improvements')
   end
 
   def improvable_options(_hunter)

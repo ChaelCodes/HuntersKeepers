@@ -266,6 +266,11 @@ after :playbook do
       type: 'Improvements::GainLuck',
       description: 'Erase one used luck mark from your playbook.',
       advanced: true
+    },
+    {
+      type: 'Improvements::Retire',
+      description: 'Retire this hunter to safety.',
+      advanced: true
     }
   ].each do |improvement|
     Improvement.find_or_create_by!(playbook: @crooked, **improvement)
