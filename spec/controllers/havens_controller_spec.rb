@@ -30,7 +30,7 @@ RSpec.describe HavensController, type: :controller do
     subject(:get_index) { get :index, params: {}, session: valid_session, format: format_type }
 
     let!(:haven) { create :haven }
-    
+
     context 'with html format' do
       let(:format_type) { :html }
 
@@ -42,6 +42,7 @@ RSpec.describe HavensController, type: :controller do
 
     context 'with json format' do
       let(:format_type) { :json }
+
       render_views
 
       it 'returns a success response' do
@@ -54,14 +55,14 @@ RSpec.describe HavensController, type: :controller do
         expect(json_body.dig(0, 'id')).to eq haven.id
       end
     end
-
   end
 
   describe 'GET #show' do
+    subject { response }
+
     before do
       get :show, params: { id: haven.to_param }, session: valid_session, format: format_type
     end
-    subject { response }
 
     let(:haven) { create :haven }
 
@@ -73,6 +74,7 @@ RSpec.describe HavensController, type: :controller do
 
     context 'with json format' do
       let(:format_type) { :json }
+
       render_views
 
       it { is_expected.to be_successful }
@@ -87,8 +89,9 @@ RSpec.describe HavensController, type: :controller do
   end
 
   describe 'GET #new' do
-    before { get :new, params: {}, session: valid_session, format: format_type }
     subject { response }
+
+    before { get :new, params: {}, session: valid_session, format: format_type }
 
     let(:haven) { build :haven }
 
@@ -100,8 +103,9 @@ RSpec.describe HavensController, type: :controller do
   end
 
   describe 'GET #edit' do
-    before { get :edit, params: { id: haven.to_param }, session: valid_session, format: format_type }
     subject { response }
+
+    before { get :edit, params: { id: haven.to_param }, session: valid_session, format: format_type }
 
     let(:haven) { create :haven }
 
@@ -114,11 +118,12 @@ RSpec.describe HavensController, type: :controller do
 
   describe 'POST #create' do
     subject(:post_create) do
-      post :create, 
-      params: { haven: attributes }, 
-      session: valid_session, 
-      format: format_type
+      post :create,
+           params: { haven: attributes },
+           session: valid_session,
+           format: format_type
     end
+
     let(:attributes) { attributes_for(:haven) }
 
     context 'with html format' do
@@ -144,6 +149,7 @@ RSpec.describe HavensController, type: :controller do
 
     context 'with json format' do
       let(:format_type) { :json }
+
       render_views
 
       it { is_expected.to be_successful }
@@ -163,10 +169,11 @@ RSpec.describe HavensController, type: :controller do
   describe 'PUT #update' do
     subject(:put_update) do
       put :update,
-      params: { id: haven.to_param, haven: attributes },
-      session: valid_session, 
-      format: format_type
+          params: { id: haven.to_param, haven: attributes },
+          session: valid_session,
+          format: format_type
     end
+
     let(:attributes) { { name: 'Project Grimoire' } }
     let(:haven) { create :haven, name: 'Mystery Machine' }
 
@@ -193,6 +200,7 @@ RSpec.describe HavensController, type: :controller do
 
     context 'with json format' do
       let(:format_type) { :json }
+
       render_views
 
       it { is_expected.to be_successful }
