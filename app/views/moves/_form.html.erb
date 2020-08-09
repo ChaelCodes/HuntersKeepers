@@ -14,50 +14,79 @@
 
   <div class="field">
     <%= form.label :type %>
-    <%= form.select(:type, Move::MOVE_TYPES) %>
+    <div class="control">
+      <div class="select">
+        <%= form.select(:type, Move::MOVE_TYPES) %>
+      </div>
+    </div>
   </div>
 
   <div class="field">
     <%= form.label :playbook %>
-    <%= form.collection_select(:playbook_id, Playbook.all, :id, :name) %>
+    <div class="control">
+      <div class="select">
+        <%= form.collection_select(:playbook_id, Playbook.all, :id, :name, { include_blank: true }) %>
+      </div>
+    </div>
   </div>
 
   <div class="field">
     <%= form.label :name %>
-    <%= form.text_field :name %>
+    <div class="control">
+      <%= form.text_field :name, class: 'input' %>
+    </div>
   </div>
 
   <div class="field">
     <%= form.label :description %>
-    <%= form.text_field :description %>
+    <div class="control">
+      <%= form.text_area :description, class: 'textarea', rows: 2 %>
+    </div>
+  </div>
+
+  <div class="field">
+    <%= form.label :haven, class: 'checkbox' %>
+    <%= form.check_box :haven %>
   </div>
 
   <div class="field">
     <%= form.label :rating %>
-    <%= form.select(:rating, Move.ratings.keys) %>
+    <div class="control">
+      <div class="select">
+        <%= form.select(:rating, Move.ratings.keys, { optional: true }) %>
+      </div>
+    </div>
   </div>
 
   <div class="field">
     <%= form.label :six_and_under %>
-    <%= form.text_area :six_and_under %>
+    <div class="control">
+      <%= form.text_area :six_and_under, class: 'textarea', rows: 2 %>
+    </div>
   </div>
 
   <div class="field">
     <%= form.label :seven_to_nine %>
-    <%= form.text_area :seven_to_nine %>
+    <div class="control">
+      <%= form.text_area :seven_to_nine, class: 'textarea', rows: 2 %>
+    </div>
   </div>
 
   <div class="field">
     <%= form.label :ten_plus %>
-    <%= form.text_area :ten_plus %>
+    <div class="control">
+      <%= form.text_area :ten_plus, class: 'textarea', rows: 2 %>
+    </div>
   </div>
 
   <div class="field">
     <%= form.label :twelve_plus %>
-    <%= form.text_area :twelve_plus %>
+    <div class="control">
+      <%= form.text_area :twelve_plus, class: 'textarea', rows: 2 %>
+    </div>
   </div>
 
   <div class="actions">
-    <%= form.submit %>
+    <%= form.submit class: 'button is-primary' %>
   </div>
 <% end %>

@@ -37,3 +37,6 @@ RSpec/NestedGroups:
 
 Style/DoubleNegation:
   Enabled: false
+
+Style/EmptyCaseCondition:
+  Enabled: false
