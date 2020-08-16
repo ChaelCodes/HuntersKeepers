@@ -33,7 +33,7 @@ module Improvements
       unless hunter_has_move?(hunters_improvement.hunter, move(hunters_improvement))
         return
       end
-      hunters_improvement.errors.add(:hunter, "already has move with id #{move(hunters_improvement).id}")
+      hunters_improvement.errors.add(:hunter, "already has move with id #{move(hunters_improvement).id}") # rubocop:disable Metrics:LineLength
     end
 
     def validate_improvable(hunters_improvement); end
@@ -65,7 +65,7 @@ module Improvements
                   .haven
                   .select(:id, :name, :description)
       {
-        move: { data: moves, count: 1 },
+        move: { data: moves, count: option_count },
         haven: { data: Haven.all, count: 1 }
       }
     end
