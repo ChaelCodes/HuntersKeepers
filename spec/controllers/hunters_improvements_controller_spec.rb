@@ -123,7 +123,7 @@ RSpec.describe HuntersImprovementsController, type: :controller do
           {
             hunter_id: hunter.id,
             improvement_id: valid_improvement.id,
-            improvable: '{"id":25,"name":"Ancient Arts","description":"desc"}'
+            improvable: '{"move":{"id":25,"name":"Ancient Arts","description":"desc"}}'
           }
         end
         let(:format_type) { :html }
@@ -134,7 +134,7 @@ RSpec.describe HuntersImprovementsController, type: :controller do
 
         it 'has a well-formatted json improvable' do
           post_create
-          expect(HuntersImprovement.last.improvable['id']).to eq 25
+          expect(HuntersImprovement.last.improvable.dig("move", "id")).to eq 25
         end
       end
 
@@ -142,7 +142,7 @@ RSpec.describe HuntersImprovementsController, type: :controller do
         let(:attributes) do
           {
             hunter_id: hunter.id, improvement_id: valid_improvement.id,
-            improvable: ['{"id":25,"name":"Ancient Arts","description":"desc"}']
+            improvable: '{"move":[{"id":25,"name":"Ancient Arts","description":"desc"}]}'
           }
         end
         let(:format_type) { :html }
@@ -153,7 +153,7 @@ RSpec.describe HuntersImprovementsController, type: :controller do
 
         it 'has a well-formatted json improvable' do
           post_create
-          expect(HuntersImprovement.last.improvable[0]['id']).to eq 25
+          expect(HuntersImprovement.last.improvable.dig("move", 0, "id")).to eq 25
         end
       end
     end
