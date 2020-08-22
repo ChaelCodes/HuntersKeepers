@@ -20,7 +20,6 @@ COPY . /hunterskeepers
 
 # Re-building /node-modules
 RUN rm -fr node_modules \
- && rm yarn.lock \
  && yarn install --check-files
 
 # Rails App is Setup

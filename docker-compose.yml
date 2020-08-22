@@ -8,22 +8,38 @@ services:
       POSTGRES_USER: postgres
       POSTGRES_PASSWORD: password
       DB_HOST: db
+    volumes:
+    - 'data:/var/lib/postgresql/data'
     ports:
       - '5432:5432'
 
+  # Initializes the named volume with an appropriate /node_modules
+  node_modules:
+    build: .
+    volumes:
+      - 'node:/hunterskeepers/node_modules/'
+    command: bash -c "yarn install --check-files"
+
   webpacker:
+    depends_on:
+      - node_modules
     build: .
     environment:
       - NODE_ENV=development
       - RAILS_ENV=development
       - WEBPACKER_DEV_SERVER_HOST=0.0.0.0
     command: ./bin/webpack-dev-server
+    volumes:
+      - './:/hunterskeepers/'
+      # :nocopy so this service won't try to copy the image's /node_modules into the volume
+      - 'node:/hunterskeepers/node_modules/:nocopy'
     ports:
       - '3035:3035'
 
   web:
     depends_on:
       - db
+      - node_modules
       - webpacker
     build: .
     command: bash -c "
@@ -33,8 +49,18 @@ services:
       "
     ports:
       - "3000:3000"
+    volumes:
+      - './:/hunterskeepers/'
+      # :nocopy so this service won't try to copy the image's /node_modules into the volume
+      - 'node:/hunterskeepers/node_modules/:nocopy'
     environment:
       - WEBPACKER_DEV_SERVER_HOST=0.0.0.0
       - POSTGRES_USER=postgres
       - POSTGRES_PASSWORD=password
       - DB_HOST=db
+
+volumes:
+  # Volume to hold the Postgres database on the host system
+  data:
+  # Volume to hold the container-appropriate node_modules/ on the host system
+  node:
