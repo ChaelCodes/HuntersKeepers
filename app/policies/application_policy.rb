@@ -18,7 +18,7 @@ class ApplicationPolicy
   end
 
   def create?
-    @user.admin?
+    @user&.admin?
   end
 
   def new?
@@ -26,7 +26,7 @@ class ApplicationPolicy
   end
 
   def update?
-    @user.admin?
+    @user&.admin?
   end
 
   def edit?
@@ -34,7 +34,7 @@ class ApplicationPolicy
   end
 
   def destroy?
-    @user.admin?
+    @user&.admin?
   end
 
   # Default access scope for querying records.
