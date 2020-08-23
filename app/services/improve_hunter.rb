@@ -1,6 +1,8 @@
 class ImproveHunter
   def self.for(improvement)
     case improvement.type
+    when 'Improvement::HavenMove'
+      Improves::HavenMove
     when 'Improvements::RatingBoost'
       Improves::RatingBoost
     else

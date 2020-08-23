@@ -18,33 +18,35 @@ require 'rails_helper'
 
 RSpec.describe Improvements::HavenMove, type: :model do
   let(:improvement) { create(:haven_move) }
-  let(:hunters_improvement) do
-    build :hunters_improvement,
-          hunter: hunter,
-          improvement: improvement,
-          improvable: {
-            'move': move.as_json(only: %i[id name description]),
-            'haven': haven.as_json(only: %i[id name description])
-          }
+
+  describe '#improvable_options' do
+    subject { improvement.improvable_option }
+
   end
-  let(:hunter) { create :hunter, playbook: improvement.playbook }
-  let(:move) { create :move, :haven }
-  let(:haven) { create :haven }
 
-  describe '#apply' do
-    subject(:apply) { improvement.apply(hunters_improvement) }
+  describe '#configured_move' do
+    subject { improvement.configured_move(hunters_improvement) }
+    let(:hunters_improvement) do
+      build :hunters_improvement, improvement: improvement, 
+        improvable: { move: { id: move.id }} 
+    end
+    let(:move) { create :moves_basic }
 
-    it 'creates a hunters move with a haven' do
-      apply
-      hunters_move = hunter.hunters_move_for(move_id: move.id)
-      expect(hunters_move).to have_attributes(
-        haven_id: haven.id,
-        hunter_id: hunter.id,
-        move_id: move.id
-      )
+    it 'finds a move' do
+      is_expected.to eq move
     end
   end
 
-  describe '#improvable_options' do
+  describe '#configured_haven' do
+    subject { improvement.configured_haven(hunters_improvement) }
+    let(:hunters_improvement) do
+      build :hunters_improvement, improvement: improvement, 
+        improvable: { haven: { id: haven.id }} 
+    end
+    let(:haven) { create :haven }
+
+    it 'finds a haven' do
+      is_expected.to eq haven
+    end
   end
 end
