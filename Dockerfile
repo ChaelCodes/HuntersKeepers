@@ -12,15 +12,19 @@ RUN curl -sS https://dl.yarnpkg.com/debian/pubkey.gpg | APT_KEY_DONT_WARN_ON_DAN
   yarn \
  && rm -rf /var/lib/apt/lists/*
 
-# Loads a snapshot of the application files into the image.
-WORKDIR /hunterskeepers
+WORKDIR /app
+
+# Bundling
 COPY Gemfile* ./
 RUN gem install bundler:2.1.4 && bundle install
-COPY . /hunterskeepers
 
-# Re-building /node-modules
-RUN rm -fr node_modules \
- && yarn install --check-files
+# Building /node_modules
+COPY yarn.lock .
+COPY package.json .
+RUN yarn install --check-files
+
+# Loads a snapshot of the application files into the image.
+COPY . .
 
 # Rails App is Setup
 

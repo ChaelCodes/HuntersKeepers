@@ -17,7 +17,7 @@ services:
   node_modules:
     build: .
     volumes:
-      - 'node:/hunterskeepers/node_modules/'
+      - 'node:/app/node_modules/'
     command: bash -c "yarn install --check-files"
 
   webpacker:
@@ -30,9 +30,9 @@ services:
       - WEBPACKER_DEV_SERVER_HOST=0.0.0.0
     command: ./bin/webpack-dev-server
     volumes:
-      - './:/hunterskeepers/'
+      - './:/app/'
       # :nocopy so this service won't try to copy the image's /node_modules into the volume
-      - 'node:/hunterskeepers/node_modules/:nocopy'
+      - 'node:/app/node_modules/:nocopy'
     ports:
       - '3035:3035'
 
@@ -50,9 +50,9 @@ services:
     ports:
       - "3000:3000"
     volumes:
-      - './:/hunterskeepers/'
+      - './:/app/'
       # :nocopy so this service won't try to copy the image's /node_modules into the volume
-      - 'node:/hunterskeepers/node_modules/:nocopy'
+      - 'node:/app/node_modules/:nocopy'
     environment:
       - WEBPACKER_DEV_SERVER_HOST=0.0.0.0
       - POSTGRES_USER=postgres
