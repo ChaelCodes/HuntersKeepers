@@ -11,7 +11,7 @@ services:
     volumes:
     - 'data:/var/lib/postgresql/data'
     ports:
-      - '5432:5432'
+      - '5432'
 
   # Initializes the named volume with an appropriate /node_modules
   node_modules:
@@ -54,7 +54,7 @@ services:
       # :nocopy so this service won't try to copy the image's /node_modules into the volume
       - 'node:/app/node_modules/:nocopy'
     environment:
-      - WEBPACKER_DEV_SERVER_HOST=0.0.0.0
+      - WEBPACKER_DEV_SERVER_HOST=webpacker
       - POSTGRES_USER=postgres
       - POSTGRES_PASSWORD=password
       - DB_HOST=db

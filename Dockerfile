@@ -8,7 +8,6 @@ RUN curl -sS https://dl.yarnpkg.com/debian/pubkey.gpg | APT_KEY_DONT_WARN_ON_DAN
  && apt-get update -qq \
  && apt-get install -y build-essential \
   nodejs \
-  postgresql-client \
   yarn \
  && rm -rf /var/lib/apt/lists/*
 
