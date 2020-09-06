@@ -29,7 +29,12 @@ To open the Rails console:\
 To open the Postgres console:\
 `> docker exec -it hunterskeepers_db_1 psql -U postgres hunterskeepers_development`
 
-If you update package.json or yarn.lock you'll want to restart the container so the `node_modules/` volume will be rebuilt.
+If you update package.json or yarn.lock you'll want to rebuild that module. There might be a more efficient way, but you can try:
+```
+> docker-compose build node_modules
+> docker-compose run node_modules
+> docker-compose up
+```
 
 ## Toolset/Stack
 
