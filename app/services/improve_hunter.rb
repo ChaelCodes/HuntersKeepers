@@ -1,13 +1,9 @@
+# frozen_string_literal: true
+
 class ImproveHunter
   def self.for(improvement)
-    case improvement.type
-    when 'Improvement::HavenMove'
-      Improves::HavenMove
-    when 'Improvements::RatingBoost'
-      Improves::RatingBoost
-    else
-      ImproveHunter
-    end
+    return ImproveHunter unless improvement.type
+    improvement.type.gsub('Improvements', 'Improves').constantize
   end
 
   def initialize(hunters_improvement)
@@ -22,22 +18,20 @@ class ImproveHunter
   end
 
   def valid?
-    check(:hunter_playbook_matches?, :hunter, "does not match improvement playbook: #{@improvement.playbook.name}")
-    check(:advanced_acceptable, :hunter, 'is not qualified for advanced improvements')
+    check(:hunter_playbook_mismatch?, :hunter, "does not match improvement playbook: #{@improvement.playbook.name}")
+    check(:hunter_not_advanced?, :hunter, 'is not qualified for advanced improvements')
     @hunters_improvement.errors.none?
   end
 
-  def advanced_acceptable
-    !@improvement.advanced || Improvement.advanced_eligible?(@hunter)
+  def hunter_not_advanced?
+    @improvement.advanced && !Improvement.advanced_eligible?(@hunter)
   end
 
-  def hunter_playbook_matches?
-    @hunter.playbook == @improvement.playbook
+  def hunter_playbook_mismatch?
+    @hunter.playbook != @improvement.playbook
   end
 
   def check(check, attribute, message)
-    unless send check
-      @hunters_improvement.errors.add(attribute, message)
-    end
+    @hunters_improvement.errors.add(attribute, message) if send check
   end
 end
