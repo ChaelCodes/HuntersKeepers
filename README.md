@@ -12,6 +12,25 @@ This app is live-coded every Sunday at 9am EST over at [https://twitch.tv/ChaelC
 ## Installation
 Start by ensuring your development environment is ready for Rails. [GoRails has a great set of guides for every operating system.](https://gorails.com/setup)
 
+### Docker
+You can run the app locally (Postgres + Webpacker + Rails) via a Docker container.
+
+Executing `docker-compose up` will bring those services up, and the application will be accessible via `http://localhost:3000`.
+
+The initial run will create two Docker volumes, one for the database and one for the Node modules.
+The database will be initialized, including having seed data inserted and migrations run.
+
+The project root directory will be mounted within the container so that your changes can be detected and hot-loaded into the running app.
+Note: this requires that you've given the Docker application access to that folder -- (this should be configurable at `Settings -> Resources -> File Sharing`)
+
+To open the Rails console:\
+`> docker exec -it hunterskeepers_web_1 bin/rails c`
+
+To open the Postgres console:\
+`> docker exec -it hunterskeepers_db_1 psql -U postgres hunterskeepers_development`
+
+If you update package.json or yarn.lock you'll want to restart the container so the `node_modules/` volume will be rebuilt.
+
 ## Toolset/Stack
 
 Tool | Usage | Notes
