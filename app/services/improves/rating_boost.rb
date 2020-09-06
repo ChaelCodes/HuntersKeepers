@@ -17,12 +17,13 @@ module Improves
 
     def valid?
       super
-      check :under_max_limit?, :hunter, "#{@rating} rating would exceed max for improvement."
+      check :over_max_limit?, :hunter,
+            "#{@rating} rating would exceed max for improvement."
       @hunters_improvement.errors.none?
     end
 
-    def under_max_limit?
-      @hunter.send(@rating) < @improvement.stat_limit
+    def over_max_limit?
+      @hunter.send(@rating) >= @improvement.stat_limit
     end
   end
 end

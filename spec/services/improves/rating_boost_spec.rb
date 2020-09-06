@@ -1,16 +1,20 @@
+# frozen_string_literal: true
+
 require 'rails_helper'
 
 RSpec.describe Improves::RatingBoost do
   let(:improve_hunter) { described_class.new(hunters_improvement) }
   let(:hunters_improvement) do
     build(:hunters_improvement,
-      improvement: improvement,
-      hunter: hunter,
-      improvable: improvable)
-    end
-  let(:improvable) { nil}
+          improvement: improvement,
+          hunter: hunter,
+          improvable: improvable)
+  end
+  let(:improvable) { nil }
   let(:improvement) { create :rating_boost }
-  let(:hunter) { create :hunter, playbook: improvement.playbook, charm: 2, cool: 0 }
+  let(:hunter) do
+    create :hunter, playbook: improvement.playbook, charm: 2, cool: 0
+  end
 
   describe '#improve' do
     subject(:improve) { improve_hunter.improve }
@@ -54,15 +58,15 @@ RSpec.describe Improves::RatingBoost do
     end
   end
 
-  describe '#under_max_limit?' do
-    subject { improve_hunter.under_max_limit? }
+  describe '#over_max_limit?' do
+    subject { improve_hunter.over_max_limit? }
 
-    it { is_expected.to be_truthy }
+    it { is_expected.to be_falsey }
 
     context 'hunter with max rating' do
       let(:hunter) { create :hunter, playbook: improvement.playbook, charm: 3 }
 
-      it { is_expected.to be_falsey }
+      it { is_expected.to be_truthy }
     end
   end
 end
