@@ -22,21 +22,22 @@ RSpec.describe Improvements::ChangePlaybook, type: :model do
     build :hunters_improvement,
           improvement: change_playbook,
           hunter: hunter,
-          improvable: {"id": playbook.id }
+          improvable: { "id": playbook.id }
   end
 
   describe '#apply' do
     subject { change_playbook.apply(hunters_improvement) }
+
     let(:hunters_improvement) do
       build :hunters_improvement,
-             improvement: change_playbook,
-             hunter: hunter,
-             improvable: {"id": playbook.id }
-           end
+            improvement: change_playbook,
+            hunter: hunter,
+            improvable: { playbook: { "id": playbook.id } }
+    end
     let(:hunter) { create :hunter, playbook: change_playbook.playbook }
     let(:playbook) { create :playbook }
 
-    it 'should give the hunter a new playbook' do
+    it 'gives the hunter a new playbook' do
       expect { subject }.to change(hunter.reload, :playbook).from(hunter.playbook).to(playbook)
     end
 
@@ -48,6 +49,7 @@ RSpec.describe Improvements::ChangePlaybook, type: :model do
 
   describe '#add_errors' do
     subject { change_playbook.add_errors(hunters_improvement) }
+
     let(:hunter) { create :hunter, playbook: change_playbook.playbook }
 
     context 'with valid playbook' do
@@ -84,7 +86,7 @@ RSpec.describe Improvements::ChangePlaybook, type: :model do
   end
 
   describe '#improvable_options' do
-    subject { change_playbook.improvable_options(hunter) }
+    subject { change_playbook.improvable_options(hunter).dig(:playbook, :data) }
 
     let(:hunter) { create :hunter, playbook: change_playbook.playbook }
     let!(:playbook) { create :playbook }

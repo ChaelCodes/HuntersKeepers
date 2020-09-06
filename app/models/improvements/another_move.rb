@@ -41,7 +41,7 @@ module Improvements
     end
 
     def move(hunters_improvement)
-      Move.find(hunters_improvement.improvable&.dig('id'))
+      Move.find(hunters_improvement.improvable&.dig('move', 'id'))
     rescue ActiveRecord::RecordNotFound => e
       hunters_improvement.errors.add(:improvable, e.message)
       false
@@ -56,9 +56,10 @@ module Improvements
     end
 
     def improvable_options(hunter)
-      Move.where.not(id: hunter.moves.select(:id))
-          .where.not(playbook_id: playbook_id)
-          .select(:id, :name, :description)
+      moves = Move.where.not(id: hunter.moves.select(:id))
+                  .where.not(playbook_id: playbook_id)
+                  .select(:id, :name, :description)
+      { move: { data: moves, count: 1 } }
     end
   end
 end

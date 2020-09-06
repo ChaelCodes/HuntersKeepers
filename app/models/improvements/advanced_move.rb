@@ -17,8 +17,6 @@
 module Improvements
   # This is for Improvements like "Mark two of the basic moves as advanced"
   class AdvancedMove < Improvement
-    OPTIONS_COUNT = 2
-
     def apply(hunters_improvement)
       return false if add_errors(hunters_improvement)
       hunters_moves(hunters_improvement).update_all(advanced: true)
@@ -68,19 +66,16 @@ module Improvements
     end
 
     def move_ids(hunters_improvement)
-      hunters_improvement.improvable.pluck('id')
+      hunters_improvement.improvable.dig('moves').pluck('id')
     end
 
     def improvable_options(hunter)
-      Moves::Basic
-        .joins("LEFT JOIN hunters_moves ON moves.id = hunters_moves.move_id \
-                  AND hunter_id = #{hunter.id}")
-        .where(hunters_moves: { advanced: [false, nil] })
-        .select(:'moves.id', :name, :description)
-    end
-
-    def options_count
-      Improvements::AdvancedMove::OPTIONS_COUNT
+      moves = Moves::Basic
+              .joins("LEFT JOIN hunters_moves ON \
+                moves.id = hunters_moves.move_id AND hunter_id = #{hunter.id}")
+              .where(hunters_moves: { advanced: [false, nil] })
+              .select(:'moves.id', :name, :description)
+      { moves: { data: moves, count: 2 } }
     end
   end
 end

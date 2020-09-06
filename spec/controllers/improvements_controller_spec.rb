@@ -72,7 +72,7 @@ RSpec.describe ImprovementsController, type: :controller do
           it 'includes improvable options' do
             get_show
             resp = JSON.parse(response.body)
-            expect(resp['improvable_options'].first['id']).to eq move.id
+            expect(resp['improvable_options'].dig('move', 'data', 0, 'id')).to eq move.id
           end
         end
       end
