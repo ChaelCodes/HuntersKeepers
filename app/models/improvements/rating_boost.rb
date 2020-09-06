@@ -17,6 +17,8 @@
 module Improvements
   # This is for Improvements like "Get +1 Weird, max +3"
   class RatingBoost < Improvement
+    RATINGS_SELECT = { rating: { data: Rating::LIST, count: 1 } }.freeze
+
     def apply(hunters_improvement)
       return false if add_errors(hunters_improvement)
       configured_rating = configured_rating(hunters_improvement)
@@ -38,12 +40,12 @@ module Improvements
       hunters_improvement.errors.present?
     end
 
-    def improvable_options(_hunter)
-      rating ? [] : Rating::LIST
+    def configured_rating(hunters_improvement)
+      rating || hunters_improvement.improvable&.dig('rating')
     end
 
-    def configured_rating(hunters_improvement)
-      rating || hunters_improvement.improvable&.dig('improvable')
+    def improvable_options(_hunter)
+      rating ? {} : RATINGS_SELECT
     end
   end
 end

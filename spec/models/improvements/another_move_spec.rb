@@ -18,13 +18,16 @@ require 'rails_helper'
 
 RSpec.describe Improvements::AnotherMove, type: :model do
   let(:another_move) { create(:another_move) }
-  let(:hunters_improvement) {
+  let(:hunters_improvement) do
     build :hunters_improvement,
           hunter: hunter,
           improvement: another_move,
-          improvable: {'id': move.id, 'name': move.name, 'description': move.description }
-  }
-  let(:hunter) { create :hunter, playbook: another_move.playbook  }
+          improvable: { 'move':
+            { 'id': move.id,
+              'name': move.name,
+              'description': move.description } }
+  end
+  let(:hunter) { create :hunter, playbook: another_move.playbook }
   let(:move) { create :moves_rollable, playbook: create(:playbook) }
 
   describe '#apply' do
@@ -99,7 +102,12 @@ RSpec.describe Improvements::AnotherMove, type: :model do
     subject { another_move.move(hunters_improvement) }
 
     let(:move) { create :move }
-    let(:hunters_improvement) { build :hunters_improvement, improvement: another_move, hunter: hunter, improvable: { "id": move.id, "name": move.name, "description": move.description } }
+    let(:hunters_improvement) do
+      build :hunters_improvement,
+            improvement: another_move,
+            hunter: hunter,
+            improvable: { 'move': { "id": move.id, "name": move.name, "description": move.description } }
+    end
 
     it { is_expected.to eq Move.find move.id }
   end
@@ -116,6 +124,7 @@ RSpec.describe Improvements::AnotherMove, type: :model do
 
     context 'improvable is not a move' do
       let(:move) { create(:playbook) }
+
       it 'adds errors to the hunters improvement' do
         subject
         expect(hunters_improvement.errors.full_messages).to include "Improvable Couldn't find Move with 'id'=#{move.id}"

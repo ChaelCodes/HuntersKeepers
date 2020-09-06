@@ -39,14 +39,15 @@ module Improvements
       playbook.class <= Playbook
     end
 
-    def improvable_options(_hunter)
-      Playbook.where.not(id: playbook_id).select(:id, :name, :description)
-    end
-
     def new_playbook(hunters_improvement)
-      Playbook.find(hunters_improvement.improvable&.dig('id'))
+      Playbook.find(hunters_improvement.improvable&.dig('playbook', 'id'))
     rescue ActiveRecord::RecordNotFound => e
       hunters_improvement.errors.add(:improvable, e.message)
+    end
+
+    def improvable_options(_hunter)
+      playbooks = Playbook.where.not(id: playbook_id).select(:id, :name, :description)
+      { playbook: { data: playbooks, count: 1 } }
     end
   end
 end

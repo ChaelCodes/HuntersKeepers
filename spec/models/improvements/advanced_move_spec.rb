@@ -16,7 +16,7 @@
 #
 require 'rails_helper'
 
-RSpec.describe Improvements::AnotherMove, type: :model do
+RSpec.describe Improvements::AdvancedMove, type: :model do
   let(:advanced_move) { create(:advanced_move) }
   let(:hunters_improvement) do
     build :hunters_improvement,
@@ -24,7 +24,14 @@ RSpec.describe Improvements::AnotherMove, type: :model do
           improvement: advanced_move,
           improvable: improvable
   end
-  let(:improvable) { [{ 'id': move.id, 'name': move.name, 'description': move.description }, { 'id': move2.id, 'name': move2.name, 'description': move2.description }] }
+  let(:improvable) do
+    {
+      moves: [
+        { 'id': move.id, 'name': move.name, 'description': move.description },
+        { 'id': move2.id, 'name': move2.name, 'description': move2.description }
+      ]
+    }
+  end
   let(:hunter) { create :hunter, playbook: advanced_move.playbook }
   let(:move) { create :moves_basic }
   let(:move2) { create :moves_basic }
@@ -40,8 +47,13 @@ RSpec.describe Improvements::AnotherMove, type: :model do
 
     it { is_expected.to be_truthy }
 
-    context 'one move' do
-      let(:improvable) { [{ 'id': move.id, 'name': move.name, 'description': move.description }] }
+    context 'with only one move' do
+      let(:improvable) do
+        {
+          moves:
+          [{ 'id': move.id, 'name': move.name, 'description': move.description }]
+        }
+      end
 
       it { is_expected.to be_falsey }
 
@@ -86,7 +98,7 @@ RSpec.describe Improvements::AnotherMove, type: :model do
   end
 
   describe '#improvable_options' do
-    subject { advanced_move.improvable_options(hunter) }
+    subject { advanced_move.improvable_options(hunter).dig(:moves, :data) }
 
     it { is_expected.to include(move) }
     it { is_expected.to include(move2) }
@@ -110,11 +122,5 @@ RSpec.describe Improvements::AnotherMove, type: :model do
         expect(subject.count(1)).to eq Moves::Basic.count
       end
     end
-  end
-
-  describe '#options_count' do
-    subject { advanced_move.options_count }
-
-    it { is_expected.to eq 2 }
   end
 end
