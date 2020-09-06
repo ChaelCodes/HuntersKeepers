@@ -1,0 +1,21 @@
+<%= form_with(model: haven, local: true) do |form| %>
+  <%= render 'layouts/errors', errors: haven.errors %>
+
+  <div class="field">
+    <%= form.label :name %>
+    <div class="control">
+      <%= form.text_field :name, class: 'input' %>
+    </div>
+  </div>
+
+  <div class="field">
+    <%= form.label :description %>
+    <div class="control">
+      <%= form.text_area :description, class: 'textarea', rows: 2 %>
+    </div>
+  </div>
+
+  <div class="actions">
+    <%= form.submit class: 'button is-primary' %>
+  </div>
+<% end %>

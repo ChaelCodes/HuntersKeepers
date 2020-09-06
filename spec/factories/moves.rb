@@ -31,6 +31,11 @@ Luck point. You will then, somehow, recover or be
 returned to life. Once your task is done (or you use
 up all your Luck), all bets are off.'
     end
+
+    trait :haven do
+      haven { true }
+      playbook { nil }
+    end
   end
 
   factory :moves_basic, class: Moves::Basic do

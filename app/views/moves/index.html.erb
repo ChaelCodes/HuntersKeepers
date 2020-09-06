@@ -3,7 +3,7 @@
 <table class="table">
   <thead>
     <tr>
-      <th>Playbook</th>
+      <th>Source</th>
       <th>Name</th>
       <th>Rating</th>
       <th colspan="2"></th>
@@ -13,7 +13,7 @@
   <tbody>
     <% @moves.each do |move| %>
       <tr>
-        <td><%= link_to_playbook(move) %></td>
+        <td><%= move_source(move) %></td>
         <td><%= link_to_move(move) %></td>
         <td><%= move.rating %></td>
         <td><%= link_to 'Edit', edit_move_path(move) %></td>

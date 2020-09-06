@@ -93,6 +93,7 @@ class MovesController < ApplicationController
                                  :type,
                                  :name,
                                  :description,
+                                 :haven,
                                  :rating,
                                  :six_and_under,
                                  :seven_to_nine,

@@ -1,0 +1,26 @@
+<h1>Havens</h1>
+
+<table class="table">
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Description</th>
+      <th colspan="2"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @havens.each do |haven| %>
+      <tr>
+        <td><%= link_to(haven) %></td>
+        <td><%= haven.description %></td>
+        <td><%= link_to 'Edit', edit_haven_path(haven) %></td>
+        <td><%= link_to 'Destroy', haven, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Haven', new_haven_path %>

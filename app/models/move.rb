@@ -22,13 +22,14 @@ class Move < ApplicationRecord
   MOVE_TYPES = %w[Moves::Basic Moves::Rollable Moves::Descriptive].freeze
 
   belongs_to :playbook, optional: true
-  has_many :hunters_moves
+  has_many :hunters_moves, dependent: :destroy
 
   scope :not_basic, -> { where.not(type: 'Moves::Basic') }
   scope :with_hunter_moves, (lambda do |hunter_id|
     includes(:hunters_moves)
       .where(hunters_moves: { hunter_id: [hunter_id, nil] })
   end)
+  scope :haven, -> { where(haven: true) }
 
   validates :type, inclusion: { in: MOVE_TYPES }
 

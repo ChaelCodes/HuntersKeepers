@@ -513,6 +513,88 @@ hunters on your team) to finish it.'
   Moves::Basic.find_or_create_by(move)
 end
 
+[{
+  name: 'Lore Library',
+  description: "When you hit the books, take +1 \
+  forward to investigate the mystery (as long as \
+  historical or reference works are appropriate).",
+  type: 'Moves::Descriptive',
+  haven: true
+},
+ {
+   name: 'Mystical Library',
+   description: "If you use your library’s occult \
+   tomes and grimoires, preparing with your tomes \
+   and grimoires, take +1 forward for use magic.",
+   type: 'Moves::Descriptive',
+   haven: true
+ },
+ {
+   name: 'Protection Spells',
+   description: "Your haven is safe from monsters—they \
+   cannot enter. Monsters might be able to do something \
+   special to evade the wards, but not easily.",
+   type: 'Moves::Descriptive',
+   haven: true
+ },
+ {
+   name: 'Armory',
+   description: "You have a stockpile of mystical and \
+   rare monster-killing weapons and items.",
+   type: 'Moves::Rollable',
+   rating: :weird,
+   six_and_under: 'On a miss, you’ve got the wrong thing.',
+   seven_to_nine: 'On a 7-9 you have it, but only the minimum.',
+   ten_plus: 'On a 10+ you have it (and plenty if that matters).',
+   haven: true
+ },
+ {
+   name: 'Infirmary',
+   description: "You can heal people, and have the space \
+   for one or two to recuperate. The Keeper will tell you \
+   how long any patient’s recovery is likely to take, and \
+   if you need extra supplies or help.",
+   type: 'Moves::Descriptive',
+   haven: true
+ },
+ {
+   name: 'Workshop',
+   description: "You have a space for building and repairing \
+   guns, cars and other gadgets. Work out with the Keeper how \
+   long any repair or construction will take, and if you need \
+   extra supplies or help.",
+   type: 'Moves::Descriptive',
+   haven: true
+ },
+ {
+   name: 'Oubliette',
+   description: "This room is isolated from every kind of \
+   monster, spirit and magic that you know about. Anything \
+   you stash in there can’t be found, can’t do any magic, \
+   and can’t get out.",
+   type: 'Moves::Descriptive',
+   haven: true
+ },
+ {
+   name: 'Panic Room',
+   description: "This has essential supplies and is protected \
+   by normal and mystical means. You can hide out there for a \
+   few days, safe from pretty much anything.",
+   type: 'Moves::Descriptive',
+   haven: true
+ },
+ {
+   name: 'Magical Library',
+   description: "You have a mystical lab with all kinds \
+   of weird ingredients and tools useful for casting spells \
+   (like the use magic move, big magic, and any other \
+   magical moves).",
+   type: 'Moves::Descriptive',
+   haven: true
+ }].each do |move|
+  Move.find_or_create_by(move)
+end
+
 after :playbook do
   ######
   # Playbook Moves
