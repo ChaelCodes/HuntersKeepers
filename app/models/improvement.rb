@@ -49,8 +49,8 @@ class Improvement < ApplicationRecord
     ImproveHunter.new(hunters_improvement).improve(hunters_improvement)
   end
 
-  def add_errors(hunters_improvement)
-    return false
+  def add_errors(_hunters_improvement)
+    false
   end
 
   def improvable_options(_hunter)
