@@ -31,7 +31,7 @@ RSpec.describe Improves::PlaybookMove do
       it 'adds error to hunters improvement' do
         improve
         expect(hunters_improvement.errors.full_messages)
-          .to include match(/Move does not match improvement playbook/)
+          .to include match(/Move doesn't match improvement playbook/)
       end
     end
   end

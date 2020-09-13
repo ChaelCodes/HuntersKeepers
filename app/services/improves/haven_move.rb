@@ -20,6 +20,8 @@ module Improves
     def valid?
       super
       check :not_haven_move?, :move, 'is not a haven option'
+      check :hunter_move_exists?, :hunter,
+            "already has move with id #{@move&.id}"
       @hunters_improvement.errors.none?
     end
   end

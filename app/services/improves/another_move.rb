@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 module Improves
-  # Used to apply an Improvements::HavenMove to a hunter
+  # Used to apply an Improvements::AnotherMove to a hunter
   # if the hunter is a valid target
   class AnotherMove < ImproveHunter
     include Improves::Moveable
