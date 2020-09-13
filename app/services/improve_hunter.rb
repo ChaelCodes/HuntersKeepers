@@ -10,6 +10,7 @@ class ImproveHunter
     @hunters_improvement = hunters_improvement
     @improvement = hunters_improvement.improvement
     @hunter = hunters_improvement.hunter
+    @improvable = hunters_improvement.improvable
   end
 
   def improve
@@ -18,8 +19,10 @@ class ImproveHunter
   end
 
   def valid?
-    check(:hunter_playbook_mismatch?, :hunter, "does not match improvement playbook: #{@improvement.playbook.name}")
-    check(:hunter_not_advanced?, :hunter, 'is not qualified for advanced improvements')
+    check(:hunter_playbook_mismatch?, :hunter,
+          "does not match improvement playbook: #{@improvement.playbook.name}")
+    check(:hunter_not_advanced?, :hunter,
+          'is not qualified for advanced improvements')
     @hunters_improvement.errors.none?
   end
 

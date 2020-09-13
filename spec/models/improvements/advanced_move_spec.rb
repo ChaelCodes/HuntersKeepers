@@ -18,93 +18,21 @@ require 'rails_helper'
 
 RSpec.describe Improvements::AdvancedMove, type: :model do
   let(:advanced_move) { create(:advanced_move) }
-  let(:hunters_improvement) do
-    build :hunters_improvement,
-          hunter: hunter,
-          improvement: advanced_move,
-          improvable: improvable
-  end
-  let(:improvable) do
-    {
-      moves: [
-        { 'id': move.id, 'name': move.name, 'description': move.description },
-        { 'id': move2.id, 'name': move2.name, 'description': move2.description }
-      ]
-    }
-  end
-  let(:hunter) { create :hunter, playbook: advanced_move.playbook }
-  let(:move) { create :moves_basic }
-  let(:move2) { create :moves_basic }
-
-  before { hunter.moves << [move, move2] }
-
-  describe '#apply' do
-    subject { advanced_move.apply(hunters_improvement) }
-
-    it 'sets move to advanced' do
-      expect { subject }.to change { hunter.advanced?(move) }.from(false).to(true)
-    end
-
-    it { is_expected.to be_truthy }
-
-    context 'with only one move' do
-      let(:improvable) do
-        {
-          moves:
-          [{ 'id': move.id, 'name': move.name, 'description': move.description }]
-        }
-      end
-
-      it { is_expected.to be_falsey }
-
-      it 'appends errors to hunters_improvement' do
-        subject
-        expect(hunters_improvement.errors.full_messages).to include('Improvable does not have 2 moves')
-      end
-    end
-
-    context 'hunter has already advanced move' do
-      before { hunter.hunters_moves.find_by(move: move).update(advanced: true) }
-
-      it { is_expected.to be_falsey }
-
-      it 'appends errors to hunters_improvement' do
-        subject
-        expect(hunters_improvement.errors.full_messages).to include("Hunter already advanced move 'Act Under Pressure'")
-      end
-    end
-  end
-
-  describe '#basic_moves?' do
-    subject { advanced_move.basic_moves?(hunters_improvement) }
-
-    context 'both moves are basic moves' do
-      it { is_expected.to be_truthy }
-    end
-
-    context 'one move is not basic' do
-      let(:move) { create :moves_descriptive }
-
-      it { is_expected.to be_falsey }
-    end
-  end
-
-  describe '#hunters_moves' do
-    subject { advanced_move.hunters_moves(hunters_improvement) }
-
-    it 'returns moves from the hunter' do
-      expect(subject).to include(hunter.hunters_moves.find_by(move: move))
-    end
-  end
 
   describe '#improvable_options' do
     subject { advanced_move.improvable_options(hunter).dig(:moves, :data) }
+
+    let(:hunter) { create :hunter, playbook: advanced_move.playbook }
+    let!(:move) { create :moves_basic }
+    let!(:move2) { create :moves_basic }
+
+    before { hunter.moves << [move, move2] }
 
     it { is_expected.to include(move) }
     it { is_expected.to include(move2) }
 
     context 'move is advanced' do
-      before { hunter.hunters_moves.find_by(move: move).update(advanced: true) }
+      before { hunter.hunters_move_for(move_id: move.id).update(advanced: true) }
 
       it { is_expected.not_to include(move) }
     end
