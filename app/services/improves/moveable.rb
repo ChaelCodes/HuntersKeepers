@@ -11,7 +11,8 @@ module Improves
 
     def moves
       @moves ||=
-        Move.where(id: @hunters_improvement.improvable&.dig('moves')&.pluck('id'))
+        Move.where(id:
+          @hunters_improvement.improvable&.dig('moves')&.pluck('id'))
     end
 
     def valid?
