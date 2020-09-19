@@ -45,14 +45,6 @@ class Improvement < ApplicationRecord
     hunter.hunters_improvements.size >= 5
   end
 
-  def apply(hunters_improvement)
-    ImproveHunter.new(hunters_improvement).improve(hunters_improvement)
-  end
-
-  def add_errors(_hunters_improvement)
-    false
-  end
-
   def improvable_options(_hunter)
     {}
   end

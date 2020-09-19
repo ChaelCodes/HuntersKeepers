@@ -35,7 +35,9 @@ RSpec.describe Improvement, type: :model do
     it { is_expected.to be_falsey }
 
     context 'with 5 improvements already' do
-      let!(:improvements) { create_list :improvement, 5, playbook: hunter.playbook }
+      let!(:improvements) do
+        create_list :improvement, 5, playbook: hunter.playbook
+      end
 
       before do
         hunter.improvements << improvements
