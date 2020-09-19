@@ -1,15 +1,5 @@
 <%= form_with(model: rating, local: true) do |form| %>
-  <% if rating.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(rating.errors.count, "error") %> prohibited this rating from being saved:</h2>
-
-      <ul>
-      <% rating.errors.full_messages.each do |message| %>
-        <li><%= message %></li>
-      <% end %>
-      </ul>
-    </div>
-  <% end %>
+  <%= render 'layouts/errors', errors: rating.errors %>
 
   <div class="field">
     <%= form.label :playbook %>

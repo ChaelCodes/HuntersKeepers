@@ -1,15 +1,5 @@
 <%= form_with(model: playbook, local: true) do |form| %>
-  <% if playbook.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(playbook.errors.count, "error") %> prohibited this playbook from being saved:</h2>
-
-      <ul>
-      <% playbook.errors.full_messages.each do |message| %>
-        <li><%= message %></li>
-      <% end %>
-      </ul>
-    </div>
-  <% end %>
+  <%= render 'layouts/errors', errors: playbook.errors %>
 
   <div class="field">
     <%= form.label :name %>
