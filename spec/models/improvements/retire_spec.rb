@@ -17,7 +17,7 @@
 require 'rails_helper'
 
 RSpec.describe Improvements::Retire, type: :model do
-  let(:retire) { create :retire, playbook: hunter.playbook }
+  let(:retire) { create :retire }
 
   describe 'valid factory' do
     it { expect(retire).to be_valid }
