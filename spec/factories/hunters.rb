@@ -31,5 +31,9 @@ FactoryBot.define do
     tough { 1 }
     weird { -1 }
     experience { 0 }
+
+    trait :retired do
+      retired { true }
+    end
   end
 end
