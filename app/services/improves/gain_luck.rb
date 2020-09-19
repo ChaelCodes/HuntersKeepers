@@ -6,7 +6,7 @@ module Improves
   class GainLuck < ::ImproveHunter
     def improve
       return false unless valid?
-      @hunter.increment! :luck
+      @hunter.increment! :luck # rubocop:disable Rails/SkipsModelValidations
     end
 
     def valid?

@@ -47,7 +47,7 @@ RSpec.describe Improves::GainLuck do
       expect(hunter).to be_valid
     end
 
-    context 'with invalid hunter' do
+    context 'with hunter at max luck' do
       let(:luck) { 7 }
 
       it { is_expected.to be_falsey }
@@ -57,6 +57,8 @@ RSpec.describe Improves::GainLuck do
         expect(hunters_improvement.errors.full_messages)
           .to include 'Hunter already has maximum luck'
       end
+
+      it { expect { improve }.not_to change(hunter, :luck) }
     end
   end
 
