@@ -25,20 +25,6 @@ FactoryBot.define do
     end
   end
 
-  factory :rating_boost, class: Improvements::RatingBoost do
-    playbook
-    description { 'Get +1 Charm, max +3' }
-    type { 'Improvements::RatingBoost' }
-    rating { 0 } # Charm
-    stat_limit { 3 }
-  end
-
-  factory :playbook_move, class: Improvements::PlaybookMove do
-    playbook
-    description { 'Take another Chosen move' }
-    type { 'Improvements::PlaybookMove' }
-  end
-
   factory :advanced_move, class: Improvements::AdvancedMove do
     playbook
     description { 'Mark two of the basic moves as advanced.' }
@@ -61,6 +47,26 @@ FactoryBot.define do
     playbook
     description { 'Get back one used Luck point.' }
     type { 'Improvements::GainLuck' }
+  end
+
+  factory :haven_move, class: Improvements::HavenMove do
+    playbook
+    description { 'Add an option to your haven.' }
+    type { 'Improvements::HavenMove' }
+  end
+
+  factory :playbook_move, class: Improvements::PlaybookMove do
+    playbook
+    description { 'Take another Chosen move' }
+    type { 'Improvements::PlaybookMove' }
+  end
+
+  factory :rating_boost, class: Improvements::RatingBoost do
+    playbook
+    description { 'Get +1 Charm, max +3' }
+    type { 'Improvements::RatingBoost' }
+    rating { 0 } # Charm
+    stat_limit { 3 }
   end
 
   factory :retire, class: Improvements::Retire do

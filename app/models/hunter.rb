@@ -84,6 +84,11 @@ class Hunter < ApplicationRecord
     hunters_moves.find_by(move_id: move_id)
   end
 
+  # Transitions the Hunter to a retired state
+  def retire!
+    update!(retired: true)
+  end
+
   # Sets the Hunter's stats to those of the rating.
   # Intended for use in creating the Hunter.
   #

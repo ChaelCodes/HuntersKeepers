@@ -35,7 +35,9 @@ RSpec.describe Improvement, type: :model do
     it { is_expected.to be_falsey }
 
     context 'with 5 improvements already' do
-      let!(:improvements) { create_list :improvement, 5, playbook: hunter.playbook }
+      let!(:improvements) do
+        create_list :improvement, 5, playbook: hunter.playbook
+      end
 
       before do
         hunter.improvements << improvements
@@ -43,47 +45,6 @@ RSpec.describe Improvement, type: :model do
       end
 
       it { is_expected.to be_truthy }
-    end
-  end
-
-  describe '#add_errors' do
-    subject(:add_errors) do
-      improvement.add_errors(hunters_improvement)
-      hunters_improvement.errors.full_messages
-    end
-
-    let(:hunters_improvement) do
-      build :hunters_improvement,
-            hunter: hunter,
-            improvement: improvement
-    end
-    let(:hunter) { build :hunter }
-    let(:improvement) { build :improvement, playbook: hunter.playbook }
-
-    it { is_expected.to be_empty }
-
-    context 'when hunter playbook does not match improvement' do
-      let(:improvement) { build :improvement }
-
-      it 'raises mismatched playbook error' do
-        is_expected.to include match(/not match improvement playbook/)
-      end
-    end
-
-    context 'when the improvment is advanced' do
-      let(:improvement) { build :improvement, :advanced, playbook: hunter.playbook }
-
-      it 'complains the hunter is unqualified' do
-        is_expected.to include match(/qualified/)
-      end
-
-      context 'when hunter has advanced' do
-        let(:improvements) { create_list(:improvement, 5, playbook: hunter.playbook) }
-
-        before { hunter.improvements << improvements }
-
-        it { is_expected.to be_empty }
-      end
     end
   end
 end

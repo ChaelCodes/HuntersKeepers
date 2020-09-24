@@ -23,6 +23,7 @@ class Improvement < ApplicationRecord
                          Improvements::AnotherMove
                          Improvements::ChangePlaybook
                          Improvements::GainLuck
+                         Improvements::HavenMove
                          Improvements::PlaybookMove
                          Improvements::RatingBoost
                          Improvements::Retire].freeze
@@ -42,29 +43,6 @@ class Improvement < ApplicationRecord
   # @param hunter [Hunter] check this hunter's eligiblity
   def self.advanced_eligible?(hunter)
     hunter.hunters_improvements.size >= 5
-  end
-
-  def apply(hunters_improvement)
-    return false if add_errors(hunters_improvement)
-    true
-  end
-
-  def hunter_playbook_matches?(hunter)
-    hunter.playbook == playbook
-  end
-
-  def add_errors(hunters_improvement)
-    hunter = hunters_improvement.hunter
-    unless hunter_playbook_matches?(hunter)
-      hunters_improvement
-        .errors
-        .add(:hunter, "does not match improvement playbook: #{playbook.name}")
-    end
-
-    return if !advanced || Improvement.advanced_eligible?(hunter)
-    hunters_improvement
-      .errors
-      .add(:hunter, 'is not qualified for advanced improvements')
   end
 
   def improvable_options(_hunter)
