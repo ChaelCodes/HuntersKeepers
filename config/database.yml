@@ -63,6 +63,9 @@ development:
 test:
   <<: *default
   database: hunterskeepers_test
+  host: <%= ENV['DB_HOST'] || 'localhost' %>
+  username: <%= ENV['POSTGRES_USER'] || 'root' %>
+  password: <%= ENV['POSTGRES_PASSWORD'] || nil %>
 
 # As with config/credentials.yml, you never want to store sensitive information,
 # like your database password, in your source code. If your source code is
