@@ -10,7 +10,8 @@ RSpec.describe MovesController, type: :controller do
     {
       type: 'Moves::Basic',
       name: 'Act Under Pressure',
-      rating: 'cool'
+      rating: 'cool',
+      description: 'Description'
     }
   end
 

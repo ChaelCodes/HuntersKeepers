@@ -46,6 +46,7 @@ up all your Luck), all bets are off.'
     seven_to_nine { 'seven to nine result' }
     ten_plus { 'ten plus result' }
     twelve_plus { 'advanced moves only' }
+    description { 'Description' }
   end
 
   factory :moves_descriptive, class: Moves::Descriptive do

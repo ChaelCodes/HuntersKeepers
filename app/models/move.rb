@@ -32,6 +32,8 @@ class Move < ApplicationRecord
   scope :haven, -> { where(haven: true) }
 
   validates :type, inclusion: { in: MOVE_TYPES }
+  validates :name, presence: true
+  validates :description, presence: true
 
   enum rating: { charm: 0, cool: 1, sharp: 2, tough: 3, weird: 4 }
 
