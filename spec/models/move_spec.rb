@@ -62,4 +62,22 @@ RSpec.describe Move, type: :model do
 
     it { is_expected.to be_falsey }
   end
+
+  describe  "#validations" do
+    context "when name is nil" do
+      let(:move) { build :move, name: nil }
+
+      it "should not be valid" do
+        expect(move).not_to be_valid
+      end
+    end
+
+    context "when description is nil" do
+      let(:move) { build :move, description: nil }
+
+      it "should not be valid" do
+        expect(move).not_to be_valid
+      end
+    end
+  end
 end
