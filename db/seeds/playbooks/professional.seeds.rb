@@ -16,7 +16,7 @@ after :playbook do
       ten_plus: '',
       type: 'Moves::Rollable',
       playbook_id: @professional.id,
-      description: ''
+      description: 'The Big Entrance Description'
     },
     {
       name: 'Bottle It Up',
