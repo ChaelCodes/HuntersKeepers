@@ -24,14 +24,9 @@ blocks:
             - bundle install --deployment --path vendor/bundle
             - cache store
             - 'bundle exec rake db:setup'
+            - 'curl -L https://codeclimate.com/downloads/test-reporter/test-reporter-latest-linux-amd64 > ./cc-test-reporter'
+            - chmod +x ./cc-test-reporter
+            - ./cc-test-reporter before-build
             - bundle exec rspec
-      prologue:
-        commands:
-          - 'curl -L https://codeclimate.com/downloads/test-reporter/test-reporter-latest-linux-amd64 > ./cc-test-reporter'
-          - chmod +x ./cc-test-reporter
-          - ./cc-test-reporter before-build
-      epilogue:
-        always:
-          commands:
             - 'exitcode=$(if [ "$SEMAPHORE_THREAD_RESULT" == "passed" ]; then echo 0; else echo 1; fi)'
             - ./cc-test-reporter after-build --exit-code $exitcode
