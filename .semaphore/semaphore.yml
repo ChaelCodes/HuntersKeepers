@@ -20,6 +20,7 @@ blocks:
             - sem-version ruby 2.6.5
             - cache restore
             - bundle install --deployment --path vendor/bundle
+            - yarn install
             - cache store
             - 'bundle exec rake db:setup'
             - 'curl -L https://codeclimate.com/downloads/test-reporter/test-reporter-latest-linux-amd64 > ./cc-test-reporter'
