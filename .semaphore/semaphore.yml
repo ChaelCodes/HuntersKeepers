@@ -18,7 +18,7 @@ blocks:
         - name: Test
           commands:
             - checkout
-            - sem-service start postgres 11
+            - sem-service start postgres 13
             - sem-version ruby 2.6.5
             - cache restore
             - bundle install --deployment --path vendor/bundle
