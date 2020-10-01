@@ -8,7 +8,7 @@ blocks:
   - name: Test
     task:
       secrets:
-        - name: Code Climate
+        - name: code-climate-test-reporter-id
       env_vars:
         - name: DATABASE_URL
           value: 'postgresql://postgres:@0.0.0.0:5432/myapp_test'
