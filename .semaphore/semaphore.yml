@@ -1,5 +1,5 @@
 version: v1.0
-name: Test MyApp
+name: Run Tests
 agent:
   machine:
     type: e1-standard-2
@@ -7,6 +7,8 @@ agent:
 blocks:
   - name: Test
     task:
+      secrets:
+        - name: Code Climate
       env_vars:
         - name: DATABASE_URL
           value: 'postgresql://postgres:@0.0.0.0:5432/myapp_test'
@@ -27,5 +29,10 @@ blocks:
             - chmod +x ./cc-test-reporter
             - ./cc-test-reporter before-build
             - bundle exec rspec
-            - 'exitcode=$(if [ "$SEMAPHORE_THREAD_RESULT" == "passed" ]; then echo 0; else echo 1; fi)'
-            - ./cc-test-reporter after-build --exit-code $exitcode
+      epilogue:
+        on_pass:
+          commands:
+            - ./cc-test-reporter after-build --exit-code 0
+        on_fail:
+          commands:
+            - ./cc-test-reporter after-build --exit-code 1
