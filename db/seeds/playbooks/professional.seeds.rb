@@ -9,16 +9,6 @@ after :playbook do
   ######
   [
     {
-      name: 'The Big Entrance',
-      rating: :cool,
-      six_and_under: '',
-      seven_to_nine: '',
-      ten_plus: '',
-      type: 'Moves::Rollable',
-      playbook_id: @professional.id,
-      description: ''
-    },
-    {
       name: 'Bottle It Up',
       type: 'Moves::Descriptive',
       playbook_id: @professional.id,
