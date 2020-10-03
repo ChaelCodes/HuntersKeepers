@@ -34,7 +34,7 @@ class Hunter < ApplicationRecord
   has_many :moves, through: :hunters_moves
   accepts_nested_attributes_for :moves
 
-  has_many :hunters_improvements
+  has_many :hunters_improvements, dependent: :destroy
   validates_associated :hunters_improvements,
                        message: lambda { |_class_obj, obj|
                                   obj[:value]&.map { |h_improv| h_improv.errors.full_messages.to_sentence }&.join(', ')
