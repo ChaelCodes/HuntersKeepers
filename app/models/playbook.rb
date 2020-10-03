@@ -13,9 +13,9 @@
 # The class or playbook that the hunter has
 # provides unique abilities to the Hunter
 class Playbook < ApplicationRecord
-  has_many :improvements
-  has_many :gears
-  has_many :moves
+  has_many :improvements, dependent: :destroy
+  has_many :gears, dependent: :destroy
+  has_many :moves, dependent: :destroy
   has_many :ratings, dependent: :destroy
   validates :name, presence: true
 end
