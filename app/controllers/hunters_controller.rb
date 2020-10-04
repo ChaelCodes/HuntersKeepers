@@ -42,6 +42,8 @@ class HuntersController < ApplicationController
   def create
     @hunter = Hunter.new(hunter_params)
     @hunter.user = current_user
+    @hunter.assign_attributes(experience: 0, harm: 0, luck: 7)
+
     respond_to do |format|
       if @hunter.save
         format.html { redirect_to hunter_path(@hunter), notice: 'Hunter was successfully created.' }
