@@ -22,7 +22,7 @@ after :playbook do
   your immediate future.'
   },
    {
-     name: 'I’m Here For A Reason',
+     name: "I'm Here For A Reason",
      type: 'Moves::Descriptive',
      playbook_id: @chosen.id,
      description: 'There’s something you are
@@ -118,14 +118,14 @@ after :playbook do
       description: 'Get +1 Weird, max +3',
       type: 'Improvements::RatingBoost',
       stat_limit: 3,
-      rating: :tough,
+      rating: :weird,
       playbook: @chosen
     },
     {
       description: 'Get +1 Tough, max +3',
       type: 'Improvements::RatingBoost',
       stat_limit: 3,
-      rating: :weird,
+      rating: :tough,
       playbook: @chosen
     },
     {
@@ -138,6 +138,7 @@ after :playbook do
       description: 'Take another Chosen move',
       type: 'Improvements::PlaybookMove',
       playbook: @chosen,
+      # Used to differentiate (and initially hide this) from the identical improvement above.
       stat_limit: -1
     },
     {
@@ -150,6 +151,7 @@ after :playbook do
       description: 'Take a move from another playbook',
       type: 'Improvements::AnotherMove',
       playbook: @chosen,
+      # Used to differentiate (and initially hide this) from the identical improvement above.
       stat_limit: -1
     },
     {
@@ -176,7 +178,7 @@ after :playbook do
       advanced: true
     },
     {
-      description: 'Create a second  hunter to play as well as this one.',
+      description: 'Create a second hunter to play as well as this one.',
       playbook: @chosen,
       advanced: true
     },
