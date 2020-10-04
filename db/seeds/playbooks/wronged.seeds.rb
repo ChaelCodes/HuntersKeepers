@@ -70,10 +70,11 @@ return as 2-harm and become unstable again
 later.
 • Heal 1-harm and stabilise but the patient takes
 -1 ongoing until it’s fixed properly',
+     six_and_under: 'No heroic measures undertaken; no impact on the efficacy of your first aid',
      type: 'Moves::Rollable',
      playbook_id: @wronged.id,
-     description: 'When you do quick and dirty first
-aid on someone (including yourself), roll +Cool.'
+     description: 'When you do *quick and dirty first
+aid on someone* (including yourself), roll +Cool.'
    },
    {
        name: 'Tools Matter',
@@ -205,13 +206,13 @@ your gear, below), you get +1 to *kick some ass*.'
     },
     {
       description: 'Take another Wronged move',
-      type: 'Improvements::AnotherMove',
+      type: 'Improvements::PlaybookMove',
       playbook: @wronged,
       stat_limit: 0
     },
     {
       description: 'Take another Wronged move',
-      type: 'Improvements::AnotherMove',
+      type: 'Improvements::PlaybookMove',
       playbook: @wronged,
       # Used to differentiate (and initially hide this) from the identical improvement above.
       stat_limit: -1
