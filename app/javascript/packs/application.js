@@ -18,6 +18,8 @@ import Vue from 'vue/dist/vue.esm'
 import Buefy from 'buefy'
 import 'buefy/dist/buefy.css'
 
+require.context('../images', true)
+
 // Components
 import HunterGear from '../components/hunter_gear.vue'
 import HunterMoves from '../components/hunter_moves.vue'
