@@ -262,12 +262,10 @@ after :playbook do
     },
     {
       description: 'Get back one used Luck point.',
-      playbook: @spooky,
-      type: 'Improvements::RatingBoost',
-      stat_limit: 7,
-      rating: :luck,
+      playbook: @chosen,
+      type: 'Improvements::GainLuck',
       advanced: true
-    }
+    },
   ].each do |improvement|
     Improvement.find_or_create_by!(improvement)
   end
