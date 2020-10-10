@@ -18,15 +18,15 @@ after :playbook do
       roll moves as normal, except people will not expect the 
       weirdness of your mental communication.'
     }
-     {
-       name: 'Hex',
-       type: 'Moves::Descriptive',
-       playbook_id: @spooky.id,
-       description: 'When you cast a spell (with use magic), as
-       well as the normal effects, you may pick from the following:  
-       • The target contracts a disease.  • The target immediatly 
-       suffers harm (-2 harm magic ignore-armor  • The target breaks 
-       something precious or important'
+    {
+      name: 'Hex',
+      type: 'Moves::Descriptive',
+      playbook_id: @spooky.id,
+      description: 'When you cast a spell (with use magic), as
+      well as the normal effects, you may pick from the following:  
+      • The target contracts a disease.  • The target immediatly 
+      suffers harm (-2 harm magic ignore-armor  • The target breaks 
+      something precious or important'
     },
     {
       name: 'The Sight',
@@ -81,35 +81,35 @@ after :playbook do
       planning to do right now?  • Who is it going to attack 
       next?  • Who does it regard a the biggest threat?  How 
       can i attract its attention?'
-   },
-   {
-    name: 'The Big Whammy',
-    type: 'Moves::Descriptive',
-    playbook_id: @spooky.id,
-    description:'You can use your powers to kick some ass: roll +Weird 
-    instead of +Tough. The attack has 2-harm close obvious ignore-armor. On 
-    a miss, you’ll get magical backlash.'
-  },
-  {
-    name: 'Jinx',
-    rating: :weird,
-    type: 'Moves::Rollable',
-    playbook_id: @spooky.id,
-    six_and_under: 'On a miss, the Keeper holds 2 over you to be used in the 
-    same way.',
-    seven_to_nine: 'On a 7-9, hold 1.',
-    ten_plus: 'On a 10+, hold 2.',
-    description: 'You can encourage coincidences to occur, the way you want. 
-    When you jinx a target, roll +Weird.
-    \n • Interfere with a hunter, giving them -1 forward.
-    \n • Help a hunter, giving them +1 forward, by interfering with the enemy.
-    \n • Interfere with what a monster, minion, or bystander is trying to do.
-    \n • Inflict 1-harm on the target due to an accident.
-    \n • The target finds something you left for them.
-    \n • The target loses something that you will soon find.'
-  },].each do |move|
-      Move.find_or_create_by!(move)
-    end
+    },
+    {
+      name: 'The Big Whammy',
+      type: 'Moves::Descriptive',
+      playbook_id: @spooky.id,
+      description:'You can use your powers to kick some ass: roll +Weird 
+      instead of +Tough. The attack has 2-harm close obvious ignore-armor. On 
+      a miss, you’ll get magical backlash.'
+    },
+    {
+      name: 'Jinx',
+      rating: :weird,
+      type: 'Moves::Rollable',
+      playbook_id: @spooky.id,
+      six_and_under: 'On a miss, the Keeper holds 2 over you to be used in the 
+      same way.',
+      seven_to_nine: 'On a 7-9, hold 1.',
+      ten_plus: 'On a 10+, hold 2.',
+      description: 'You can encourage coincidences to occur, the way you want. 
+      When you jinx a target, roll +Weird.  Interfere with a hunter, giving 
+      them -1 forward.  Help a hunter, giving them +1 forward, by interfering 
+      with the enemy.  Interfere with what a monster, minion, or bystander is 
+      trying to do.  Inflict 1-harm on the target due to an accident.  The target 
+      finds something you left for them.  The target loses something that you 
+      will soon find.'
+    },
+  ].each do |move|
+    Move.find_or_create_by!(move)
+  end
   
     #####
     # Gear
@@ -152,123 +152,123 @@ after :playbook do
     #####
     # Improvements
     #####
-    [
-      {
-        description: 'Get +1 Weird, max +3',
-        type: 'Improvements::RatingBoost',
-        stat_limit: 3,
-        rating: :weird,
-        playbook: @spooky
-      },
-      {
-        description: 'Get +1 Charm, max +2',
-        type: 'Improvements::RatingBoost',
-        stat_limit: 2,
-        rating: :charm,
-        playbook: @spooky
-      },
-      {
-        description: 'Get +1 Cool, max +2',
-        type: 'Improvements::RatingBoost',
-        stat_limit: 2,
-        rating: :cool,
-        playbook: @spooky
-      },
-      {
-        description: 'Get +1 Sharp, max +2',
-        type: 'Improvements::RatingBoost',
-        stat_limit: 2,
-        rating: :sharp,
-        playbook: @spooky
-      },
-      {
-        description: 'Take another Spooky move',
-        type: 'Improvements::PlaybookMove',
-        playbook: @spooky,
-        stat_limit: 0
-      },
-      {
-        description: 'Take another Spooky move',
-        type: 'Improvements::PlaybookMove',
-        playbook: @spooky,
-        # Used to differentiate (and initially hide this) from the identical improvement above.
-        stat_limit: -1
-      },
-      {
-        description: 'Change some, or all, your dark side tags',
-        playbook: @spooky,
-      },
-      {
-        description: 'Get a mystical library, like the Expert’s haven option',
-        type: 'Improvements::AnotherMove',
-        playbook: @spooky,
-        stat_limit: 0
-      },
-      {
-        description: 'Take a move from another playbook',
-        type: 'Improvements::AnotherMove',
-        playbook: @spooky,
-        stat_limit: 0
-      },
-      {
-        description: 'Take a move from another playbook',
-        type: 'Improvements::AnotherMove',
-        playbook: @spooky,
-        # Used to differentiate (and initially hide this) from the identical improvement above.
-        stat_limit: -1
-      },
-      {
-        description: 'Get +1 to any rating, max +3.',
-        playbook: @spooky,
-        type: 'Improvements::RatingBoost',
-        stat_limit: 3,
-        advanced: true
-      },
-      {
-        description: 'Change this Hunter to a new type.',
-        playbook: @spooky,
-        type: 'Improvements::ChangePlaybook',
-        advanced: true
-      },
-      {
-        description: 'Create a second hunter to play as well as this one.',
-        playbook: @spooky,
-        advanced: true
-      },
-      {
-        description: 'Mark two of the basic moves as advanced',
-        playbook: @spooky,
-        type: 'Improvements::AdvancedMove',
-        advanced: true
-      },
-      {
-        description: 'Mark another two of the basic moves as advanced',
-        playbook: @spooky,
-        type: 'Improvements::AdvancedMove',
-        advanced: true
-      },
-      {
-        description: 'Retire this hunter to safety.',
-        playbook: @spooky,
-        type: 'Improvements::Retire',
-        advanced: true
-      }
-      {
-        description: 'You discover how to use your powers at a lower price. 
-        Delete one dark side tag permanently.',
-        playbook: @spooky,
-        advanced: true
-      },
-      {
-        description: 'Get back one used Luck point.',
-        playbook: @spooky,
-        type: 'Improvements::RatingBoost',
-        stat_limit: 7,
-        rating: :luck,
-        advanced: true
-      },
-    ].each do |improvement|
-      Improvement.find_or_create_by!(improvement)
-    end
+  [
+    {
+      description: 'Get +1 Weird, max +3',
+      type: 'Improvements::RatingBoost',
+      stat_limit: 3,
+      rating: :weird,
+      playbook: @spooky
+    },
+    {
+      description: 'Get +1 Charm, max +2',
+      type: 'Improvements::RatingBoost',
+      stat_limit: 2,
+      rating: :charm,
+      playbook: @spooky
+    },
+    {
+      description: 'Get +1 Cool, max +2',
+      type: 'Improvements::RatingBoost',
+      stat_limit: 2,
+      rating: :cool,
+      playbook: @spooky
+    },
+    {
+      description: 'Get +1 Sharp, max +2',
+      type: 'Improvements::RatingBoost',
+      stat_limit: 2,
+      rating: :sharp,
+      playbook: @spooky
+    },
+    {
+      description: 'Take another Spooky move',
+      type: 'Improvements::PlaybookMove',
+      playbook: @spooky,
+      stat_limit: 0
+    },
+    {
+      description: 'Take another Spooky move',
+      type: 'Improvements::PlaybookMove',
+      playbook: @spooky,
+      # Used to differentiate (and initially hide this) from the identical improvement above.
+      stat_limit: -1
+    },
+    {
+      description: 'Change some, or all, your dark side tags',
+      playbook: @spooky,
+    },
+    {
+      description: 'Get a mystical library, like the Expert’s haven option',
+      type: 'Improvements::AnotherMove',
+      playbook: @spooky,
+      stat_limit: 0
+    },
+    {
+      description: 'Take a move from another playbook',
+      type: 'Improvements::AnotherMove',
+      playbook: @spooky,
+      stat_limit: 0
+    },
+    {
+      description: 'Take a move from another playbook',
+      type: 'Improvements::AnotherMove',
+      playbook: @spooky,
+      # Used to differentiate (and initially hide this) from the identical improvement above.
+      stat_limit: -1
+    },
+    {
+      description: 'Get +1 to any rating, max +3.',
+      playbook: @spooky,
+      type: 'Improvements::RatingBoost',
+      stat_limit: 3,
+      advanced: true
+    },
+    {
+      description: 'Change this Hunter to a new type.',
+      playbook: @spooky,
+      type: 'Improvements::ChangePlaybook',
+      advanced: true
+    },
+    {
+      description: 'Create a second hunter to play as well as this one.',
+      playbook: @spooky,
+      advanced: true
+    },
+    {
+      description: 'Mark two of the basic moves as advanced',
+      playbook: @spooky,
+      type: 'Improvements::AdvancedMove',
+      advanced: true
+    },
+    {
+      description: 'Mark another two of the basic moves as advanced',
+      playbook: @spooky,
+      type: 'Improvements::AdvancedMove',
+      advanced: true
+    },
+    {
+      description: 'Retire this hunter to safety.',
+      playbook: @spooky,
+      type: 'Improvements::Retire',
+      advanced: true
+    }
+    {
+      description: 'You discover how to use your powers at a lower price. 
+      Delete one dark side tag permanently.',
+      playbook: @spooky,
+      advanced: true
+    },
+    {
+      description: 'Get back one used Luck point.',
+      playbook: @spooky,
+      type: 'Improvements::RatingBoost',
+      stat_limit: 7,
+      rating: :luck,
+      advanced: true
+    },
+  ].each do |improvement|
+    Improvement.find_or_create_by!(improvement)
   end
+end
   
