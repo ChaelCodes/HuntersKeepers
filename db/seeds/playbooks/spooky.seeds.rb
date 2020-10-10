@@ -9,6 +9,7 @@ after :playbook do
     ######
     [{
       name: 'Telepathy',
+      type: 'Moves::Descriptive',
       playbook_id: @spooky.id,
       description: 'You can read people’s thoughts and put words 
       in their mind. This can allow you to investigate a mystery 
@@ -22,10 +23,10 @@ after :playbook do
        type: 'Moves::Descriptive',
        playbook_id: @spooky.id,
        description: 'When you cast a spell (with use magic), as
-       well as the normal effects, you may pick from the following:
-       \n • The target contracts a disease.
-       \n • The target immediatly suffers harm (-2 harm magic ignore-armor
-       \n • The target breaks something precious or important'
+       well as the normal effects, you may pick from the following:  
+       • The target contracts a disease.  • The target immediatly 
+       suffers harm (-2 harm magic ignore-armor  • The target breaks 
+       something precious or important'
     },
     {
       name: 'The Sight',
@@ -39,6 +40,8 @@ after :playbook do
     {
       name: 'Premonitions',
       rating: :weird,
+      type: 'Moves::Rollable',
+      playbook_id: @spooky.id,
       six_and_under: 'On a miss, you get a vision of something bad happening 
       to you and the Keeper holds 3, to be spent one-for-one as penalties to 
       rolls you make.',
@@ -47,60 +50,55 @@ after :playbook do
       ten_plus: 'On a 10+, you get a detailed vision of some-thing bad that is 
       yet to happen. You take +1 forward to prevent it coming true, and mark 
       experience if you stop  it.',
-      type: 'Moves::Rollable',
-      playbook_id: @spooky.id,
       description: 'At the start of each mystery, roll +Weird.'
     },
     {
       name: 'Hunches',
       rating: :sharp,
+      type: 'Moves::Rollable',
+      playbook_id: @spooky.id,
       six_and_under: 'On a miss, you get there just in time to be in trouble 
       yourself',
       seven_to_nine: 'On a 7-9, you get there late—in time to intervene, but 
       not prevent it altogether.',
       ten_plus: 'On a 10+ you knew where you needed to go, just in time to 
       get there.',
-      type: 'Moves::Rollable',
-      playbook_id: @spooky.id,
       description: 'When something bad is happening (or just about to happen) 
       somewhere that you aren’t, roll +Sharp'
     },
     {
       name: 'Tune In',
-      type: 'Moves::Descriptive',
       rating: :sharp,
+      type: 'Moves::Rollable',
+      playbook_id: @spooky.id,
       six_and_under: 'On a miss, the monster becomes aware of you.',
       seven_to_nine: 'On a 7-9, hold 1.',
       ten_plus: 'On a 10+, hold 3.',
-      type: 'Moves::Rollable',
-      playbook_id: @spooky.id,
-      description: 'You can attune your mind to a monster or minion. Roll +Weird. 
-      Spend one hold to ask the Keeper one of the following questions, and gain +1 
-      ongoing while acting on the answers.
-      \n • Where is the creature right now?
-      \n • What is it planning to do right now?
-      \n • Who is it going to attack next?
-      \n • Who does it regard a the biggest threat?
-      \n • How can i attract its attention?'
+      description: 'You can attune your mind to a monster or minion. 
+      Roll +Weird. Spend one hold to ask the Keeper one of the 
+      following questions, and gain +1 ongoing while acting on the 
+      answers.  • Where is the creature right now?  • What is it 
+      planning to do right now?  • Who is it going to attack 
+      next?  • Who does it regard a the biggest threat?  How 
+      can i attract its attention?'
    },
    {
     name: 'The Big Whammy',
     type: 'Moves::Descriptive',
     playbook_id: @spooky.id,
-    description:'You can use your powers to kick some ass: roll +Weird instead 
-    of +Tough. The attack has 2-harm close obvious ignore-armor. On a miss, 
-    you’ll get magical backlash.'
+    description:'You can use your powers to kick some ass: roll +Weird 
+    instead of +Tough. The attack has 2-harm close obvious ignore-armor. On 
+    a miss, you’ll get magical backlash.'
   },
   {
     name: 'Jinx',
-    type: 'Moves::Descriptive',
     rating: :weird,
+    type: 'Moves::Rollable',
+    playbook_id: @spooky.id,
     six_and_under: 'On a miss, the Keeper holds 2 over you to be used in the 
     same way.',
     seven_to_nine: 'On a 7-9, hold 1.',
     ten_plus: 'On a 10+, hold 2.',
-    type: 'Moves::Rollable',
-    playbook_id: @spooky.id,
     description: 'You can encourage coincidences to occur, the way you want. 
     When you jinx a target, roll +Weird.
     \n • Interfere with a hunter, giving them -1 forward.
@@ -147,7 +145,7 @@ after :playbook do
   ].each do |gear_attrs|
     gear = Gear.find_or_create_by!(
       name: gear_attrs[:name],
-      playbook: @professional
+      playbook: @spooky
     )
     gear.update!(gear_attrs)
 
