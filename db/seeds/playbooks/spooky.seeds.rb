@@ -17,7 +17,7 @@ after :playbook do
       You an also manipulate someone without speaking. You still 
       roll moves as normal, except people will not expect the 
       weirdness of your mental communication.'
-    }
+    },
     {
       name: 'Hex',
       type: 'Moves::Descriptive',
