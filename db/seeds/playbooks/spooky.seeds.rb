@@ -106,7 +106,7 @@ after :playbook do
       trying to do.  Inflict 1-harm on the target due to an accident.  The target 
       finds something you left for them.  The target loses something that you 
       will soon find.'
-    },
+    }
   ].each do |move|
     Move.find_or_create_by!(move)
   end
@@ -141,7 +141,7 @@ after :playbook do
       name: 'Big knife',
       armor: 1,
       tag_list: %w[hand]
-    },
+    }
   ].each do |gear_attrs|
     gear = Gear.find_or_create_by!(
       name: gear_attrs[:name],
@@ -252,7 +252,7 @@ after :playbook do
       playbook: @spooky,
       type: 'Improvements::Retire',
       advanced: true
-    }
+    },
     {
       description: 'You discover how to use your powers at a lower price. 
       Delete one dark side tag permanently.',
@@ -266,7 +266,7 @@ after :playbook do
       stat_limit: 7,
       rating: :luck,
       advanced: true
-    },
+    }
   ].each do |improvement|
     Improvement.find_or_create_by!(improvement)
   end
