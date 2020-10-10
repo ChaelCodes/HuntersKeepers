@@ -262,7 +262,7 @@ after :playbook do
     },
     {
       description: 'Get back one used Luck point.',
-      playbook: @chosen,
+      playbook: @spooky,
       type: 'Improvements::GainLuck',
       advanced: true
     },
