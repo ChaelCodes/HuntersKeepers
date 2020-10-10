@@ -148,6 +148,7 @@ after :playbook do
       playbook: @spooky
     )
     gear.update!(gear_attrs)
+  end
 
     #####
     # Improvements
