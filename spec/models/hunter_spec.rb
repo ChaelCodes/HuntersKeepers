@@ -138,23 +138,4 @@ RSpec.describe Hunter, type: :model do
       it { is_expected.to be_falsey }
     end
   end
-
-  describe '#create' do
-    context 'hunter will not be valid if required attributes are nil' do
-      let(:hunter) { build :hunter, harm: nil, luck: nil }
-
-      it { expect(hunter).to_not be_valid }
-    end
-
-    context 'returns validation errors when required attributes are nil' do
-      let(:hunter) { build :hunter, harm: nil, luck: nil }
-
-      it do
-        hunter.save
-
-        expect(hunter.errors.messages[:harm]).to eq(["is not a number"])
-        expect(hunter.errors.messages[:luck]).to eq(["is not a number"])
-      end
-    end
-  end
 end
