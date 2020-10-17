@@ -27,8 +27,8 @@ RSpec.describe HuntersController, type: :controller do
       hunter: {
         name: 'Killua',
         playbook_id: create(:playbook).id,
-        harm: 8,
-        luck: 0
+        harm: nil,
+        luck: nil
       }
     }
   end
@@ -126,6 +126,8 @@ RSpec.describe HuntersController, type: :controller do
       let(:attributes) { valid_attributes }
 
       it 'creates a new Hunter' do
+        expect(attributes[:hunter][:harm]).to eq 0
+        expect(attributes[:hunter][:luck]).to eq 0
         expect { post_create }.to change(Hunter, :count).by(1)
       end
 
