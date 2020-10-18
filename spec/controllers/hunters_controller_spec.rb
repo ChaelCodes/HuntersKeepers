@@ -27,8 +27,8 @@ RSpec.describe HuntersController, type: :controller do
       hunter: {
         name: 'Killua',
         playbook_id: create(:playbook).id,
-        harm: nil,
-        luck: nil
+        harm: 8,
+        luck: 0
       }
     }
   end
@@ -126,14 +126,29 @@ RSpec.describe HuntersController, type: :controller do
       let(:attributes) { valid_attributes }
 
       it 'creates a new Hunter' do
-        expect(attributes[:hunter][:harm]).to eq 0
-        expect(attributes[:hunter][:luck]).to eq 7
         expect { post_create }.to change(Hunter, :count).by(1)
       end
 
       it 'redirects to the created hunter' do
         post_create
         expect(response).to redirect_to(Hunter.last)
+      end
+    end
+
+    context 'when provided nil harm and luck which are required attributes' do
+      let(:attributes) { valid_attributes }
+      let(:hidden_attributes_from_form) { {"harm": nil, "luck": nil} }
+
+      it 'nil attributes are overwritten to defaults and creates a new Hunter' do
+        attributes = valid_attributes[:hunter].merge(hidden_attributes_from_form)
+
+        expect(attributes[:harm]).to eq nil
+        expect(attributes[:luck]).to eq nil
+
+        expect { post_create }.to change(Hunter, :count).by(1)
+
+        expect(controller.params[:hunter][:harm]).to eq "0"
+        expect(controller.params[:hunter][:luck]).to eq "7"
       end
     end
 
