@@ -13,7 +13,7 @@ after :playbook do
       rating: :sharp,
       description: ' At the beginning of each mystery,
       if you look for the wider patterns that current
-      events might be part of. Spend your hold during the
+      events might be part of, roll +Sharp. Spend your hold during the
       mystery to ask the Keeper any one of the following
       questions:
       - Is this person connected to current events more than they are saying?
@@ -43,7 +43,7 @@ after :playbook do
       name: 'Often Overlooked',
       type: 'Moves::Rollable',
       rating: :weird,
-      description: 'When you act all crazy to avoid something.',
+      description: 'When you act all crazy to avoid something, roll +Weird.',
       six_and_under: 'On a miss, you draw lots (but not all) of the attention.',
       seven_to_nine: 'On a 7-9, pick one:
       - unthreatening
@@ -63,7 +63,7 @@ after :playbook do
       type: 'Moves::Rollable',
       rating: :charm,
       description: 'You know a lot of people on the Internet. When you contact a net friend to help you with
-      a mystery.',
+      a mystery, roll +Charm.',
       six_and_under: 'On a miss, you burn some bridges.',
       seven_to_nine: 'On a 7-9, they’re prepared to help, but it’s either
       going to take some time or you’re going to have to do
