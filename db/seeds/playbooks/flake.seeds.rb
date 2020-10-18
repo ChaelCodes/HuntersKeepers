@@ -21,6 +21,7 @@ after :playbook do
       - What does the monster want from this person?
       - Is this connected to previous mysteries we have investigated?
       - How does this mystery connect to the bigger picture?',
+      six_and_under: 'On a miss hold 0',
       seven_to_nine: 'On a 7-9 hold 1',
       ten_plus: 'On a 10+ hold 3'
     },
