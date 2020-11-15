@@ -38,6 +38,7 @@ services:
 
   web:
     depends_on:
+      - chrome
       - db
       - node_modules
       - webpacker
@@ -58,6 +59,12 @@ services:
       - POSTGRES_USER=postgres
       - POSTGRES_PASSWORD=password
       - DB_HOST=db
+      - HUB_URL=http://chrome:4444/wd/hub
+
+  chrome:
+    image: selenium/standalone-chrome:3.141.59-zirconium # this version should match that of the selenium-webdriver gem (see Gemfile)
+    volumes:
+      - /dev/shm:/dev/shm
 
 volumes:
   # Volume to hold the Postgres database on the host system

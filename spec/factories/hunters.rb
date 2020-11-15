@@ -23,6 +23,7 @@ FactoryBot.define do
   factory :hunter do
     playbook
     user
+    name { 'Gon' }
     harm { 0 }
     luck { 7 }
     charm { 1 }
