@@ -1,5 +1,5 @@
 <template>
-  <b-button @click="roll()" size="is-small" type="is-primary">{{buttonText || 'Roll'}}</b-button>
+  <b-button @click.stop="roll()" size="is-small" type="is-primary">{{buttonText || 'Roll'}}</b-button>
 </template>
 
 <script>
