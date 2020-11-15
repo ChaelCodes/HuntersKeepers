@@ -23,7 +23,7 @@ describe 'hunters#show' do
   end
 
   context 'with basic moves' do
-    let!(:basic_move) { create(:moves_basic) }
+    let!(:basic_move) { create(:moves_basic, name: 'The Nameless Move') }
     
     before { hunter.moves << basic_move }
 
