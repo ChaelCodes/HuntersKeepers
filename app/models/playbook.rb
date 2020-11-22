@@ -5,8 +5,8 @@
 # Table name: playbooks
 #
 #  id          :bigint           not null, primary key
-#  name        :string
 #  description :string
+#  name        :string
 #  created_at  :datetime         not null
 #  updated_at  :datetime         not null
 #
@@ -18,4 +18,8 @@ class Playbook < ApplicationRecord
   has_many :moves, dependent: :destroy
   has_many :ratings, dependent: :destroy
   validates :name, presence: true
+
+  def to_s
+    name
+  end
 end
