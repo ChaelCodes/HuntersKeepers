@@ -5,7 +5,6 @@
 # Table name: ratings
 #
 #  id          :bigint           not null, primary key
-#  playbook_id :bigint
 #  charm       :integer
 #  cool        :integer
 #  sharp       :integer
@@ -13,6 +12,15 @@
 #  weird       :integer
 #  created_at  :datetime         not null
 #  updated_at  :datetime         not null
+#  playbook_id :bigint
+#
+# Indexes
+#
+#  index_ratings_on_playbook_id  (playbook_id)
+#
+# Foreign Keys
+#
+#  fk_rails_...  (playbook_id => playbooks.id)
 #
 # The ratings/attributes that the Hunter has
 # determines their capability to do something
