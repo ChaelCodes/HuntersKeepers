@@ -2,7 +2,7 @@
 
 require 'rails_helper'
 
-describe 'hunters#create' do
+describe 'hunters#new' do
   let(:user) { create :user }
   let!(:playbook) { create :playbook }
   let!(:rating) { create :rating, playbook: playbook }
