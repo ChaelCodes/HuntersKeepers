@@ -5,14 +5,22 @@
 # Table name: improvements
 #
 #  id          :bigint           not null, primary key
+#  advanced    :boolean
 #  description :string
-#  type        :string
 #  rating      :integer
 #  stat_limit  :integer
-#  playbook_id :bigint
+#  type        :string
 #  created_at  :datetime         not null
 #  updated_at  :datetime         not null
-#  advanced    :boolean
+#  playbook_id :bigint
+#
+# Indexes
+#
+#  index_improvements_on_playbook_id  (playbook_id)
+#
+# Foreign Keys
+#
+#  fk_rails_...  (playbook_id => playbooks.id)
 #
 module Improvements
   # This improvement retires the hunter to safety
