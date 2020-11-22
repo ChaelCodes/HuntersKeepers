@@ -1,10 +1,15 @@
+# frozen_string_literal: true
+
+# This FormBuilder is the default for the application
+# It'll use Bulma styling and build labelled form fields
+# If you need a specific input not included here, please add it
 class ApplicationFormBuilder < ActionView::Helpers::FormBuilder
   delegate :tag, to: :@template
 
   def labelled_check_box(method, *input_options, label_options: {})
     tag.div(class: 'field') do
       check_box(method, *input_options) +
-      label(method, label_options)
+        label(method, label_options)
     end
   end
 
@@ -26,9 +31,9 @@ class ApplicationFormBuilder < ActionView::Helpers::FormBuilder
     end
   end
 
-  def collection_select(method, collection, value_method, text_method, options = {}, html_options = {})
+  def collection_select(*args)
     tag.div class: 'select' do
-      super(method, collection, value_method, text_method, options = {}, html_options = {})
+      super(*args)
     end
   end
 
@@ -45,9 +50,9 @@ class ApplicationFormBuilder < ActionView::Helpers::FormBuilder
   def form_controls(method, label_options)
     tag.div(class: 'field') do
       label(method, label_options) +
-      tag.div(class: 'control') do
-        yield
-      end
+        tag.div(class: 'control') do
+          yield
+        end
     end
   end
 end
