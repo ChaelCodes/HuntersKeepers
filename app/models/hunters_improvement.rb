@@ -5,9 +5,9 @@
 # Table name: hunters_improvements
 #
 #  id             :bigint           not null, primary key
+#  improvable     :jsonb
 #  hunter_id      :integer
 #  improvement_id :integer
-#  improvable     :jsonb
 #
 # Improvements taken by the Hunter
 # One is unlocked every 5 Experience

@@ -1,81 +1,18 @@
-<%= form_with(model: hunter, local: true) do |form| %>
+<%= form_with(model: hunter, local: true, builder: ApplicationFormBuilder) do |form| %>
   <%= render 'layouts/errors', errors: hunter.errors %>
 
   <section>
-    <div class="field">
-      <%= form.label :name %>
-      <div class="control">
-        <%= form.text_field :name, class: 'input' %>
-      </div>
-    </div>
-
-    <div class="field">
-      <%= form.label :playbook %>
-      <div class="control">
-        <%= select_playbook(form) %>
-      </div>
-    </div>
-
-    <div class="field">
-      <%= form.label :harm %>
-      <div class="control">
-        <%= form.number_field :harm, class: 'input' %>
-      </div>
-    </div>
-
-    <div class="field">
-      <%= form.label :luck %>
-      <div class="control">
-        <%= form.number_field :luck, class: 'input' %>
-      </div>
-    </div>
-
-    <div class="field">
-      <%= form.label :experience %>
-      <div class="control">
-        <%= form.number_field :experience, class: 'input' %>
-      </div>
-    </div>
-
-    <div class="field">
-      <%= form.label :charm %>
-      <div class="control">
-        <%= form.number_field :charm, class: 'input' %>
-      </div>
-    </div>
-
-    <div class="field">
-      <%= form.label :cool %>
-      <div class="control">
-        <%= form.number_field :cool, class: 'input' %>
-      </div>
-    </div>
-
-    <div class="field">
-      <%= form.label :sharp %>
-      <div class="control">
-        <%= form.number_field :sharp, class: 'input' %>
-      </div>
-    </div>
-
-    <div class="field">
-      <%= form.label :tough %>
-      <div class="control">
-        <%= form.number_field :tough, class: 'input' %>
-      </div>
-    </div>
-
-    <div class="field">
-      <%= form.label :weird %>
-      <div class="control">
-        <%= form.number_field :weird, class: 'input' %>
-      </div>
-    </div>
-
-    <div class="field">
-      <%= form.label :retired %>
-      <%= form.check_box :retired %>
-    </div>
+    <%= form.labelled_text_field :name %>
+    <%= form.labelled_collection_select(:playbook_id, Playbook.all, :id, :to_s) %>
+    <%= form.labelled_number_field(:harm) %>
+    <%= form.labelled_number_field(:luck) %>
+    <%= form.labelled_number_field(:experience) %>
+    <%= form.labelled_number_field(:charm) %>
+    <%= form.labelled_number_field(:cool) %>
+    <%= form.labelled_number_field(:sharp) %>
+    <%= form.labelled_number_field(:tough) %>
+    <%= form.labelled_number_field(:weird) %>
+    <%= form.labelled_check_box(:retired) %>
   </section>
 
   <div class="actions">
