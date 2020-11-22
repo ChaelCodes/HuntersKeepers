@@ -4,18 +4,8 @@
   <%= render 'layouts/errors', errors: @hunter.errors %>
 
   <section>
-    <div class="field">
-      <%= form.label :name %>
-      <div class="control">
-        <%= form.text_field :name, class: 'input' %>
-      </div>
-    </div>
-
+    <%= form.labelled_text_field :name %>
     <hunter-new-form :playbooks="<%= Playbook.all.to_json %>" />
-
-    <%= hidden_field(:hunter, :harm) %>
-    <%= hidden_field(:hunter, :luck) %>
-    <%= hidden_field(:hunter, :experience) %>
   </section>
 
   <div class="actions">
