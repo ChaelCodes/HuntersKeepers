@@ -3,13 +3,21 @@
 # Table name: gears
 #
 #  id          :bigint           not null, primary key
-#  name        :string
+#  armor       :integer
 #  description :string
 #  harm        :integer
-#  armor       :integer
-#  playbook_id :bigint
+#  name        :string
 #  created_at  :datetime         not null
 #  updated_at  :datetime         not null
+#  playbook_id :bigint
+#
+# Indexes
+#
+#  index_gears_on_playbook_id  (playbook_id)
+#
+# Foreign Keys
+#
+#  fk_rails_...  (playbook_id => playbooks.id)
 #
 FactoryBot.define do
   factory :gear do
