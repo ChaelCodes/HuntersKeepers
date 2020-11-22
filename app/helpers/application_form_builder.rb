@@ -37,7 +37,15 @@ class ApplicationFormBuilder < ActionView::Helpers::FormBuilder
     end
   end
 
+  def email_field(method, options = {})
+    super(method, options.merge(class: 'input'))
+  end
+
   def number_field(method, options = {})
+    super(method, options.merge(class: 'input'))
+  end
+
+  def password_field(method, options = {})
     super(method, options.merge(class: 'input'))
   end
 
