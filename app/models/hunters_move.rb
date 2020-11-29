@@ -1,5 +1,6 @@
 # frozen_string_literal: true
 
+# A many-to-many association record for hunters to moves
 # == Schema Information
 #
 # Table name: hunters_moves
@@ -22,7 +23,6 @@
 #  fk_rails_...  (hunter_id => hunters.id)
 #  fk_rails_...  (move_id => moves.id)
 #
-# A many-to-many association record for hunters to moves
 class HuntersMove < ApplicationRecord
   belongs_to :hunter
   belongs_to :move
