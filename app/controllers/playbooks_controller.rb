@@ -29,7 +29,7 @@ class PlaybooksController < ApplicationController
 
     respond_to do |format|
       if @playbook.save
-        format.html { redirect_to @playbook, notice: 'Playbook was successfully created.' }
+        format.html { redirect_to @playbook, notice: t('.success') }
         format.json { render :show, status: :created, location: @playbook }
       else
         format.html { render :new }
@@ -43,7 +43,7 @@ class PlaybooksController < ApplicationController
   def update
     respond_to do |format|
       if @playbook.update(playbook_params)
-        format.html { redirect_to @playbook, notice: 'Playbook was successfully updated.' }
+        format.html { redirect_to @playbook, notice: t('.success') }
         format.json { render :show, status: :ok, location: @playbook }
       else
         format.html { render :edit }
@@ -57,7 +57,7 @@ class PlaybooksController < ApplicationController
   def destroy
     @playbook.destroy
     respond_to do |format|
-      format.html { redirect_to playbooks_url, notice: 'Playbook was successfully destroyed.' }
+      format.html { redirect_to playbooks_url, notice: t('.success') }
       format.json { head :no_content }
     end
   end
