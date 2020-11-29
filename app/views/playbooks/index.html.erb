@@ -1,10 +1,10 @@
-<h1>Playbooks</h1>
+<h1><%= t('.title') %></h1>
 
 <table class="table">
   <thead>
     <tr>
-      <th>Name</th>
-      <th>Description</th>
+      <th><%= Playbook.human_attribute_name(:name) %></th>
+      <th><%= Playbook.human_attribute_name(:description) %></th>
       <th colspan="2"></th>
     </tr>
   </thead>
@@ -16,12 +16,12 @@
         <td><%= playbook.description.truncate(100, separator: ' ') %></td>
         <td>
           <% if policy(playbook).edit? %>
-            <%= link_to 'Edit', edit_playbook_path(playbook) %>
+            <%= link_to t('.edit'), edit_playbook_path(playbook) %>
           <% end %>
         </td>
         <td>
           <% if policy(playbook).destroy? %>
-            <%= link_to 'Destroy', playbook, method: :delete, data: { confirm: 'Are you sure?' } %>
+            <%= link_to t('.destroy'), playbook, method: :delete, data: { confirm: t('.confirm_destroy') } %>
           <% end %>
         </td>
       </tr>
@@ -29,5 +29,5 @@
   </tbody>
 </table>
 <% if policy(Playbook).create? %>
-  <%= link_to 'New Playbook', new_playbook_path %>
+  <%= link_to t('.new'), new_playbook_path %>
 <% end %>
