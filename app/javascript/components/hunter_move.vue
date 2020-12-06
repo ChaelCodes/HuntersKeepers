@@ -16,7 +16,14 @@
         <p v-show="!loading">{{ moveDescription || move.description }}</p>
       </div>
     </div>
-    <div class="footer"></div>
+    <div class="card-footer">
+      <b-button
+        @click="useLuck(rollResult <= 6)"
+        v-show="rollResult < 10"
+        class="card-footer-item"
+        >Use Luck</b-button
+      >
+    </div>
   </b-collapse>
 </template>
 <script>
@@ -35,6 +42,7 @@ export default {
       isOpen: false,
       loading: false,
       moveDescription: "",
+      rollResult: 12,
     };
   },
   methods: {
@@ -42,11 +50,13 @@ export default {
       this.loading = true;
       this.isOpen = true;
       if (this.move.seven_to_nine) {
+        console.log(this.moveUrl(lucky, loseExp));
         fetch(this.moveUrl(lucky, loseExp))
           .then((response) => response.json())
           .then((move_resp) => {
             this.loading = false;
             this.moveDescription = move_resp["results"];
+            this.rollResult = move_resp["roll"];
           });
       } else {
         this.loading = false;
@@ -74,6 +84,7 @@ export default {
     isOpen: function (val) {
       if (val == false) {
         this.moveDescription = undefined;
+        this.rollResult = 12;
       }
     },
   },
