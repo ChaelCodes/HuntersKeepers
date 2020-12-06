@@ -29,8 +29,8 @@ describe 'hunters#show' do
 
     it 'lets the user roll basic moves', js: true do
       visit "/hunters/#{hunter.id}".dup
-      within('#hunter-ratings') do
-        expect(page).to have_content("COOL: #{hunter.cool}")
+      within('#moves') do
+        expect(page).to have_content("(cool #{hunter.cool})")
         click_button(basic_move.name)
       end
       expect(page).to have_content(basic_move.name)
