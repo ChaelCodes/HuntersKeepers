@@ -1,5 +1,6 @@
 # frozen_string_literal: true
 
+# Actions that the hunters can take
 # == Schema Information
 #
 # Table name: moves
@@ -26,7 +27,6 @@
 #
 #  fk_rails_...  (playbook_id => playbooks.id)
 #
-# Actions that the hunters can take
 class Move < ApplicationRecord
   MOVE_TYPES = %w[Moves::Basic Moves::Rollable Moves::Descriptive].freeze
 

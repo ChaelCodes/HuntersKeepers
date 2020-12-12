@@ -1,5 +1,7 @@
 # frozen_string_literal: true
 
+# Gear is equipment that the Hunter can use.
+# It is provided by the Playbook.
 # == Schema Information
 #
 # Table name: gears
@@ -21,8 +23,6 @@
 #
 #  fk_rails_...  (playbook_id => playbooks.id)
 #
-# Gear is equipment that the Hunter can use.
-# It is provided by the Playbook.
 class Gear < ApplicationRecord
   belongs_to :playbook
   validates :name, presence: true
