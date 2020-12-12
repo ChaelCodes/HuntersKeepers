@@ -1,8 +1,8 @@
 <% if errors.any? %>
   <b-message type="is-danger"
-             aria-close-label="Close notification"
+             aria-close-label="<%= t('.close_notif') %>"
              role="alert">
-    <h2><%= pluralize(errors.count, "error") %> prohibited this from being saved:</h2>
+    <h2><%= t('.title', count: errors.count) %></h2>
     <ul>
       <% errors.full_messages.each do |error| %>
         <li><%= error %></li>

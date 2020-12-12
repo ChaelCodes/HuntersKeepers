@@ -1,5 +1,7 @@
 # frozen_string_literal: true
 
+# Improvements taken by the Hunter
+# One is unlocked every 5 Experience
 # == Schema Information
 #
 # Table name: hunters_improvements
@@ -9,8 +11,6 @@
 #  hunter_id      :integer
 #  improvement_id :integer
 #
-# Improvements taken by the Hunter
-# One is unlocked every 5 Experience
 class HuntersImprovement < ApplicationRecord
   belongs_to :hunter
   belongs_to :improvement
