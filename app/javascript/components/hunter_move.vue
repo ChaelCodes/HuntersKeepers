@@ -2,7 +2,7 @@
   <b-collapse class="card" :open.sync="isOpen">
     <div slot="trigger" slot-scope="props" class="card-header" role="button">
       <p class="card-header-title">
-        <b-button @click.stop="roll()" type="is-text">{{ title }}</b-button>
+        <a @click.stop="roll()">{{ title }}</a>
       </p>
     </div>
     <div class="card-content">
