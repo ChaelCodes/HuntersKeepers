@@ -22,17 +22,17 @@ require.context('../images', true)
 
 // Components
 import HunterGear from '../components/hunter_gear.vue'
+import HunterMove from '../components/hunter_move.vue'
 import HunterMoves from '../components/hunter_moves.vue'
 import HunterNewForm from '../components/hunter_new_form.vue'
-import HunterRatings from '../components/hunter_ratings.vue'
-import HunterRollMove from '../components/hunter_roll_move.vue'
 import HuntersImprovementForm from '../components/hunters_improvement_form.vue'
+import RollHunterMoves from '../components/roll_hunter_moves.vue'
 
 Vue.use(Buefy, TurbolinksAdapter)
 
 document.addEventListener('turbolinks:load', () => {
   const app = new Vue({
     el: '#vue-app',
-    components: { HunterGear, HunterMoves, HunterNewForm, HunterRatings, HunterRollMove, HuntersImprovementForm },
+    components: { HunterGear, HunterMove, HunterMoves, HunterNewForm, HuntersImprovementForm, RollHunterMoves },
   }).default
 })
