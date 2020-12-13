@@ -1,4 +1,4 @@
-version: '3'
+version: "3"
 
 services:
   db:
@@ -9,15 +9,15 @@ services:
       POSTGRES_PASSWORD: password
       DB_HOST: db
     volumes:
-    - 'data:/var/lib/postgresql/data'
+      - "data:/var/lib/postgresql/data"
     ports:
-      - '5432'
+      - "5432"
 
   # Initializes the named volume with an appropriate /node_modules
   node_modules:
     build: .
     volumes:
-      - 'node:/app/node_modules/'
+      - "node:/app/node_modules/"
     command: bash -c "yarn install --check-files"
 
   webpacker:
@@ -30,11 +30,11 @@ services:
       - WEBPACKER_DEV_SERVER_HOST=0.0.0.0
     command: ./bin/webpack-dev-server
     volumes:
-      - './:/app/'
+      - "./:/app/"
       # :nocopy so this service won't try to copy the image's /node_modules into the volume
-      - 'node:/app/node_modules/:nocopy'
+      - "node:/app/node_modules/:nocopy"
     ports:
-      - '3035:3035'
+      - "3035:3035"
 
   web:
     depends_on:
@@ -44,16 +44,17 @@ services:
       - webpacker
     build: .
     command: bash -c "
-        bundle exec rake db:migrate db:seed
-          && rm -f tmp/pids/server.pid
-          && bundle exec rails s -p 3000 -b '0.0.0.0'
+      bundle exec rake db:migrate db:seed
+      && rm -f tmp/pids/server.pid
+      && bundle exec rails s -p 3000 -b '0.0.0.0'
       "
+    container_name: "hunterskeepers_web"
     ports:
       - "3000:3000"
     volumes:
-      - './:/app/'
+      - "./:/app/"
       # :nocopy so this service won't try to copy the image's /node_modules into the volume
-      - 'node:/app/node_modules/:nocopy'
+      - "node:/app/node_modules/:nocopy"
     environment:
       - WEBPACKER_DEV_SERVER_HOST=webpacker
       - POSTGRES_USER=postgres

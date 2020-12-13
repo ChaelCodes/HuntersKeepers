@@ -1,5 +1,7 @@
 # frozen_string_literal: true
 
+# The character appearing in the mystery
+
 # == Schema Information
 #
 # Table name: hunters
@@ -29,8 +31,6 @@
 #
 #  fk_rails_...  (playbook_id => playbooks.id)
 #  fk_rails_...  (user_id => users.id)
-#
-# The character appearing in the mystery
 class Hunter < ApplicationRecord
   MAX_LUCK = 7
 

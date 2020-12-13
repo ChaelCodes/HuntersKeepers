@@ -4,12 +4,16 @@ source 'https://rubygems.org'
 git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 
 ruby '2.6.4'
+# Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
+gem 'rails', '6.0'
 
 # Add tags to models like Gear
 gem 'acts-as-taggable-on', '~> 6.0'
 gem 'devise'
-# Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
-gem 'rails', '6.0'
+
+# Internationalize the application - supports translations
+gem 'i18n'
+
 # Use postgresql as the database for Active Record
 gem 'pg', '>= 0.18', '< 2.0'
 # Use Puma as the app server
