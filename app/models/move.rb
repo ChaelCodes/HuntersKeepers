@@ -37,7 +37,7 @@ class Move < ApplicationRecord
   scope :not_basic, -> { where.not(type: 'Moves::Basic') }
   scope :with_hunter, (lambda do |hunter_id|
     includes(:hunters)
-      .where(hunters: {id: hunter_id})
+      .where(hunters: { id: hunter_id })
   end)
   scope :with_hunter_moves, (lambda do |hunter_id|
     includes(:hunters_moves)
