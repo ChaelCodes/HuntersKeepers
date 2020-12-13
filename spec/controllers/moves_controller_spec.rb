@@ -54,6 +54,16 @@ RSpec.describe MovesController, type: :controller do
 
       render_views
 
+      context 'sorted by type' do
+        let!(:rollable_move) { create :moves_rollable }
+        let!(:basic_move) { create :moves_basic }
+  
+        it 'is sorted by type' do
+          get_index
+          expect(body.dig(0, "name")).to eq 'Act Under Pressure'
+        end
+      end
+
       context 'when playbook_id is supplied' do
         let(:playbook) { create :playbook }
         let(:params) { { playbook_id: playbook.id } }
