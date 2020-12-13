@@ -54,6 +54,16 @@ RSpec.describe MovesController, type: :controller do
 
       render_views
 
+      context 'sorted by type' do
+        let!(:rollable_move) { create :moves_rollable }
+        let!(:basic_move) { create :moves_basic }
+  
+        it 'is sorted by type' do
+          get_index
+          expect(body.dig(0, "name")).to eq 'Act Under Pressure'
+        end
+      end
+
       context 'when playbook_id is supplied' do
         let(:playbook) { create :playbook }
         let(:params) { { playbook_id: playbook.id } }
@@ -70,10 +80,23 @@ RSpec.describe MovesController, type: :controller do
         let(:params) { { hunter_id: hunter.id } }
         let(:hunter) { create :hunter }
         let!(:move) { create :move }
+        let!(:hunter_has_move) { create :move }
+        before do
+          hunter.moves << hunter_has_move
+          hunter.save
+        end
 
-        it 'does not include has_move' do
+        it 'does not include moves the hunter does not have' do
           get_index
-          expect(body.dig(0, 'has_move')).to eq false
+          expect(body.find { |json_move| json_move['id'] == move.id}).to be_nil
+        end
+
+        context ' when include_all_moves' do
+          let(:params) { { hunter_id: hunter.id, include_all_moves: 'true' } }
+          it 'does not include has_move' do
+            get_index
+            expect(body.find { |json_move| json_move['id'] == move.id}['has_move']).to be_falsey
+          end
         end
 
         context 'when hunter has the move' do
