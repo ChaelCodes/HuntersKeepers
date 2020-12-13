@@ -20,7 +20,10 @@
       </div>
     </div>
     <div class="card-footer">
-      <b-button @click.stop="roll()" class="card-footer-item"
+      <b-button
+        @click.stop="roll()"
+        v-show="move.rating"
+        class="card-footer-item"
         >Roll {{ title }}</b-button
       >
       <b-button
