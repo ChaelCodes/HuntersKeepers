@@ -27,9 +27,9 @@ describe 'playbooks#index' do
 
     it 'deletes a playbook' do
       visit '/playbooks'
-      expect {
-        click_link 'Destroy'
-      }.to change(Playbook, :count).by(-1)
+        expect {
+          first(:link, 'Destroy').click
+        }.to change(Playbook, :count).by(-1)
       expect(page).to have_content('Playbook was successfully destroyed.')
     end
   end
