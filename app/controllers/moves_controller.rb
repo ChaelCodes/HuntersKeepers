@@ -8,9 +8,7 @@ class MovesController < ApplicationController
   # GET /moves.json
   def index
     @moves = params[:basic] ? Moves::Basic.all : Move.all
-    if params[:hunter_id]
-      with_hunter
-    end
+    with_hunter if params[:hunter_id]
     if params[:playbook_id]
       @moves = @moves.where(playbook_id: params[:playbook_id])
     end
@@ -86,7 +84,9 @@ class MovesController < ApplicationController
   private
 
   def with_hunter
-    @moves = @moves.with_hunter(params[:hunter_id]) unless params[:include_all_moves]
+    unless params[:include_all_moves]
+      @moves = @moves.with_hunter(params[:hunter_id])
+    end
     @moves = @moves.with_hunter_moves(params[:hunter_id])
   end
 
