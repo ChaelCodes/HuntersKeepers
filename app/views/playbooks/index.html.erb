@@ -4,7 +4,9 @@
   <thead>
     <tr>
       <th>Name</th>
-      <th>Description</th>
+      <% unless mobile_device? %>
+        <th>Description</th>
+      <% end %>
       <th colspan="2"></th>
     </tr>
   </thead>
@@ -13,7 +15,9 @@
     <% @playbooks.each do |playbook| %>
       <tr>
         <td><%= link_to playbook.name, playbook %></td>
-        <td><%= playbook.description.truncate(100, separator: ' ') %></td>
+        <% unless mobile_device? %>
+          <td><%= playbook.description.truncate(100, separator: ' ') %></td>
+        <% end %>
         <td>
           <% if policy(playbook).edit? %>
             <%= link_to 'Edit', edit_playbook_path(playbook) %>
