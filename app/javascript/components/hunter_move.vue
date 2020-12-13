@@ -2,8 +2,11 @@
   <b-collapse class="card" :open.sync="isOpen">
     <div slot="trigger" slot-scope="props" class="card-header" role="button">
       <p class="card-header-title">
-        <a @click.stop="roll()">{{ title }}</a>
+        <a>{{ move.name }}</a>
       </p>
+      <a class="card-header-icon">
+        <b-icon :icon="props.open ? 'chevron-down' : 'chevron-left'"> </b-icon>
+      </a>
     </div>
     <div class="card-content">
       <div class="content">
@@ -17,6 +20,9 @@
       </div>
     </div>
     <div class="card-footer">
+      <b-button @click.stop="roll()" class="card-footer-item"
+        >Roll {{ title }}</b-button
+      >
       <b-button
         @click="useLuck(rollResult <= 6)"
         v-show="rollResult < 10"
@@ -30,7 +36,7 @@
 export default {
   computed: {
     title: function () {
-      let title = this.move.name;
+      let title = "";
       if (this.move.rating) {
         title += ` (${this.move.rating} ${this.hunter[this.move.rating]})`;
       }
