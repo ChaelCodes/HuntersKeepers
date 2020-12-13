@@ -4,10 +4,12 @@
   <thead>
     <tr>
       <th>Name</th>
-      <th>Playbook</th>
-      <th>Harm</th>
-      <th>Luck</th>
-      <th>Exp</th>
+      <% unless mobile_device? %>
+        <th>Playbook</th>
+        <th>Harm</th>
+        <th>Luck</th>
+        <th>Exp</th>
+      <% end %>
       <th colspan="2"></th>
     </tr>
   </thead>
@@ -16,13 +18,15 @@
     <% @hunters.each do |hunter| %>
       <tr>
         <td><%= link_to hunter.name, hunter %></td>
-        <td><%= link_to_playbook(hunter) %></td>
-        <% if hunter.retired? %>
-          <td colspan="3" class="has-text-centered">Retired</td>
-        <% else %>
-          <td class="has-text-centered"><%= hunter.harm %></td>
-          <td class="has-text-centered"><%= hunter.luck %></td>
-          <td class="has-text-centered"><%= hunter.experience %></td>
+        <% unless mobile_device? %>
+          <td><%= link_to_playbook(hunter) %></td>
+          <% if hunter.retired? %>
+            <td colspan="3" class="has-text-centered">Retired</td>
+          <% else %>
+            <td class="has-text-centered"><%= hunter.harm %></td>
+            <td class="has-text-centered"><%= hunter.luck %></td>
+            <td class="has-text-centered"><%= hunter.experience %></td>
+          <% end %>
         <% end %>
         <td>
           <% if policy(hunter).edit? %>
