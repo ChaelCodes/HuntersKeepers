@@ -15,7 +15,7 @@ class ApplicationController < ActionController::Base
 
   def mobile_device?
     if session[:mobile_override]
-      session[:mobile_override] == "1"
+      session[:mobile_override] == '1'
     else
       # Season this regexp to taste. I prefer to treat iPad as non-mobile.
       (request.user_agent =~ /(Mobile|webOS)/)
@@ -23,6 +23,7 @@ class ApplicationController < ActionController::Base
   end
 
   helper_method :mobile_device?
+
   private
 
   def user_not_authorized
