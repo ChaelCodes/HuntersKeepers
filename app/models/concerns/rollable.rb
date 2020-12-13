@@ -32,6 +32,7 @@ module Rollable
     roll = 12 + hunter.send(rating)
     outcome = outcome(roll, hunter)
     hunter.gain_experience(-1) if lose_experience
+    hunter.update(luck: hunter.luck - 1)
     Result.new(roll, "Your total #{roll} resulted in #{outcome}")
   end
 
