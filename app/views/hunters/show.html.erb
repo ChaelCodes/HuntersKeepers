@@ -6,11 +6,9 @@
       <%= link_to_playbook(@hunter) %>
     </h1>
     <p><i><%= @hunter.playbook.description %></i></p>
-    <% if @hunter.retired? %>
-      <%= display_rating @hunter %>
-    <% else %>
-      <hunter-ratings hunter_id=<%= "#{@hunter.id}" %>></hunter-ratings>
-    <% end %>
+    <p>
+      <strong>Rating:</strong> <%= display_rating @hunter %>
+    </p>
 
     <p>
       <strong>Harm:</strong>
@@ -33,7 +31,8 @@
   <div class="column">
     <p>
       <h4>Moves</h4>
-      <%= render "moves/moves", moves: @hunter.moves.not_basic, hunter: @hunter %>
+      <roll-hunter-moves hunter-id=<%= "#{@hunter.id}" %>></roll-hunter-moves>
+      <%# <%= render "moves/moves", moves: @hunter.moves.not_basic, hunter: @hunter %>
     </p>
   </div>
   <div class="column">
