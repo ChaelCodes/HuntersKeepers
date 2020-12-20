@@ -1,4 +1,4 @@
-FROM ruby:2.6.6
+FROM ruby:2.7.2
 
 # 1. Configuring apt to properly install yarn
 # 2. Installing node, postgres-client, yarn
@@ -15,7 +15,7 @@ WORKDIR /app
 
 # Bundling
 COPY Gemfile* ./
-RUN gem install bundler:2.1.4 && bundle install
+RUN gem install bundler:2.1.4 && bundle install --path vendor/cache
 
 # Building /node_modules
 COPY yarn.lock .
