@@ -3,7 +3,7 @@
 source 'https://rubygems.org'
 git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 
-ruby '2.6.4'
+ruby '2.6.6'
 
 # Add tags to models like Gear
 gem 'acts-as-taggable-on', '~> 6.0'
