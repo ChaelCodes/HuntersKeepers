@@ -3,9 +3,11 @@
 Rails.application.routes.draw do
   root 'playbooks#index'
   resources :havens
+  resources :hunter_backstories, except: %i[new create]
   resources :gears
   devise_for :users
   resources :hunters do
+    resources :hunter_backstories, only: %i[new create]
     resources :hunters_improvements
   end
   resources :improvements

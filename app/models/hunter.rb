@@ -30,12 +30,13 @@
 #  fk_rails_...  (playbook_id => playbooks.id)
 #  fk_rails_...  (user_id => users.id)
 #
-# The character appearing in the mystery
 class Hunter < ApplicationRecord
   MAX_LUCK = 7
 
   belongs_to :playbook
   belongs_to :user
+
+  has_one :hunter_backstory
 
   has_and_belongs_to_many :gears, join_table: :hunters_gears
   accepts_nested_attributes_for :gears
