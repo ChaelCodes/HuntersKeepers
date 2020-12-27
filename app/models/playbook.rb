@@ -5,6 +5,7 @@
 # Table name: playbooks
 #
 #  id          :bigint           not null, primary key
+#  config      :jsonb
 #  description :string
 #  name        :string
 #  created_at  :datetime         not null
