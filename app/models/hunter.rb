@@ -129,4 +129,8 @@ class Hunter < ApplicationRecord
   def unstable?
     harm > 3
   end
+
+  def to_s
+    name
+  end
 end
