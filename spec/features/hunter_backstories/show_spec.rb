@@ -12,7 +12,6 @@ describe 'hunter_backstories/:id' do
 
   it 'shows a hunter backstory' do
     visit "/hunter_backstories/#{hunter_backstory.id}".dup
-    binding.pry
     expect(page).to have_content 'Hunter'
   end
 end
