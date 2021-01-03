@@ -23,7 +23,7 @@ RSpec.describe Playbook, type: :model do
     let(:playbook) { build :playbook, :with_backstory }
 
     it 'extracts and parses the backstory' do
-      is_expected.to eq({'name': "Fate", 'headings': [{'name': "How you found out.", 'count': 1, 'choices': ["Nightmares and visions", "Some weirdo told you."]  }]})
+      is_expected.to eq({"name" => "Fate", "headings" => [{'name'=> "How you found out.", 'count'=> 1, 'choices'=> ["Nightmares and visions", "Some weirdo told you."]  }]})
     end
   end
 end

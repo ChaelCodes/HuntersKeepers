@@ -19,8 +19,4 @@
 class HunterBackstory < ApplicationRecord
   belongs_to :hunter
   belongs_to :playbook
-
-  def choices
-    JSON.parse(super).map(&:with_indifferent_access) if super
-  end
 end

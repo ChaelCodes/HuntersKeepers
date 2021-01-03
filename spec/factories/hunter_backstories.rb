@@ -18,6 +18,10 @@ FactoryBot.define do
   factory :hunter_backstory do
     hunter
     playbook
-    choices { {}.to_json }
+    choices { {} }
+
+    trait 'with_choices' do
+      choices { [{ name: 'How you found out', choices: ['Some weirdo told you']}] }
+    end
   end
 end

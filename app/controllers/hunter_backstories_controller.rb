@@ -22,12 +22,13 @@ class HunterBackstoriesController < ApplicationController
   end
 
   # GET /hunter_backstories/1/edit
-  def edit;
+  def edit; end
 
   # POST /hunter_backstories
   # POST /hunter_backstories.json
   def create
     @hunter_backstory = HunterBackstory.new(hunter_backstory_params)
+    @hunter_backstory.choices = JSON.parse(params[:hunter_backstory][:choices])
     respond_to do |format|
       if @hunter_backstory.save
         format.html { redirect_to @hunter_backstory, notice: t('.success') }
@@ -42,6 +43,7 @@ class HunterBackstoriesController < ApplicationController
   # PATCH/PUT /hunter_backstories/1
   # PATCH/PUT /hunter_backstories/1.json
   def update
+    @hunter_backstory.choices = JSON.parse(params[:hunter_backstory][:choices])
     respond_to do |format|
       if @hunter_backstory.update(hunter_backstory_params)
         format.html { redirect_to @hunter_backstory, notice: t('.success') }
@@ -77,6 +79,6 @@ class HunterBackstoriesController < ApplicationController
   # Only allow a list of trusted parameters through.
   def hunter_backstory_params
     params.require(:hunter_backstory)
-          .permit(:hunter_id, :playbook_id, :choices)
+          .permit(:hunter_id, :playbook_id)
   end
 end

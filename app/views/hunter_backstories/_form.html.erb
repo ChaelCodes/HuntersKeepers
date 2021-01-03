@@ -3,7 +3,7 @@
 
   <%= form.labelled_collection_select(:hunter_id, Hunter.all, :id, :name) %>
   <%= form.labelled_collection_select(:playbook_id, Playbook.all, :id, :name) %>
-  <%= form.labelled_text_area :choices %>
+  <%= form.labelled_text_area :choices, input_options: { value: hunter_backstory.choices&.to_json } %>
 
   <div class="actions">
     <%= form.submit class: 'button is-primary' %>
