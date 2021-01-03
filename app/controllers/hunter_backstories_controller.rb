@@ -28,7 +28,7 @@ class HunterBackstoriesController < ApplicationController
   # POST /hunter_backstories.json
   def create
     @hunter_backstory = HunterBackstory.new(hunter_backstory_params)
-    @hunter_backstory.choices = JSON.parse(params[:hunter_backstory][:choices])
+    @hunter_backstory.choices = JSON.parse(params[:hunter_backstory][:choices]) if params[:hunter_backstory][:choices]
     respond_to do |format|
       if @hunter_backstory.save
         format.html { redirect_to @hunter_backstory, notice: t('.success') }
@@ -43,7 +43,7 @@ class HunterBackstoriesController < ApplicationController
   # PATCH/PUT /hunter_backstories/1
   # PATCH/PUT /hunter_backstories/1.json
   def update
-    @hunter_backstory.choices = JSON.parse(params[:hunter_backstory][:choices])
+    @hunter_backstory.choices = update_choices
     respond_to do |format|
       if @hunter_backstory.update(hunter_backstory_params)
         format.html { redirect_to @hunter_backstory, notice: t('.success') }
@@ -66,6 +66,14 @@ class HunterBackstoriesController < ApplicationController
   end
 
   private
+
+  def update_choices
+    if params[:hunter_backstory][:choices]
+      JSON.parse(params[:hunter_backstory][:choices])
+    else
+      nil
+    end
+  end
 
   # Use callbacks to share common setup or constraints between actions.
   def set_hunter_backstory
