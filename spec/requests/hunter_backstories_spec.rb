@@ -15,13 +15,20 @@
 RSpec.describe "/hunter_backstories", type: :request do
   # HunterBackstory. As you add validations to HunterBackstory, be sure to
   # adjust the attributes here as well.
+  let(:hunter) { create :hunter }
+  let(:playbook) { create :playbook }
   let(:valid_attributes) {
-    skip("Add a hash of attributes valid for your model")
+    {
+      hunter_id: hunter.id,
+      playbook_id: playbook.id
+    }
   }
 
   let(:invalid_attributes) {
     skip("Add a hash of attributes invalid for your model")
   }
+
+  let(:hunter_backstory) { create :hunter_backstory, hunter: hunter, playbook: playbook }
 
   describe "GET /index" do
     it "renders a successful response" do
@@ -33,50 +40,53 @@ RSpec.describe "/hunter_backstories", type: :request do
 
   describe "GET /show" do
     it "renders a successful response" do
-      hunter_backstory = HunterBackstory.create! valid_attributes
+      hunter_backstory
       get hunter_backstory_url(hunter_backstory)
       expect(response).to be_successful
     end
   end
 
   describe "GET /new" do
+    let(:hunter) { create :hunter }
+
     it "renders a successful response" do
-      get new_hunter_backstory_url
+      get new_hunter_hunter_backstory_url(hunter_id: hunter.id)
       expect(response).to be_successful
     end
   end
 
   describe "GET /edit" do
     it "render a successful response" do
-      hunter_backstory = HunterBackstory.create! valid_attributes
+      hunter_backstory
       get edit_hunter_backstory_url(hunter_backstory)
       expect(response).to be_successful
     end
   end
 
   describe "POST /create" do
+    subject { post hunter_hunter_backstories_url(hunter_id: hunter.id), params: { hunter_backstory: attributes } }
     context "with valid parameters" do
+      let(:attributes) { valid_attributes }
+
       it "creates a new HunterBackstory" do
-        expect {
-          post hunter_backstories_url, params: { hunter_backstory: valid_attributes }
-        }.to change(HunterBackstory, :count).by(1)
+        expect { subject }.to change(HunterBackstory, :count).by(1)
       end
 
       it "redirects to the created hunter_backstory" do
-        post hunter_backstories_url, params: { hunter_backstory: valid_attributes }
+        subject
         expect(response).to redirect_to(hunter_backstory_url(HunterBackstory.last))
       end
     end
 
     context "with invalid parameters" do
+      let(:attributes) { invalid_attributes }
+
       it "does not create a new HunterBackstory" do
-        expect {
-          post hunter_backstories_url, params: { hunter_backstory: invalid_attributes }
-        }.to change(HunterBackstory, :count).by(0)
+        expect { subject }.to change(HunterBackstory, :count).by(0)
       end
 
       it "renders a successful response (i.e. to display the 'new' template)" do
-        post hunter_backstories_url, params: { hunter_backstory: invalid_attributes }
+        subject
         expect(response).to be_successful
       end
     end
