@@ -1,0 +1,16 @@
+<p>
+  <strong>Hunter:</strong>
+  <%= link_to @hunter_backstory.hunter, @hunter_backstory.hunter %>
+</p>
+
+<p>
+  <strong>Playbook:</strong>
+  <%= link_to @hunter_backstory.playbook, @hunter_backstory.playbook %>
+</p>
+
+<p>
+  <%= render 'hunter_backstory', playbook: @hunter_backstory.playbook, hunter_backstory: @hunter_backstory %>
+</p>
+
+<%= link_to 'Edit', edit_hunter_backstory_path(@hunter_backstory) %> |
+<%= link_to 'Back', hunter_hunter_backstories_path(@hunter_backstory.hunter) %>

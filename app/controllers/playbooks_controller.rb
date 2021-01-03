@@ -73,6 +73,6 @@ class PlaybooksController < ApplicationController
   # Never trust parameters from the scary internet,
   # only permit the allow list through.
   def playbook_params
-    params.require(:playbook).permit(:name, :description)
+    params.require(:playbook).permit(:name, :description, :config)
   end
 end

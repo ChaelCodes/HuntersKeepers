@@ -30,4 +30,10 @@
 # available at https://guides.rubyonrails.org/i18n.html.
 
 en:
-  hello: "Hello world"
+  hunter_backstories:
+    create:
+      success: "Hunter backstory was successfully created."
+    update:
+      success: "Hunter backstory was successfully updated."
+    destroy:
+      success: "Hunter backstory was successfully destroyed."
