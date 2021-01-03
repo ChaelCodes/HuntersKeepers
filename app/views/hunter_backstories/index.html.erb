@@ -18,8 +18,16 @@
         <td><%= link_to hunter_backstory_name(hunter_backstory), hunter_backstory %></td>
         <td><%= link_to hunter_backstory.hunter, hunter_backstory.hunter %></td>
         <td><%= link_to hunter_backstory.playbook, hunter_backstory.playbook %></td>
-        <td><%= link_to 'Edit', edit_hunter_backstory_path(hunter_backstory) %></td>
-        <td><%= link_to 'Destroy', hunter_backstory, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td>
+          <% if policy(hunter_backstory).edit? %>
+            <%= link_to 'Edit', edit_hunter_backstory_path(hunter_backstory) %>
+          <% end %>
+        </td>
+        <td>
+        <% if policy(hunter_backstory).destroy? %>
+          <%= link_to 'Destroy', hunter_backstory, method: :delete, data: { confirm: 'Are you sure?' } %>
+        <% end %>
+        </td>
       </tr>
     <% end %>
   </tbody>
