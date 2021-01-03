@@ -1,0 +1,8 @@
+<% if hunter_backstory %>
+  <h4><%= playbook.backstory&.dig(:name) %></h4>
+  <ul>
+  <% hunter_backstory.choices.each do |choice| %>
+    <li><%= "#{choice['name']} - #{choice['choices'].join(", ")}" %></li>
+  <% end %>
+  </ul>
+<% end %>
