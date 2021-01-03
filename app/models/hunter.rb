@@ -36,7 +36,7 @@ class Hunter < ApplicationRecord
   belongs_to :playbook
   belongs_to :user
 
-  has_one :hunter_backstory
+  has_one :hunter_backstory, dependent: :destroy
 
   has_and_belongs_to_many :gears, join_table: :hunters_gears
   accepts_nested_attributes_for :gears

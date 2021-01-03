@@ -1,3 +1,6 @@
+# frozen_string_literal: true
+
+# Handles routing requests for HunterBackstoriesController
 class HunterBackstoriesController < ApplicationController
   before_action :set_hunter_backstory, only: %i[show edit update destroy]
   before_action :set_hunter, only: %i[new create]
@@ -10,26 +13,24 @@ class HunterBackstoriesController < ApplicationController
 
   # GET /hunter_backstories/1
   # GET /hunter_backstories/1.json
-  def show
-  end
+  def show;
 
   # GET /hunter_backstories/new
   def new
-    @hunter_backstory = HunterBackstory.new(hunter: @hunter, playbook: @hunter.playbook)
+    @hunter_backstory = HunterBackstory.new(hunter: @hunter,
+                                            playbook: @hunter.playbook)
   end
 
   # GET /hunter_backstories/1/edit
-  def edit
-  end
+  def edit;
 
   # POST /hunter_backstories
   # POST /hunter_backstories.json
   def create
     @hunter_backstory = HunterBackstory.new(hunter_backstory_params)
-
     respond_to do |format|
       if @hunter_backstory.save
-        format.html { redirect_to @hunter_backstory, notice: 'Hunter backstory was successfully created.' }
+        format.html { redirect_to @hunter_backstory, notice: t('.success') }
         format.json { render :show, status: :created, location: @hunter_backstory }
       else
         format.html { render :new }
@@ -43,7 +44,7 @@ class HunterBackstoriesController < ApplicationController
   def update
     respond_to do |format|
       if @hunter_backstory.update(hunter_backstory_params)
-        format.html { redirect_to @hunter_backstory, notice: 'Hunter backstory was successfully updated.' }
+        format.html { redirect_to @hunter_backstory, notice: t('.success') }
         format.json { render :show, status: :ok, location: @hunter_backstory }
       else
         format.html { render :edit }
@@ -57,23 +58,25 @@ class HunterBackstoriesController < ApplicationController
   def destroy
     @hunter_backstory.destroy
     respond_to do |format|
-      format.html { redirect_to hunter_backstories_url, notice: 'Hunter backstory was successfully destroyed.' }
+      format.html { redirect_to hunter_backstories_url, notice: t('.success') }
       format.json { head :no_content }
     end
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_hunter_backstory
-      @hunter_backstory = HunterBackstory.find(params[:id])
-    end
 
-    def set_hunter
-      @hunter = Hunter.find(params[:hunter_id])
-    end
+  # Use callbacks to share common setup or constraints between actions.
+  def set_hunter_backstory
+    @hunter_backstory = HunterBackstory.find(params[:id])
+  end
 
-    # Only allow a list of trusted parameters through.
-    def hunter_backstory_params
-      params.require(:hunter_backstory).permit(:hunter_id, :playbook_id, :choices)
-    end
+  def set_hunter
+    @hunter = Hunter.find(params[:hunter_id])
+  end
+
+  # Only allow a list of trusted parameters through.
+  def hunter_backstory_params
+    params.require(:hunter_backstory)
+          .permit(:hunter_id, :playbook_id, :choices)
+  end
 end

@@ -1,4 +1,8 @@
+# frozen_string_literal: true
+
+# helper for displaying HunterBackstory
 module HunterBackstoriesHelper
+  # human-readable title for hunter backstory
   def hunter_backstory_name(hunter_backstory)
     hunter_backstory.playbook.backstory&.dig(:name) || hunter_backstory.id
   end
