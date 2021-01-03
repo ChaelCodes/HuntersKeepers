@@ -44,7 +44,7 @@
       <% if @hunter.hunter_backstory %>
         <%= render 'hunter_backstories/hunter_backstory', playbook: @hunter.playbook, hunter_backstory: @hunter.hunter_backstory %>
       <% else %>
-        <%= link_to 'New Hunter Backstory', new_hunter_hunter_backstory(hunter_id: @hunter.id) %>
+        <%= link_to 'New Hunter Backstory', new_hunter_hunter_backstory_url(hunter_id: @hunter.id) %>
       <% end %>
     </p>
   </div>

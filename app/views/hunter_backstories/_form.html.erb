@@ -1,4 +1,4 @@
-<%= form_with(model: hunter_backstory, local: true) do |form| %>
+<%= form_with(model: hunter_backstory_form_model(hunter_backstory), local: true) do |form| %>
   <%= render 'layouts/errors', errors: hunter_backstory.errors %>
 
   <%= form.labelled_collection_select(:hunter_id, Hunter.all, :id, :name) %>
