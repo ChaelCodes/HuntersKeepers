@@ -13,7 +13,7 @@ class HunterBackstoriesController < ApplicationController
 
   # GET /hunter_backstories/1
   # GET /hunter_backstories/1.json
-  def show;
+  def show; end
 
   # GET /hunter_backstories/new
   def new
