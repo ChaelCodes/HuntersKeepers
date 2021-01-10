@@ -1,15 +1,9 @@
 <%= form_with(model: playbook, local: true) do |form| %>
   <%= render 'layouts/errors', errors: playbook.errors %>
 
-  <div class="field">
-    <%= form.label :name %>
-    <%= form.text_field :name %>
-  </div>
-
-  <div class="field">
-    <%= form.label :description %>
-    <%= form.text_field :description %>
-  </div>
+  <%= form.labelled_text_field :name %>
+  <%= form.labelled_text_field :description %>
+  <%= form.labelled_text_area :config %>
 
   <div class="actions">
     <%= form.submit %>

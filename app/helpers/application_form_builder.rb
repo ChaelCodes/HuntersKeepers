@@ -31,6 +31,12 @@ class ApplicationFormBuilder < ActionView::Helpers::FormBuilder
     end
   end
 
+  def labelled_text_area(method, label_options: {}, input_options: {})
+    form_controls(method, label_options) do
+      text_area(method, input_options)
+    end
+  end
+
   def collection_select(*args)
     tag.div class: 'select' do
       super(*args)
@@ -47,6 +53,10 @@ class ApplicationFormBuilder < ActionView::Helpers::FormBuilder
 
   def password_field(method, options = {})
     super(method, options.merge(class: 'input'))
+  end
+
+  def text_area(method, options = {})
+    super(method, options.merge(class: 'textarea'))
   end
 
   def text_field(method, options = {})
