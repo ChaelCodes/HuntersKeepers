@@ -40,6 +40,13 @@
       <h4>Gear</h4>
       <%= render "gears/gears", gears: @hunter.gears %>
     </p>
+    <p>
+      <% if @hunter.hunter_backstory %>
+        <%= render 'hunter_backstories/hunter_backstory', playbook: @hunter.playbook, hunter_backstory: @hunter.hunter_backstory %>
+      <% else %>
+        <%= link_to 'New Hunter Backstory', new_hunter_hunter_backstory_url(hunter_id: @hunter.id) %>
+      <% end %>
+    </p>
   </div>
 </div>
 <%= link_to 'Edit', edit_hunter_path(@hunter), class: "button is-primary" %>
