@@ -12,7 +12,7 @@ describe 'hunter_backstories/:id/edit' do
 
   it 'edits a hunter backstory' do
     visit "/hunter_backstories/#{hunter_backstory.id}/edit".dup
-    expect(page).to have_content 'Edit Hunter'
+    expect(page).to have_content 'Editing Hunter'
     click_button 'Update Hunter backstory'
     expect(page).to have_content 'Hunter backstory was successfully updated.'
   end
