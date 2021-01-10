@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_08_09_140605) do
+ActiveRecord::Schema.define(version: 2020_12_27_145200) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -33,6 +33,16 @@ ActiveRecord::Schema.define(version: 2020_08_09_140605) do
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["user_id"], name: "index_havens_on_user_id"
+  end
+
+  create_table "hunter_backstories", force: :cascade do |t|
+    t.bigint "hunter_id"
+    t.bigint "playbook_id"
+    t.jsonb "choices"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["hunter_id"], name: "index_hunter_backstories_on_hunter_id"
+    t.index ["playbook_id"], name: "index_hunter_backstories_on_playbook_id"
   end
 
   create_table "hunters", force: :cascade do |t|
@@ -110,6 +120,7 @@ ActiveRecord::Schema.define(version: 2020_08_09_140605) do
     t.string "description"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.jsonb "config"
   end
 
   create_table "ratings", force: :cascade do |t|
