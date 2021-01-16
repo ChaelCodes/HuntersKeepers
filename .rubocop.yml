@@ -40,3 +40,7 @@ Style/DoubleNegation:
 
 Style/EmptyCaseCondition:
   Enabled: false
+
+Style/FrozenStringLiteralComment:
+  Exclude:
+    - 'app/views/**/*.json.jbuilder'
