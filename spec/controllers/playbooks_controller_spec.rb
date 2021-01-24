@@ -100,6 +100,15 @@ RSpec.describe PlaybooksController, type: :controller do
           post_create
           expect(response).to redirect_to(Playbook.last)
         end
+
+        context 'with backstory attributes' do
+          let(:attributes) { { name: 'The Unnamed', config: { backstory: { name: 'A NAME' } }} }
+
+          it 'creates a new Playbook' do
+            expect { post_create }.to change(Playbook, :count).by(1)
+            expect(Playbook.last.backstory[:name]).to eq 'A NAME' 
+          end
+        end
       end
 
       context 'when json format' do
