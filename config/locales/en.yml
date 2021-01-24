@@ -37,3 +37,6 @@ en:
       success: "Hunter backstory was successfully updated."
     destroy:
       success: "Hunter backstory was successfully destroyed."
+  playbooks:
+    show:
+      luck_effect_html: "<strong>%{playbook_name} Special:</strong> %{luck_effect}"

@@ -7,6 +7,7 @@
 #  id          :bigint           not null, primary key
 #  config      :jsonb
 #  description :string
+#  luck_effect :string
 #  name        :string
 #  created_at  :datetime         not null
 #  updated_at  :datetime         not null

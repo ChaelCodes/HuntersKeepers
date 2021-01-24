@@ -17,6 +17,7 @@
           :count="2"
         ></b-skeleton>
         <p v-show="!loading">{{ moveDescription || move.description }}</p>
+        <p v-show="usedLuck && !loading">{{ luckEffect }}</p>
       </div>
     </div>
     <div class="card-footer">
@@ -50,22 +51,25 @@ export default {
     return {
       isOpen: false,
       loading: false,
+      luckEffect: "",
       moveDescription: "",
       rollResult: 12,
+      usedLuck: false,
     };
   },
   methods: {
     roll(lucky = false, loseExp = false) {
+      this.usedLuck = false;
       this.loading = true;
       this.isOpen = true;
       if (this.move.seven_to_nine) {
-        console.log(this.moveUrl(lucky, loseExp));
         fetch(this.moveUrl(lucky, loseExp))
           .then((response) => response.json())
           .then((move_resp) => {
             this.loading = false;
             this.moveDescription = move_resp["results"];
             this.rollResult = move_resp["roll"];
+            this.luckEffect = move_resp["luck_effect"];
           });
       } else {
         this.loading = false;
@@ -85,6 +89,7 @@ export default {
     },
     useLuck(loseExp) {
       this.roll(true, loseExp);
+      this.usedLuck = true;
     },
   },
   name: "HunterMove",
