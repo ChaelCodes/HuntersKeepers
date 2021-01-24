@@ -36,4 +36,23 @@ describe 'hunters#show' do
       expect(page).to have_content(basic_move.name)
     end
   end
+
+  context 'with rollable playbook moves' do
+    let!(:moves_rollable) { create(:moves_rollable, name: 'The Rollable Move') }
+
+    before { hunter.moves << moves_rollable }
+
+    it 'uses luck to change the outcome', js: true do
+      visit "/hunters/#{hunter.id}".dup
+      within('#moves') do
+      find('.card-header-title').click
+        expect(page).to have_content("(weird #{hunter.weird})")
+      end
+      expect(Random).to receive(:new).and_return(instance_double('Random', rand: 0))
+      find(".card-footer-item").click
+      expect(page).to have_content "Your total #{hunter.weird}"
+      click_on("Use Luck")
+      expect(page).to have_content "Your total #{hunter.weird + 12}"
+    end
+  end
 end
