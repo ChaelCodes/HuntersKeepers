@@ -28,6 +28,9 @@ class Playbook < ApplicationRecord
   has_many :ratings, dependent: :destroy
   validates :name, presence: true
 
+  attribute :config, :playbook_config
+  delegate :backstory, to: :config
+
   def to_s
     name
   end
