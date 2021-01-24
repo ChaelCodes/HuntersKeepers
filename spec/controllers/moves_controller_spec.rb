@@ -173,7 +173,8 @@ RSpec.describe MovesController, type: :controller do
               get_roll
               expect(body).to include(
                 roll: 13,
-                results: 'Your total 13 resulted in ten plus result'
+                results: 'Your total 13 resulted in ten plus result',
+                luck_effect: hunter.playbook.luck_effect
               )
             end
 
