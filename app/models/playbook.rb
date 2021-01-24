@@ -27,6 +27,6 @@ class Playbook < ApplicationRecord
 
   def backstory
     return nil unless config
-    JSON.parse(config)['backstory'].with_indifferent_access
+    # JSON.parse(config)['backstory'].with_indifferent_access
   end
 end
