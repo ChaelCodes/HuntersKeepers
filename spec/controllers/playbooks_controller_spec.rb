@@ -146,14 +146,17 @@ RSpec.describe PlaybooksController, type: :controller do
     let(:user) { create :user, :admin }
 
     context 'with valid params' do
-      let(:attributes) { { name: 'The Unnamed' } }
+      let(:attributes) { { name: 'The Unnamed', luck_effect: 'This is LUCK' } }
 
       context 'when html format' do
         let(:format_type) { :html }
 
         it 'updates the requested playbook' do
           put_update
-          expect(playbook.reload.name).to eq 'The Unnamed'
+          expect(playbook.reload).to have_attributes({
+            name: 'The Unnamed',
+            luck_effect: 'This is LUCK'
+          })
         end
 
         it 'redirects to the playbook' do
