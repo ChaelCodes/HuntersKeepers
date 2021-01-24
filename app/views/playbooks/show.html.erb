@@ -8,6 +8,10 @@
         <li><%= display_rating(rating) %></li>
       <% end %>
     </ul>
+    <% if @playbook.luck_effect %>
+      <p><%= t('.luck_effect_html', playbook_name: @playbook.name, luck_effect: @playbook.luck_effect) %></p>
+    <% end %>
+
     <h4 class="subtitle is-4" style="margin-top:1rem; margin-bottom:.5rem"><%= @playbook.backstory[:name] %></h4>
     <% @playbook.backstory[:headings].each do |heading| %>
       <h5 class="subtitle is-5" style="margin-top:1rem; margin-bottom:.5rem"><%= heading[:name] %></h5>
