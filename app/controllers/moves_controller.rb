@@ -26,6 +26,7 @@ class MovesController < ApplicationController
     # TODO: raise complaint id unrollable
     return unless hunter && @move.rollable?
     roll_results = if params[:lucky]
+                     @luck_effect = hunter.playbook.luck_effect
                      @move.lucky_roll(hunter, params[:lose_experience])
                    else
                      @move.roll_results(hunter)
