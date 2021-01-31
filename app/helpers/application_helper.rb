@@ -8,25 +8,33 @@ module ApplicationHelper
     end
   end
 
-  def p_wrap(tags)
-    tags.map do |tags|
-      tag.p(class: 'control') { tags }
+  def p_wrap(control_tags)
+    control_tags.map do |control_tags|
+      tag.p(class: 'control') { control_tags }
     end
   end
 
   def page_buttons(object)
     buttons = []
-    if policy(object).edit?
-      buttons << link_to(t('.edit'), [:edit, object], class: 'button')
-    end
-    buttons << link_to(t('.index'), object.class, class: 'button')
-    if policy(object).destroy?
-      buttons << destroy_button(object)
-    end
+    buttons << edit_button(object) if policy(object).edit?
+    buttons << index_button(object)
+    buttons << destroy_button(object) if policy(object).destroy?
     buttons
   end
 
   def destroy_button(object)
-    link_to(t('.destroy'), object, method: :delete, class: 'button', data: { confirm: t('.confirm_destroy') })
+    link_to(t('.destroy'),
+            object,
+            method: :delete,
+            class: 'button',
+            data: { confirm: t('.confirm_destroy') })
+  end
+
+  def edit_button(object)
+    link_to(t('.edit'), [:edit, object], class: 'button')
+  end
+
+  def index_button(object)
+    link_to(t('.index'), object.class, class: 'button')
   end
 end

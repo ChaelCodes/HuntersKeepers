@@ -25,21 +25,15 @@ class ApplicationFormBuilder < ActionView::Helpers::FormBuilder
     end
   end
 
-  def labelled_text_field(method, label_options: {}, input_options: {})
-    form_controls(method, label_options) do
-      text_field(method, input_options)
-    end
-  end
-
   def labelled_text_area(method, label_options: {}, input_options: {})
     form_controls(method, label_options) do
       text_area(method, input_options)
     end
   end
 
-  def collection_select(*args)
-    tag.div class: 'select' do
-      super(*args)
+  def labelled_text_field(method, label_options: {}, input_options: {})
+    form_controls(method, label_options) do
+      text_field(method, input_options)
     end
   end
 
