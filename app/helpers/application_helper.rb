@@ -4,7 +4,13 @@
 module ApplicationHelper
   def show_page_buttons(object)
     tag.div(class: 'field has-addons') do
-      safe_join(page_buttons(object).map { |button| tag.p(class: 'control') { button } })
+      safe_join(p_wrap(page_buttons(object)))
+    end
+  end
+
+  def p_wrap(tags)
+    tags.map do |tags|
+      tag.p(class: 'control') { tags }
     end
   end
 
