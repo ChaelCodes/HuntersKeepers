@@ -1,5 +1,7 @@
 # frozen_string_literal: true
 
+# The ratings/attributes that the Hunter has
+# determines their capability to do something
 # == Schema Information
 #
 # Table name: ratings
@@ -22,8 +24,6 @@
 #
 #  fk_rails_...  (playbook_id => playbooks.id)
 #
-# The ratings/attributes that the Hunter has
-# determines their capability to do something
 class Rating < ApplicationRecord
   LIST = %i[charm cool sharp tough weird].freeze
 
