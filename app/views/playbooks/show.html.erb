@@ -2,7 +2,7 @@
   <div class="column">
     <h1 class="title"><%= @playbook.name %></h1>
     <p class="is-italic"><%= @playbook.description %></p>
-    <h4 class="subtitle" style="margin-top:1rem; margin-bottom:.5rem">Ratings Options</h4>
+    <h4 class="subtitle" style="margin-top:1rem; margin-bottom:.5rem"><%= t('.ratings') %></h4>
     <ul>
       <% @playbook.ratings.each do |rating| %>
         <li><%= display_rating(rating) %></li>
@@ -21,24 +21,22 @@
       <% end %>
       </ul>
     <% end %>
-
-    <%= link_to 'Edit', edit_playbook_path(@playbook) %> |
-    <%= link_to 'Back', playbooks_path %>
+    <%= show_page_buttons(@playbook) %>
   </div>
   <div class="column">
-    <h4 class="subtitle">Moves</h4>
+    <h4 class="subtitle"><%= Move.model_name.human(count: 3) %></h4>
     <%= render "moves/moves", moves: @playbook.moves, hunter: nil %>
   </div>
   <div class="column">
-    <h4 class="subtitle">Gear</h4>
+    <h4 class="subtitle"><%= Gear.model_name.human(count: 3) %></h4>
     <%= render "gears/gears", gears: @playbook.gears %>
-    <h4 class="subtitle" style="margin-top:1rem; margin-bottom:.5rem">Improvements</h4>
+    <h4 class="subtitle" style="margin-top:1rem; margin-bottom:.5rem"><%= Improvement.model_name.human(count: 3) %></h4>
     <ul>
       <% @playbook.improvements.not_advanced.each do |improvement| %>
         <li><%= link_to_improvement(improvement) %></li>
       <% end %>
     </ul>
-    <h4 class="subtitle" style="margin-top:1rem; margin-bottom:.5rem">Advanced Improvements</h4>
+    <h4 class="subtitle" style="margin-top:1rem; margin-bottom:.5rem"><%= t('.advanced_improvements') %></h4>
     <ul>
       <% @playbook.improvements.advanced.each do |improvement| %>
         <li><%= link_to_improvement(improvement) %></li>

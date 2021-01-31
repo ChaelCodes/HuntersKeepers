@@ -30,6 +30,31 @@
 # available at https://guides.rubyonrails.org/i18n.html.
 
 en:
+  activerecord:
+    models:
+      gear:
+        one: "Gear"
+        other: "Gear"
+      improvement:
+        one: "Improvement"
+        other: "Improvements"
+      move:
+        one: "Move"
+        other: "Moves"
+      playbook:
+        one: "Playbook"
+        other: "Playbooks"
+    attributes:
+      playbook:
+        description: "Description"
+        name: "Name"
+  # These are for the views
+  gears:
+    show:
+      edit: "Edit"
+      index: "All Gear"
+      destroy: "Destroy"
+      confirm_destroy: "Are you sure?"
   hunter_backstories:
     create:
       success: "Hunter backstory was successfully created."
@@ -38,5 +63,37 @@ en:
     destroy:
       success: "Hunter backstory was successfully destroyed."
   playbooks:
+    create:
+      success: "Playbook was successfully created."
+    destroy:
+      success: "Playbook was successfully destroyed."
+    edit:
+      title: "Editing Playbook"
+      show: "View"
+      index: "Playbooks"
+    index:
+      title: "Playbooks"
+      edit: "Edit"
+      destroy: "Destroy"
+      confirm_destroy: "Are you sure?"
+      new: "New Playbook"
+    new:
+      title: "New Playbook"
+      index: "Playbooks"
     show:
+      ratings: "Rating Options"
+      edit: "Edit"
+      index: "Playbooks"
+      destroy: "Destroy"
+      confirm_destroy: "Are you sure?"
+      advanced_improvements: "Advanced Improvements"
       luck_effect_html: "<strong>%{playbook_name} Special:</strong> %{luck_effect}"
+    update:
+      success: "Playbook was successfully updated."
+  # Defaults
+  layouts:
+    errors:
+      close_notif: "Close notification"
+      title:
+        one: "An error prohibited this from being saved:"
+        other: "%{count} errors prohibited this from being saved:"
