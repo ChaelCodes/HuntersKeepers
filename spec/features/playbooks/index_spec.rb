@@ -20,19 +20,4 @@ describe 'playbooks#index' do
       expect(page).not_to have_content('Destroy')
     end
   end
-
-  context 'when admin' do
-    let(:user) { create :user, :admin }
-    let(:playbook) { create :playbook }
-
-    it 'deletes the selected playbook' do
-      Improvement.delete_all
-      Playbook.delete_all
-      playbook
-      visit '/playbooks'
-      expect { click_link 'Destroy' }.to change(Playbook, :count).by(-1)
-      expect { playbook.reload }.to raise_error(ActiveRecord::RecordNotFound)
-      expect(page).to have_content('Playbook was successfully destroyed.')
-    end
-  end
 end
