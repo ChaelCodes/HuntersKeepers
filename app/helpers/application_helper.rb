@@ -9,7 +9,7 @@ module ApplicationHelper
   end
 
   def p_wrap(control_tags)
-    control_tags.map do |tags|
+    control_tags.map do |control_tags|
       tag.p(class: 'control') { control_tags }
     end
   end
