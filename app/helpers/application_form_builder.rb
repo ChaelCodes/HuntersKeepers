@@ -43,6 +43,7 @@ class ApplicationFormBuilder < ActionView::Helpers::FormBuilder
     end
   end
 
+  # Field Overrides
   def email_field(method, options = {})
     super(method, options.merge(class: 'input'))
   end
@@ -61,6 +62,17 @@ class ApplicationFormBuilder < ActionView::Helpers::FormBuilder
 
   def text_field(method, options = {})
     super(method, options.merge(class: 'input'))
+  end
+
+  # FormBuilder Overrides
+  def collection_select(*args)
+    tag.div class: 'select' do
+      super(*args)
+    end
+  end
+
+  def submit(value = nil, options = {})
+    super(value, options.merge(class: 'button is-primary'))
   end
 
   private
