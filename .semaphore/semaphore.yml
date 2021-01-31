@@ -11,7 +11,7 @@ blocks:
         - name: code-climate-test-reporter-id
       env_vars:
         - name: DATABASE_URL
-          value: 'postgresql://postgres:@0.0.0.0:5432/myapp_test'
+          value: "postgresql://postgres:@0.0.0.0:5432/myapp_test"
         - name: RAILS_ENV
           value: test
       jobs:
@@ -19,13 +19,13 @@ blocks:
           commands:
             - checkout
             - sem-service start postgres 11
-            - sem-version ruby 2.6.5
+            - sem-version ruby 2.7.2
             - cache restore
             - bundle install --deployment --path vendor/bundle
             - yarn install
             - cache store
-            - 'bundle exec rake db:setup'
-            - 'curl -L https://codeclimate.com/downloads/test-reporter/test-reporter-latest-linux-amd64 > ./cc-test-reporter'
+            - "bundle exec rake db:setup"
+            - "curl -L https://codeclimate.com/downloads/test-reporter/test-reporter-latest-linux-amd64 > ./cc-test-reporter"
             - chmod +x ./cc-test-reporter
             - ./cc-test-reporter before-build
             - bundle exec rspec
