@@ -15,7 +15,7 @@ WORKDIR /app
 
 # Bundling
 COPY Gemfile* ./
-RUN gem install bundler:2.1.4 && bundle install --path vendor/cache
+RUN gem install bundler:2.2.7 && bundle install
 
 # Building /node_modules
 COPY yarn.lock .
