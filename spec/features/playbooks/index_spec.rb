@@ -26,6 +26,7 @@ describe 'playbooks#index' do
     let(:playbook) { create :playbook }
 
     it 'deletes the selected playbook' do
+      Improvement.delete_all
       Playbook.delete_all
       playbook
       visit '/playbooks'
