@@ -7,6 +7,7 @@
 #  id          :bigint           not null, primary key
 #  config      :jsonb
 #  description :string
+#  luck_effect :string
 #  name        :string
 #  created_at  :datetime         not null
 #  updated_at  :datetime         not null
@@ -26,6 +27,6 @@ class Playbook < ApplicationRecord
 
   def backstory
     return nil unless config
-    JSON.parse(config)['backstory'].with_indifferent_access
+    # JSON.parse(config)['backstory'].with_indifferent_access
   end
 end
