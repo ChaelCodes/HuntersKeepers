@@ -17,7 +17,7 @@ module ApplicationHelper
   def page_buttons(object)
     buttons = []
     buttons << edit_button(object) if policy(object).edit?
-    buttons << link_to(t('.index'), object.class, class: 'button')
+    buttons << index_button(object)
     buttons << destroy_button(object) if policy(object).destroy?
     buttons
   end
@@ -26,11 +26,15 @@ module ApplicationHelper
     link_to(t('.destroy'),
             object,
             method: :delete,
-            class: 'button',
+            class: 'button', 
             data: { confirm: t('.confirm_destroy') })
   end
 
   def edit_button(object)
     link_to(t('.edit'), [:edit, object], class: 'button')
+  end
+
+  def index_button(object)
+    link_to(t('.index'), object.class, class: 'button')
   end
 end
