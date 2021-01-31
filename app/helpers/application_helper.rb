@@ -8,9 +8,9 @@ module ApplicationHelper
     end
   end
 
-  def p_wrap(tags)
-    tags.map do |tags|
-      tag.p(class: 'control') { tags }
+  def p_wrap(control_tags)
+    control_tags.map do |tags|
+      tag.p(class: 'control') { control_tags }
     end
   end
 
@@ -26,7 +26,7 @@ module ApplicationHelper
     link_to(t('.destroy'),
             object,
             method: :delete,
-            class: 'button', 
+            class: 'button',
             data: { confirm: t('.confirm_destroy') })
   end
 
