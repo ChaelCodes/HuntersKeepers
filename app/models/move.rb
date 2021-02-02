@@ -35,14 +35,14 @@ class Move < ApplicationRecord
   has_many :hunters, through: :hunters_moves
 
   scope :not_basic, -> { where.not(type: 'Moves::Basic') }
-  scope :with_hunter, (lambda do |hunter_id|
+  scope :with_hunter, -> (hunter_id) do
     includes(:hunters)
       .where(hunters: { id: hunter_id })
-  end)
-  scope :with_hunter_moves, (lambda do |hunter_id|
+  end
+  scope :with_hunter_moves, -> (hunter_id) do
     includes(:hunters_moves)
       .where(hunters_moves: { hunter_id: [hunter_id, nil] })
-  end)
+  end
   scope :haven, -> { where(haven: true) }
 
   validates :type, inclusion: { in: MOVE_TYPES }
