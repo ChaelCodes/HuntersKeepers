@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div id="moves">
     <ul>
       <li v-for="move in moves">
         <b-checkbox
@@ -59,10 +59,11 @@ export default {
     }
   },
   mounted: function() {
-    fetch(`/moves.json?hunter_id=${this.hunter_id}`)
+    fetch(`/moves.json?hunter_id=${this.hunter_id}&include_all_moves=true`)
       .then(response => response.json())
       .then(moves => {
         this.moves = moves;
+        console.log (`Moves: ${this.moves}`);
         this.checkedMoves = this.selectedMoves();
       });
   },
