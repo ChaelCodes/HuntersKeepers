@@ -88,7 +88,7 @@ class MovesController < ApplicationController
     unless params[:include_all_moves]
       @moves = @moves.with_hunter(params[:hunter_id])
     end
-    @moves = @moves.with_hunter_moves(params[:hunter_id])
+    @moves = @moves.include_hunter_moves(params[:hunter_id])
   end
 
   # Use callbacks to share common setup or constraints between actions.
