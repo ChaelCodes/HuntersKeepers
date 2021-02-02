@@ -38,4 +38,3 @@ coverage/
 spec/tmp
 **.orig
 .bundle
-node_modules/
