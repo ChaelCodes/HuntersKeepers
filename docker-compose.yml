@@ -7,44 +7,33 @@ services:
       POSTGRES_DB: hunterskeepers_development
       POSTGRES_USER: postgres
       POSTGRES_PASSWORD: password
-      DB_HOST: db
     volumes:
-      - "data:/var/lib/postgresql/data"
+      - data:/var/lib/postgresql/data
     ports:
       - "5432"
-
-  # Initializes the named volume with an appropriate /node_modules
-  node_modules:
-    build: .
-    volumes:
-      - "node:/app/node_modules/"
-    command: bash -c "yarn install --check-files"
-
   webpacker:
-    depends_on:
-      - node_modules
-    build: .
+    build:
+      context: .
+      target: rails-builder
     environment:
       - NODE_ENV=development
       - RAILS_ENV=development
       - WEBPACKER_DEV_SERVER_HOST=0.0.0.0
     command: ./bin/webpack-dev-server
     volumes:
-      - "./:/app/"
-      # :nocopy so this service won't try to copy the image's /node_modules into the volume
-      - "node:/app/node_modules/:nocopy"
+      - ./:/app/
     ports:
       - "3035:3035"
 
   web:
-    container_name: "hunterskeepers_web"
+    build:
+      context: .
+      target: rails-builder
     depends_on:
       - chrome
       - db
-      - node_modules
       - webpacker
-    build: .
-    command: bash -c "
+    command: sh -c "
       bundle exec rake db:migrate db:seed
       && rm -f tmp/pids/server.pid
       && bundle exec rails s -p 3000 -b '0.0.0.0'
@@ -54,8 +43,6 @@ services:
       - "3000:3000"
     volumes:
       - "./:/app/"
-      # :nocopy so this service won't try to copy the image's /node_modules into the volume
-      - "node:/app/node_modules/:nocopy"
     environment:
       - WEBPACKER_DEV_SERVER_HOST=webpacker
       - POSTGRES_USER=postgres
@@ -71,5 +58,3 @@ services:
 volumes:
   # Volume to hold the Postgres database on the host system
   data:
-  # Volume to hold the container-appropriate node_modules/ on the host system
-  node:
