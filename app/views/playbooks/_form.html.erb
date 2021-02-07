@@ -4,7 +4,14 @@
   <%= form.labelled_text_field :name %>
   <%= form.labelled_text_field :description %>
   <%= form.labelled_text_field :luck_effect %>
-  <%= form.labelled_text_area :config %>
+  <%# TODO %>
+  <%# <%= form.labelled_text_area :config, input_options: { value: config.to_hash } %>
+    <div class="field">
+    <%= form.label :name %>
+    <div class="control">
+      <%= form.text_field :config_backstory_name, name: 'playbook[config][backstory][name]', value: playbook.backstory&.dig(:name), class: 'input' %>
+    </div>
+  </div>
 
   <div class="actions">
     <%= form.submit %>
