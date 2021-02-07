@@ -29,10 +29,17 @@ RSpec.describe Playbook, type: :model do
   describe '#config' do
     subject { playbook.config }
 
-    it { is_expected.to be_empty  }
+    it { is_expected.to be_empty }
 
     context 'with backstory' do
       let(:playbook) { build :playbook, :with_backstory }
+
+      # Sorry future maintainer. When I tried to configure Playbook without
+      # an initializer in Rails 6.0.3.4, I couldn't associate Playbook::ConfigType
+      # and I think it's because this code is missing in Rails 6.0.3.4:
+      # https://github.com/rails/rails/blob/39e49edaf9694c938c67ea997d3cfa8c935921b2/activerecord/lib/active_record/attributes.rb#L208-L231
+      # Try replacing #attribute(:config, :playbook_config) with attribute(:config, Playbook::ConfigType.new)
+      # Good luck, and remember to thank exegete for this message!
 
       it 'encapsulates backstory in value object' do
         expect(subject).to be_kind_of(Playbook::ConfigType)
@@ -63,6 +70,14 @@ RSpec.describe Playbook, type: :model do
 
       it 'sets the playbook config' do
         set_config
+        expect(playbook.backstory[:name]).to eq "Fate"
+      end
+
+      it 'maintains data on reload' do
+        set_config
+        playbook.save
+        binding.pry
+        playbook.reload
         expect(playbook.backstory[:name]).to eq "Fate"
       end
     end

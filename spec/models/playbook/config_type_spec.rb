@@ -10,7 +10,7 @@ RSpec.describe Playbook::ConfigType, type: :model do
   describe '#serialize' do
     subject { playbook_config_type.serialize(playbook_config_type) }
 
-    it { is_expected.to eq '' }
+    it { is_expected.to eq '{"backstory":{}}' }
   end
 
   context 'ensuring column storage' do
