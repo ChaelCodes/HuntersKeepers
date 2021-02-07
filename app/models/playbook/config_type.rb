@@ -1,4 +1,4 @@
-class Playbook::ConfigType < ActiveModel::Type::Value
+class Playbook::ConfigType < ActiveRecord::Type::Value
   attr_accessor :backstory, :headings
   # questions - questions we ask player
   # options - question options
@@ -14,11 +14,15 @@ class Playbook::ConfigType < ActiveModel::Type::Value
   
   def serialize(value)
     return nil if value.nil? || value.empty?
-    value.to_hash.to_json
+    value.to_hash
   end
+  # Playbook.connection.execute("SELECT * FROM playbooks;").first
+  # ::ActiveSupport::JSON.encode(value.to_hash)
+  # value
+  # value.to_hash
+  # value.to_hash.to_json
 
   def deserialize(value)
-    return nil if value.nil?
     cast(value)
   end
 
