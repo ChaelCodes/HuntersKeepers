@@ -8,7 +8,7 @@ class Playbook::ConfigType < ActiveRecord::Type::Value
     return value if value.is_a?(Playbook::ConfigType)
     value = JSON.parse(value, symbolize_names: true) if value.is_a?(String)
     self.backstory = value[:backstory]
-    self.headings = backstory[:headings]
+    self.headings = value.dig(:backstory, :headings)
     self
   end
 
