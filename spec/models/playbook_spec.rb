@@ -106,10 +106,10 @@ RSpec.describe Playbook, type: :model do
         expect(subject).to be_kind_of(Playbook::ConfigType)
         expect(subject.backstory[:name]).to eq 'Fate'
         expect(subject.headings).to include(
-        {name: "How you found out.", 
+        {name: "How you found out.",
                               count: 1,
                               choices: ["Nightmares and visions", "Some weirdo told you."]  }
-        ) 
+        )
       end
     end
   end
@@ -137,7 +137,6 @@ RSpec.describe Playbook, type: :model do
       it 'maintains data on reload' do
         set_config
         playbook.save
-        binding.pry
         playbook.reload
         expect(playbook.backstory[:name]).to eq "Fate"
       end
