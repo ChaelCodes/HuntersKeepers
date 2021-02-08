@@ -39,7 +39,7 @@ class Move < ApplicationRecord
     includes(:hunters)
       .where(hunters: { id: hunter_id })
   end
-  scope :with_hunter_moves, ->(hunter_id) do # rubocop:disable Style/Lambda
+  scope :include_hunter_moves, ->(hunter_id) do # rubocop:disable Style/Lambda
     includes(:hunters_moves)
       .where(hunters_moves: { hunter_id: [hunter_id, nil] })
   end
