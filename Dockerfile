@@ -7,17 +7,11 @@ RUN apk add --update --no-cache --quiet \
     build-base \
     nodejs-current \
     postgresql-dev \
-    sqlite-dev \
     tzdata \
     yarn
 
-# Create a generic Gemfile with only Rails.
-RUN echo -e "source 'https://rubygems.org'\ngem 'rails'" > /Gemfile
-# Install Rails, quietly, in 4 threads.
-RUN bundle install --quiet -j4
-
 # Uses the image above as the base for a builder image.
-# This will **exclude** development and testing gems.
+# This will **include** development and testing gems.
 FROM rails as rails-builder
 
 # Set the value of `pwd` for all following operations.
