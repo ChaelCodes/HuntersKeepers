@@ -26,10 +26,8 @@ WORKDIR /app/
 # Add the Gemfile and Gemfile.lock from this application.
 COPY Gemfile Gemfile.lock /app/
 
-# Configure bundle to freeze gems.
-RUN bundle config --global frozen 1 \
-    # Installs gems, quietly, in 4 threads, and retry if broken.
-    && bundle install --quiet -j4 --retry 3 \
+# Installs gems, quietly, in 4 threads, and retry if broken.
+RUN bundle install --quiet -j4 --retry 3 \
     # Remove unneeded files (cached *.gem, *.o, *.c)
     && rm -rf /usr/local/bundle/cache/*.gem \
     && find /usr/local/bundle/gems/ -name "*.c" -delete \
