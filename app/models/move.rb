@@ -35,16 +35,14 @@ class Move < ApplicationRecord
   has_many :hunters, through: :hunters_moves
 
   scope :not_basic, -> { where.not(type: 'Moves::Basic') }
-  # Filters to only moves the hunter has
-  scope :with_hunter, (lambda do |hunter_id|
+  scope :with_hunter, ->(hunter_id) do # rubocop:disable Style/Lambda
     includes(:hunters)
       .where(hunters: { id: hunter_id })
-  end)
-  # includes correct hunter_move if available
-  scope :include_hunter_moves, (lambda do |hunter_id|
+  end
+  scope :with_hunter_moves, ->(hunter_id) do # rubocop:disable Style/Lambda
     includes(:hunters_moves)
       .where(hunters_moves: { hunter_id: [hunter_id, nil] })
-  end)
+  end
   scope :haven, -> { where(haven: true) }
 
   validates :type, inclusion: { in: MOVE_TYPES }
