@@ -2,7 +2,7 @@
 
 require 'rails_helper'
 
-describe 'hunters#new' do
+describe 'hunters#edit' do
   let(:user) { create :user }
   let(:hunter) { create :hunter }
 
@@ -13,6 +13,7 @@ describe 'hunters#new' do
   context 'user created hunter' do
     let(:hunter) { create :hunter, user: user }
     let!(:playbook) { create :playbook, name: 'New Playbook' }
+    let!(:move) { create :move }
 
     it 'edits a hunter' do
       visit "/hunters/#{hunter.id}/edit"
@@ -44,6 +45,12 @@ describe 'hunters#new' do
         weird: 3,
         retired: true
       )
+    end
+
+    it 'adds moves', js: true do
+      visit "/hunters/#{hunter.id}/edit".dup
+      expect(page).to have_content(move.name)
+      expect(page).to have_content 'Submit Moves'
     end
   end
 end
