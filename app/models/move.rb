@@ -35,7 +35,7 @@ class Move < ApplicationRecord
   has_many :hunters, through: :hunters_moves
 
   scope :not_basic, -> { where.not(type: 'Moves::Basic') }
-  # Filters to only moves the hunter h
+  # Filters to only moves the hunter has
   scope :with_hunter, (lambda do |hunter_id|
     includes(:hunters)
       .where(hunters: { id: hunter_id })
