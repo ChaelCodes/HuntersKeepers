@@ -31,8 +31,8 @@ require 'rails_helper'
 RSpec.describe Move, type: :model do
   let(:move) { build :move }
 
-  describe '::with_hunter_moves' do
-    subject { described_class.with_hunter_moves(hunter.id) }
+  describe '::include_hunter_moves' do
+    subject { described_class.include_hunter_moves(hunter.id) }
 
     let!(:move) { create :move }
     let(:hunter) { create :hunter }
