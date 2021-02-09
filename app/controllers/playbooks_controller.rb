@@ -73,6 +73,10 @@ class PlaybooksController < ApplicationController
   # Never trust parameters from the scary internet,
   # only permit the allow list through.
   def playbook_params
-    params.require(:playbook).permit(:name, :description, :luck_effect, :config)
+    params.require(:playbook)
+          .permit(:name, :description, :luck_effect)
+          .tap do |allowlisted|
+            allowlisted[:config] = params[:playbook].fetch(:config, ActionController::Parameters.new).permit!
+          end
   end
 end
