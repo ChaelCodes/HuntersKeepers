@@ -7,6 +7,7 @@ RUN apk add --update --no-cache --quiet \
     build-base \
     nodejs-current \
     postgresql-dev \
+    python2 \
     tzdata \
     yarn
 
