@@ -6,13 +6,20 @@
 #
 # Table name: playbooks
 #
-#  id          :bigint           not null, primary key
-#  config      :jsonb
-#  description :string
-#  luck_effect :string
-#  name        :string
-#  created_at  :datetime         not null
-#  updated_at  :datetime         not null
+# @!attribute id
+#   @return []
+# @!attribute config
+#   @return [Hash]
+# @!attribute description
+#   @return [String]
+# @!attribute luck_effect
+#   @return [String]
+# @!attribute name
+#   @return [String]
+# @!attribute created_at
+#   @return [Time]
+# @!attribute updated_at
+#   @return [Time]
 #
 class Playbook < ApplicationRecord
   has_many :improvements, dependent: :destroy

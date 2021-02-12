@@ -4,10 +4,14 @@
 #
 # Table name: hunters_improvements
 #
-#  id             :bigint           not null, primary key
-#  hunter_id      :integer
-#  improvement_id :integer
-#  improvable     :jsonb
+# @!attribute id
+#   @return []
+# @!attribute improvable
+#   @return [Hash]
+# @!attribute hunter_id
+#   @return [Integer]
+# @!attribute improvement_id
+#   @return [Integer]
 #
 require 'rails_helper'
 

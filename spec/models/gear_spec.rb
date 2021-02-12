@@ -2,14 +2,22 @@
 #
 # Table name: gears
 #
-#  id          :bigint           not null, primary key
-#  armor       :integer
-#  description :string
-#  harm        :integer
-#  name        :string
-#  created_at  :datetime         not null
-#  updated_at  :datetime         not null
-#  playbook_id :bigint
+# @!attribute id
+#   @return []
+# @!attribute armor
+#   @return [Integer]
+# @!attribute description
+#   @return [String]
+# @!attribute harm
+#   @return [Integer]
+# @!attribute name
+#   @return [String]
+# @!attribute created_at
+#   @return [Time]
+# @!attribute updated_at
+#   @return [Time]
+# @!attribute playbook_id
+#   @return []
 #
 # Indexes
 #
