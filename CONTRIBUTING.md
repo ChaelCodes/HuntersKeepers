@@ -40,6 +40,13 @@ If you cannot use Docker, start by ensuring your development environment is read
 ### Docker
 You can run the app locally (Postgres + Webpacker + Rails) via a Docker container.
 
+Before you begin, there are a few setup commands:
+
+```
+> docker-compose run --rm web yarn install --check-files
+> docker-compose run --rm web rails db:test:prepare db:prepare
+```
+
 Executing `docker-compose up` will bring those services up, and the application will be accessible via `http://localhost:3000`.
 
 The initial run will create two Docker volumes, one for the database and one for the Node modules.
@@ -50,16 +57,16 @@ Note: this requires that you've given the Docker application access to that fold
 
 ### Helpful Docker Commands
 To open the Rails console:\
-`docker exec -it hunterskeepers_web_1 bin/rails c`
+`docker-compose run --rm web bin/rails c`
 
 To open the Postgres console:\
-`docker exec -it hunterskeepers_db_1 psql -U postgres hunterskeepers_development`
+`docker-compose exec db psql -U postgres hunterskeepers_development`
 
 To run your tests:\
-`docker exec -it hunterskeepers_web_1 bundle exec rspec`
+`docker-compose run --rm web bundle exec rspec`
 
 To run rubocop:\
-`docker exec -it hunterskeepers_web_1 bundle exec rubocop`
+`docker-compose run --rm web bundle exec rubocop`
 
 To reset the database with the seed data:
 1. (If server was running) Shut down the web server: `docker-compose stop web`
@@ -77,7 +84,5 @@ web_1           | ========================================
 
 If you update package.json or yarn.lock you'll want to rebuild that module. There might be a more efficient way, but you can run:
 ```
-> docker-compose build node_modules
-> docker-compose run node_modules
-> docker-compose up
+> docker-compose run --rm web yarn install --check-files
 ```
