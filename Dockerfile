@@ -28,15 +28,6 @@ RUN bundle install --quiet -j4 --retry 3 \
     && find /usr/local/bundle/gems/ -name "*.c" -delete \
     && find /usr/local/bundle/gems/ -name "*.o" -delete
 
-# Expose port 5000 from the final image.
-# This is important if you deploy to Gitlab, otherwise it does
-# not matter which port we use here.
-EXPOSE 5000
-
-# When starting this container, run the rails server
-# binding to all IP's, and port 5000.
-CMD bundle exec rails server -b 0.0.0.0 -p 5000
-
 # This image is used to build assets and delete side effects.
 # This will **include** development and test gems.
 FROM rails-builder AS builder
