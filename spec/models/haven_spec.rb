@@ -2,12 +2,18 @@
 #
 # Table name: havens
 #
-#  id          :bigint           not null, primary key
-#  description :string
-#  name        :string
-#  created_at  :datetime         not null
-#  updated_at  :datetime         not null
-#  user_id     :bigint
+# @!attribute id
+#   @return []
+# @!attribute description
+#   @return [String]
+# @!attribute name
+#   @return [String]
+# @!attribute created_at
+#   @return [Time]
+# @!attribute updated_at
+#   @return [Time]
+# @!attribute user_id
+#   @return []
 #
 # Indexes
 #
