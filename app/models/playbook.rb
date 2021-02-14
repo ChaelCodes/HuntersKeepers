@@ -21,8 +21,6 @@ class Playbook < ApplicationRecord
   has_many :ratings, dependent: :destroy
   validates :name, presence: true
 
-  self.ignored_columns = [:config]
-
   def to_s
     name
   end
