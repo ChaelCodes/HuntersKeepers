@@ -7,6 +7,7 @@
 # Table name: playbooks
 #
 #  id          :bigint           not null, primary key
+#  backstory   :jsonb
 #  config      :jsonb
 #  description :string
 #  luck_effect :string
