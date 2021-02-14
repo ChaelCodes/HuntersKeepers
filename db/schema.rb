@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_01_24_152645) do
+ActiveRecord::Schema.define(version: 2021_02_14_163413) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -122,6 +122,7 @@ ActiveRecord::Schema.define(version: 2021_01_24_152645) do
     t.datetime "updated_at", null: false
     t.jsonb "config"
     t.string "luck_effect"
+    t.jsonb "backstory"
   end
 
   create_table "ratings", force: :cascade do |t|
