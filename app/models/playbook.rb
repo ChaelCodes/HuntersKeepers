@@ -27,7 +27,7 @@ class Playbook < ApplicationRecord
   end
 
   def config=(val)
-    backstory=(val)
-    super
+    self.backstory = val
+    super(val)
   end
 end
