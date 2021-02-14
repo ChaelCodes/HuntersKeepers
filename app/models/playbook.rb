@@ -8,7 +8,6 @@
 #
 #  id          :bigint           not null, primary key
 #  backstory   :jsonb
-#  config      :jsonb
 #  description :string
 #  luck_effect :string
 #  name        :string
@@ -21,8 +20,6 @@ class Playbook < ApplicationRecord
   has_many :moves, dependent: :destroy
   has_many :ratings, dependent: :destroy
   validates :name, presence: true
-
-  self.ignored_columns = [:config]
 
   def to_s
     name
