@@ -4,7 +4,7 @@
 #
 # @!attribute id
 #   @return []
-# @!attribute config
+# @!attribute backstory
 #   @return [Hash]
 # @!attribute description
 #   @return [String]
