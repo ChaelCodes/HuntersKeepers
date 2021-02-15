@@ -6,15 +6,24 @@
 #
 # Table name: ratings
 #
-#  id          :bigint           not null, primary key
-#  charm       :integer
-#  cool        :integer
-#  sharp       :integer
-#  tough       :integer
-#  weird       :integer
-#  created_at  :datetime         not null
-#  updated_at  :datetime         not null
-#  playbook_id :bigint
+# @!attribute id
+#   @return []
+# @!attribute charm
+#   @return [Integer]
+# @!attribute cool
+#   @return [Integer]
+# @!attribute sharp
+#   @return [Integer]
+# @!attribute tough
+#   @return [Integer]
+# @!attribute weird
+#   @return [Integer]
+# @!attribute created_at
+#   @return [Time]
+# @!attribute updated_at
+#   @return [Time]
+# @!attribute playbook_id
+#   @return []
 #
 # Indexes
 #

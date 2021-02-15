@@ -7,15 +7,24 @@
 #
 # Table name: improvements
 #
-#  id          :bigint           not null, primary key
-#  advanced    :boolean
-#  description :string
-#  rating      :integer
-#  stat_limit  :integer
-#  type        :string
-#  created_at  :datetime         not null
-#  updated_at  :datetime         not null
-#  playbook_id :bigint
+# @!attribute id
+#   @return []
+# @!attribute advanced
+#   @return [Boolean]
+# @!attribute description
+#   @return [String]
+# @!attribute rating
+#   @return [Integer]
+# @!attribute stat_limit
+#   @return [Integer]
+# @!attribute type
+#   @return [String]
+# @!attribute created_at
+#   @return [Time]
+# @!attribute updated_at
+#   @return [Time]
+# @!attribute playbook_id
+#   @return []
 #
 # Indexes
 #
