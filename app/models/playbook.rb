@@ -8,7 +8,7 @@
 #
 # @!attribute id
 #   @return []
-# @!attribute config
+# @!attribute backstory
 #   @return [Hash]
 # @!attribute description
 #   @return [String]
@@ -30,10 +30,5 @@ class Playbook < ApplicationRecord
 
   def to_s
     name
-  end
-
-  def backstory
-    return nil unless config
-    # JSON.parse(config)['backstory'].with_indifferent_access
   end
 end
