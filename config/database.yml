@@ -27,8 +27,8 @@ development:
   <<: *default
   database: hunterskeepers_development
   host: <%= ENV['DB_HOST'] || 'localhost' %>
-  username: <%= ENV['POSTGRES_USER'] || "itox" %>
-  password: <%= ENV['POSTGRES_PASSWORD'] || "itox" %>
+  username: <%= ENV['POSTGRES_USER'] || 'root' %>
+  password: <%= ENV['POSTGRES_PASSWORD'] || nil %>
 
   # The specified database role being used to connect to postgres.
   # To create additional roles in postgres see `$ createuser --help`.
