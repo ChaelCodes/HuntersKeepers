@@ -17,6 +17,7 @@ class HavensController < ApplicationController
   # GET /havens/new
   def new
     @haven = Haven.new
+    authorize @haven
   end
 
   # GET /havens/1/edit
@@ -27,6 +28,7 @@ class HavensController < ApplicationController
   def create # rubocop:disable Metrics/MethodLength
     @haven = Haven.new(haven_params)
     @haven.user = current_user
+    @authorize
     respond_to do |format|
       if @haven.save
         format.html do

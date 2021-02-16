@@ -54,4 +54,11 @@ class Move < ApplicationRecord
   def rollable?
     false
   end
+
+  # This is the Pundit Policy that governs Move access
+  #
+  # @see MovePolicy
+  def self.policy_class
+    MovePolicy
+  end
 end

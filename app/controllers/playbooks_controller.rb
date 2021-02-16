@@ -17,6 +17,7 @@ class PlaybooksController < ApplicationController
   # GET /playbooks/new
   def new
     @playbook = Playbook.new
+    authorize @playbook
   end
 
   # GET /playbooks/1/edit
@@ -26,7 +27,7 @@ class PlaybooksController < ApplicationController
   # POST /playbooks.json
   def create
     @playbook = Playbook.new(playbook_params)
-
+    authorize @playbook
     respond_to do |format|
       if @playbook.save
         format.html { redirect_to @playbook, notice: t('.success') }

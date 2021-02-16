@@ -49,11 +49,20 @@ RSpec.describe PlaybooksController, type: :controller do
 
   describe 'GET #new' do
     subject(:get_new) { get :new, params: {}, session: valid_session }
-
+    let(:user) { create :user, :admin }
+    
     it 'returns a success response' do
       get_new
       expect(response).to be_successful
     end
+
+    context 'with guest' do
+      it 'redirects due to unauthorized access' do
+        sign_out user
+        get_new
+        expect(response).to redirect_to(root_path)
+      end
+    end 
   end
 
   describe 'GET #edit' do
@@ -85,6 +94,8 @@ RSpec.describe PlaybooksController, type: :controller do
            session: valid_session,
            format: format_type
     end
+
+    let(:user) { create :user, :admin }
 
     context 'with valid params' do
       let(:attributes) { { name: 'The Unnamed' } }

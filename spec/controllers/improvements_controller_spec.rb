@@ -25,7 +25,7 @@ RSpec.describe ImprovementsController, type: :controller do
   # in order to pass any filters (e.g. authentication) defined in
   # ImprovementsController. Be sure to keep this updated too.
   let(:valid_session) { {} }
-  let(:user) { create :user }
+  let(:user) { create :user, :admin }
 
   before(:each) do
     sign_in user
@@ -256,7 +256,6 @@ RSpec.describe ImprovementsController, type: :controller do
 
     context 'when json format' do
       let(:format_type) { :json }
-
       it { is_expected.to be_successful }
     end
   end

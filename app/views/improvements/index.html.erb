@@ -28,5 +28,9 @@
 </table>
 
 <br>
+<% if policy(Improvement).create? %>
+  <%= link_to 'New Improvement', new_improvement_path %>
+<% end %>
 
-<%= link_to 'New Improvement', new_improvement_path %>
+
+
