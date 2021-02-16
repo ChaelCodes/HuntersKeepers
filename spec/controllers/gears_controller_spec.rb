@@ -24,7 +24,7 @@ RSpec.describe GearsController, type: :controller do
   # GearsController. Be sure to keep this updated too.
   let(:valid_session) { {} }
 
-  let(:user) { create :user }
+  let(:user) { create :user, :admin }
 
   before do
     sign_in user

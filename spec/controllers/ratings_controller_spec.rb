@@ -5,7 +5,7 @@ require 'rails_helper'
 RSpec.describe RatingsController, type: :controller do
   let(:rating) { create :rating }
   let(:valid_session) { {} }
-  let(:user) { create :user }
+  let(:user) { create :user, :admin }
   let(:playbook) { create :playbook }
   let(:valid_attributes) do
     {

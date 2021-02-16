@@ -20,6 +20,7 @@ class ImprovementsController < ApplicationController
   # GET /improvements/new
   def new
     @improvement = Improvement.new
+    authorize @improvement
   end
 
   # GET /improvements/1/edit
@@ -29,7 +30,7 @@ class ImprovementsController < ApplicationController
   # POST /improvements.json
   def create
     @improvement = Improvement.new(improvement_params)
-
+    authorize @improvement
     respond_to do |format|
       if @improvement.save
         format.html { redirect_to improvement_url(@improvement), notice: 'Improvement was successfully created.' }
@@ -73,6 +74,7 @@ class ImprovementsController < ApplicationController
   # Use callbacks to share common setup or constraints between actions.
   def set_improvement
     @improvement = Improvement.find(params[:id])
+    authorize @improvement
   end
 
   # Never trust parameters from the scary internet,

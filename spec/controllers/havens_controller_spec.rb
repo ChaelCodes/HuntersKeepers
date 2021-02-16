@@ -18,7 +18,7 @@ RSpec.describe HavensController, type: :controller do
   # in order to pass any filters (e.g. authentication) defined in
   # HavensController. Be sure to keep this updated too.
   let(:valid_session) { {} }
-  let(:user) { create :user }
+  let(:user) { create :user, :admin }
 
   before do
     sign_in user

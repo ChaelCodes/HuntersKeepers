@@ -25,7 +25,7 @@ RSpec.describe MovesController, type: :controller do
   # in order to pass any filters (e.g. authentication) defined in
   # MovesController. Be sure to keep this updated too.
   let(:valid_session) { {} }
-  let(:user) { create :user }
+  let(:user) { create :user, :admin }
   let(:body) { JSON.parse(response.body) }
 
   before do

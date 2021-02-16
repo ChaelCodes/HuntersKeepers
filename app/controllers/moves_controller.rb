@@ -38,6 +38,7 @@ class MovesController < ApplicationController
   # GET /moves/new
   def new
     @move = Move.new
+    authorize @move
   end
 
   # GET /moves/1/edit
@@ -47,6 +48,7 @@ class MovesController < ApplicationController
   # POST /moves.json
   def create
     @move = Move.new(move_params)
+    authorize @move
     respond_to do |format|
       if @move.save
         format.html { redirect_to move_path(@move), notice: 'Move was successfully created.' }
@@ -94,6 +96,7 @@ class MovesController < ApplicationController
   # Use callbacks to share common setup or constraints between actions.
   def set_move
     @move = Move.find(params[:id])
+    authorize @move
   end
 
   # Never trust parameters from the scary internet,
