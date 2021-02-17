@@ -22,8 +22,8 @@ class HunterBackstory < ApplicationRecord
 
   # This is the Pundit Policy that governs HunterBackstory access
   #
-  # @see HasHunterPolicy
+  # @see HunterBackstoryPolicy
   def self.policy_class
-    HasHunterPolicy
+    HuntersImprovementPolicy
   end
 end
