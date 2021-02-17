@@ -46,6 +46,13 @@ class Improvement < ApplicationRecord
   validates :description, presence: true
   validates :type, inclusion: { in: IMPROVEMENT_TYPES }, allow_blank: true
 
+  # This is the Pundit Policy that governs Improvement access
+  #
+  # @see ApplicationPolicy
+  def self.policy_class
+    ApplicationPolicy
+  end
+
   # Determines if a hunter is eligible for Advanced Improvements
   #
   # @param hunter [Hunter] check this hunter's eligiblity
