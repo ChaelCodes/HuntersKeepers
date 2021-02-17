@@ -4,9 +4,9 @@ require 'rails_helper'
 
 RSpec.describe HuntersImprovementsController, type: :controller do
   let(:hunter) { create :hunter }
-  let(:improvement) { create :improvement }
+  let(:improvement) { create :improvement, playbook: hunter.playbook }
 
-  let(:hunters_improvement) { FactoryBot.create(:hunters_improvement) }
+  let(:hunters_improvement) { create(:hunters_improvement, hunter: hunter, improvement: improvement) }
 
   # This should return the minimal set of attributes required to create a valid
   # HuntersImprovement. As you add validations to HuntersImprovement, be sure to
@@ -17,7 +17,6 @@ RSpec.describe HuntersImprovementsController, type: :controller do
       improvement_id: hunters_improvement.improvement.id
     }
   end
-
   let(:invalid_attributes) do
     {
       hunter_id: hunter.id,
@@ -29,7 +28,7 @@ RSpec.describe HuntersImprovementsController, type: :controller do
   # in order to pass any filters (e.g. authentication) defined in
   # HuntersImprovementsController. Be sure to keep this updated too.
   let(:valid_session) { {} }
-  let(:user) { create :user }
+  let(:user) { hunter.user }
 
   before do
     sign_in user
@@ -159,7 +158,9 @@ RSpec.describe HuntersImprovementsController, type: :controller do
     end
 
     context 'with invalid params' do
+      let!(:existing_hunters_improvement) { hunters_improvement }
       let(:attributes) { invalid_attributes }
+      let(:user) { create :user, :admin }
 
       context 'when html format' do
         let(:format_type) { :html }
@@ -178,8 +179,8 @@ RSpec.describe HuntersImprovementsController, type: :controller do
         it 'send errors in our json response' do
           post_create
           resp = JSON.parse(response.body)
-          expect(resp['hunter'])
-            .to include 'does not match improvement playbook: The Nameless'
+          expect(resp['improvement_id'])
+            .to include 'has already been taken'
         end
       end
     end
