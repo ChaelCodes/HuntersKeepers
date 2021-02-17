@@ -20,10 +20,14 @@ describe 'hunter_backstories/:id' do
     expect(page).to have_content 'How you found out'
   end
 
-  it 'takes you to the edit form' do
-    subject
-    click_link 'Edit'
-    expect(page).to have_content 'Editing Hunter Backstory'
+  context 'when user has hunter for backstory' do
+    let(:user) { hunter_backstory.hunter.user }
+
+    it 'takes you to the edit form' do
+      subject
+      click_link 'Edit'
+      expect(page).to have_content 'Editing Hunter Backstory'
+    end
   end
 
   it 'back leaves the page' do

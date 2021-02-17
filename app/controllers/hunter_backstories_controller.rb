@@ -19,6 +19,7 @@ class HunterBackstoriesController < ApplicationController
   def new
     @hunter_backstory = HunterBackstory.new(hunter: @hunter,
                                             playbook: @hunter.playbook)
+    authorize @hunter_backstory
   end
 
   # GET /hunter_backstories/1/edit
@@ -29,6 +30,7 @@ class HunterBackstoriesController < ApplicationController
   def create
     @hunter_backstory = HunterBackstory.new(hunter_backstory_params)
     @hunter_backstory.choices = JSON.parse(params[:hunter_backstory][:choices]) if params[:hunter_backstory][:choices]
+    authorize @hunter_backstory
     respond_to do |format|
       if @hunter_backstory.save
         format.html { redirect_to @hunter_backstory, notice: t('.success') }
@@ -78,6 +80,7 @@ class HunterBackstoriesController < ApplicationController
   # Use callbacks to share common setup or constraints between actions.
   def set_hunter_backstory
     @hunter_backstory = HunterBackstory.find(params[:id])
+    authorize @hunter_backstory
   end
 
   def set_hunter

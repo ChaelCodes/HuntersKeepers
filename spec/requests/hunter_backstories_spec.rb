@@ -29,6 +29,10 @@ RSpec.describe "/hunter_backstories", type: :request do
   }
 
   let(:hunter_backstory) { create :hunter_backstory, hunter: hunter, playbook: playbook }
+  let(:user) { create :user, :admin }
+  before do
+    sign_in user
+  end
 
   describe "GET /index" do
     it "renders a successful response" do
