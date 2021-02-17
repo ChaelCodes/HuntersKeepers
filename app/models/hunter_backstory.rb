@@ -19,4 +19,11 @@
 class HunterBackstory < ApplicationRecord
   belongs_to :hunter
   belongs_to :playbook
+
+  # This is the Pundit Policy that governs HunterBackstory access
+  #
+  # @see HasHunterPolicy
+  def self.policy_class
+    HasHunterPolicy
+  end
 end

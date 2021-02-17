@@ -20,6 +20,7 @@ class HuntersImprovementsController < ApplicationController
   def new
     @hunters_improvement = HuntersImprovement.new(hunter: @hunter)
     @hunters_improvement.improvement = Improvement.find(params[:improvement_id]) if params[:improvement_id]
+    authorize @hunters_improvement
   end
 
   # GET /hunters_improvements/1/edit

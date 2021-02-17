@@ -29,4 +29,11 @@ class HuntersImprovement < ApplicationRecord
   def validate_hunter
     ImproveHunter.for(improvement).new(self).valid?
   end
+
+  # This is the Pundit Policy that governs HunterImprovement access
+  #
+  # @see HasHunterPolicy
+  def self.policy_class
+    HasHunterPolicy
+  end
 end

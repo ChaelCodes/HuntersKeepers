@@ -19,6 +19,7 @@ class RatingsController < ApplicationController
   # GET /ratings/new
   def new
     @rating = Rating.new
+    authorize @rating
   end
 
   # GET /ratings/1/edit
@@ -28,7 +29,7 @@ class RatingsController < ApplicationController
   # POST /ratings.json
   def create
     @rating = Rating.new(rating_params)
-
+    authorize @rating
     respond_to do |format|
       if @rating.save
         format.html { redirect_to @rating, notice: 'Rating was successfully created.' }
@@ -69,6 +70,7 @@ class RatingsController < ApplicationController
   # Use callbacks to share common setup or constraints between actions.
   def set_rating
     @rating = Rating.find(params[:id])
+    authorize @rating
   end
 
   # Never trust parameters from the scary internet,

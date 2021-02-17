@@ -18,6 +18,7 @@ class GearsController < ApplicationController
   # GET /gears/new
   def new
     @gear = Gear.new
+    authorize @gear
   end
 
   # GET /gears/1/edit
@@ -27,7 +28,7 @@ class GearsController < ApplicationController
   # POST /gears.json
   def create
     @gear = Gear.new(gear_params)
-
+    authorize @gear
     respond_to do |format|
       if @gear.save
         format.html { redirect_to @gear, notice: 'Gear was successfully created.' }
@@ -68,6 +69,7 @@ class GearsController < ApplicationController
   # Use callbacks to share common setup or constraints between actions.
   def set_gear
     @gear = Gear.find(params[:id])
+    authorize @gear
   end
 
   # Never trust parameters from the scary internet,

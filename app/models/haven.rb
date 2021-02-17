@@ -31,4 +31,11 @@ class Haven < ApplicationRecord
   def to_s
     name
   end
+
+  # This is the Pundit Policy that governs Haven access
+  #
+  # @see HasHunterPolicy
+  def self.policy_class
+    HavenPolicy
+  end
 end
