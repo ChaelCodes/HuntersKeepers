@@ -27,11 +27,4 @@ class HuntersMove < ApplicationRecord
   belongs_to :hunter
   belongs_to :move
   belongs_to :haven, optional: true
-
-  # This is the Pundit Policy that governs HunterMove access
-  #
-  # @see HasHunterPolicy
-  def self.policy_class
-    HasHunterPolicy
-  end
 end

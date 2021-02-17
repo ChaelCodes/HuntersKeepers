@@ -27,6 +27,7 @@ class HuntersController < ApplicationController
   # harm to 0, and luck to 7.
   def new
     @hunter = Hunter.new(experience: 0, harm: 0, luck: 7)
+    authorize @hunter
   end
 
   # GET /hunters/1/edit
@@ -43,6 +44,7 @@ class HuntersController < ApplicationController
     @hunter = Hunter.new(hunter_params)
     @hunter.user = current_user
     @hunter.assign_attributes(experience: 0, harm: 0, luck: 7)
+    authorize @hunter
 
     respond_to do |format|
       if @hunter.save
