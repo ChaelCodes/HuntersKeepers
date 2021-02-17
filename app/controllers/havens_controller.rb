@@ -28,7 +28,7 @@ class HavensController < ApplicationController
   def create # rubocop:disable Metrics/MethodLength
     @haven = Haven.new(haven_params)
     @haven.user = current_user
-    @authorize
+    authorize @haven
     respond_to do |format|
       if @haven.save
         format.html do
@@ -81,6 +81,7 @@ class HavensController < ApplicationController
   # Use callbacks to share common setup or constraints between actions.
   def set_haven
     @haven = Haven.find(params[:id])
+    authorize @haven
   end
 
   # Never trust parameters from the scary internet,

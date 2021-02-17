@@ -32,8 +32,8 @@ class HuntersImprovement < ApplicationRecord
 
   # This is the Pundit Policy that governs HunterImprovement access
   #
-  # @see HasHunterPolicy
+  # @see HuntersImprovementPolicy
   def self.policy_class
-    HasHunterPolicy
+    HuntersImprovementPolicy
   end
 end

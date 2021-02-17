@@ -32,6 +32,7 @@ class HuntersImprovementsController < ApplicationController
     @hunters_improvement = HuntersImprovement.new(hunters_improvement_params)
     @hunters_improvement.hunter = @hunter
     update_improvable_option
+    authorize @hunters_improvement
 
     respond_to do |format|
       if @hunters_improvement.save
@@ -86,14 +87,14 @@ class HuntersImprovementsController < ApplicationController
   end
 
   private
-
+  # Use callbacks to share common setup or constraints between actions.
   def set_hunter
     @hunter = Hunter.find(params[:hunter_id])
   end
 
-  # Use callbacks to share common setup or constraints between actions.
   def set_hunters_improvement
     @hunters_improvement = HuntersImprovement.find(params[:id])
+    authorize @hunters_improvement
   end
 
   def set_improvements
