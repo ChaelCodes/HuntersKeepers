@@ -16,4 +16,11 @@ namespace :data do
       playbooks.update_all('backstory = config')
     end
   end
+
+  desc 'Delete unauthorized record creation'
+  task delete_unauth_improvements: :environment do
+    Improvement.where("created_at >  to_timestamp('15 Feb 2021', 'DD Mon YYYY')")
+               .where("created_at < to_timestamp('18 Feb 2021', 'DD Mon YYYY')")
+               .delete_all
+  end
 end
