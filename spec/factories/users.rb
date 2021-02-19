@@ -4,20 +4,34 @@
 #
 # Table name: users
 #
-#  id                     :bigint           not null, primary key
-#  admin                  :boolean
-#  banned_at              :datetime
-#  confirmation_sent_at   :datetime
-#  confirmation_token     :string
-#  confirmed_at           :datetime
-#  email                  :string           default(""), not null
-#  encrypted_password     :string           default(""), not null
-#  remember_created_at    :datetime
-#  reset_password_sent_at :datetime
-#  reset_password_token   :string
-#  unconfirmed_email      :string
-#  created_at             :datetime         not null
-#  updated_at             :datetime         not null
+# @!attribute id
+#   @return []
+# @!attribute admin
+#   @return [Boolean]
+# @!attribute banned_at
+#   @return [Time]
+# @!attribute confirmation_sent_at
+#   @return [Time]
+# @!attribute confirmation_token
+#   @return [String]
+# @!attribute confirmed_at
+#   @return [Time]
+# @!attribute email
+#   @return [String]
+# @!attribute encrypted_password
+#   @return [String]
+# @!attribute remember_created_at
+#   @return [Time]
+# @!attribute reset_password_sent_at
+#   @return [Time]
+# @!attribute reset_password_token
+#   @return [String]
+# @!attribute unconfirmed_email
+#   @return [String]
+# @!attribute created_at
+#   @return [Time]
+# @!attribute updated_at
+#   @return [Time]
 #
 # Indexes
 #

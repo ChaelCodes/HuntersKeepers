@@ -5,11 +5,16 @@
 #
 # Table name: hunters_moves
 #
-#  id        :bigint           not null, primary key
-#  advanced  :boolean
-#  haven_id  :bigint
-#  hunter_id :bigint
-#  move_id   :bigint
+# @!attribute id
+#   @return []
+# @!attribute advanced
+#   @return [Boolean]
+# @!attribute haven_id
+#   @return []
+# @!attribute hunter_id
+#   @return []
+# @!attribute move_id
+#   @return []
 #
 # Indexes
 #

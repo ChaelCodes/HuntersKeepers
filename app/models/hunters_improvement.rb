@@ -6,10 +6,14 @@
 #
 # Table name: hunters_improvements
 #
-#  id             :bigint           not null, primary key
-#  improvable     :jsonb
-#  hunter_id      :integer
-#  improvement_id :integer
+# @!attribute id
+#   @return []
+# @!attribute improvable
+#   @return [Hash]
+# @!attribute hunter_id
+#   @return [Integer]
+# @!attribute improvement_id
+#   @return [Integer]
 #
 class HuntersImprovement < ApplicationRecord
   belongs_to :hunter

@@ -5,19 +5,32 @@
 #
 # Table name: moves
 #
-#  id            :bigint           not null, primary key
-#  description   :string
-#  haven         :boolean
-#  name          :string
-#  rating        :integer
-#  seven_to_nine :string
-#  six_and_under :string
-#  ten_plus      :string
-#  twelve_plus   :string
-#  type          :string
-#  created_at    :datetime         not null
-#  updated_at    :datetime         not null
-#  playbook_id   :bigint
+# @!attribute id
+#   @return []
+# @!attribute description
+#   @return [String]
+# @!attribute haven
+#   @return [Boolean]
+# @!attribute name
+#   @return [String]
+# @!attribute rating
+#   @return [Integer]
+# @!attribute seven_to_nine
+#   @return [String]
+# @!attribute six_and_under
+#   @return [String]
+# @!attribute ten_plus
+#   @return [String]
+# @!attribute twelve_plus
+#   @return [String]
+# @!attribute type
+#   @return [String]
+# @!attribute created_at
+#   @return [Time]
+# @!attribute updated_at
+#   @return [Time]
+# @!attribute playbook_id
+#   @return []
 #
 # Indexes
 #
