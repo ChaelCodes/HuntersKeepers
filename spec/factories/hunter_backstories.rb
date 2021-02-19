@@ -2,12 +2,18 @@
 #
 # Table name: hunter_backstories
 #
-#  id          :bigint           not null, primary key
-#  choices     :jsonb
-#  created_at  :datetime         not null
-#  updated_at  :datetime         not null
-#  hunter_id   :bigint
-#  playbook_id :bigint
+# @!attribute id
+#   @return []
+# @!attribute choices
+#   @return [Hash]
+# @!attribute created_at
+#   @return [Time]
+# @!attribute updated_at
+#   @return [Time]
+# @!attribute hunter_id
+#   @return []
+# @!attribute playbook_id
+#   @return []
 #
 # Indexes
 #

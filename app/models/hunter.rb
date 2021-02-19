@@ -6,21 +6,36 @@
 #
 # Table name: hunters
 #
-#  id          :bigint           not null, primary key
-#  charm       :integer
-#  cool        :integer
-#  experience  :integer
-#  harm        :integer
-#  luck        :integer
-#  name        :string
-#  retired     :boolean
-#  sharp       :integer
-#  tough       :integer
-#  weird       :integer
-#  created_at  :datetime         not null
-#  updated_at  :datetime         not null
-#  playbook_id :bigint
-#  user_id     :bigint
+# @!attribute id
+#   @return []
+# @!attribute charm
+#   @return [Integer]
+# @!attribute cool
+#   @return [Integer]
+# @!attribute experience
+#   @return [Integer]
+# @!attribute harm
+#   @return [Integer]
+# @!attribute luck
+#   @return [Integer]
+# @!attribute name
+#   @return [String]
+# @!attribute retired
+#   @return [Boolean]
+# @!attribute sharp
+#   @return [Integer]
+# @!attribute tough
+#   @return [Integer]
+# @!attribute weird
+#   @return [Integer]
+# @!attribute created_at
+#   @return [Time]
+# @!attribute updated_at
+#   @return [Time]
+# @!attribute playbook_id
+#   @return []
+# @!attribute user_id
+#   @return []
 #
 # Indexes
 #
@@ -31,6 +46,7 @@
 #
 #  fk_rails_...  (playbook_id => playbooks.id)
 #  fk_rails_...  (user_id => users.id)
+#
 class Hunter < ApplicationRecord
   MAX_LUCK = 7
 
