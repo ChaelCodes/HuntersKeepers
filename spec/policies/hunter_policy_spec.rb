@@ -21,6 +21,7 @@ RSpec.describe HunterPolicy, type: :policy do
 
   permissions :create? do
     it { expect(subject).to permit(user, hunter) }
+    it { expect(subject).to permit(admin, hunter) }
     it { expect(subject).not_to permit(nil, hunter) }
     it { expect(subject).not_to permit(banned_user, hunter) }
   end
