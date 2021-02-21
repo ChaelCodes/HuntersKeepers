@@ -79,19 +79,10 @@ RSpec.describe Playbook, type: :model do
     end
   end
 
-  # describe '#backstory' do
-  #   subject { playbook.backstory }
-  #   let(:playbook) { build :playbook, :with_backstory }
+  describe '#backstory' do
+    subject { playbook.backstory }
 
-  #   it 'extracts and parses the backstory' do
-  #     is_expected.to eq({"name" => "Fate", "headings" => [{'name'=> "How you found out.", 'count'=> 1, 'choices'=> ["Nightmares and visions", "Some weirdo told you."]  }]})
-  #   end
-  # end
-
-  describe '#config' do
-    subject { playbook.config }
-
-    it { is_expected.to be_empty }
+    it { is_expected.to be_nil }
 
     context 'with backstory' do
       let(:playbook) { build :playbook, :with_backstory }
@@ -103,8 +94,8 @@ RSpec.describe Playbook, type: :model do
       # Try replacing #attribute(:config, :playbook_config) with attribute(:config, Playbook::ConfigType.new)
       # Good luck, and remember to thank exegete for this message!
       it 'encapsulates backstory in value object' do
-        expect(subject).to be_kind_of(Playbook::ConfigType)
-        expect(subject.backstory[:name]).to eq 'Fate'
+        expect(subject).to be_kind_of(BackStories::Fate)
+        expect(subject.name).to eq 'Fate'
         expect(subject.headings).to include(
         {name: "How you found out.",
                               count: 1,
@@ -114,40 +105,40 @@ RSpec.describe Playbook, type: :model do
     end
   end
 
-  describe '#config=' do
-    subject(:set_config) { playbook.config = config }
+  describe '#backstory=' do
+    subject(:set_backstory) { playbook.backstory = config }
 
     context 'with string' do
-      let(:config) { '{"backstory": {"name":"Fate"}}' }
+      let(:config) { '{"name":"Fate"}' }
 
       it 'sets the playbook config' do
-        set_config
-        expect(playbook.backstory[:name]).to eq "Fate"
+        set_backstory
+        expect(playbook.backstory.name).to eq "Fate"
       end
     end
 
     context 'with hash' do
-      let(:config) { {backstory: {name: "Fate"}} }
+      let(:config) { {name: "Fate"} }
 
       it 'sets the playbook config' do
-        set_config
-        expect(playbook.backstory[:name]).to eq "Fate"
+        set_backstory
+        expect(playbook.backstory.name).to eq "Fate"
       end
 
       it 'maintains data on reload' do
-        set_config
+        set_backstory
         playbook.save
         playbook.reload
-        expect(playbook.backstory[:name]).to eq "Fate"
+        expect(playbook.backstory.name).to eq "Fate"
       end
     end
 
     context 'with ActiveSupport params' do
-      let(:config) { {backstory: {name: "Fate"}}.with_indifferent_access }
+      let(:config) { {name: "Fate"}.with_indifferent_access }
 
       it 'sets the playbook config' do
-        set_config
-        expect(playbook.backstory[:name]).to eq "Fate"
+        set_backstory
+        expect(playbook.backstory.name).to eq "Fate"
       end
     end
   end

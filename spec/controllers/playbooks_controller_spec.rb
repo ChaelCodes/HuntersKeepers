@@ -113,11 +113,11 @@ RSpec.describe PlaybooksController, type: :controller do
         end
 
         context 'with backstory attributes' do
-          let(:attributes) { { name: 'The Unnamed', config: { backstory: { name: 'A NAME' } }} }
+          let(:attributes) { { name: 'The Unnamed', backstory: { name: 'A NAME' } } }
 
           it 'creates a new Playbook' do
             expect { post_create }.to change(Playbook, :count).by(1)
-            expect(Playbook.last.backstory[:name]).to eq 'A NAME' 
+            expect(Playbook.last.backstory.name).to eq 'A NAME'
           end
         end
       end
@@ -166,7 +166,7 @@ RSpec.describe PlaybooksController, type: :controller do
     let(:user) { create :user, :admin }
 
     context 'with valid params' do
-      let(:attributes) { { name: 'The Unnamed', luck_effect: 'This is LUCK' } }
+      let(:attributes) { { name: 'The Unnamed', luck_effect: 'This is LUCK', backstory: { name: 'name' } } }
 
       context 'when html format' do
         let(:format_type) { :html }
@@ -176,6 +176,9 @@ RSpec.describe PlaybooksController, type: :controller do
           expect(playbook.reload).to have_attributes({
             name: 'The Unnamed',
             luck_effect: 'This is LUCK'
+          })
+          expect(playbook.backstory).to have_attributes({
+            name: 'name'
           })
         end
 
