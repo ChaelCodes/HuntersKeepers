@@ -4,8 +4,16 @@
   <%= form.labelled_text_field :name %>
   <%= form.labelled_text_field :description %>
   <%= form.labelled_text_field :luck_effect %>
-  <%= form.labelled_text_area :backstory %>
 
+  <h5 class="title is-5">Backstory</h5>
+  <%= form.labelled_text_field :backstory_name, input_options: { name: 'playbook[backstory][name]', value: playbook.backstory&.name } %>
+  <% playbook.backstory&.headings&.each do |heading| %> 
+    <%= form.labelled_text_field :backstory_heading_name, input_options: { name: "playbook[backstory][headings][][name]", value: heading[:name] } %>
+    <%= form.labelled_number_field :backstory_heading_count, input_options: { name: "playbook[backstory][headings][][count]", value: heading[:count] } %>
+    <% heading[:options]&.each do |option| %>
+      <%= form.labelled_text_field :backstory_heading_option, input_options: { name: "playbook[backstory][headings][][options][]", value: option } %>
+    <% end %>
+  <% end %>
   <div class="actions">
     <%= form.submit %>
   </div>
