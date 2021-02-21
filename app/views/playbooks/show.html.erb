@@ -37,11 +37,11 @@
       <% end %>
     </ul>
     <div class="block content">
-      <h4 class="subtitle"><%= @playbook.backstory.name %></h4>
-      <% @playbook.backstory.headings.each do |heading| %>
+      <h4 class="subtitle"><%= @playbook.backstory&.name %></h4>
+      <% @playbook.backstory&.headings&.each do |heading| %>
         <h5 class="title is-6"><%= heading[:name] %></h5>
         <h5 class="subtitle is-6">You can pick <%= heading[:count] %>.</h5>
-        <ul><% heading[:options].each do |option| %>
+        <ul><% heading[:options]&.each do |option| %>
           <li><%= option %></li>
         <% end %></ul>
       <% end %>
