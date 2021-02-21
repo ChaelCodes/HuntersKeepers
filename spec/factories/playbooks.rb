@@ -26,7 +26,7 @@ FactoryBot.define do
     luck_effect { 'When you spend a point of Luck, lose a point of luck.' }
 
     trait :with_backstory do
-      backstory { { backstory: {
+      backstory { {
                   name: "Fate",
                   headings: [{name: "How you found out.",
                               count: 1,
