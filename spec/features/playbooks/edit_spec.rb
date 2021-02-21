@@ -21,7 +21,7 @@ describe 'playbooks#edit' do
       expect(playbook.reload).to have_attributes(
         luck_effect: 'This is a luck effect.'
       )
-      expect(playbook.backstory.headings).to include({name: "A DIFFERENT NAME", count: 2})
+      expect(playbook.backstory.headings).to include({name: "A DIFFERENT NAME", count: '2'})
   end
 
   context 'with regular user' do
