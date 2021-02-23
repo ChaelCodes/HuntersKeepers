@@ -239,7 +239,9 @@ RSpec.describe PlaybooksController, type: :controller do
 
         it 'destroys the requested playbook' do
           playbook
-          expect { delete_destroy }.to change(Playbook, :count).by(-1)
+          delete_destroy
+          playbook.reload
+          expect(playbook.archived_at).not_to be_nil
         end
 
         it 'redirects to the playbooks list' do
