@@ -27,6 +27,14 @@ class Playbook < ApplicationRecord
   has_many :moves, dependent: :destroy
   has_many :ratings, dependent: :destroy
   validates :name, presence: true
+  
+  default_scope { unarchived }
+  scope :unarchived, -> { where(archived_at: nil ) } 
+
+  def archive!
+    self.archived_at ||= Time.zone.now
+    save
+  end
 
   def to_s
     name

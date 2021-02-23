@@ -56,7 +56,7 @@ class PlaybooksController < ApplicationController
   # DELETE /playbooks/1
   # DELETE /playbooks/1.json
   def destroy
-    @playbook.destroy
+    @playbook.archive!
     respond_to do |format|
       format.html { redirect_to playbooks_url, notice: t('.success') }
       format.json { head :no_content }
