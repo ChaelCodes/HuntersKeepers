@@ -29,10 +29,10 @@ class Playbook < ApplicationRecord
   validates :name, presence: true
   
   default_scope { unarchived }
-  scope :unarchived, -> { where(archived_at: nil)} 
+  scope :unarchived, -> { where(archived_at: nil )} 
 
   def archive!
-    self.archived_at ||= Time.now
+    self.archived_at ||= Time.zone.now
     save
   end
 
