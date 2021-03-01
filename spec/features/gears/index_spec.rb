@@ -10,7 +10,6 @@ describe 'gears#index' do
       expect(row).to have_content 'Description'
       expect(row).to have_content 'Harm'
       expect(row).to have_content 'Armor'
-      expect(row).to have_content 'Tags'
       expect(row).to have_content 'Playbook'
     end
     page.all('tbody > tr').each do |row|
