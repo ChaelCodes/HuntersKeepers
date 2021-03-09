@@ -1,49 +1,49 @@
 <% if @move.playbook %>
   <p>
-    <strong>Playbook:</strong>
+    <strong><%= t('.playbook') %></strong>
     <%= link_to @move.playbook.name, @move.playbook %>
   </p>
 <% end %>
 
 <p>
-  <strong>Name:</strong>
+  <strong><%= t('.name') %></strong>
   <%= @move.name %>
 </p>
 
 <p>
-  <strong>Description:</strong>
+  <strong><%= t('.description') %></strong>
   <%= @move.description %>
 </p>
 
 <p>
-  <strong>Haven:</strong>
+  <strong><%= t('.haven') %></strong>
   <%= @move.haven %>
 </p>
 
 <p>
-  <strong>Rating:</strong>
+  <strong><%= t('.rating') %></strong>
   <%= @move.rating %>
 </p>
 
 <p>
-  <strong>On a failed roll:</strong>
+  <strong><%= t('.failed_roll') %></strong>
   <%= @move.six_and_under %>
 </p>
 
 <p>
-  <strong>On a mixed success:</strong>
+  <strong><%= t('.mixed_success') %></strong>
   <%= @move.seven_to_nine %>
 </p>
 
 <p>
-  <strong>On a 10+:</strong>
+  <strong><%= t('.ten_plus') %></strong>
   <%= @move.ten_plus %>
 </p>
 
 <p>
-  <strong>Advanced Move, on a 12+:</strong>
+  <strong><%= t('.advanced_move_twelve_plus') %></strong>
   <%= @move.twelve_plus %>
 </p>
 
-<%= link_to 'Edit', edit_move_path(@move) %> |
-<%= link_to 'Back', moves_path %>
+<%= link_to t('.edit_link'), edit_move_path(@move) %> |
+<%= link_to t('.back_link'), moves_path %>

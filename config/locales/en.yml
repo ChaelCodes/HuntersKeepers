@@ -62,6 +62,40 @@ en:
       success: "Hunter backstory was successfully updated."
     destroy:
       success: "Hunter backstory was successfully destroyed."
+  moves:
+    create:
+      notice: "Move was successfully created."
+    edit:
+      title: "Editing Move"
+      show_link: "Show"
+      back_link: "Back"
+    index:
+      title: "Moves"
+      source: "Source"
+      name: "Name"
+      rating: "Rating"
+      edit_link: "Edit"
+      destroy_link: "Destroy"
+      new_move: "New Move"
+    new:
+      title: "New Move"
+      back_link: "Back"
+    show:
+      playbook: "Playbook:"
+      name: "Name:"
+      description: "Description:"
+      haven: "Haven:"
+      rating: "Rating:"
+      failed_roll: "On a failed roll:"
+      mixed_success: "On a mixed success:"
+      ten_plus: "On a 10+:"
+      advanced_move_twelve_plus: "Advanced Move, on a 12+:"
+      edit_link: "Edit"
+      back_link: "Back"
+    update:
+      notice: "Move was successfully updated."
+    destroy:
+      notice: "Move was successfully destroyed."
   playbooks:
     create:
       success: "Playbook was successfully created."
