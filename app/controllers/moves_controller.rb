@@ -51,7 +51,7 @@ class MovesController < ApplicationController
     authorize @move
     respond_to do |format|
       if @move.save
-        format.html { redirect_to move_path(@move), notice: 'Move was successfully created.' }
+        format.html { redirect_to move_path(@move), notice: t('.notice') }
         format.json { render :show, status: :created, location: @move }
       else
         format.html { render :new }
@@ -65,7 +65,7 @@ class MovesController < ApplicationController
   def update
     respond_to do |format|
       if @move.update(move_params)
-        format.html { redirect_to move_path(@move), notice: 'Move was successfully updated.' }
+        format.html { redirect_to move_path(@move), notice: t('.notice') }
         format.json { render :show, status: :ok, location: @move }
       else
         format.html { render :edit }
@@ -79,7 +79,7 @@ class MovesController < ApplicationController
   def destroy
     @move.destroy
     respond_to do |format|
-      format.html { redirect_to moves_url, notice: 'Move was successfully destroyed.' }
+      format.html { redirect_to moves_url, notice: t('.notice') }
       format.json { head :no_content }
     end
   end
