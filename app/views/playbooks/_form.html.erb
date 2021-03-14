@@ -7,7 +7,7 @@
 
   <h5 class="title is-5">Backstory</h5>
   <%= form.labelled_text_field :backstory_name, input_options: { name: 'playbook[backstory][name]', value: playbook.backstory&.name } %>
-  <% playbook.backstory&.headings&.each do |heading| %> 
+  <% playbook.backstory&.headings&.each do |heading| %>
     <%= form.labelled_text_field :backstory_heading_name, input_options: { name: "playbook[backstory][headings][][name]", value: heading[:name] } %>
     <%= form.labelled_number_field :backstory_heading_count, input_options: { name: "playbook[backstory][headings][][count]", value: heading[:count] } %>
     <% heading[:options]&.each do |option| %>
