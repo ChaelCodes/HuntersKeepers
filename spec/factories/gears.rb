@@ -38,6 +38,7 @@ FactoryBot.define do
     trait :with_tags do
       after(:create) do |gear|
         gear.tag_list = %w(heavy slow)
+        gear.save
       end
     end
   end
