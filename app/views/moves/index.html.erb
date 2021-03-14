@@ -1,11 +1,11 @@
-<h1>Moves</h1>
+<h1><%= t('.title') %></h1>
 
 <table class="table">
   <thead>
     <tr>
-      <th>Source</th>
+      <th><%= t('.source') %></th>
       <th>Name</th>
-      <th>Rating</th>
+      <th><%= t('.rating') %></th>
       <th colspan="2"></th>
     </tr>
   </thead>
@@ -16,8 +16,8 @@
         <td><%= move_source(move) %></td>
         <td><%= link_to_move(move) %></td>
         <td><%= move.rating %></td>
-        <td><%= link_to 'Edit', edit_move_path(move) %></td>
-        <td><%= link_to 'Destroy', move_path(move), method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td><%= link_to t('.edit_link'), edit_move_path(move) %></td>
+        <td><%= link_to t('.destroy_link'), move_path(move), method: :delete, data: { confirm: 'Are you sure?' } %></td>
       </tr>
     <% end %>
   </tbody>
@@ -25,4 +25,4 @@
 
 <br>
 
-<%= link_to 'New Move', new_move_path %>
+<%= link_to t('.new_move'), new_move_path %>
