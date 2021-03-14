@@ -25,7 +25,10 @@ RSpec.describe "/hunter_backstories", type: :request do
   }
 
   let(:invalid_attributes) {
-    skip("Add a hash of attributes invalid for your model")
+    {
+      hunter_id: hunter.id,
+      playbook_id: nil
+    }
   }
 
   let(:hunter_backstory) { create :hunter_backstory, hunter: hunter, playbook: playbook }
@@ -68,9 +71,11 @@ RSpec.describe "/hunter_backstories", type: :request do
   end
 
   describe "POST /create" do
-    subject { post hunter_hunter_backstories_url(hunter_id: hunter.id), params: { hunter_backstory: attributes } }
     context "with valid parameters" do
-      let(:attributes) { valid_attributes }
+      subject do
+        post hunter_hunter_backstories_url(hunter_id: hunter.id),
+                params: { hunter_backstory: valid_attributes }
+      end
 
       it "creates a new HunterBackstory" do
         expect { subject }.to change(HunterBackstory, :count).by(1)
@@ -83,7 +88,10 @@ RSpec.describe "/hunter_backstories", type: :request do
     end
 
     context "with invalid parameters" do
-      let(:attributes) { invalid_attributes }
+      subject do
+        post hunter_hunter_backstories_url(hunter_id: hunter.id),
+          params: { hunter_backstory: invalid_attributes }
+      end
 
       it "does not create a new HunterBackstory" do
         expect { subject }.to change(HunterBackstory, :count).by(0)
@@ -98,15 +106,16 @@ RSpec.describe "/hunter_backstories", type: :request do
 
   describe "PATCH /update" do
     context "with valid parameters" do
-      let(:new_attributes) {
-        skip("Add a hash of attributes valid for your model")
-      }
+      let(:playbook) { create :playbook }
+      let(:new_attributes) do
+        { playbook: playbook }
+      end
 
       it "updates the requested hunter_backstory" do
         hunter_backstory = HunterBackstory.create! valid_attributes
         patch hunter_backstory_url(hunter_backstory), params: { hunter_backstory: new_attributes }
         hunter_backstory.reload
-        skip("Add assertions for updated state")
+        expect(hunter_backstory.playbook_id).to eq playbook.id
       end
 
       it "redirects to the hunter_backstory" do
