@@ -4,11 +4,18 @@
   <%= form.labelled_collection_select(:hunter_id, Hunter.all, :id, :name) %>
   <%= form.labelled_collection_select(:playbook_id, Playbook.all, :id, :name) %>
   <%= form.labelled_text_area :choices, input_options: { value: hunter_backstory.choices&.to_json } %>
-  <h2 class="title">Configure backstory of <%= hunter_backstory.hunter.playbook.name %></h2>
-  <%= hunter_backstory.hunter.playbook.backstory %>
-  <%# <% hunter_backstory.hunter.playbook.config.headings.each do |heading| %>
-
-  <%# <% end %>
+  <h5 class="title is-5">Configure backstory of <%= hunter_backstory.hunter.playbook.name %></h5>
+  <% hunter_backstory.hunter.playbook.backstory.headings.each do |heading| %>
+    <h6 class="title is-6"><%= heading[:name] %> (<%= heading[:count] %>)</h6>
+    <ul>
+      <% (0...heading[:count]).each do |_| %>
+        <%= form.select("choices", heading[:options], options: { name: "hunter_backstory[choices][#{heading[:name]}]" }) %>
+      <% end %>
+    <% heading[:options].each do |option| %>
+      <li><%= option %></li>
+    <% end %>
+    </ul>
+  <% end %>
   <div class="actions">
     <%= form.submit class: 'button is-primary' %>
   </div>
