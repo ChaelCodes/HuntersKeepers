@@ -31,7 +31,7 @@ import RollHunterMoves from '../components/roll_hunter_moves.vue'
 Vue.use(Buefy, TurbolinksAdapter)
 
 document.addEventListener('turbolinks:load', () => {
-  const app = new Vue({
+  new Vue({
     el: '#vue-app',
     components: { HunterGear, HunterMove, HunterMoves, HunterNewForm, HuntersImprovementForm, RollHunterMoves },
   }).default
