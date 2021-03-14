@@ -90,6 +90,6 @@ class HunterBackstoriesController < ApplicationController
   # Only allow a list of trusted parameters through.
   def hunter_backstory_params
     params.require(:hunter_backstory)
-          .permit(:hunter_id, :playbook_id)
+          .permit(:hunter_id, :playbook_id, :choices)
   end
 end

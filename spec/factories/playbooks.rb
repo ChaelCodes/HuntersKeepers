@@ -27,9 +27,15 @@ FactoryBot.define do
 
     trait :with_backstory do
       backstory {
-        {name: "Fate", headings: [
-          {name: "How you found out.", count: 1, choices: ["Nightmares and visions", "Some weirdo told you."]}
-        ]}.to_json }
+        {
+          name: "Fate",
+          headings: [{
+                      name: "How you found out.",
+                      count: 1,
+                      choices: ["Nightmares and visions", "Some weirdo told you."]
+                      }]
+        }.to_json
+      }
     end
   end
 end
