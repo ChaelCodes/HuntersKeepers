@@ -2,17 +2,19 @@
   <div class="column">
     <h1 class="title"><%= @playbook.name %></h1>
     <p class="is-italic"><%= @playbook.description %></p>
-    <h4 class="subtitle" style="margin-top:1rem; margin-bottom:.5rem"><%= t('.ratings') %></h4>
-    <ul>
-      <% @playbook.ratings.each do |rating| %>
-        <li><%= display_rating(rating) %></li>
+    <div class="block">
+      <h4 class="subtitle" style="margin-top:1rem; margin-bottom:.5rem"><%= t('.ratings') %></h4>
+      <ul>
+        <% @playbook.ratings.each do |rating| %>
+          <li><%= display_rating(rating) %></li>
+        <% end %>
+      </ul>
+    </div>
+    <div class="block">
+      <% if @playbook.luck_effect %>
+        <p><%= t('.luck_effect_html', playbook_name: @playbook.name, luck_effect: @playbook.luck_effect) %></p>
       <% end %>
-    </ul>
-    <% if @playbook.luck_effect %>
-      <p><%= t('.luck_effect_html', playbook_name: @playbook.name, luck_effect: @playbook.luck_effect) %></p>
-    <% end %>
-
-    <h4 class="subtitle is-4" style="margin-top:1rem; margin-bottom:.5rem"><%= @playbook.backstory %></h4>
+    </div>
     <%= show_page_buttons(@playbook) %>
   </div>
   <div class="column">
@@ -34,5 +36,15 @@
         <li><%= link_to_improvement(improvement) %></li>
       <% end %>
     </ul>
+    <div class="block content">
+      <h4 class="subtitle"><%= @playbook.backstory&.name %></h4>
+      <% @playbook.backstory&.headings&.each do |heading| %>
+        <h5 class="title is-6"><%= heading[:name] %></h5>
+        <h5 class="subtitle is-6">You can pick <%= heading[:count] %>.</h5>
+        <ul><% heading[:options]&.each do |option| %>
+          <li><%= option %></li>
+        <% end %></ul>
+      <% end %>
+    </div>
   </div>
 </div>

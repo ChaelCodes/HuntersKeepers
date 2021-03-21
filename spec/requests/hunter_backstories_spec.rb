@@ -20,14 +20,15 @@ RSpec.describe "/hunter_backstories", type: :request do
   let(:valid_attributes) {
     {
       hunter_id: hunter.id,
-      playbook_id: playbook.id
+      playbook_id: playbook.id,
+      choices: { "Doom": ["Doom flag"] }
     }
   }
 
   let(:invalid_attributes) {
     {
       hunter_id: hunter.id,
-      playbook_id: nil
+      playbook_id: playbook.id
     }
   }
 
@@ -38,17 +39,20 @@ RSpec.describe "/hunter_backstories", type: :request do
   end
 
   describe "GET /index" do
+    subject(:get_index) { get hunter_backstories_url }
+    let!(:hunter_backstory) { create(:hunter_backstory) }
+
     it "renders a successful response" do
-      HunterBackstory.create! valid_attributes
-      get hunter_backstories_url
+      get_index
       expect(response).to be_successful
     end
   end
 
   describe "GET /show" do
+    subject(:get_show) { get hunter_backstory_url(hunter_backstory) }
+
     it "renders a successful response" do
-      hunter_backstory
-      get hunter_backstory_url(hunter_backstory)
+      get_show
       expect(response).to be_successful
     end
   end
@@ -105,30 +109,30 @@ RSpec.describe "/hunter_backstories", type: :request do
   end
 
   describe "PATCH /update" do
+    subject(:patch_update) { patch hunter_backstory_url(hunter_backstory), params: { hunter_backstory: attributes } }
+
     context "with valid parameters" do
       let(:playbook) { create :playbook }
-      let(:new_attributes) do
-        { playbook: playbook }
-      end
+      let(:attributes) { valid_attributes }
+      let!(:hunter_backstory) { create(:hunter_backstory) }
 
       it "updates the requested hunter_backstory" do
-        hunter_backstory = HunterBackstory.create! valid_attributes
-        patch hunter_backstory_url(hunter_backstory), params: { hunter_backstory: new_attributes }
+        patch_update
         hunter_backstory.reload
         expect(hunter_backstory.playbook_id).to eq playbook.id
       end
 
       it "redirects to the hunter_backstory" do
-        hunter_backstory = HunterBackstory.create! valid_attributes
-        patch hunter_backstory_url(hunter_backstory), params: { hunter_backstory: new_attributes }
+        patch_update
         hunter_backstory.reload
         expect(response).to redirect_to(hunter_backstory_url(hunter_backstory))
       end
     end
 
     context "with invalid parameters" do
+      let(:attributes) { invalid_attributes }
+
       it "renders a successful response (i.e. to display the 'edit' template)" do
-        hunter_backstory = HunterBackstory.create! valid_attributes
         patch hunter_backstory_url(hunter_backstory), params: { hunter_backstory: invalid_attributes }
         expect(response).to be_successful
       end

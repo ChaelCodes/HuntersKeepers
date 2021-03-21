@@ -25,6 +25,9 @@
 class HunterBackstory < ApplicationRecord
   belongs_to :hunter
   belongs_to :playbook
+  delegate :backstory, to: :playbook
+
+  validates :choices, presence: true
 
   # This is the Pundit Policy that governs HunterBackstory access
   #

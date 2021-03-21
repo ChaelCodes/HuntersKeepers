@@ -75,6 +75,11 @@ class PlaybooksController < ApplicationController
   # only permit the allow list through.
   def playbook_params
     params.require(:playbook)
-          .permit(:name, :description, :luck_effect, :backstory)
+          .permit(:name, :description, :luck_effect)
+          .tap do |allowlisted|
+            allowlisted[:backstory] = params[:playbook]
+                                        .fetch(:backstory, ActionController::Parameters.new)
+                                        .permit!
+          end
   end
 end
