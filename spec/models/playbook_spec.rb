@@ -97,9 +97,11 @@ RSpec.describe Playbook, type: :model do
         expect(subject).to be_kind_of(BackStories::Fate)
         expect(subject.name).to eq 'Fate'
         expect(subject.headings).to include(
-        {name: "How you found out.",
-                              count: 1,
-                              choices: ["Nightmares and visions", "Some weirdo told you."]  }
+          {
+            name: "How you found out",
+            count: 1,
+            options: ["Nightmares and visions", "Some weirdo told you."]
+          }
         )
       end
     end
