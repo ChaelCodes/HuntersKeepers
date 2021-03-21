@@ -4,7 +4,7 @@ require 'rails_helper'
 
 describe 'playbooks#edit' do
   let(:user) { create :user, :admin }
-  let!(:playbook) { create :playbook, luck_effect: 'Is lucky' }
+  let!(:playbook) { create :playbook, :with_backstory, luck_effect: 'Is lucky' }
 
   before :each do
     sign_in user
@@ -14,11 +14,16 @@ describe 'playbooks#edit' do
   it 'edits the playbook' do
     expect(page).to have_content 'Editing Playbook'
     fill_in 'playbook[luck_effect]', with: 'This is a luck effect.'
+    heading_name = find_field('', name: 'playbook[backstory][headings][][name]', match: :first)
+    heading_name.fill_in with: 'A DIFFERENT NAME'
+    heading_count = find_field('', name: 'playbook[backstory][headings][][count]', match: :first)
+    heading_count.fill_in with: 2
     click_button 'Update Playbook'
-      expect(page).to have_content('Playbook was successfully updated.')
-      expect(playbook.reload).to have_attributes(
-        luck_effect: 'This is a luck effect.'
-      )
+    expect(page).to have_content('Playbook was successfully updated.')
+    expect(playbook.reload).to have_attributes(
+      luck_effect: 'This is a luck effect.'
+    )
+    expect(playbook.backstory.headings).to include({name: "A DIFFERENT NAME", count: '2', options: ["Nightmares and visions", "Some weirdo told you."]})
   end
 
   context 'with regular user' do

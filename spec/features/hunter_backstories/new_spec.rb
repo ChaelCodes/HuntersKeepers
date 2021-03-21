@@ -5,7 +5,7 @@ require 'rails_helper'
 describe 'hunters/:id/hunter_backstories/new' do
   let(:user) { create :user }
   let(:hunter) { create :hunter, user: user, playbook: playbook }
-  let(:playbook) { create :playbook }
+  let(:playbook) { create :playbook, :with_backstory }
 
   before :each do
     sign_in user
@@ -16,17 +16,19 @@ describe 'hunters/:id/hunter_backstories/new' do
   it 'creates a hunter backstory' do
     subject
     expect(page).to have_content 'New Hunter'
-    expect(page).to have_select('hunter_backstory[hunter_id]',
-                                selected: hunter.name)
-    expect(page).to have_select('hunter_backstory[playbook_id]',
-                                selected: playbook.name)
-    fill_in 'hunter_backstory[choices]',
-            with: '[{ "name": "Fate", "choices": ["Some weirdo told you"]}]'
+    select('Some weirdo told you', from: "hunter_backstory[choices][How you found out][]")
+    # TODO Handle multiple selections
+    page.find_by_id('hunter_backstory_choice_Heroic_0').find("option[value='Sacrifice']").select_option
+    page.find_by_id('hunter_backstory_choice_Heroic_1').find("option[value='Visions']").select_option
     click_button 'Create Hunter backstory'
     expect(page).to have_content('Hunter backstory was successfully created.')
     expect(HunterBackstory.last).to have_attributes(
       hunter_id: hunter.id,
-      playbook_id: playbook.id
+      playbook_id: playbook.id,
+      choices: {
+        "How you found out" => ["Some weirdo told you."],
+        "Heroic" => ["Sacrifice", "Visions"]
+      }
     )
   end
 

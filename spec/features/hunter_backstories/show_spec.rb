@@ -4,7 +4,7 @@ require 'rails_helper'
 
 describe 'hunter_backstories/:id' do
   let(:user) { create :user }
-  let(:hunter_backstory) { create :hunter_backstory, :with_choices }
+  let(:hunter_backstory) { create :hunter_backstory }
 
   before :each do
     sign_in user

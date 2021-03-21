@@ -23,11 +23,11 @@
 FactoryBot.define do
   factory :hunter_backstory do
     hunter
-    playbook
-    choices { {} }
+    association :playbook, :with_backstory
+    choices { { 'How you found out': ['Some weirdo told you.']} }
 
-    trait 'with_choices' do
-      choices { [{ name: 'How you found out', choices: ['Some weirdo told you']}] }
+    trait 'without_choices' do
+      choices { {} }
     end
   end
 end
