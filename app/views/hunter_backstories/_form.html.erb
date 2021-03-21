@@ -5,7 +5,7 @@
   <h5 class="title is-5">Configure backstory of <%= hunter_backstory.playbook.name %></h5>
   <% hunter_backstory.backstory&.headings&.each do |heading| %>
     <h6 class="title is-6"><%= heading[:name] %> (<%= heading[:count] %>)</h6>
-    <% (0...heading[:count]).each do |index| %>
+    <% (0...heading[:count].to_i).each do |index| %>
       <% if heading[:options] %>
         <%= form.select("choice_#{heading[:name]}_#{index}",
                         heading[:options],
