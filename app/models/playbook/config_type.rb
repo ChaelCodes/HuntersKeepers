@@ -5,7 +5,7 @@ module BackStories
     end
 
     def headings
-      self.backstory[:headings]
+      self.backstory[:headings] || []
     end
 
     def to_hash

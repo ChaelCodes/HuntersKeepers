@@ -29,7 +29,6 @@ class HunterBackstoriesController < ApplicationController
   # POST /hunter_backstories.json
   def create
     @hunter_backstory = HunterBackstory.new(hunter_backstory_params)
-    @hunter_backstory.choices = JSON.parse(params[:hunter_backstory][:choices]) if params[:hunter_backstory][:choices]
     authorize @hunter_backstory
     respond_to do |format|
       if @hunter_backstory.save
@@ -45,7 +44,6 @@ class HunterBackstoriesController < ApplicationController
   # PATCH/PUT /hunter_backstories/1
   # PATCH/PUT /hunter_backstories/1.json
   def update
-    @hunter_backstory.choices = update_choices
     respond_to do |format|
       if @hunter_backstory.update(hunter_backstory_params)
         format.html { redirect_to @hunter_backstory, notice: t('.success') }
@@ -69,14 +67,6 @@ class HunterBackstoriesController < ApplicationController
 
   private
 
-  def update_choices
-    if params[:hunter_backstory][:choices]
-      JSON.parse(params[:hunter_backstory][:choices])
-    else
-      nil
-    end
-  end
-
   # Use callbacks to share common setup or constraints between actions.
   def set_hunter_backstory
     @hunter_backstory = HunterBackstory.find(params[:id])
@@ -91,5 +81,8 @@ class HunterBackstoriesController < ApplicationController
   def hunter_backstory_params
     params.require(:hunter_backstory)
           .permit(:hunter_id, :playbook_id, :choices)
+          .tap do |allowlisted|
+            allowlisted[:choices] = params[:hunter_backstory].fetch(:choices, ActionController::Parameters.new).permit!
+          end
   end
 end

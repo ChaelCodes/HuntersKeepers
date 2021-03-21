@@ -1,20 +1,22 @@
 <%= form_with(model: hunter_backstory_form_model(hunter_backstory), local: true) do |form| %>
   <%= render 'layouts/errors', errors: hunter_backstory.errors %>
-
-  <%= form.labelled_collection_select(:hunter_id, Hunter.all, :id, :name) %>
-  <%= form.labelled_collection_select(:playbook_id, Playbook.all, :id, :name) %>
-  <%= form.labelled_text_area :choices, input_options: { value: hunter_backstory.choices&.to_json } %>
-  <h5 class="title is-5">Configure backstory of <%= hunter_backstory.hunter.playbook.name %></h5>
-  <% hunter_backstory.hunter.playbook.backstory.headings.each do |heading| %>
+  <%= form.hidden_field :hunter_id %>
+  <%= form.hidden_field :playbook_id %>
+  <h5 class="title is-5">Configure backstory of <%= hunter_backstory.playbook.name %></h5>
+  <% hunter_backstory.backstory&.headings&.each do |heading| %>
     <h6 class="title is-6"><%= heading[:name] %> (<%= heading[:count] %>)</h6>
-    <ul>
-      <% (0...heading[:count]).each do |_| %>
-        <%= form.select("choices", heading[:options], options: { name: "hunter_backstory[choices][#{heading[:name]}]" }) %>
+    <% (0...heading[:count]).each do |index| %>
+      <% if heading[:options] %>
+        <%= form.select("choice_#{heading[:name]}_#{index}",
+                        heading[:options],
+                        {
+                          selected: hunter_backstory.choices&.dig(heading[:name], index) || nil
+                        },
+                        {
+                          name: "hunter_backstory[choices][#{heading[:name]}][]"
+                        }) %>
       <% end %>
-    <% heading[:options].each do |option| %>
-      <li><%= option %></li>
     <% end %>
-    </ul>
   <% end %>
   <div class="actions">
     <%= form.submit class: 'button is-primary' %>
