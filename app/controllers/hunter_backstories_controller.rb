@@ -82,7 +82,10 @@ class HunterBackstoriesController < ApplicationController
     params.require(:hunter_backstory)
           .permit(:hunter_id, :playbook_id, :choices)
           .tap do |allowlisted|
-            allowlisted[:choices] = params[:hunter_backstory].fetch(:choices, ActionController::Parameters.new).permit!
+            allowlisted[:choices] =
+              params[:hunter_backstory]
+              .fetch(:choices, ActionController::Parameters.new)
+              .permit!
           end
   end
 end

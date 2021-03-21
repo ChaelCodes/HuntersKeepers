@@ -1,26 +1,30 @@
+# frozen_string_literal: true
+
 module BackStories
   Fate = Struct.new(:backstory) do
     def name
-      self.backstory[:name]
+      backstory[:name]
     end
 
     def headings
-      self.backstory[:headings] || []
+      backstory[:headings] || []
     end
 
     def to_hash
       {
-        name: self.name,
-        headings: self.headings
+        name: name,
+        headings: headings
       }
     end
 
     def empty?
-      self.backstory.blank?
+      backstory.blank?
     end
   end
 end
 
+# This ConfigType holds Backstory information for the Playbook
+# It automatically converts its data into a BAckstory object
 class Playbook::ConfigType < ActiveRecord::Type::Value
   def cast(value)
     return nil if value.nil?
@@ -31,7 +35,7 @@ class Playbook::ConfigType < ActiveRecord::Type::Value
   end
 
   def serialize(value)
-    return nil if value.nil? || value.empty?
+    return nil if value.blank?
     value.to_hash.to_json
   end
 

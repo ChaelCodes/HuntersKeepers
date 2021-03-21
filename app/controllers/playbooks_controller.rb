@@ -77,7 +77,10 @@ class PlaybooksController < ApplicationController
     params.require(:playbook)
           .permit(:name, :description, :luck_effect)
           .tap do |allowlisted|
-            allowlisted[:backstory] = params[:playbook].fetch(:backstory, ActionController::Parameters.new).permit!
+            allowlisted[:backstory] =
+              params[:playbook]
+              .fetch(:backstory, ActionController::Parameters.new)
+              .permit!
           end
   end
 end
