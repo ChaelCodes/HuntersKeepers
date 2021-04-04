@@ -28,6 +28,8 @@ class Playbook < ApplicationRecord
   has_many :ratings, dependent: :destroy
   validates :name, presence: true
 
+  attribute :backstory, :playbook_config
+
   default_scope { unarchived }
   scope :unarchived, -> { where(archived_at: nil) }
 

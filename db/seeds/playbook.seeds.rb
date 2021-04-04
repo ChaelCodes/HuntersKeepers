@@ -8,7 +8,63 @@
       One, and with your abilities you can save the
       world. If you fail, all will be destroyed. It all rests
       on you. Only you.',
-    luck_effect: 'When you spend a point of Luck, the Keeper will bring your fate into play.'
+    luck_effect: 'When you spend a point of Luck, the Keeper will bring your fate into play.',
+    backstory: {
+      name: "Fate",
+      headings: [
+        {
+          name: 'How you found out',
+          count: 1,
+          options: [
+            "Nightmares and visions",
+            "Some weirdo told you",
+            "An ancient cult found you",
+            "Sought out by your nemesis",
+            "Attacked by monsters",
+            "Trained from birth",
+            "You found the prophecy"
+          ]
+        },
+        {
+          name: "Heroic",
+          count: 2,
+          options: [
+            "Sacrifice",
+            "You are the Champion",
+            "Visions",
+            "Secret training",
+            "Magical powers",
+            "Mystical inheritance",
+            "A normal life",
+            "True love",
+            "You can save the world",
+            "Hidden allies",
+            "The end of monsters",
+            "Divine help"
+          ]
+        },
+        {
+          name: "Doom",
+          count: 2,
+          options: [
+            "Death",
+            "You can’t save everyone",
+            "Impossible love",
+            "Failure",
+            "A nemesis",
+            "No normal life",
+            "Loss of loved ones",
+            "Treachery",
+            "Doubt",
+            "Sympathy with the enemy",
+            "Damnation",
+            "Hosts of monsters",
+            "The end of days",
+            "The source of Evil"
+          ]
+        }
+      ]
+    }
   },
   {
     name: 'The Crooked',

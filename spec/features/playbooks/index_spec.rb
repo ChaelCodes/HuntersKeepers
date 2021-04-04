@@ -7,8 +7,8 @@ describe 'playbooks#index' do
     sign_in user
   end
 
-  context 'with a playbooks' do
-    let!(:playbooks) { create :playbook, name: 'The Nameless' }
+  context 'with a playbook' do
+    let!(:playbook) { create :playbook, name: 'The Nameless' }
 
     it 'has a list of playbooks' do
       visit '/playbooks'
@@ -17,6 +17,20 @@ describe 'playbooks#index' do
         expect(row).to have_content 'Description'
       end
       expect(page).to have_content 'The Nameless'
+      expect(page).not_to have_content('Destroy')
+    end
+  end
+
+  context 'playbook with a backstory' do
+    let!(:playbook) { create :playbook, :with_backstory, name: 'Historical' }
+
+    it 'has a list of playbooks' do
+      visit '/playbooks'
+      page.all('thead > tr').each do |row|
+        expect(row).to have_content 'Name'
+        expect(row).to have_content 'Description'
+      end
+      expect(page).to have_content 'Historical'
       expect(page).not_to have_content('Destroy')
     end
   end
