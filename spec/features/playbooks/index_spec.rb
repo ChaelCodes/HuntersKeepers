@@ -19,6 +19,13 @@ describe 'playbooks#index' do
       expect(page).to have_content 'The Nameless'
       expect(page).not_to have_content('Destroy')
     end
+
+    it 'the name takes me to the show page' do
+      visit '/playbooks'
+      expect(page).to have_link 'The Nameless', href: "/playbooks/#{playbook.id}"
+      click_on 'The Nameless'
+      expect(page).to have_current_path "/playbooks/#{playbook.id}"
+    end
   end
 
   context 'playbook with a backstory' do
