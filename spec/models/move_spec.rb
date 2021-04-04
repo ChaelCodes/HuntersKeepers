@@ -48,15 +48,21 @@ RSpec.describe Move, type: :model do
     subject { described_class.include_hunter_moves(hunter.id) }
 
     let!(:move) { create :move }
+    let!(:move1) { create :move }
     let(:hunter) { create :hunter }
     let(:hunters_move) { HuntersMove.first }
 
     context 'when target hunter has move' do
-      before { hunter.moves << move }
+      before { hunter.moves << [move, move1] }
 
       it 'includes the hunter move associated with target hunter' do
         expect(subject.pluck(:'hunters_moves.id', :'moves.id'))
           .to include [hunters_move.id, move.id]
+      end
+
+      it 'does not duplicate moves' do
+        expect(subject.where('moves.id': move.id).count)
+          .to eq 1
       end
     end
 
@@ -75,6 +81,8 @@ RSpec.describe Move, type: :model do
       it 'does not include other hunters hunters_moves' do
         expect(subject.pluck(:'hunters_moves.id', :'moves.id'))
           .not_to include [hunters_move.id, move.id]
+        expect(subject.pluck(:'hunters_moves.id', :'moves.id'))
+          .to include [nil, move.id]
       end
     end
   end
