@@ -2,7 +2,7 @@
 
 require 'rails_helper'
 
-describe 'hunters#show' do
+describe 'gear#show' do
   let(:user) { create :user }
   let!(:gear) { create :gear }
 
