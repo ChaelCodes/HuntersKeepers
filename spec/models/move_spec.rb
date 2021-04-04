@@ -75,6 +75,8 @@ RSpec.describe Move, type: :model do
       it 'does not include other hunters hunters_moves' do
         expect(subject.pluck(:'hunters_moves.id', :'moves.id'))
           .not_to include [hunters_move.id, move.id]
+        expect(subject.pluck(:'hunters_moves.id', :'moves.id'))
+          .to include [nil, move.id]
       end
     end
   end
