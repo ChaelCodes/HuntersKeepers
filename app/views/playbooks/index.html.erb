@@ -14,7 +14,7 @@
   <tbody>
     <% @playbooks.each do |playbook| %>
       <tr>
-        <td><%= link_to playbook %></td>
+        <td><%= link_to playbook, playbook %></td>
         <% unless mobile_device? %>
           <td><%= playbook.description.truncate(100, separator: ' ') %></td>
         <% end %>
