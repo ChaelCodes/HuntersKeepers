@@ -12,7 +12,7 @@ class MovesController < ApplicationController
     if params[:playbook_id]
       @moves = @moves.where(playbook_id: params[:playbook_id])
     end
-    @moves = @moves.order(:type, :name)
+    @moves = @moves.order(:playbook_id, :name)
   end
 
   # GET /moves/1
