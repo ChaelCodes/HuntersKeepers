@@ -54,7 +54,10 @@ class Move < ApplicationRecord
   end
   scope :include_hunter_moves, ->(hunter_id) do # rubocop:disable Style/Lambda
     includes(:hunters_moves)
-      .joins("left join hunters_moves on hunters_moves.hunter_id = #{hunter_id}")
+      .joins(%(LEFT JOIN hunters_moves on
+              hunters_moves.hunter_id = #{hunter_id}
+              AND moves.id = hunters_moves.move_id
+      ))
   end
   scope :haven, -> { where(haven: true) }
 
