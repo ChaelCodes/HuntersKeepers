@@ -55,6 +55,12 @@ en:
       index: "All Gear"
       destroy: "Destroy"
       confirm_destroy: "Are you sure?"
+  havens:
+    show:
+      edit: "Edit"
+      index: "All Haven"
+      destroy: "Destroy"
+      confirm_destroy: "Are you sure?"
   hunter_backstories:
     create:
       success: "Hunter backstory was successfully created."
