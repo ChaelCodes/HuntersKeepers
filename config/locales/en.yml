@@ -61,6 +61,12 @@ en:
       index: "All Haven"
       destroy: "Destroy"
       confirm_destroy: "Are you sure?"
+  hunters:
+    show:
+      edit: "Edit"
+      index: "All Hunter"
+      destroy: "Destroy"
+      confirm_destroy: "Are you sure?"
   hunter_backstories:
     show:
       edit: "Edit"
