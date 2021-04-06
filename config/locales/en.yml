@@ -62,6 +62,11 @@ en:
       destroy: "Destroy"
       confirm_destroy: "Are you sure?"
   hunter_backstories:
+    show:
+      edit: "Edit"
+      index: "All Hunter Backstories"
+      destroy: "Destroy"
+      confirm_destroy: "Are you sure?"
     create:
       success: "Hunter backstory was successfully created."
     update:
