@@ -1,4 +1,18 @@
-<h1>Editing Hunter Backstory</h1>
+<div class="leveL">
+    <div class="level-left">
+        <h1>Editing Hunter Backstory</h1>
+    </div>
+    <% if policy(@hunter_backstory).destroy? %>
+        <div class="level-right">
+            <%= link_to t('hunter_backstories.show.destroy'),
+                          hunter_backstory_path(@hunter_backstory),
+                          method: :delete,
+                          class: 'button is-danger',
+                          data: { confirm: t('hunter_backstories.show.confirm_destroy') }
+            %>
+        </div>
+    <% end %>
+</div>
 
 <%= render 'form', hunter_backstory: @hunter_backstory %>
 
