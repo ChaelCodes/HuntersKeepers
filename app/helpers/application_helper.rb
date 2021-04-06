@@ -2,9 +2,9 @@
 
 # Application Helper
 module ApplicationHelper
-  def show_page_buttons(object)
+  def show_page_buttons(object, rel = nil)
     tag.div(class: 'field has-addons') do
-      safe_join(p_wrap(page_buttons(object)))
+      safe_join(p_wrap(page_buttons(object, rel)))
     end
   end
 
@@ -14,27 +14,27 @@ module ApplicationHelper
     end
   end
 
-  def page_buttons(object)
+  def page_buttons(object, rel)
     buttons = []
-    buttons << edit_button(object) if policy(object).edit?
-    buttons << index_button(object)
-    buttons << destroy_button(object) if policy(object).destroy?
+    buttons << edit_button(object, rel) if policy(object).edit?
+    buttons << index_button(object, rel)
+    buttons << destroy_button(object, rel) if policy(object).destroy?
     buttons
   end
 
-  def destroy_button(object)
+  def destroy_button(object, rel)
     link_to(t('.destroy'),
-            object,
+            [rel, object],
             method: :delete,
             class: 'button',
             data: { confirm: t('.confirm_destroy') })
   end
 
-  def edit_button(object)
-    link_to(t('.edit'), [:edit, object], class: 'button')
+  def edit_button(object, rel)
+    link_to(t('.edit'), [:edit, rel, object], class: 'button')
   end
 
-  def index_button(object)
-    link_to(t('.index'), object.class, class: 'button')
+  def index_button(object, rel)
+    link_to(t('.index'), [rel, object.class], class: 'button')
   end
 end
