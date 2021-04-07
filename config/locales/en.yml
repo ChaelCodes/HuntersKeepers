@@ -85,6 +85,12 @@ en:
       index: "All Hunter Improvements"
       destroy: "Destroy"
       confirm_destroy: "Are you sure?"
+  improvements:
+    show:
+      edit: "Edit"
+      index: "All Improvements"
+      destroy: "Destroy"
+      confirm_destroy: "Are you sure?"
   moves:
     create:
       notice: "Move was successfully created."
