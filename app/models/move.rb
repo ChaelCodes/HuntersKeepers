@@ -74,4 +74,8 @@ class Move < ApplicationRecord
   def self.policy_class
     MovePolicy
   end
+
+  def class
+    Move
+  end
 end

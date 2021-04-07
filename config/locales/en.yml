@@ -119,8 +119,10 @@ en:
       mixed_success: "On a mixed success:"
       ten_plus: "On a 10+:"
       advanced_move_twelve_plus: "Advanced Move, on a 12+:"
-      edit_link: "Edit"
-      back_link: "Back"
+      edit: "Edit"
+      index: "All Move"
+      destroy: "Destroy"
+      confirm_destroy: "Are you sure?"
     update:
       notice: "Move was successfully updated."
     destroy:
