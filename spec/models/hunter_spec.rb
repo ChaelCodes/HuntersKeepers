@@ -164,4 +164,22 @@ RSpec.describe Hunter, type: :model do
       it { is_expected.to be_falsey }
     end
   end
+
+  describe '#add_defaults' do
+    subject { hunter.moves.count }
+
+    context 'when hunter already has moves' do
+      let(:move) { create(:move) }
+
+      before { hunter.moves << move }
+
+      it { is_expected.to eq(1) }
+    end
+
+    context 'when hunter does not have any moves' do
+      before { Moves::Basic.default_moves.each { |m| create(:moves_basic, name: m) } }
+
+      it { is_expected.to eq(8) }
+    end
+  end
 end
