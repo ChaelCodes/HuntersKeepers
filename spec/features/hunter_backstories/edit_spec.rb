@@ -25,4 +25,29 @@ describe 'hunter_backstories/:id/edit' do
       }
     )
   end
+
+  describe 'delete action' do
+    let(:have_delete_link) do
+      have_link I18n.t('hunter_backstories.show.destroy'),
+                href: hunter_backstory_path(hunter_backstory)
+    end
+
+    before :each do
+      sign_in user
+      visit "/hunter_backstories/#{hunter_backstory.id}/edit"
+    end
+
+    context 'when user is logged in' do
+      let(:user) { create(:user) }
+
+      it { expect(page).not_to have_delete_link }
+    end
+
+    context 'when admin is logged in' do
+      let(:user) { create(:user, :admin) }
+
+      it { expect(page).to have_delete_link }
+    end
+  end
+
 end

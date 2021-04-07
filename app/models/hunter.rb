@@ -73,6 +73,8 @@ class Hunter < ApplicationRecord
   validates :luck, numericality: { less_than_or_equal_to: MAX_LUCK, greater_than_or_equal_to: 0 }
   validates :charm, :cool, :sharp, :tough, :weird, presence: true
 
+  after_create :add_defaults
+
   # This is the Pundit Policy that governs Hunter access
   #
   # @see HunterPolicy
@@ -149,5 +151,9 @@ class Hunter < ApplicationRecord
 
   def to_s
     name
+  end
+
+  def add_defaults
+    self.moves = Moves::Basic.where(name: Moves::Basic.default_moves) if moves.empty?
   end
 end

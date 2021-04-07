@@ -1,4 +1,18 @@
-<h1><%= t('.title') %></h1>
+<div class="level">
+  <div class="level-left">
+    <h1><%= t('.title') %></h1>
+  </div>
+  <% if policy(@playbook).destroy? %>
+    <div class="level-right">
+      <%= link_to t('playbooks.show.destroy'),
+                  playbook_path(@playbook),
+                  method: :delete,
+                  class: 'button is-danger',
+                  data: { confirm: t('playbooks.show.confirm_destroy') }
+      %>
+    </div>
+  <% end %>
+</div>
 
 <%= render 'form', playbook: @playbook %>
 

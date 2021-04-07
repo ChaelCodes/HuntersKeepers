@@ -1,4 +1,17 @@
-<h1><%= t('.title') %></h1>
+<div class="level">
+  <div class="level-left">
+    <h1><%= t('.title') %></h1>
+  </div>
+  <% if policy(@move).destroy? %>
+    <div class="level-right">
+      <%= link_to t('moves.show.destroy'),
+                  move_path(@move),
+                  method: :delete,
+                  class: 'button is-danger',
+                  data: { confirm: t('moves.show.confirm_destroy') }%>
+    </div>
+  <% end %>
+</div>
 
 <%= render 'form', move: @move %>
 

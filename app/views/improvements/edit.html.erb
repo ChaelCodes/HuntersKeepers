@@ -1,4 +1,18 @@
-<h1>Editing Improvement</h1>
+<div class="level">
+  <div class="level-left">
+    <h1>Editing Improvement</h1>
+  </div>
+  <% if policy(@improvement).destroy? %>
+    <div class="level-right">
+      <%= link_to t('improvements.show.destroy'),
+                  improvement_path(@improvement),
+                  method: :delete,
+                  class: 'button is-danger',
+                  data: { confirm: t('improvements.show.confirm_destroy') }
+      %>
+    </div>
+  <% end %>
+</div>
 
 <%= render 'form', improvement: @improvement %>
 
