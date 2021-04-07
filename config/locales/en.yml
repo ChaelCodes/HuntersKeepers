@@ -55,13 +55,42 @@ en:
       index: "All Gear"
       destroy: "Destroy"
       confirm_destroy: "Are you sure?"
+  havens:
+    show:
+      edit: "Edit"
+      index: "All Haven"
+      destroy: "Destroy"
+      confirm_destroy: "Are you sure?"
+  hunters:
+    show:
+      edit: "Edit"
+      index: "All Hunter"
+      destroy: "Destroy"
+      confirm_destroy: "Are you sure?"
   hunter_backstories:
+    show:
+      edit: "Edit"
+      index: "All Hunter Backstories"
+      destroy: "Destroy"
+      confirm_destroy: "Are you sure?"
     create:
       success: "Hunter backstory was successfully created."
     update:
       success: "Hunter backstory was successfully updated."
     destroy:
       success: "Hunter backstory was successfully destroyed."
+  hunters_improvements:
+    show:
+      edit: "Edit"
+      index: "All Hunter Improvements"
+      destroy: "Destroy"
+      confirm_destroy: "Are you sure?"
+  improvements:
+    show:
+      edit: "Edit"
+      index: "All Improvements"
+      destroy: "Destroy"
+      confirm_destroy: "Are you sure?"
   moves:
     create:
       notice: "Move was successfully created."
@@ -90,8 +119,10 @@ en:
       mixed_success: "On a mixed success:"
       ten_plus: "On a 10+:"
       advanced_move_twelve_plus: "Advanced Move, on a 12+:"
-      edit_link: "Edit"
-      back_link: "Back"
+      edit: "Edit"
+      index: "All Move"
+      destroy: "Destroy"
+      confirm_destroy: "Are you sure?"
     update:
       notice: "Move was successfully updated."
     destroy:
@@ -124,6 +155,12 @@ en:
       luck_effect_html: "<strong>%{playbook_name} Special:</strong> %{luck_effect}"
     update:
       success: "Playbook was successfully updated."
+  ratings:
+    show:
+      index: "All Rating"
+      edit: "Edit"
+      destroy: "Destroy"
+      confirm_destroy: "Are you sure?"
   # Defaults
   layouts:
     errors:

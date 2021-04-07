@@ -1,4 +1,18 @@
-<h1>Editing Rating</h1>
+<div class="level">
+  <div class="level-left">
+    <h1>Editing Rating</h1>
+  </div>
+  <% if policy(@rating).destroy? %>
+    <div class="level-right">
+      <%= link_to t('ratings.show.destroy'),
+                  rating_path(@rating),
+                  method: :delete,
+                  class: 'button is-danger',
+                  data: { confirm: t('ratings.show.confirm_destroy') }
+      %>
+    </div>
+  <% end %>
+</div>
 
 <%= render 'form', rating: @rating %>
 

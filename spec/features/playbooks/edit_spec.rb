@@ -33,4 +33,25 @@ describe 'playbooks#edit' do
       expect(page).to have_content 'You are not authorized to perform this action.'
     end
   end
+
+  describe 'delete action' do
+    let(:have_delete_link) { have_link I18n.t('playbooks.show.destroy'), href: playbook_path(playbook) }
+
+    before :each do
+      sign_in user
+      visit "/playbooks/#{playbook.id}/edit"
+    end
+
+    context 'when user is logged in' do
+      let(:user) { create(:user) }
+
+      it { expect(page).not_to have_delete_link }
+    end
+
+    context 'when admin is logged in' do
+      let(:user) { create(:user, :admin) }
+
+      it { expect(page).to have_delete_link }
+    end
+  end
 end
