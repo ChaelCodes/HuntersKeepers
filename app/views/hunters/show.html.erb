@@ -2,7 +2,7 @@
   <div class="column">
     <h1>
       <b><%= @hunter.retired? ? '(Retired)' : '' %></b>
-      <%= @hunter.name %>, 
+      <%= @hunter.name %>,
       <%= link_to_playbook(@hunter) %>
     </h1>
     <p><i><%= @hunter.playbook.description %></i></p>
@@ -49,5 +49,5 @@
     </p>
   </div>
 </div>
-<%= link_to 'Edit', edit_hunter_path(@hunter), class: "button is-primary" %>
-<%= link_to 'Back', hunters_path, class: "button" %>
+
+<%= show_page_buttons(@hunter) %>

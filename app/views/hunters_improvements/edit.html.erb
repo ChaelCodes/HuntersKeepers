@@ -1,4 +1,21 @@
-<h1>Editing Hunters Improvement</h1>
+<div class="level">
+    <div class="level-left">
+        <h1>Editing Hunters Improvement</h1>
+    </div>
+    <div>
+        <% if policy(@hunters_improvement).destroy? %>
+            <div class="level-right">
+                <%= link_to t('hunters_improvements.show.destroy'),
+                 hunter_hunters_improvement_path(hunter_id: @hunters_improvement.hunter_id,
+                                                  id: @hunters_improvement.id),
+                 method: :delete,
+                 class: 'button is-danger',
+                 data: { confirm: t('hunters_improvements.show.confirm_destroy') }
+                %>
+            </div>
+        <% end %>
+    </div>
+</div>
 
 <%= render 'form', hunters_improvement: @hunters_improvement %>
 
