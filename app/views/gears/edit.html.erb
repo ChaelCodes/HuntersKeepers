@@ -1,4 +1,18 @@
-<h1>Editing Gear</h1>
+<div class="level">
+    <div class="level-left">
+      <h1>Editing Gear</h1>
+    </div>
+    <% if policy(@gear).destroy? %>
+      <div class="level-right">
+          <%= link_to t('gears.show.destroy'),
+                      gear_path(@gear),
+                      method: :delete,
+                      class: 'button is-danger',
+                      data: { confirm: t('gears.show.confirm_destroy') }
+          %>
+      </div>
+    <% end %>
+</div>
 
 <%= render 'form', gear: @gear %>
 

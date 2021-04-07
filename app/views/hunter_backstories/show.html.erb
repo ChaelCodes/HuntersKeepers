@@ -12,5 +12,4 @@
   <%= render 'hunter_backstory', playbook: @hunter_backstory.playbook, hunter_backstory: @hunter_backstory %>
 </p>
 
-<%= link_to 'Edit', edit_hunter_backstory_path(@hunter_backstory) %> |
-<%= link_to 'Back', hunter_backstories_path(@hunter_backstory.hunter) %>
+<%= show_page_buttons(@hunter_backstory) %>

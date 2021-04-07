@@ -1,4 +1,18 @@
-<h1>Editing Hunter</h1>
+<div class="level">
+    <div class="level-left">
+        <h1>Editing Hunter</h1>
+    </div>
+    <% if policy(@hunter).destroy? %>
+        <div class="level-right">
+            <%= link_to t('hunters.show.destroy'),
+                        hunter_path(@hunter),
+                        method: :delete,
+                        class: 'button is-danger',
+                        data: { confirm: t('hunters.show.confirm_destroy') }
+            %>
+        </div>
+    <% end %>
+</div>
 
 <div class="columns">
   <div class="column">
