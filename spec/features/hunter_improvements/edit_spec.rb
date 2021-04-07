@@ -5,6 +5,7 @@ require 'rails_helper'
 describe 'hunters/:id/hunters_improvements/:id/edit' do
   let(:hunters_improvement) { create(:hunters_improvement) }
   let(:hunter) { hunters_improvement.hunter }
+  let(:path) { "hunters/#{hunter.id}/hunters_improvements/#{hunters_improvement.id}/edit" }
 
   describe 'delete action' do
     let(:have_delete_link) do
@@ -15,7 +16,7 @@ describe 'hunters/:id/hunters_improvements/:id/edit' do
 
     before :each do
       sign_in user
-      visit "hunters/#{hunter.id}/hunters_improvements/#{hunters_improvement.id}/edit"
+      visit path
     end
 
     context 'when user is logged in' do
