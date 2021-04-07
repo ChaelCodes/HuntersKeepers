@@ -2,7 +2,7 @@
   <div class="column">
     <h1>
       <b><%= @hunter.retired? ? '(Retired)' : '' %></b>
-      <%= @hunter.name %>
+      <%= @hunter.name %>,
       <%= link_to_playbook(@hunter) %>
     </h1>
     <p><i><%= @hunter.playbook.description %></i></p>
