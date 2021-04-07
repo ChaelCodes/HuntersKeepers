@@ -111,6 +111,25 @@ RSpec.describe Moves::Basic, type: :model do
     end
   end
 
+  describe '.default_moves' do
+    subject { described_class.default_moves }
+
+    let(:default_moves) do
+      [
+        'Manipulate Someone',
+        'Act Under Pressure',
+        'Help Out',
+        'Investigate a Mystery',
+        'Read a Bad Situation',
+        'Kick some Ass',
+        'Protect Someone',
+        'Use Magic'
+      ]
+    end
+
+    it { is_expected.to eq default_moves }
+  end
+
   describe '#roll' do
     subject { move.roll(hunter) }
 
