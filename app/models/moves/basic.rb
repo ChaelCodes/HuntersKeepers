@@ -44,19 +44,6 @@ module Moves
   class Basic < Move
     include ::Rollable
 
-    def self.default_moves
-      [
-        'Manipulate Someone',
-        'Act Under Pressure',
-        'Help Out',
-        'Investigate a Mystery',
-        'Read a Bad Situation',
-        'Kick some Ass',
-        'Protect Someone',
-        'Use Magic'
-      ]
-    end
-
     def outcome(roll, hunter)
       case roll
       when 0..6
