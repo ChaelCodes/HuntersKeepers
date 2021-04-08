@@ -164,4 +164,12 @@ RSpec.describe Hunter, type: :model do
       it { is_expected.to be_falsey }
     end
   end
+
+  describe '#add_defaults' do
+    subject { hunter.add_defaults }
+
+    let!(:moves_basic) { create(:moves_basic) }
+
+    it { expect(hunter.moves).to include(moves_basic) }
+  end
 end
