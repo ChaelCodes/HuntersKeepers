@@ -153,6 +153,6 @@ class Hunter < ApplicationRecord
   end
 
   def add_defaults
-    self.moves = Moves::Basic.all if moves.empty?
+    self.moves = (moves | Moves::Basic.all)
   end
 end
