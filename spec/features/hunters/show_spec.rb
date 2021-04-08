@@ -30,7 +30,7 @@ describe 'hunters#show' do
     it 'lets the user roll basic moves', js: true do
       visit "/hunters/#{hunter.id}".dup
       within('#moves') do
-      find('.card-header-title').click
+        all('.card-header-title').first.click
         expect(page).to have_content("(cool #{hunter.cool})")
       end
       expect(page).to have_content(basic_move.name)
@@ -45,7 +45,7 @@ describe 'hunters#show' do
     it 'uses luck to change the outcome', js: true do
       visit "/hunters/#{hunter.id}".dup
       within('#moves') do
-      find('.card-header-title').click
+          all('.card-header-title').first.click
         expect(page).to have_content("(weird #{hunter.weird})")
       end
       expect(Random).to receive(:new).and_return(instance_double('Random', rand: 0))
