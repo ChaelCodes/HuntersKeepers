@@ -43,7 +43,7 @@ class ImproveHunter
           'is not qualified for advanced improvements')
     @hunters_improvement.errors.none?
   end
-
+    
   def hunter_not_advanced?
     @improvement.advanced && !Improvement.advanced_eligible?(@hunter)
   end
