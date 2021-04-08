@@ -166,20 +166,10 @@ RSpec.describe Hunter, type: :model do
   end
 
   describe '#add_defaults' do
-    subject { hunter.moves.count }
+    subject { hunter.add_defaults }
 
-    context 'when hunter already has moves' do
-      let(:move) { create(:move) }
+    let!(:moves_basic) { create(:moves_basic) }
 
-      before { hunter.moves << move }
-
-      it { is_expected.to eq(1) }
-    end
-
-    context 'when hunter does not have any moves' do
-      before { Moves::Basic.default_moves.each { |m| create(:moves_basic, name: m) } }
-
-      it { is_expected.to eq(8) }
-    end
+    it { expect(hunter.moves).to include(moves_basic) }
   end
 end
