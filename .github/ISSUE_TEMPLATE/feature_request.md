@@ -20,3 +20,5 @@ Dev team to add solution that we'd like to implement here.
 
 **References**
 Any references to materials or help articles that may help in implementing this issue.
+
+- [Hunter/Playbook Reference](https://www.evilhat.com/home/wp-content/uploads/2019/03/Monster-of-the-Week-Revised-Playbooks.pdf)
