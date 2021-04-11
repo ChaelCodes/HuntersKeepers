@@ -55,8 +55,8 @@ class Move < ApplicationRecord
   scope :include_hunter_moves, ->(hunter_id) do # rubocop:disable Style/Lambda
     query = sanitize_sql_for_conditions([
                                           %(LEFT JOIN hunters_moves on
-                hunters_moves.hunter_id = ?
-                AND moves.id = hunters_moves.move_id),
+                                          hunters_moves.hunter_id = ?
+                                          AND moves.id = hunters_moves.move_id),
                                           hunter_id
                                         ])
     includes(:hunters_moves)
