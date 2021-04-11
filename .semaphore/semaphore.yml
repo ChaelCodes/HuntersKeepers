@@ -14,11 +14,12 @@ blocks:
           commands:
             - checkout
             - docker-compose build
-            - docker-compose run web rake db:test:prepare
+            - docker-compose run --rm web yarn install --check-files
+            - docker-compose run --rm web rake db:test:prepare
             - 'curl -L https://codeclimate.com/downloads/test-reporter/test-reporter-latest-linux-amd64 > ./cc-test-reporter'
             - chmod +x ./cc-test-reporter
             - ./cc-test-reporter before-build
-            - docker-compose run web bundle exec rspec
+            - docker-compose run --rm web bundle exec rspec
       epilogue:
         on_pass:
           commands:
