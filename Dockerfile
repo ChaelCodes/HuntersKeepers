@@ -1,6 +1,6 @@
 # Generating a generic Rails image.
 # Just for caching.
-FROM ruby:2.7-alpine AS rails
+FROM ruby:2.7.3-alpine AS rails
 
 # `apk` is like `apt`, but for Alpine Linux.
 RUN apk add --update --no-cache --quiet \
