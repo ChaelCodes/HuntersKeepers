@@ -21,7 +21,7 @@ We follow the Contributor Covenant v2.0. If you have any issues, reach out to @C
 - Write your Code
 - Commit your code
   - Please keep your commits clean and descriptive, they will be reviewed along with the PR
-- Create descriptive Pull Request pointing to ChaelCodes/HuntersKeepers and the master branch
+- Create descriptive Pull Request pointing to ChaelCodes/HuntersKeepers and the main branch
 - All CI checks must pass, before your PR will be reviewed
   - Please do not delete specs unless the matching code has been removed.
 - Wait for review
