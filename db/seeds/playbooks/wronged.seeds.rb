@@ -11,77 +11,75 @@ after :playbook do
     name: "I Know My Prey",
     type: 'Moves::Descriptive',
     playbook_id: @wronged.id,
-    description: 'You get +1 ongoing when knowingly investigating, pursuing or fighting the breed of
-monster that caused your loss.'
+    description: 'You get +1 ongoing when knowingly investigating, pursuing '\
+    'or fighting the breed of monster that caused your loss.'
   },
    {
      name: 'Berserk',
      type: 'Moves::Descriptive',
      playbook_id: @wronged.id,
-     description: 'No matter how much harm you take, you
-can always keep going until the current fight is over.
-During a fight, the Keeper may not use harm moves
-on you and you cannot die. When the fight ends, all
-harm takes effect as normal'
+     description: 'No matter how much harm you take, you '\
+     'can always keep going until the current fight is over. '\
+     'During a fight, the Keeper may not use harm moves '\
+     'on you and you cannot die. When the fight ends, all '\
+     'harm takes effect as normal'
    },
    {
      name: 'NEVER AGAIN',
      type: 'Moves::Descriptive',
      playbook_id: @wronged.id,
-     description: 'In combat, you may choose to
-*protect someone* without rolling, as if you had
-rolled a 10+, but you may not choose to "suffer little
-harm."'
+     description: 'In combat, you may choose to '\
+     '*protect someone* without rolling, as if you had '\
+     'rolled a 10+, but you may not choose to "suffer little '\
+     'harm."'
    },
    {
      name: 'What Does Not Kill Me...',
      type: 'Moves::Descriptive',
      playbook_id: @wronged.id,
-     description: ' If you have suffered harm
-in a fight, you gain +1 ongoing until the fight is over.'
+     description: 'If you have suffered harm '\
+     'in a fight, you gain +1 ongoing until the fight is over.'
    },
    {
      name: 'Fervor',
      type: 'Moves::Descriptive',
      playbook_id: @wronged.id,
-     description: 'When you *manipulate someone*, roll
-+Tough instead of +Charm.'
+     description: 'When you *manipulate someone*, roll '\
+     '+Tough instead of +Charm.'
    },
    {
      name: 'Safety First',
      type: 'Moves::Descriptive',
      playbook_id: @wronged.id,
-     description: 'You have jury-rigged extra protection
-into your gear, giving you +1 armour (maximum
-2-armour).'
+     description: 'You have jury-rigged extra protection '\
+     'into your gear, giving you +1 armour (maximum '\
+     '2-armour).'
    },
    {
      name: 'DIY Surgery',
      rating: :cool,
-     ten_plus: 'On a 10+ it’s all good, it counts as normal first aid,
-plus stabilize the injury and heal 1 harm.',
-     seven_to_nine: 'On a 7-9
-it counts as normal first aid, plus one of these, your
-choice:
-• Stabilise the injury but the patient takes -1
-forward.
-• Heal 1-harm and stabilise for now, but it will
-return as 2-harm and become unstable again
-later.
-• Heal 1-harm and stabilise but the patient takes
--1 ongoing until it’s fixed properly',
-     six_and_under: 'No heroic measures undertaken; no impact on the efficacy of your first aid',
+     ten_plus: 'On a 10+ it’s all good, it counts as normal first aid, '\
+     'plus stabilize the injury and heal 1 harm.',
+     seven_to_nine: "On a 7-9 it counts as normal first aid, plus one of "\
+     "these, your choice:\n"\
+     " • Stabilise the injury but the patient takes -1 forward.\n"\
+     " • Heal 1-harm and stabilise for now, but it will return as 2-harm and "\
+         "become unstable again later.\n"\
+     " • Heal 1-harm and stabilise but the patient takes -1 ongoing until "\
+         "it’s fixed properly\n",
+     six_and_under: "No heroic measures undertaken; no impact on the "\
+     "efficacy of your first aid",
      type: 'Moves::Rollable',
      playbook_id: @wronged.id,
-     description: 'When you do *quick and dirty first
-aid on someone* (including yourself), roll +Cool.'
+     description: "When you do *quick and dirty first aid on someone* "\
+     "(including yourself), roll +Cool."
    },
    {
        name: 'Tools Matter',
        type: 'Moves::Descriptive',
        playbook_id: @wronged.id,
-       description: 'With your signature weapon (see
-your gear, below), you get +1 to *kick some ass*.'
+       description: "With your signature weapon (see your gear, below), you "\
+       "get +1 to *kick some ass*."
    }].each do |move|
     Move.find_or_create_by!(move)
   end

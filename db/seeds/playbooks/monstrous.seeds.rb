@@ -11,58 +11,50 @@ after :playbook do
       name: 'Immortal',
       type: 'Moves::Descriptive',
       playbook_id: @monstrous.id,
-      description:'You do not age or sicken, and whenever
-        you suffer harm you suffer 1-harm less.'
+      description:'You do not age or sicken, and whenever '\
+      'you suffer harm you suffer 1-harm less.'
     },
     {
       name: 'Unnatural Appeal',
       type: 'Moves::Descriptive',
       playbook_id: @monstrous.id,
-      description: 'Roll +Weird instead of +Charm
-        when you manipulate someone.'
+      description: 'Roll +Weird instead of +Charm when you manipulate someone.'
     },
     {
       name: 'Unholy Strength',
       type: 'Moves::Descriptive',
       playbook_id: @monstrous.id,
-      description: 'Roll +Weird instead of +Tough
-        when you kick some ass.'
+      description: 'Roll +Weird instead of +Tough when you kick some ass.'
     },
     {
       name: 'Incorporeal',
       type: 'Moves::Descriptive',
       playbook_id: @monstrous.id,
-      description: 'You may move freely through solid
-        objects (but not people).'
+      description: 'You may move freely through solid objects (but not people).'
     },
     {
       name: 'Preternatural Speed',
       type: 'Moves::Descriptive',
       playbook_id: @monstrous.id,
-      description: 'You go much faster than
-        normal people. When you chase, flee, or run take
-        +1 ongoing.'
+      description: 'You go much faster than normal people. When you chase, '\
+      'flee, or run take +1 ongoing.'
     },
     {
       name: 'Claws of the Beast',
       type: 'Moves::Descriptive',
       playbook_id: @monstrous.id,
-      description: 'All your natural attacks get +1
-        harm.'
+      description: 'All your natural attacks get +1 harm.'
     },
     {
       name: 'Mental Dominion',
       type: 'Moves::Rollable',
       playbook_id: @monstrous.id,
-      description: 'When you gaze into a normal
-        human’s eyes and exert your will over them, roll
-        +Charm. You may spend your hold to give them an order.
-        Regular people will follow your order, whatever it is. 
-        Hunters can choose whether they do it or not. If they do, 
-        they mark experience.',
+      description: 'When you gaze into a normal human’s eyes and exert your '\
+      'will over them, roll +Charm. You may spend your hold to give them an '\
+      'order. Regular people will follow your order, whatever it is. Hunters '\
+      'can choose whether they do it or not. If they do, they mark experience.',
       rating: :charm,
-      six_and_under: 'It is clear that you hold no control
-        over them.',
+      six_and_under: 'It is clear that you hold no control over them.',
       seven_to_nine: 'Hold 1.',
       ten_plus: 'Hold 3.'
     },
@@ -70,8 +62,7 @@ after :playbook do
       name: 'Unquenchable Vitality',
       type: 'Moves::Rollable',
       playbook_id: @monstrous.id,
-      description: 'When you have taken harm,
-        you can heal yourself. Roll +Cool.',
+      description: 'When you have taken harm, you can heal yourself. Roll +Cool.',
       rating: :cool,
       six_and_under: 'Your injuries worsen.',
       seven_to_nine: 'Heal 1-harm and stabilise your injuries.',
@@ -81,9 +72,8 @@ after :playbook do
       name: 'Dark Negotiator',
       type: 'Moves::Descriptive',
       playbook_id: @monstrous.id,
-      description: 'You can use the manipulate
-        someone move on monsters as well as people, if
-        they can reason and talk.'
+      description: 'You can use the manipulate someone move on monsters as '\
+      'well as people, if they can reason and talk.'
     },
     {
       name: 'Flight',
@@ -95,19 +85,17 @@ after :playbook do
       name: 'Shapeshifter',
       type: 'Moves::Descriptive',
       playbook_id: @monstrous.id,
-      description: 'You may change your form (usually
-        into an animal). Decide if you have just one alternate 
-        form or several, and detail them. You gain +1
-        to investigate a mystery when using an alternate
-        form’s superior senses (e.g. smell for a wolf, sight for
-        an eagle).'
+      description: 'You may change your form (usually into an animal). Decide '\
+      'if you have just one alternate form or several, and detail them. You '\
+      'gain +1 to investigate a mystery when using an alternate form’s '\
+      'superior senses (e.g. smell for a wolf, sight for an eagle).'
     },
     {
       name: 'Something Borrowed',
       type: 'Moves::Descriptive',
       playbook_id: @monstrous.id,
-      description: 'Take a move from a hunter
-        playbook that is not currently in play.'
+      description: 'Take a move from a hunter '\
+      'playbook that is not currently in play.'
     }
   ].each do |move|
     Move.find_or_create_by!(move)
@@ -202,14 +190,14 @@ after :playbook do
     },
     {
       type: 'Improvements::AdvancedMove',
-      description: 'Free yourself from the curse of your kind. Your curse
-        no longer applies, but you lose 1 Weird.',
+      description: 'Free yourself from the curse of your kind. Your curse '\
+      'no longer applies, but you lose 1 Weird.',
       advanced: true
     },
     {
       type: 'Improvements::Retire',
-      description: 'You turn evil (again). Retire this character, they
-      become one of the Keeper’s threats.',
+      description: 'You turn evil (again). Retire this character, they '\
+      'become one of the Keeper’s threats.',
       advanced: true
     },
     {

@@ -11,16 +11,16 @@ after :playbook do
       name: 'Connect the Dots',
       type: 'Moves::Rollable',
       rating: :sharp,
-      description: ' At the beginning of each mystery,
-      if you look for the wider patterns that current
-      events might be part of, roll +Sharp. Spend your hold during the
-      mystery to ask the Keeper any one of the following
-      questions:
-      - Is this person connected to current events more than they are saying?
-      - When and where will the next critical event occur?
-      - What does the monster want from this person?
-      - Is this connected to previous mysteries we have investigated?
-      - How does this mystery connect to the bigger picture?',
+      description: "At the beginning of each mystery, "\
+      "if you look for the wider patterns that current "\
+      "events might be part of, roll +Sharp. Spend your hold during the "\
+      "mystery to ask the Keeper any one of the following "\
+      "questions:\n"\
+      " • Is this person connected to current events more than they are saying?\n"\
+      " • When and where will the next critical event occur?\n"\
+      " • What does the monster want from this person?\n"\
+      " • Is this connected to previous mysteries we have investigated?\n"\
+      " • How does this mystery connect to the bigger picture?",
       six_and_under: 'On a miss hold 0',
       seven_to_nine: 'On a 7-9 hold 1',
       ten_plus: 'On a 10+ hold 3'
@@ -46,34 +46,35 @@ after :playbook do
       rating: :weird,
       description: 'When you act all crazy to avoid something, roll +Weird.',
       six_and_under: 'On a miss, you draw lots (but not all) of the attention.',
-      seven_to_nine: 'On a 7-9, pick one:
-      - unthreatening
-      - unimportant',
+      seven_to_nine: "On a 7-9, pick one:\n"\
+      " • unthreatening\n"\
+      " • unimportant",
       ten_plus: 'On a 10+ you’re regarded as unthreatening and unimportant.'
     },
     {
       name: 'Contrary',
       type: 'Moves::Descriptive',
-      description: 'When you seek out and receive someone’s honest advice on the best course of action for
-      you and then do something else instead, mark experience. If you do exactly the opposite of their advice,
-      you also take +1 ongoing on any moves you make
-      pursuing that course.'
+      description: 'When you seek out and receive someone’s honest advice on '\
+      'the best course of action for '\
+      'you and then do something else instead, mark experience. If you do '\
+      'exactly the opposite of their advice, you also take +1 ongoing on any '\
+      'moves you make pursuing that course.'
     },
     {
       name: 'Net Friends',
       type: 'Moves::Rollable',
       rating: :charm,
-      description: 'You know a lot of people on the Internet. When you contact a net friend to help you with
-      a mystery, roll +Charm.',
+      description: 'You know a lot of people on the Internet. When you '\
+      'contact a net friend to help you with a mystery, roll +Charm.',
       six_and_under: 'On a miss, you burn some bridges.',
-      seven_to_nine: 'On a 7-9, they’re prepared to help, but it’s either
-      going to take some time or you’re going to have to do
-      part of it yourself.',
-      ten_plus: ' On a 10+, they’re available and helpful:
-      - they can fix something
-      - break a code
-      - hack a computer
-      - get you some special information'
+      seven_to_nine: 'On a 7-9, they’re prepared to help, but it’s either '\
+      'going to take some time or you’re going to have to do '\
+      'part of it yourself.',
+      ten_plus: "On a 10+, they’re available and helpful:\n"\
+      " • they can fix something\n"\
+      " • break a code\n"\
+      " • hack a computer\n"\
+      " • get you some special information"
     },
     {
       name: 'Sneaky',
