@@ -9,79 +9,79 @@ after :playbook do
       type: 'Moves::Rollable',
       rating: :weird,
       description: 'At the beginning of each mystery, roll +Weird.',
-      ten_plus: "On a 10+, your Superiors ask \
-      you to do something simple, and  you get to ask them \
-      one of the questions from the investigate a mystery \
-      move right now.",
-      seven_to_nine: "On a 7-9, they ask you
-      to do something complicated or difficult, but you get \
-      to ask them one of the questions from the investigate a \
-      mystery move right now.",
-      six_and_under: "On a miss, you are required to do something terrible. \
-      If you do not accomplish what they’ve ordered, you cannot use this move \
-      again until you have made up for your failure."
+      ten_plus: "On a 10+, your Superiors ask "\
+      "you to do something simple, and  you get to ask them "\
+      "one of the questions from the investigate a mystery "\
+      "move right now.",
+      seven_to_nine: "On a 7-9, they ask you "\
+      "to do something complicated or difficult, but you get "\
+      "to ask them one of the questions from the investigate a "\
+      "mystery move right now.",
+      six_and_under: "On a miss, you are required to do something terrible. "\
+      "If you do not accomplish what they’ve ordered, you cannot use this move "\
+      "again until you have made up for your failure."
     },
     {
       name: 'Angel Wings',
       type: 'Moves::Rollable',
       rating: :weird,
-      description: "You can go instantly to anywhere you’ve \
-      visited before, or to a person you know well. \
-      When you carry one or two people with you, roll +Weird.",
+      description: "You can go instantly to anywhere you’ve "\
+      "visited before, or to a person you know well. "\
+      "When you carry one or two people with you, roll +Weird.",
       ten_plus: 'On a 10+ you all go where you wanted.',
-      seven_to_nine: "On a 7-9, you don’t quite manage it. \
-      Either you are all separated, or you all appear in the \
-      wrong place.",
-      six_and_under: "On less than a 6, you're all separated \
-      and in the wrong places."
+      seven_to_nine: "On a 7-9, you don’t quite manage it. "\
+      "Either you are all separated, or you all appear in the "\
+      "wrong place.",
+      six_and_under: "On less than a 6, you're all separated "\
+      "and in the wrong places."
     },
     {
       name: 'What I Need, When I Need It',
       type: 'Moves::Descriptive',
-      description: "You may store any small object you own, \
-      putting it into a magical space nobody can get to. \
-      You may retrieve anything you stored at any time; \
-      it appears in your hand."
+      description: "You may store any small object you own, "\
+      "putting it into a magical space nobody can get to. "\
+      "You may retrieve anything you stored at any time; "\
+      "it appears in your hand."
     },
     {
       name: 'Smite',
       type: 'Moves::Descriptive',
-      description: "Your body and divine weapon always count \
-      as a weakness against the monsters you fight. \
-      Your unarmed attacks are 2-harm intimate hand messy."
+      description: "Your body and divine weapon always count "\
+      "as a weakness against the monsters you fight. "\
+      "Your unarmed attacks are 2-harm intimate hand messy."
     },
     {
       name: 'Soothe',
       type: 'Moves::Descriptive',
-      description: "When you talk to someone for a few \
-        seconds in a quiet voice, you can calm them down, \
-        blocking any panic, anger, or other negative emotions \
-        they have. This works even if the thing that freaked \
-        them out is still present, as long as your voice can be heard."
+      description: "When you talk to someone for a few "\
+      "seconds in a quiet voice, you can calm them down, "\
+      "blocking any panic, anger, or other negative emotions "\
+      "they have. This works even if the thing that freaked "\
+      "them out is still present, as long as your voice can be heard."
     },
     {
       name: 'Lay on Hands',
-      description: "Your touch can heal injury and disease. \
-      When you lay your hands on someone hurt, roll +Cool.",
+      description: "Your touch can heal injury and disease. "\
+      "When you lay your hands on someone hurt, roll +Cool.",
       type: 'Moves::Rollable',
       rating: :cool,
       ten_plus: 'On a 10+, heal 2 harm or an illness, plus they’re stabilized.',
-      seven_to_nine: "On a 7-9, you can heal 2 harm or an illness, \
-      and stabilize them, but you take the harm or illness into yourself.",
+      seven_to_nine: "On a 7-9, you can heal 2 harm or an illness, "\
+      "and stabilize them, but you take the harm or illness into yourself.",
       six_and_under: 'On a miss, your aura causes them extra harm.'
     },
     {
       name: 'Cast Out Evil',
-      description: "You may banish an unnatural creature from your presence. \
-      Roll +Tough.",
+      description: "You may banish an unnatural creature from your presence. "\
+      "Roll +Tough.",
       type: 'Moves::Rollable',
       rating: :tough,
-      ten_plus: "On a 10+ it is banished. The banished creature is unharmed, \
-      and you have no control over where it goes.",
-      seven_to_nine: "On a 7-9 it takes a little while \
-        for the banishing to take effect—the creature \
-        has time to make one or two actions. The banished creature \
-        is unharmed, and you have no control over where it goes.",
+      ten_plus: "On a 10+ it is banished. The banished creature is unharmed, "\
+      "and you have no control over where it goes.",
+      seven_to_nine: "On a 7-9 it takes a little while "\
+      "for the banishing to take effect—the creature "\
+      "has time to make one or two actions. The banished creature "\
+      "is unharmed, and you have no control over where it goes.",
       six_and_under: 'On a miss, something is keeping it here. That’s bad.'
     }
   ].each do |move|
