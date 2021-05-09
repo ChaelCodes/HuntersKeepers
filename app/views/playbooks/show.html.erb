@@ -2,13 +2,17 @@
   <div class="column">
     <h1 class="title"><%= @playbook.name %></h1>
     <p class="is-italic"><%= @playbook.description %></p>
-    <div class="block">
-      <h4 class="subtitle" style="margin-top:1rem; margin-bottom:.5rem"><%= t('.ratings') %></h4>
-      <ul>
-        <% @playbook.ratings.each do |rating| %>
-          <li><%= display_rating(rating) %></li>
-        <% end %>
-      </ul>
+    <div class="card mt-1">
+      <header class="card-header">
+        <p class="card-header-title"><%= t('.ratings') %></p>
+      </header>
+      <div class="card-content">
+        <ul>
+          <% @playbook.ratings.each do |rating| %>
+            <li><%= display_rating(rating) %></li>
+          <% end %>
+        </ul>
+      </div>
     </div>
     <div class="block">
       <% if @playbook.luck_effect %>
@@ -24,17 +28,30 @@
   <div class="column">
     <h4 class="subtitle"><%= Gear.model_name.human(count: 3) %></h4>
     <%= render "gears/gears", gears: @playbook.gears %>
-    <h4 class="subtitle" style="margin-top:1rem; margin-bottom:.5rem"><%= Improvement.model_name.human(count: 3) %></h4>
-    <ul>
-      <% @playbook.improvements.not_advanced.each do |improvement| %>
-        <li><%= link_to_improvement(improvement) %></li>
-      <% end %>
-    </ul>
-    <h4 class="subtitle" style="margin-top:1rem; margin-bottom:.5rem"><%= t('.advanced_improvements') %></h4>
-    <ul>
-      <% @playbook.improvements.advanced.each do |improvement| %>
-        <li><%= link_to_improvement(improvement) %></li>
-      <% end %>
+    <div class="card  mt-2">
+      <header class="card-header">
+        <p class="card-header-title"><%= Improvement.model_name.human(count: 3) %></p>
+      </header>
+      <div class="card-content">
+        <ul>
+          <% @playbook.improvements.not_advanced.each do |improvement| %>
+            <li><%= link_to_improvement(improvement) %></li>
+          <% end %>
+        </ul>
+      </div>
+    </div>
+    <div class="card mt-2">
+      <header class="card-header">
+        <p class="card-header-title"><%= t('.advanced_improvements') %></p>
+      </header>
+      <div class="card-content">
+        <ul>
+          <% @playbook.improvements.advanced.each do |improvement| %>
+            <li><%= link_to_improvement(improvement) %></li>
+          <% end %>
+        </ul>
+      </div>
+    </div>
     </ul>
     <div class="block content">
       <h4 class="subtitle"><%= @playbook.backstory&.name %></h4>
