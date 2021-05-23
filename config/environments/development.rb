@@ -62,8 +62,7 @@ Rails.application.configure do
   # Suppress logger output for asset requests.
   config.assets.quiet = true
 
-  # Raises error for missing translations.
-  # config.action_view.raise_on_missing_translations = true
+  config.hosts << /.*-hunterskeepers-.{0,4}-3000.githubpreview.dev/
 
   # Normally, one would use ActiveSupport::EventedFileUpdateChecker to asynchronously
   # detect changes in source code, routes, locales, etc. This feature depends on the listen gem.

@@ -4,7 +4,7 @@
 # Pundit controller for application policy
 class ApplicationController < ActionController::Base
   include Pundit
-  protect_from_forgery with: :exception
+  protect_from_forgery with: :exception, unless: :development?
   rescue_from Pundit::NotAuthorizedError, with: :user_not_authorized
   after_action :verify_authorized, except: :index, unless: :devise_controller?
   default_form_builder ApplicationFormBuilder
@@ -29,5 +29,9 @@ class ApplicationController < ActionController::Base
   def user_not_authorized
     flash[:alert] = 'You are not authorized to perform this action.'
     redirect_to(request.referrer || root_path)
+  end
+
+  def development?
+    Rails.env.development?
   end
 end
