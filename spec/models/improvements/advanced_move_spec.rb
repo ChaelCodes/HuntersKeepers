@@ -43,8 +43,6 @@ RSpec.describe Improvements::AdvancedMove, type: :model do
     let!(:move) { create :moves_basic }
     let!(:move2) { create :moves_basic }
 
-    before { hunter.moves << [move, move2] }
-
     it { is_expected.to include(move) }
     it { is_expected.to include(move2) }
 

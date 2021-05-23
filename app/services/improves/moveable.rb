@@ -33,7 +33,10 @@ module Improves
     def hunter_move_exists?
       return false if invalid_move?
       return false if @move.type == 'Moves::Basic'
-      @hunter.moves.include?(@move)
+      # Check if the id is included in the current moves instead of comparing
+      # the object since one move object may be 'Moves::Basic' and
+      #  another move object may be 'Move' but they are the same
+      @hunter.moves.pluck(:id).include?(@move.id)
     end
 
     def not_haven_move?
