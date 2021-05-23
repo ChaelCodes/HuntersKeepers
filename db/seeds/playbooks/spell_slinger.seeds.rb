@@ -32,10 +32,10 @@ after :playbook do
     playbook_id: @spell_slinger.id,
     description: "When you miss a use magic "\
     "roll you can choose one of the following options "\
-    "instead of losing control of the magi\n"\
+    "instead of losing control of the magic:\n"\
     " • Fizzle: The preparations and materials for the "\
     "spell are ruined. You’ll have to start over from "\
-    "scratch with the prep time double\n"\
+    "scratch with the prep time doubled.\n"\
     " • This Is Gonna Suck: The effect happens, but "\
     "you trigger all of the listed glitches but one. You "\
     "pick the one you avoid."

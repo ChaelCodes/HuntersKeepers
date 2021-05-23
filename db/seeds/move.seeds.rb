@@ -73,7 +73,7 @@
    " • What can hurt it?\n"\
    " • Where did it go?\n"\
    " • What was it going to do?\n"\
-   " • What is being concealed here",
+   " • What is being concealed here?",
    ten_plus: 'You can ask the '\
    "Keeper two of the following questions:\n"\
    " • What happened here?\n"\
